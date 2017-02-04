@@ -1,4 +1,16 @@
 
+/*    CODES COULEURS
+
+	#a22b49 rose fonce
+	#4b1d3f prune
+	#c1d039 verdatre
+	#a4300c marron
+	#d09038 orange claire
+	#a7dadc bleu
+	#eddcc0 beige
+*/
+
+
 /*
 RESET
 */
@@ -655,6 +667,26 @@ Contact Form
 		margin: 3rem auto;
 	}
 
+/*
+Contact Form
+*/
+
+	section.contact-form {
+		padding: 0;
+		padding-bottom:2rem;
+	}
+	section #contact-form {
+		width: 50%;
+		margin: 4rem auto;
+	}
+
+	section h2#titre-contact {
+		width:50%;
+		padding:1.5rem;
+		background-color:#a4300c;
+		border-radius: 0;
+		color:white;
+	}
 
 
     /*    CODES COULEURS
