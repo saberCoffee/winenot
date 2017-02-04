@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-	<a href="#top" class="goto hidden-xs" id="goto-top"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></a>
+	<a href="#top" class="goto hidden-xs anchor" id="goto-top"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></a>
 
 	<section id="AboutUs">
 		<h2>About Us</h2>
@@ -19,11 +19,9 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-					            <div class="thumbnailFront">
-					            <img width="300" src="assets/img/imgBottles/thumbnails_bottle/fond_circulaire.png" alt="background vin">
-					            </div>
-					            <div class="forgroundBottle">
-					                <img width="230" src="assets/img/imgBottles/thumbnails_bottle/Rouge/CabSauvRouge2015.png" alt="	CabSauvRouge2015">
+					            <div class="cercle">
+					            	<img width="200" src="assets/img/imgBottles/source_web_test/01.jpg" alt="romain" overflow="hidden">
+					            	<div class="nameWineBottle"></div>
 					            </div>
 					            <p>Vin Rouge</p>
 					            <p>Cabernet Sauvignon 2015</p>
@@ -55,11 +53,9 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-					            <div class="thumbnailFront">
-					            <img width="300" src="assets/img/imgBottles/thumbnails_bottle/fond_circulaire.png" alt="background vin">
-					            </div>
-					            <div class="forgroundBottle">
-					                <img width="230" src="assets/img/imgBottles/thumbnails_bottle/Rouge/CabSauvRouge2015.png" alt="CabSauvRouge2015">
+					            <div class="cercle">
+					            	<img width="200" src="assets/img/tomtomSmile.gif" alt="romain" overflow="hidden">
+					            	<div class="nameWineBottle"></div>
 					            </div>
 					            <p>Vin Rouge</p>
 					           	<p>Cabernet Sauvignon 2015</p>
@@ -89,11 +85,9 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-					            <div class="thumbnailFront">
-					            <img width="300" src="assets/img/imgBottles/thumbnails_bottle/fond_circulaire.png" alt="Vinblanc">
-					            </div>
-					            <div class="forgroundBottle">
-					                <img width="230" src="assets/img/imgBottles/thumbnails_bottle/Blanc/Sauvignon2015.png" alt="Vin blanc"	>
+					            <div class="cercle">
+					            	<img width="200" src="assets/img/imgBottles/source_web_test/02.jpg" alt="romain" overflow="hidden">
+					            	<div class="nameWineBottle"></div>
 					            </div>
 					            <p>Vin Blanc</p>
 					           	<p>Cabernet Sauvignon 2015</p>
@@ -124,11 +118,9 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-					            <div class="thumbnailFront">
-					            <img width="300" src="assets/img/imgBottles/thumbnails_bottle/fond_circulaire.png" alt="Vin blanc">
-					            </div>
-					            <div class="forgroundBottle">
-					                <img width="230" src="assets/img/imgBottles/thumbnails_bottle/Blanc/Sauvignon2015.png" alt="Vin blanc"	>
+					           <div class="cercle">
+					            	<img width="200" src="assets/img/imgBottles/source_web_test/03.jpg" alt="romain" overflow="hidden">
+					            	<div class="nameWineBottle"></div>
 					            </div>
 					            <p>Vin Blanc</p>
 					           	<p>Cabernet Sauvignon 2015</p>
@@ -158,11 +150,9 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-					            <div class="thumbnailFront">
-					            <img width="300" src="assets/img/imgBottles/thumbnails_bottle/	fond_circulaire.png" alt="Vin ros">
-					            </div>
-					            <div class="forgroundBottle">
-					                <img width="230" src="assets/img/imgBottles/thumbnails_bottle/Rose/MerlotRose2015.png" alt="Vin rosé">
+					           <div class="cercle">
+					            	<img width="200" src="assets/img/imgBottles/source_web_test/04.jpg" alt="romain" overflow="hidden">
+					            	<div class="nameWineBottle"></div>
 					            </div>
 					            <p>Vin Rosé</p>
 					           	<p>Merlot rosé 2015</p>
@@ -192,11 +182,9 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-					            <div class="thumbnailFront">
-					            <img width="300" src="assets/img/imgBottles/thumbnails_bottle/fond_circulaire.png" alt="Vin ros">
-					            </div>
-					            <div class="forgroundBottle">
-					                <img width="230" src="assets/img/imgBottles/thumbnails_bottle/Rose/MerlotRose2015.png" alt="Vin rosé">
+					           <div class="cercle">
+					            	<img width="200" src="assets/img/imgBottles/source_web_test/05.jpg" alt="romain" overflow="hidden">
+					            	<div class="nameWineBottle"></div>
 					            </div>
 					            <p>Vin Rosé</p>
 					           	<p>Merlot rosé 2015</p>
