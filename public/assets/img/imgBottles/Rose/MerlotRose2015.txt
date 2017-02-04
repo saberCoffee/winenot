@@ -1,0 +1,9 @@
+http://www.rochemazet.com/fr/merlot-rose
+
+description :
+	Servi frais entre 8° et 10°C, ce vin tout en finesse et en vivacité sera le 	compagnon idéal de vos entrées, grillades marinées, gratins de légumes et 	desserts aux fruits rouges…
+
+region  PAYS D'OC
+cepage  MERLOT
+prix	inconnu
+
