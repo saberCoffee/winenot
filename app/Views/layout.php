@@ -29,9 +29,9 @@
 				<nav>
 					<div class="row r-p r-m">
 						<ul>
-							<li><a href=<?= $this->url('home') ?>"#AboutUs">À propos</a></li><!--
-							--><li><a href="<?= $this->url('home') ?>#WineMonth">Vins du mois</a></li><!--
-							--><li><a href="#">Producteurs du mois</a></li><!--
+							<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li><!--
+							--><li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li><!--
+							--><li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li><!--
 							--><li><a href="#">Le Mag</a></li>
 						</ul>
 
