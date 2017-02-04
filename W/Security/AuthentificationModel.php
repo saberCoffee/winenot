@@ -27,7 +27,8 @@ class AuthentificationModel
 		}
 
 		if(password_verify($plainPassword, $foundUser[$app->getConfig('security_password_property')])){
-			return (int) $foundUser[$app->getConfig('security_id_property')];
+			// return (int) $foundUser[$app->getConfig('security_id_property')];
+			return (string) $foundUser[$app->getConfig('security_id_property')];
 		}
 
 		return 0;
@@ -37,12 +38,14 @@ class AuthentificationModel
 	 * Connecte un utilisateur
 	 * @param  array $user Le tableau contenant les données utilisateur
 	 */
-	public function logUserIn($user)
+	public function logUserIn($user, $token)
 	{
 		$app = getApp();
 
 		// Retire le mot de passe de la session
 		unset($user[$app->getConfig('security_password_property')]);
+
+		$user['id'] = $token;
 
 		$_SESSION['user'] = $user;
 	}
@@ -64,7 +67,7 @@ class AuthentificationModel
 		return (isset($_SESSION['user'])) ? $_SESSION['user'] : null;
 	}
 
-	
+
 
 	/**
 	 * Utilise les données utilisateurs présentes en base pour mettre à jour les données en session

@@ -29,15 +29,15 @@ class UsersModel extends Model
 
 		$app = getApp();
 
-		$sql = 'SELECT * FROM ' . $this->table . 
-			   ' WHERE ' . $app->getConfig('security_username_property') . ' = :username' . 
-			   ' OR ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
+		$sql = 'SELECT * FROM ' . $this->table .
+		' WHERE ' . $app->getConfig('security_username_property') . ' = :username' .
+		' OR ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
 
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
 		$sth->bindValue(':username', $usernameOrEmail);
 		$sth->bindValue(':email', $usernameOrEmail);
-		
+
 		if($sth->execute()){
 			$foundUser = $sth->fetch();
 			if($foundUser){
@@ -49,29 +49,79 @@ class UsersModel extends Model
 	}
 
 	/**
-	* Teste si un email est présent en base de données
-	* @param string $email L'email à tester
-	* @return boolean true si présent en base de données, false sinon
-	*/
+	 * Teste si un email est présent en base de données
+	 * @param string $email L'email à tester
+	 * @return boolean true si présent en base de données, false sinon
+	 */
 	public function emailExists($email)
 	{
 
-	   $app = getApp();
+		$app = getApp();
 
-	   $sql = 'SELECT ' . $app->getConfig('security_email_property') . ' FROM ' . $this->table .
-	          ' WHERE ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
+		$sql = 'SELECT ' . $app->getConfig('security_email_property') . ' FROM ' . $this->table .
+		' WHERE ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
 
-	   $dbh = ConnectionModel::getDbh();
-	   $sth = $dbh->prepare($sql);
-	   $sth->bindValue(':email', $email);
-	   if($sth->execute()){
-	       $foundUser = $sth->fetch();
-	       if($foundUser){
-	           return true;
-	       }
-	   }
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':email', $email);
+		if($sth->execute()){
+			$foundUser = $sth->fetch();
+			if($foundUser){
+				return true;
+			}
+		}
 
-	   return false;
+		return false;
+	}
+
+	/**
+	 * Teste si un email est présent en base de données
+	 * @param string $email L'email à tester
+	 * @return boolean true si présent en base de données, false sinon
+	 */
+	public function tokenExists($id)
+	{
+
+		$app = getApp();
+
+		$sql = 'SELECT * FROM tokens WHERE user_id = :id AND type LIKE "Authentification" LIMIT 1';
+
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':id', $id); //PDO::PARAM_STR);
+		if($sth->execute()){
+			$foundUser = $sth->fetch();
+			if($foundUser){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Teste si un email est présent en base de données
+	 * @param string $email L'email à tester
+	 * @return boolean true si présent en base de données, false sinon
+	 */
+	public function getUserByToken($token)
+	{
+
+		$app = getApp();
+
+		$sql = 'SELECT id FROM users, tokens WHERE user_id = id AND token = :token LIMIT 1';
+
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':token', $token, PDO::PARAM_STR);
+		if($sth->execute()){
+			$foundUser = $sth->fetch();
+			if($foundUser){
+				return $foundUser;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -82,21 +132,21 @@ class UsersModel extends Model
 	public function usernameExists($username)
 	{
 
-	    $app = getApp();
+		$app = getApp();
 
-	    $sql = 'SELECT ' . $app->getConfig('security_username_property') . ' FROM ' . $this->table .
-	           ' WHERE ' . $app->getConfig('security_username_property') . ' = :username LIMIT 1';
+		$sql = 'SELECT ' . $app->getConfig('security_username_property') . ' FROM ' . $this->table .
+		' WHERE ' . $app->getConfig('security_username_property') . ' = :username LIMIT 1';
 
-	    $dbh = ConnectionModel::getDbh();
-	    $sth = $dbh->prepare($sql);
-	    $sth->bindValue(':username', $username);
-	    if($sth->execute()){
-	        $foundUser = $sth->fetch();
-	        if($foundUser){
-	            return true;
-	        }
-	    }
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':username', $username);
+		if($sth->execute()){
+			$foundUser = $sth->fetch();
+			if($foundUser){
+				return true;
+			}
+		}
 
-	    return false;
+		return false;
 	}
 }

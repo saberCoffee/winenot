@@ -3,46 +3,61 @@ namespace Model;
 
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
+use Model\TokenModel;
 
 class UserModel extends UsersModel
 {
 
-    public function register($email, $password, &$error)
-    {
-        if ($this->emailExists($email)) {
-            $error['email'] = 'Cette adresse email est déjà enregistrée.';
-            return;
-        }
+	public function register($email, $password, &$error)
+	{
+		if ($this->emailExists($email)) {
+			$error['email'] = 'Cette adresse email est déjà enregistrée.';
+			return;
+		}
 
-        $auth = new AuthentificationModel;
+		$auth = new AuthentificationModel;
+		$validation = new AuthentificationModel;
 
-        $hashedPassword = $auth->hashPassword($password);
+		$hashedPassword = $auth->hashPassword($password);
 
-        $data = array(
-            'id'       => md5(uniqid(rand(), true)),
-            'email'    => $email,
-            'password' => $hashedPassword
-        );
+		$id =  md5(uniqid(rand(), true));
 
-        return $this->insert($data);
-    }
-    
-        public function login($email, $password, &$error)
-    {   
-        $validation = new AuthentificationModel;
-        
-        if ($validation->isValidLoginInfo($email, $password) == 0) {
-            
-            $error['login_email'] = 'Votre identifiant ou mot de passe ne sont pas corrects.';
-            $error['login_password'] = 'Votre identifiant ou mot de passe ne sont pas corrects.';
+		$data = array(
+				'id'       => $id,
+				'email'    => $email,
+				'password' => $hashedPassword
+		);
 
-        } elseif ($validation->isValidLoginInfo($email, $plainPassword) == $email) {
-            
-            $data = $this->find($id);
-            
-            $validation->logUserIn($data);
-        }
-    }
+		$this->insert($data);
+
+		$classToken = new TokenModel();
+		$token = $classToken->generateToken($id);
+		$validation->logUserIn($user, $token);
+		return $token;
+	}
+
+	public function login($email, $password, &$error)
+	{
+		$validation = new AuthentificationModel;
+
+		$user_id = $validation->isValidLoginInfo($email, $password);
+
+		if (!$user_id) {
+			$error['login_email'] = 'Votre identifiant ou mot de passe ne sont pas corrects.';
+		} else {
+				
+			$classToken = new TokenModel();
+			$token = $classToken->generateToken($id);
+			 
+			$user = $this->find($user_id);
+
+			$validation->logUserIn($user, $token);
+			return $token;
+
+
+		}
+	}
 
 
 }
+

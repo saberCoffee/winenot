@@ -20,12 +20,12 @@ class GeneralController extends Controller
 	/**
 	 * Page mon compte
 	 */
-    public function account() {
-        $this->show('general/account', array(
-	        'error' => '',
-	        'email' =>  ''
-        ));
-    }
+	public function account() {
+		$this->show('general/account', array(
+				'error' => '',
+				'email' =>  ''
+		));
+	}
 
 	/**
 	 * Page mon compte, Traitement de l'inscription
@@ -62,53 +62,68 @@ class GeneralController extends Controller
 					$this->redirectToRoute('home'); // DevNote : faire une redirection vers le dashboard après l'inscription
 				}
 			}
-    	}
+		}
 
 		$this->show('general/account', array(
-			'error' => (isset($error)) ? $error : '',
+				'error' => (isset($error)) ? $error : '',
 
-			'email' => (!empty($email)) ? $email : ''
+				'email' => (!empty($email)) ? $email : ''
 		));
 	}
 
-     /*
+	/*
 	 * Page mon compte, Traitement de la connexion
 	 */
-        public function login() {
-        $verification = new AuthentificationModel;
+	public function login() {
 
-            if ($_POST['mode'] == 'login') {
+		if (!empty($_POST)) {
 
-                //debug($_POST['login_email']);
-                //debug($_POST['login_password']);
+			$email = $_POST['login_email'];
+			$password = $_POST['login_password'];
 
-                $email = $_POST['login_email'];
-                $password = $_POST['login_password'];
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				$error['login_email'] = "L'email n'est pas correct.";
+			} elseif (strlen($password)<6) {
+				$error['login_password'] = "Votre mot de passe est trop court.";
+			} elseif (strlen($password)>16) {
+				$error['login_password'] = "Votre mot de passe est trop long.";
+			}
+		}
 
-                if ($verification->isValidLoginInfo($email, $password) == 0) {
-                    debug($verification->isValidLoginInfo($email, $password));
-                    $error['login_email'] = 'Votre identifiant ou mot de passe ne sont pas corrects.';
-                    $error['login_password'] = 'Votre identifiant ou mot de passe ne sont pas corrects.';
-                } else {
-                    $data = $user->find($id);
-                    debug($data);
-                    $email = $_POST['login_email'];
+		if(empty($error)){
+			$user = new UserModel;
+			$user->login($email, $password, $error);
+			 
+			if (empty($error)) {
+				$this->redirectToRoute('home'); // DevNote : faire une redirection vers le dashboard après l'inscription
+			}
+		}
 
-                    $user->logUserIn($data);
+		$this->show('general/account', array(
+				'error'    => (isset($error)) ? $error : '',
+				 
+				'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
+		));
 
-                    $this->redirectToRoute('home'); // DevNote : faire une redirection vers le dashboard après l'inscription
+	}
 
-                    // $user->logUserOut();
-                }
-            }
 
-            $this->show('general/account', array(
-                    'error'    => (isset($error)) ? $error : '',
-                    'mode'     => (!empty($_POST['mode'])) ? $_POST['mode'] : '',
 
-                    'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
-            ));
-
-    }
+	public function contact() {
+		 
+		$this->show('general/contact');
+		 
+		$this->show('general/contact', array(
+				'error' => '',
+				'email' =>  ''
+		));
+	}
 
 }
+
+
+
+
+
+
+
