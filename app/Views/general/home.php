@@ -149,7 +149,7 @@ include('../app/prod/includes/googlemap.php');
 /*
 	DevNote : include pour le travail de Heramban
 */
-// include('../app/prod/includes/producteurs.php');
+include('../app/prod/includes/producteurs.php');
 ?>
 
 <?php $this->stop('main_content') ?>
