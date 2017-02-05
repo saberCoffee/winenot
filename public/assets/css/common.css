@@ -415,7 +415,7 @@ PRODUCTEUR DU MOIS CAROUSSEL
 	}
 
 	/* The controlsy */
-	.carousel-control {
+/*	.carousel-control {
 		left: -50px;
 	    height: 40px;
 		width: 40px;
@@ -427,7 +427,7 @@ PRODUCTEUR DU MOIS CAROUSSEL
 	.carousel-control.right {
 		right: -50px;
 	}
-
+*/
 	/* The indicators */
 	.carousel-indicators {
 		right: 50%;
