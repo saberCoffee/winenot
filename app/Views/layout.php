@@ -18,12 +18,18 @@
 
 <!-- BALISE ENGLOBANT TOUT LE BODY -->
 
-	<div class="container-fluid r-p r-m" id="top">
+	<div class="container-fluid" id="top">
+
+		<div class="row">
 
 			<h1>
 				<a href="<?= $this->url('home') ?>"><img width="95" height="103" src="<?= $this->assetUrl('img/logo_mini_clean.png') ?>" class="logo-responsive" alt="Logo" /></a>
 				WineNot
 			</h1>
+
+		</div>
+
+		<div class="row">
 
 			<header>
 				<nav>
@@ -47,6 +53,7 @@
 
 			</header>
 
+		</div>
 
 		<main>
 			<?= $this->section('main_content') ?>
@@ -54,43 +61,40 @@
 
 		<!-- Start: Footer -->
 		<footer>
+			<div class="row">
 
-			<div class="container">
-				<div class="row">
+				<!-- Plan du Site dans Footer -->
+				<div class="col-md-4 col-xs-12">
+					<h3>Plan du Site</h3>
+					<ul class="sitemap">
+						<li><a href="#">Nos vins</a></li>
+						<li><a href="#">Nos producteurs</a></li>
+						<li><a href="#">About us</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
 
-					<!-- Plan du Site dans Footer -->
-					<div class="col-md-4 col-xs-12">
-						<h3>Plan du Site</h3>
-						<ul class="sitemap">
-							<li><a href="#">Nos vins</a></li>
-							<li><a href="#">Nos producteurs</a></li>
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div>
+				<!-- Réseaux Sociaux dans Footer -->
+				<div class="col-md-4 col-xs-12">
+					<h3>Rejoignez nous</h3>
+					<ul class="sns">
+						<li><a href="#"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-tumblr-square fa-3x" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
 
-					<!-- Réseaux Sociaux dans Footer -->
-					<div class="col-md-4 col-xs-12">
-						<h3>Rejoignez nous</h3>
-						<ul class="sns">
-							<li><a href="#"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-tumblr-square fa-3x" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
-
-					<!-- Contact dans Footer -->
-					<div class="col-md-4 col-xs-12">
-						<h3>Contactez nous</h3>
-						<ul class="contact">
-							<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li>
-					</div>
-					</div>
-				<small>"L'abus d'alcool est dangereux pour la santé, consommez avec modération"</small>
-				<p class="copyright"> 2017 &copy; HérambanHwaSeonRomainThomas</p>
+				<!-- Contact dans Footer -->
+				<div class="col-md-4 col-xs-12">
+					<h3>Contactez nous</h3>
+					<ul class="contact">
+						<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li>
+				</div>
 			</div>
 
+			<small>"L'abus d'alcool est dangereux pour la santé, consommez avec modération"</small>
+			<p class="copyright"> 2017 &copy; HérambanHwaSeonRomainThomas</p>
 
 		</footer>
 	</div>
