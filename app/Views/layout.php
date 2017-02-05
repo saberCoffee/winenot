@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-	<!-- Titre dynamique affichant un titre selon la page sur laquelle on est -->
+
 	<title><?= $this->e($title) . ' - ' . $w_site_name ?></title>
 
 	<!-- Bootstrap -->
@@ -13,63 +13,55 @@
 	<!-- Propre Style Sheet -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>" />
 </head>
+
 <body>
-
-
-<!-- BALISE ENGLOBANT TOUT LE BODY -->
 
 	<div class="container-fluid" id="top">
 
 		<div class="row">
-
 			<h1>
 				<a href="<?= $this->url('home') ?>"><img width="95" height="103" src="<?= $this->assetUrl('img/logo_mini_clean.png') ?>" class="logo-responsive" alt="Logo" /></a>
 				WineNot
 			</h1>
-
 		</div>
 
 		<div class="row">
-
 			<header>
 				<nav>
-					<div class="row r-p r-m">
-						<ul>
-							<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li><!--
-							--><li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li><!--
-							--><li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li><!--
-							--><li><a href="#">Le Mag</a></li>
-						</ul>
+					<ul>
+						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li><!--
+						--><li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li><!--
+						--><li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li><!--
+						--><li><a href="#">Le Mag</a></li>
+					</ul>
 
-						<div class="logo">
-							<a href="<?= $this->url('home') ?>"><img width="200" height="217" src="<?= $this->assetUrl('img/logo_clean.png') ?>" alt="Logo" /></a>
-						</div>
-
-						<ul>
-							<li><a href="<?= $this->url('account') ?>">Mon compte</a></li>
-						</ul>
+					<div class="logo">
+						<a href="<?= $this->url('home') ?>"><img width="200" height="217" src="<?= $this->assetUrl('img/logo_clean.png') ?>" alt="Logo" /></a>
 					</div>
+
+					<ul>
+						<li><a href="<?= $this->url('account') ?>">Mon compte</a></li>
+					</ul>
 				</nav>
-
 			</header>
-
 		</div>
 
 		<main>
-			<?= $this->section('main_content') ?>
+			<?php
+			echo $this->section('main_content')
+			?>
 		</main>
 
 		<!-- Start: Footer -->
 		<footer>
 			<div class="row">
-
 				<!-- Plan du Site dans Footer -->
 				<div class="col-md-4 col-xs-12">
 					<h3>Plan du Site</h3>
 					<ul class="sitemap">
-						<li><a href="#">Nos vins</a></li>
-						<li><a href="#">Nos producteurs</a></li>
-						<li><a href="#">About us</a></li>
+						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li>
+						<li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du moi</a></li>
+						<li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>
 				</div>
