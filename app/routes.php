@@ -13,7 +13,7 @@
 		['GET', '/mag/edit', 'General#mag_edit', 'mag_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
 
 		['GET', '/about', 'General#about', 'about'], // Page d'a propos
-		['GET', '/contact', 'General#contact', 'contact'], // Page du contact le site web
+		['GET|POST', '/contact', 'General#contact', 'contact'], // Page du contact le site web
 		['GET', '/sitemap', 'General#sitemap', 'sitemap'], // Page du Plan du site
 		['GET', '/legal_notice', 'General#legal_notice', 'legal_notice'], // Page de la mention légale
 

@@ -4,6 +4,8 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\UserModel;
+use \Model\Private_messagesModel;
+
 use W\Security\AuthentificationModel;
 
 class GeneralController extends Controller
@@ -110,13 +112,27 @@ class GeneralController extends Controller
 
 
 	public function contact() {
-		 
-		$this->show('general/contact');
-		 
+		
+		if (!empty($_POST)) {
+			$objet = $_POST['contact_objet'];
+			$email = $_POST['contact_email'];
+			$message = $_POST['contact_msg'];
+
+			$contact = new Private_messagesModel();
+			$error = $contact->contact($objet, $email, $message);
+			 
+			if (!is_numeric($error)) {
+				$error = "Votre message n'a pas été envoyez";
+			}
+		}
+
 		$this->show('general/contact', array(
-				'error' => '',
-				'email' =>  ''
+				'objet'		=>	(!empty($_POST['contact_objet'])) ? $_POST['contact_objet'] : '',
+				'email' 	=>  (!empty($_POST['contact_email'])) ? $_POST['contact_email'] : '',
+				'message'	=>	(!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
+				'error' 	=> 	(isset($error) && !empty($error)) ? $error : ''
 		));
+	
 	}
 
 }
