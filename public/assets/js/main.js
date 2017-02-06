@@ -29,11 +29,8 @@ $(function() {
 	}
 	//-- End : Transitions via les ancres  --//
 
-    function initJS() {
-	 	anchors();
-	}
-
-	jQuery(document).ready(function($) {
+	//-- Start : Carousel de la homepage --//
+	function carouselHomepage() {
 		$('#myCarousel').carousel({
 		    interval: 5000
 		});
@@ -52,7 +49,13 @@ $(function() {
 		         var id = $('.item.active').data('slide-number');
 		        $('#carousel-text').html($('#slide-content-'+id).html());
 		});
-	});
+	}
+	//-- End : Carousel de la homepage --//
+
+    function initJS() {
+	 	anchors();
+		carouselHomepage();
+	}
 
 	initJS();
 });

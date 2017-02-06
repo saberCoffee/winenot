@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('fonts/font-awesome-4.7.0/css/font-awesome.min.css')?> "/>
 	<!-- Propre Style Sheet -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/dashboard/style.css') ?>" />
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 
 <body class="dashboard">
@@ -23,7 +25,7 @@
                     <ul>
                         <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
                         <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
+                        <li><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
 
 							<div class="account-popup">
 								<ul>
@@ -92,8 +94,8 @@
 		</div><!-- Fin de la row bootstrap -->
 	</div><!-- Fin du container bootstrap -->
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/dashboard.js') ?>" type="text/javascript"></script>
 	<?= $this->section('js') ?>
 </body>
 </html>

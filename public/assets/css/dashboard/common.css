@@ -78,9 +78,11 @@ Menu de navigation horizontal
         color: #d09038;
     }
 
+    /*
     header nav ul li:last-of-type:hover div.account-popup {
         display: block;
     }
+    */
 
     div.account-popup {
         display: none;
@@ -123,7 +125,7 @@ Menu de navigation latéral
     }
 
     .col-main {
-        margin-left: 317px;
+        margin-left: 16.66666667%;
     }
 
     aside {
@@ -252,7 +254,7 @@ Contenu principal
 
     article h2 {
         position: absolute;
-        top: 0;
+        top: 15.2rem;
         left: 0;
 
         background: rgba(75, 29, 63, 0.8);
@@ -263,7 +265,9 @@ Contenu principal
         padding: 2rem;
 
         color: #fff;
+        font-size: 1.1em;
         text-align: center;
+        text-transform: uppercase;
     }
 
     article p {

@@ -27,7 +27,7 @@ section#ProductMonth .col-sm-2 {
 /*
 LE MAG
 */
-section > h2 {
+section#lemag > h2 {
     z-index: 1;
     position: absolute;
     top: 61px;
@@ -186,7 +186,3 @@ Cadre Article du Mag
 .col-padded-right {
   padding-right: 2em !important;
 }
-
-
-
-
