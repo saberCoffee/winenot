@@ -17,4 +17,12 @@ class DashboardController extends Controller
 		$this->show('dashboard/dashboard');
 	}
 
+	/**
+	 * Page de création de newWineMaker
+	 */
+	public function newWineMaker()
+	{
+		$this->show('dashboard/newWineMaker');
+	}
+
 }

@@ -24,8 +24,10 @@ class GeneralController extends Controller
 	 */
 	public function account() {
 		$this->show('general/account', array(
-				'error' => '',
-				'email' =>  ''
+			'error' => '',
+			'email' =>  '',
+			'firstname' => '',
+			'lastname'  => ''
 		));
 	}
 
@@ -40,6 +42,8 @@ class GeneralController extends Controller
 			$email          = htmlentities($_POST['register_email']);
 			$password       = htmlentities($_POST['register_password']);
 			$password_verif = htmlentities($_POST['register_password_verif']);
+			$firstname      = htmlentities($_POST['firstname']);
+			$lastname       = htmlentities($_POST['lastname']);
 
 			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 				$error['register_email'] = 'Cette adresse email est invalide.';
@@ -55,21 +59,37 @@ class GeneralController extends Controller
 				$error['register_password'] = 'Les mots de passe ne sont pas identiques.';
 			}
 
+			if (empty($firstname)) {
+				$error['firstname'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($firstname) < 2) {
+				$error['firstname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
+			} elseif (strlen($firstname) > 16) {
+				$error['firstname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+
+			if (empty($lastname)) {
+				$error['lastname'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($lastname) < 2) {
+				$error['lastname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
+			} elseif (strlen($lastname) > 16) {
+				$error['lastname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+
+			$user = new UserModel;
+
+			$user->register($email, $password, $firstname, $lastname, $error);
+
 			if (empty($error)) {
-				$user = new UserModel;
-
-				$user->register($email, $password, $error);
-
-				if (empty($error)) {
-					$this->redirectToRoute('home'); // DevNote : faire une redirection vers le dashboard après l'inscription
-				}
+				$this->redirectToRoute('dashboard'); // DevNote : faire une redirection vers le dashboard après l'inscription
 			}
 		}
 
 		$this->show('general/account', array(
-				'error' => (isset($error)) ? $error : '',
+			'error' => (isset($error)) ? $error : '',
 
-				'email' => (!empty($email)) ? $email : ''
+			'email'     => (!empty($email)) ? $email : '',
+			'firstname' => (!empty($firstname)) ? $firstname : '',
+			'lastname'  => (!empty($lastname)) ? $lastname : '',
 		));
 	}
 
@@ -95,15 +115,15 @@ class GeneralController extends Controller
 		if(empty($error)){
 			$user = new UserModel;
 			$user->login($email, $password, $error);
-			 
+
 			if (empty($error)) {
-				$this->redirectToRoute('home'); // DevNote : faire une redirection vers le dashboard après l'inscription
+				$this->redirectToRoute('dashboard'); // DevNote : faire une redirection vers le dashboard après l'inscription
 			}
 		}
 
 		$this->show('general/account', array(
 				'error'    => (isset($error)) ? $error : '',
-				 
+
 				'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
 		));
 
@@ -112,7 +132,7 @@ class GeneralController extends Controller
 
 
 	public function contact() {
-		
+
 		if (!empty($_POST)) {
 			$objet = $_POST['contact_objet'];
 			$email = $_POST['contact_email'];
@@ -120,7 +140,7 @@ class GeneralController extends Controller
 
 			$contact = new Private_messagesModel();
 			$error = $contact->contact($objet, $email, $message);
-			 
+
 			if (!is_numeric($error)) {
 				$error = "Votre message n'a pas été envoyez";
 			}
@@ -132,14 +152,15 @@ class GeneralController extends Controller
 				'message'	=>	(!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
 				'error' 	=> 	(isset($error) && !empty($error)) ? $error : ''
 		));
-	
+
+	}
+
+	/**
+	 * Page d'accueil par défaut
+	 */
+	public function mag()
+	{
+		$this->show('general/mag');
 	}
 
 }
-
-
-
-
-
-
-

@@ -14,13 +14,6 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/dashboard/style.css') ?>" />
 </head>
 
-$email   = bla@bla.fr
-$message = Bonjour, votre site lag chez moi. A l'aide !
-
-$message =
-    Adresse email du client : $email
-    Bonjour, votre site lag chez moi. A l'aide !
-
 <body class="dashboard">
 
     <div class="container-fluid" id="top">
@@ -47,7 +40,7 @@ $message =
                             <li><a href="#">Trouver un producteur</a></li>
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>><a href="<?= $this->url('wishlist') ?>">Mes favoris</a></li>
                             <li><a href="#">Mes reviews</a></li>
-                            <li class="winemaker-link"><a href="#">Devenir producteur</a></li>
+                            <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>><a href="<?= $this->url('newWineMaker') ?>">Devenir producteur</a></li>
                             <li class="winemaker-link"><a href="#">Mon profil</a></li>
                             <li class="winemaker-link"><a href="#">Mes produits</a></li>
                             <li class="admin-link"><a href="#">Gérer le mag</a></li>
