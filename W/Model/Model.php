@@ -41,6 +41,10 @@ abstract class Model
 			// Retire le Model et converti en underscore_case (snake_case)
 			$tableName = str_replace('Model', '', $className);
 			$tableName = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $tableName)), '_');
+			
+			if (substr($tableName, -1) != "s"){
+				$tableName .= "s";
+			}
 		}
 		else {
 			$tableName = $this->table;
