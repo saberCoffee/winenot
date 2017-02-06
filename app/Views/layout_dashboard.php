@@ -81,8 +81,10 @@
                 </aside>
             </div>
 
-            <div class="col-lg-10 r-p r-m">
+            <div class="col-lg-10 r-p r-m col-main">
                 <main>
+					<h1><?=  $w_site_name ?><span><?= $this->e($title) ?></span></h1>
+
                     <?= $this->section('main_content') ?>
                 </main>
             </div>
