@@ -12,7 +12,7 @@ class GeneralController extends Controller
 {
 
 	/**
-	 * Page d'accueil par défaut
+	 * Page d'accueil
 	 */
 	public function home()
 	{
@@ -80,7 +80,7 @@ class GeneralController extends Controller
 			$user->register($email, $password, $firstname, $lastname, $error);
 
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard'); // DevNote : faire une redirection vers le dashboard après l'inscription
+				$this->redirectToRoute('dashboard');
 			}
 		}
 
@@ -97,7 +97,6 @@ class GeneralController extends Controller
 	 * Page mon compte, Traitement de la connexion
 	 */
 	public function login() {
-
 		if (!empty($_POST)) {
 
 			$email = $_POST['login_email'];
@@ -117,46 +116,57 @@ class GeneralController extends Controller
 			$user->login($email, $password, $error);
 
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard'); // DevNote : faire une redirection vers le dashboard après l'inscription
+				$this->redirectToRoute('dashboard');
 			}
 		}
 
 		$this->show('general/account', array(
-				'error'    => (isset($error)) ? $error : '',
+			'error'    => (isset($error)) ? $error : '',
 
-				'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
+			'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
 		));
-
 	}
 
+	/**
+	 * Traitement de la déconnexion
+	 */
+	public function logout() {
+		$user = new UserModel;
+		$user->logout();
 
+		$this->redirectToRoute('home');
+	}
 
+	/**
+	 * Page de contact
+	 * Cette page sert à envoyer des messages privés à l'administration.
+	 * Si on est connecté en tant qu'utilisateur, c'est notre id qui servira de "author_id" dans la table Private_messagesModel.
+	 * Sinon, on mettra l'id 0, qui correspond à un invité.
+	 */
 	public function contact() {
-
 		if (!empty($_POST)) {
-			$objet = $_POST['contact_objet'];
-			$email = $_POST['contact_email'];
+			$objet   = $_POST['contact_objet'];
+			$email   = $_POST['contact_email'];
 			$message = $_POST['contact_msg'];
 
 			$contact = new Private_messagesModel();
 			$error = $contact->contact($objet, $email, $message);
 
 			if (!is_numeric($error)) {
-				$error = "Votre message n'a pas été envoyez";
+				$error = "Votre message n'a pas été envoyé";
 			}
 		}
 
 		$this->show('general/contact', array(
-				'objet'		=>	(!empty($_POST['contact_objet'])) ? $_POST['contact_objet'] : '',
-				'email' 	=>  (!empty($_POST['contact_email'])) ? $_POST['contact_email'] : '',
-				'message'	=>	(!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
-				'error' 	=> 	(isset($error) && !empty($error)) ? $error : ''
+			'objet'		=>	(!empty($_POST['contact_objet'])) ? $_POST['contact_objet'] : '',
+			'email' 	=>  (!empty($_POST['contact_email'])) ? $_POST['contact_email'] : '',
+			'message'	=>	(!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
+			'error' 	=> 	(isset($error) && !empty($error)) ? $error : ''
 		));
-
 	}
 
 	/**
-	 * Page d'accueil par défaut
+	 * Page du magazine
 	 */
 	public function mag()
 	{

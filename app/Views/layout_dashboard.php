@@ -21,9 +21,17 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="#">Messages</a></li>
-                        <li><a href="#">F.A.Q</a></li>
-                        <li><a href="#"><?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a></li>
+                        <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li>
+                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
+
+							<div class="account-popup">
+								<ul>
+									<li><a href="#">Mon compte</a></li>
+									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
+								</ul>
+							</div>
+						</li>
                     </ul>
                 </nav>
             </header>
@@ -34,18 +42,42 @@
                 <aside>
                     <nav>
                         <ul>
-                            <li><a href="<?= $this->url('home') ?>">Logo + Lien homepage</a></li>
-                            <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>><a href="<?= $this->url('dashboard') ?>">Accueil</a></li>
-                            <li><a href="<?= $this->url('mag') ?>">Le mag</a></li>
-                            <li><a href="#">Trouver un producteur</a></li>
-                            <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>><a href="<?= $this->url('wishlist') ?>">Mes favoris</a></li>
-                            <li><a href="#">Mes reviews</a></li>
-                            <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>><a href="<?= $this->url('newWineMaker') ?>">Devenir producteur</a></li>
-                            <li class="winemaker-link"><a href="#">Mon profil</a></li>
-                            <li class="winemaker-link"><a href="#">Mes produits</a></li>
-                            <li class="admin-link"><a href="#">Gérer le mag</a></li>
-                            <li class="admin-link"><a href="#">Gérer les membres</a></li>
-                            <li class="admin-link"><a href="#">Gérer les producteurs</a></li>
+                            <!--<li><a href="">
+								Logo + Lien homepage</a>
+							</li>-->
+                            <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('dashboard') ?>">Accueil</a>
+							</li>
+                            <li>
+								<a href="<?= $this->url('mag') ?>">Le mag</a>
+							</li>
+                            <li>
+								<a href="#"> Trouver un producteur</a>
+							</li>
+                            <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('wishlist') ?>">Favoris</a>
+							</li>
+                            <li>
+								<a href="#">Reviews</a>
+							</li>
+
+                            <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('newWineMaker') ?>">Devenir producteur</a>
+							</li>
+                            <li class="winemaker-link">
+								<a href="#">Mon profil</a></li>
+                            <li class="winemaker-link">
+								<a href="#">Mes produits</a>
+							</li>
+
+                            <li class="admin-link">
+								<a href="#">Gérer le mag</a></li>
+                            <li class="admin-link">
+								<a href="#">Gérer les membres</a>
+							</li>
+                            <li class="admin-link">
+								<a href="#">Gérer les producteurs</a>
+							</li>
                         </ul>
                     </nav>
                 </aside>

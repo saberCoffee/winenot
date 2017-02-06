@@ -7,7 +7,18 @@ use Model\TokenModel;
 
 class UserModel extends UsersModel
 {
-
+	/**
+	 * Cette fonction ajoute un utilisateur à la base de données si aucune erreur n'a été rencontrée lors du processus de validation.
+	 * Avant de conclure l'inscription, on génère un nouveau token lié à l'utilisateur.
+	 *
+	 * @param $email string L'email de l'utilisateur
+	 * @param $password string le mot de passe de l'utilisateur
+	 * @param $firstname string Le prénom de l'utilisateur
+	 * @param $firstname string Le nom de famille de l'utilisateur
+	 * @param &$error L'array contenant les potentielles erreurs rencontrées à la validation du formulaire
+	 *
+	 * return @string $token Le token créé à l'inscription
+	 */
 	public function register($email, $password, $firstname, $lastname, &$error)
 	{
 		if ($this->emailExists($email)) {
@@ -15,9 +26,9 @@ class UserModel extends UsersModel
 			return;
 		}
 
-		$validation = new AuthentificationModel;
+		$auth = new AuthentificationModel;
 
-		$hashedPassword = $validation->hashPassword($password);
+		$hashedPassword = $auth->hashPassword($password);
 
 		$id =  md5(uniqid(rand(), true));
 
@@ -35,32 +46,42 @@ class UserModel extends UsersModel
 		$token = $classToken->generateToken($id);
 
 		$user = $this->find($id);
-		
-		$validation->logUserIn($user, $token);
+
+		$auth->logUserIn($user, $token);
 		return $token;
 	}
 
+	/**
+	 *
+	 */
 	public function login($email, $password, &$error)
 	{
-		$validation = new AuthentificationModel;
+		$auth = new AuthentificationModel;
 
-		$user_id = $validation->isValidLoginInfo($email, $password);
+		$user_id = $auth->isValidLoginInfo($email, $password);
 
 		if (!$user_id) {
 			$error['login_email'] = 'Votre identifiant ou mot de passe ne sont pas corrects.';
 		} else {
-
 			$classToken = new TokenModel();
+
 			$token = $classToken->generateToken($user_id);
 
 			$user = $this->find($user_id);
 
-			$validation->logUserIn($user, $token);
+			$auth->logUserIn($user, $token);
 			return $token;
-
-
 		}
 	}
 
+	/**
+	 *
+	 */
+	public function logout()
+	{
+		$auth = new AuthentificationModel;
+
+		$auth->logUserOut();
+	}
 
 }
