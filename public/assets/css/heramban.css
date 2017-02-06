@@ -27,7 +27,22 @@ section#ProductMonth .col-sm-2 {
 /*
 LE MAG
 */
+section > h2 {
+    z-index: 1;
+    position: absolute;
+    top: 61px;
+    left: 50%;
+    display: inline-block;
+    width: auto;
+    padding: 0.5rem 2rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transform: translate(-50%, -2rem);
+        background-color: #eddcc0;
+}
+
 #page {
+  background-color: #eddcc0;
   position: relative;
   overflow-x: hidden;
   width: 100%;
@@ -59,14 +74,14 @@ h3{
 }
 
 
-#fh5co-content, #fh5co-blog{
+#magazine-content, #magazine-blog{
   padding: 7em 0;
   clear: both;
   text-align: center;
 }
 
 
-.fh5co-blog {
+.magazine-blog {
   margin-bottom: 3em;
   width: 100%;
   float: left;
@@ -74,32 +89,32 @@ h3{
 
 
 
-.fh5co-blog > a img {
+.magazine-blog > a img {
   width: 100%;
 }
 @media screen and (max-width: 768px) {
-  .fh5co-blog {
+  .magazine-blog {
     width: 100%;
   }
 }
-.fh5co-blog .title {
+.magazine-blog .title {
   margin-bottom: 40px;
 }
-.fh5co-blog .titleh3 {
+.magazine-blog .title h3 {
   font-size: 34px;
 }
-.fh5co-blog .title h3 a {
+.magazine-blog .title h3 a {
   color: #000;
 }
-.fh5co-blog .title h3 {
+.magazine-blog .title h3 {
   font-size: 24px;
 }
-.fh5co-blog .title h3 a {
+.magazine-blog .title h3 a {
   color: #000;
 }
 
 
-.fh5co-blog .title .category {
+.magazine-blog .title .category {
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 13px;
@@ -107,7 +122,7 @@ h3{
   position: relative;
   margin-bottom: 10px;
 }
-.fh5co-blog .title .category:before {
+.magazine-blog .title .category:before {
   position: absolute;
   top: 9px;
   left: -120px;
@@ -118,7 +133,7 @@ h3{
   height: 1px;
   background: rgba(0, 0, 0, 0.08);
 }
-.fh5co-blog .title .category:after {
+.magazine-blog .title .category:after {
   position: absolute;
   top: 9px;
   right: -120px;
@@ -132,7 +147,7 @@ h3{
 /*
 Cadre Article du Mag
 */
-.fh5co-blog .blog-text {
+.magazine-blog .blog-text {
   margin-bottom: 30px;
   position: relative;
   width: 100%;
