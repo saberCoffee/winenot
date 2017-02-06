@@ -23,19 +23,19 @@ use \Model\WinemakerModel;
 	<div id="map"></div>
 
 	<!--  En cours !!! -->
-	<?php 
+	<?php
 
 
-		$winemakers = new WinemakerModel(); 
-		$winemaker = $winemakers->findAll();
+		// $winemakers = new WinemakerModel();
+		// $winemaker = $winemakers->findAll();
 
 	?>
 	<!--  En cours !!! -->
 
 	<script type="text/javascript">
-	
+
  	function initMap() {
- 	 	
+
 		var styleArray = [
 			{
 				featureType: 'all',
@@ -71,7 +71,7 @@ use \Model\WinemakerModel;
 			zoom: 6,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
 			styles: styleArray,
-			scrollwheel: false, 
+			scrollwheel: false,
 			types: ['(cities)'],
 			componentRestrictions: {country: "fr"},
             types: ["(regions)"]
@@ -87,7 +87,7 @@ use \Model\WinemakerModel;
 		autocomplete.bindTo('bounds', map);
 
 		var infowindow = new google.maps.InfoWindow();
-		
+
 		var marker = new google.maps.Marker({
 			map: map,
 			anchorPoint: new google.maps.Point(0, -29),
@@ -139,7 +139,7 @@ use \Model\WinemakerModel;
 // 		var image = 'assets/img/grapes.png';
 
 // 		var address = 'paris';
-		
+
 // 		geocoder.geocode({'address': address}, function (results, status){
 // 			if (status == google.maps.GeocoderStatus.OK) {
 // 			resultsMap.setCenter(results[0].geometry.location);
@@ -151,10 +151,10 @@ use \Model\WinemakerModel;
 // 					 alert("Geocode was not successful for the following reason: " + status);
 // 				}
 // 		})
-		
+
 // 	}
 
-	
+
 	 </script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&libraries=places&callback=initMap" async defer></script>
 
