@@ -13,7 +13,7 @@
 		['GET', '/mag/edit', 'General#mag_edit', 'mag_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
 
 		['GET', '/about', 'General#about', 'about'], // Page d'a propos
-		['GET', '/contact', 'General#contact', 'contact'], // Page du contact le site web
+		['GET|POST', '/contact', 'General#contact', 'contact'], // Page du contact le site web
 		['GET', '/sitemap', 'General#sitemap', 'sitemap'], // Page du Plan du site
 		['GET', '/legal_notice', 'General#legal_notice', 'legal_notice'], // Page de la mention légale
 
@@ -23,6 +23,7 @@
 		['GET', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_thread', 'inbox_thread'], // Détails d'un fil de communication
 		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
 		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
+		['GET', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
 
 		/* Pages des profils des utilisateurs */
 		['GET', '/profile/[a:id]', 'Profile#profile_view', 'profile_view'], // Consulter un profil

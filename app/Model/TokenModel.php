@@ -5,9 +5,10 @@ use \W\Model\Model as Model;
 
 class TokenModel extends Model
 {
+	protected $primaryKey = 'token';
 
 	public function getIdbyToken($token)
-	{	
+	{
 		return $this->getUserByToken($token);
 	}
 	public function generateToken($idUser, $type = "Authentification")
@@ -17,16 +18,16 @@ class TokenModel extends Model
 		}*/
 
 		$this->setTable("tokens");
-		
+
 		$token = md5(uniqid(rand(), true));
-		
+
 		$data = array(
 				'token'       => $token,
 				'user_id' => $idUser
 		);
 
 		$this->insert($data);
-		
+
 		return $token;
 	}
 

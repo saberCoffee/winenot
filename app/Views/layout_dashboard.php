@@ -11,52 +11,54 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('fonts/font-awesome-4.7.0/css/font-awesome.min.css')?> "/>
 	<!-- Propre Style Sheet -->
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>" />
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/dashboard/style.css') ?>" />
 </head>
 
-<body>
+<body class="dashboard">
 
-	<div class="container-fluid" id="top">
+    <div class="container-fluid" id="top">
+        <div class="row">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="#">Messages</a></li>
+                        <li><a href="#">F.A.Q</a></li>
+                        <li><a href="#"><?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
 
-        <header>
-            <!--
-                Menu de navigation horizontale :
-                Messages - F.A.Q - <Prénom/Nom>
-            -->
-        </header>
+        <div class="row">
+            <div class="col-lg-2 r-p r-m col-aside">
+                <aside>
+                    <nav>
+                        <ul>
+                            <li><a href="<?= $this->url('home') ?>">Logo + Lien homepage</a></li>
+                            <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>><a href="<?= $this->url('dashboard') ?>">Accueil</a></li>
+                            <li><a href="<?= $this->url('mag') ?>">Le mag</a></li>
+                            <li><a href="#">Trouver un producteur</a></li>
+                            <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>><a href="<?= $this->url('wishlist') ?>">Mes favoris</a></li>
+                            <li><a href="#">Mes reviews</a></li>
+                            <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>><a href="<?= $this->url('newWineMaker') ?>">Devenir producteur</a></li>
+                            <li class="winemaker-link"><a href="#">Mon profil</a></li>
+                            <li class="winemaker-link"><a href="#">Mes produits</a></li>
+                            <li class="admin-link"><a href="#">Gérer le mag</a></li>
+                            <li class="admin-link"><a href="#">Gérer les membres</a></li>
+                            <li class="admin-link"><a href="#">Gérer les producteurs</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
 
-        <aside>
-            <!--
-                Menu de navigation latérale :
-                Accueil (du dashboard)
-                Le Mag
-                ______________________
+            <div class="col-lg-10 r-p r-m">
+                <main>
+                    <?= $this->section('main_content') ?>
+                </main>
+            </div>
 
-                Trouver un producteur
-                Mes favoris
-                Mes reviews
-                ______________________
-
-                // Ne s'affiche que si on est pas encore producteur
-                Devenir producteur -> Formulaire de création de profil producteur
-
-                // Ne s'affiche que si on est producteur
-                Mon profil -> Mettre à jour son profil de producuteur
-                Mes produits -> Consulter ses produits, en ajouter, en supprimer
-                ______________________
-
-                // Ne s'affiche que si on est admin
-                Gérer le mag
-                Gérer les membres
-                Gérer les producteurs                
-            -->
-        </aside>
-
-        <main>
-            <?= $this->section('main_content') ?>
-        </main>
-
-	</div>
+		</div><!-- Fin de la row bootstrap -->
+	</div><!-- Fin du container bootstrap -->
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
