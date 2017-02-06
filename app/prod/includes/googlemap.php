@@ -20,7 +20,9 @@
 	<div id="map"></div>
 
 	<script type="text/javascript">
+	
  	function initMap() {
+ 	 	
 		var styleArray = [
 			{
 				featureType: 'all',
@@ -40,14 +42,26 @@
 				stylers: [
 					{ visibility: 'off' }
 				]
+			},  {
+				"featureType": "road.highway",
+				elementType: "labels",
+				stylers:[
+					{visibility: "off"
+						}
+				]
 			}
 		];
 
+		var image = 'assets/img/grapes.png';
+		
 		var mapOptions = {
 			zoom: 6,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
 			styles: styleArray,
-			scrollwheel: false
+			scrollwheel: false, 
+			types: ['(cities)'],
+			componentRestrictions: {country: "fr"},
+            types: ["(regions)"]
 		};
 
 		var map = new google.maps.Map(document.getElementById('map'),
@@ -56,13 +70,15 @@
 		var input = /** @type {!HTMLInputElement} */(
 		document.getElementById('pac-input'));
 
-		var autocomplete = new google.maps.places.Autocomplete(input);
+		var autocomplete = new google.maps.places.Autocomplete(input, mapOptions);
 		autocomplete.bindTo('bounds', map);
 
 		var infowindow = new google.maps.InfoWindow();
+		
 		var marker = new google.maps.Marker({
 			map: map,
-			anchorPoint: new google.maps.Point(0, -29)
+			anchorPoint: new google.maps.Point(0, -29),
+			icon: image
 		});
 
 		autocomplete.addListener('place_changed', function() {
@@ -82,11 +98,11 @@
 				map.setZoom(17);  // Why 17? Because it looks good.
 			}
 			marker.setIcon(/** @type {google.maps.Icon} */({
-				url: place.icon,
+				// url: place.icon,
 				size: new google.maps.Size(71, 71),
 				origin: new google.maps.Point(0, 0),
 				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(35, 35)
+				scaledSize: new google.maps.Size(35, 35),
 			}));
 			marker.setPosition(place.geometry.location);
 			marker.setVisible(true);
@@ -104,6 +120,7 @@
 			infowindow.open(map, marker);
 		});
 	}
+
 	 </script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&libraries=places&callback=initMap" async defer></script>
 
