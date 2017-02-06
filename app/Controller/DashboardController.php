@@ -5,6 +5,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\UserModel;
 use W\Security\AuthentificationModel;
+use Model\WinemakerModel;
 
 class DashboardController extends Controller
 {
@@ -37,7 +38,36 @@ class DashboardController extends Controller
 	 * Page gérer/afficher les membres
 	 *
 	 */
-	public function members() {
-		$this->show ('dashboard/members');
+	public function members() 
+	{
+
+
+		$members = new UserModel();
+		$members = $members->findAll();
+
+		// debug($members);
+		
+	
+		if(isset($_GET['id'])){
+			$member = new UserModel();
+			$member = $member->find($_GET['id']);
+	
+		}
+
+		$this->show ('dashboard/members', ['members' => $members]);
+	}
+	
+	public function winemakers()
+	{
+		$winemakers = new WinemakerModel();
+		$winemakers = $winemakers->findAll();
+		
+		if(isset($_GET['id'])){
+			$winemaker = new UserModel();
+			$winemaker = $winemaker->find($_GET['winemakers_id']);
+		
+		}
+		
+		$this->show ('dashboard/winemakers', ['winemakers' => $winemakers]);
 	}
 }
