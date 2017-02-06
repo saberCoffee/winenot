@@ -21,9 +21,17 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="#">Messages</a></li>
-                        <li><a href="#">F.A.Q</a></li>
-                        <li><a href="#"><?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a></li>
+                        <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li>
+                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
+
+							<div class="account-popup">
+								<ul>
+									<li><a href="#">Mon compte</a></li>
+									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
+								</ul>
+							</div>
+						</li>
                     </ul>
                 </nav>
             </header>

@@ -49,19 +49,20 @@ Menu de navigation horizontal
         background: #eddcc0;
     }
 
-    header nav ul {
+    header nav > ul {
         float: right;
 
         margin: 0 5rem;
     }
 
-    header nav ul li {
+    header nav > ul > li {
+        position: relative;
         display: inline-block;
 
         margin: 0 1rem;
     }
 
-    header nav ul li a {
+    header nav > ul > li > a {
         display: block;
 
         color: #a4300c;
@@ -69,8 +70,37 @@ Menu de navigation horizontal
         line-height: 5rem;
     }
 
-    header nav ul li a:hover {
+    header nav > ul > li a:hover {
         color: #d09038;
+    }
+
+    header nav ul li:last-of-type:hover div.account-popup {
+        display: block;
+    }
+
+    div.account-popup {
+        display: none;
+        position: absolute;
+        top: 5rem;
+        left: 0;
+
+        z-index: 5;
+    }
+
+    div.account-popup ul {
+        padding: 0 1rem;
+
+        background: #eddcc0;
+        border-top: 5px solid #4b1d3f;
+
+        list-style: none;
+    }
+
+    div.account-popup ul li a {
+        display: block;
+
+        color: #a4300c;
+        line-height: 3rem;
     }
 
 /*
@@ -80,6 +110,7 @@ Menu de navigation latéral
         height: calc(100vh - 5rem);
 
         background: #272727;
+        border-right: 5px solid #d09038;
     }
 
     aside {
@@ -192,7 +223,7 @@ Contenu principal
     }
 
     h1 {
-        background: #4b1d3f;
+        background: #3d373e;
 
         color: #fff;
         line-height: 15rem;

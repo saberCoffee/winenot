@@ -7,6 +7,7 @@
 
         ['GET', '/account', 'General#account', 'account'], // Page pour les champs de connexion et d'inscription
 		['POST', '/login', 'General#login', 'login'], // Route vers le traitement de connexion
+		['GET', '/logout', 'General#logout', 'logout'], // Route vers le traitement de déconnexion
         ['POST', '/register', 'General#register', 'register'], // Route ver le traitement d'inscription
 
 		['GET', '/mag', 'General#mag', 'mag'], // Page qui affiche des articles
