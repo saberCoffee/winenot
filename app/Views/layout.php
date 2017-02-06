@@ -47,9 +47,7 @@
 		</div>
 
 		<main>
-			<?php
-			echo $this->section('main_content')
-			?>
+			<?= $this->section('main_content') ?>
 		</main>
 
 		<!-- Start: Footer -->
