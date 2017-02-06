@@ -1,0 +1,58 @@
+.registerNewWineMaker {
+    width: 60%;
+    height: 60%;
+    margin: 10em auto;
+    padding: 3em 3em 0;
+    background-color: #eddcc0;
+    color: #d09038;
+    text-transform: uppercase;
+}
+
+.registerNewWineMaker .form-control{
+	display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #d09038;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.registerNewWineMaker .btn {
+    display: block;
+    width: 100%;
+    height: 2.5em;
+    margin: 1em auto 0;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #d09038;
+}
+
+.registerNewWineMaker select{
+    color: #d09038;
+
+}
+
+.registerNewWineMaker p{
+    color: #d09038;
+	font-size: .8em;
+    text-decoration: none;
+    text-transform: lowercase;
+    text-align: center;
+    margin-top: 4em;
+}
+
+.registerNewWineMaker p:hover{
+	color: #d09038;
+}
