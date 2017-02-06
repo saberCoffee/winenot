@@ -71,7 +71,7 @@
                             <li class="admin-link">
 								<a href="#">Gérer le mag</a></li>
                             <li class="admin-link">
-								<a href="#">Gérer les membres</a>
+								<a href="<?= $this->url('members') ?>">Gérer les membres</a>
 							</li>
                             <li class="admin-link">
 								<a href="#">Gérer les producteurs</a>

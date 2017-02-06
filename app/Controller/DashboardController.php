@@ -32,5 +32,12 @@ class DashboardController extends Controller
 	{
 		$this->show('dashboard/cave');
 	}
-
+	
+	/**
+	 * Page gérer/afficher les membres
+	 *
+	 */
+	public function members() {
+		$this->show ('dashboard/members');
+	}
 }
