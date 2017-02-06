@@ -21,18 +21,16 @@ use \Model\WinemakerModel;
 
     <!-- DIV pour google map -->
 	<div id="map"></div>
-	<div>
+
+	<!--  En cours !!! -->
 	<?php 
 
 
 		$winemakers = new WinemakerModel(); 
 		$winemaker = $winemakers->findAll();
-		debug($winemaker); 
-		
-		
-		
+
 	?>
-	</div>
+	<!--  En cours !!! -->
 
 	<script type="text/javascript">
 	
@@ -96,27 +94,6 @@ use \Model\WinemakerModel;
 			icon: image
 		});
 
-		var marker = new google.maps.Marker({
-			map: map,
-			position: {
-				lat: 47.081012, lng: 2.398781999999983
-				
-			},
-			icon: image
-		});
-		var marker = new google.maps.Marker({
-			map: map,
-			position: {
-				lat:  48.862725, lng: 2.287592
-			},
-			icon: image
-		});
-
-		var geocoder = new google.maps.Geocoder();
-
-		
-		geocodeAddress(geocoder, map);
-		
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
 			marker.setVisible(false);
@@ -158,25 +135,26 @@ use \Model\WinemakerModel;
 	}
 
 
-	function geocodeAddress(geocoder, resultsMap) {
-		var image = 'assets/img/grapes.png';
+// 	function geocodeAddress(geocoder, resultsMap) {
+// 		var image = 'assets/img/grapes.png';
 
-		var address = 'paris';
+// 		var address = 'paris';
 		
-		geocoder.geocode({'address': address}, function (results, status){
-			if (status == google.maps.GeocoderStatus.OK) {
-			resultsMap.setCenter(results[0].geometry.location);
-			var marker = new google.laps.Marker({
-				map: resultsMap,
-				position: results[0].geometry.location
-				});
-				} else {
-					 alert("Geocode was not successful for the following reason: " + status);
-				}
-		})
+// 		geocoder.geocode({'address': address}, function (results, status){
+// 			if (status == google.maps.GeocoderStatus.OK) {
+// 			resultsMap.setCenter(results[0].geometry.location);
+// 			var marker = new google.laps.Marker({
+// 				map: resultsMap,
+// 				position: results[0].geometry.location
+// 				});
+// 				} else {
+// 					 alert("Geocode was not successful for the following reason: " + status);
+// 				}
+// 		})
 		
-	}
+// 	}
 
+	
 	 </script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&libraries=places&callback=initMap" async defer></script>
 
