@@ -17,8 +17,6 @@ class TokenModel extends Model
 			echo "DELETER";
 		}*/
 
-		$this->setTable("tokens");
-
 		$token = md5(uniqid(rand(), true));
 
 		$data = array(

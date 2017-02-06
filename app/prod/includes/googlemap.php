@@ -1,3 +1,6 @@
+<?php
+use \Model\WinemakerModel;
+?>
 
 <div class="row">
 <section id="GoogleMap">
@@ -18,6 +21,18 @@
 
     <!-- DIV pour google map -->
 	<div id="map"></div>
+	<div>
+	<?php 
+
+
+		$winemakers = new WinemakerModel(); 
+		$winemaker = $winemakers->findAll();
+		debug($winemaker); 
+		
+		
+		
+	?>
+	</div>
 
 	<script type="text/javascript">
 	
@@ -53,7 +68,7 @@
 		];
 
 		var image = 'assets/img/grapes.png';
-		
+
 		var mapOptions = {
 			zoom: 6,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
@@ -81,6 +96,27 @@
 			icon: image
 		});
 
+		var marker = new google.maps.Marker({
+			map: map,
+			position: {
+				lat: 47.081012, lng: 2.398781999999983
+				
+			},
+			icon: image
+		});
+		var marker = new google.maps.Marker({
+			map: map,
+			position: {
+				lat:  48.862725, lng: 2.287592
+			},
+			icon: image
+		});
+
+		var geocoder = new google.maps.Geocoder();
+
+		
+		geocodeAddress(geocoder, map);
+		
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
 			marker.setVisible(false);
@@ -119,6 +155,26 @@
 			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
 			infowindow.open(map, marker);
 		});
+	}
+
+
+	function geocodeAddress(geocoder, resultsMap) {
+		var image = 'assets/img/grapes.png';
+
+		var address = 'paris';
+		
+		geocoder.geocode({'address': address}, function (results, status){
+			if (status == google.maps.GeocoderStatus.OK) {
+			resultsMap.setCenter(results[0].geometry.location);
+			var marker = new google.laps.Marker({
+				map: resultsMap,
+				position: results[0].geometry.location
+				});
+				} else {
+					 alert("Geocode was not successful for the following reason: " + status);
+				}
+		})
+		
 	}
 
 	 </script>
