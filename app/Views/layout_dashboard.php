@@ -64,10 +64,8 @@
                             <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('newWineMaker') ?>">Devenir producteur</a>
 							</li>
-                            <li class="winemaker-link">
-								<a href="#">Mon profil</a></li>
-                            <li class="winemaker-link">
-								<a href="#">Mes produits</a>
+                            <li class="winemaker-link" <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('cave') ?>">Ma cave</a>
 							</li>
 
                             <li class="admin-link">

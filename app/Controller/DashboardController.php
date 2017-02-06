@@ -25,4 +25,12 @@ class DashboardController extends Controller
 		$this->show('dashboard/newWineMaker');
 	}
 
+	/**
+	 * Page gérer/afficher sa cave
+	 */
+	public function cave()
+	{
+		$this->show('dashboard/cave');
+	}
+
 }
