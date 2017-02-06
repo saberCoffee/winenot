@@ -31,7 +31,8 @@
 		
 		/* Pages Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/members', 'Dashboard#members', 'members'], // Liste des producteurs et gestions de ces producteurs par admin
-
+		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
+			
 		/* Pages des profils des utilisateurs */
 		['GET', '/profile/[a:id]', 'Profile#profile_view', 'profile_view'], // Consulter un profil
 		['GET', '/profile/config', 'Profile#profile_config', 'profile_config'], // Page des coordonnées de l'utilisateur

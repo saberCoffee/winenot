@@ -83,5 +83,17 @@ class UserModel extends UsersModel
 
 		$auth->logUserOut();
 	}
+	
+	public function members() {
+		
+		$members = new UserModel();
+		$members = $members->findAll();
+		
+		if(isset($_GET['id'])){
+			$member = new UserModel();
+			$member = $member->find($_GET['id']);
+				
+		}
+	}
 
 }

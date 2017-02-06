@@ -76,7 +76,7 @@
 								<a href="<?= $this->url('members') ?>">Gérer les membres</a>
 							</li>
                             <li class="admin-link">
-								<a href="#">Gérer les producteurs</a>
+								<a href="<?= $this->url('winemakers') ?>">Gérer les producteurs</a>
 							</li>
                         </ul>
                     </nav>
