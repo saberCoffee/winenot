@@ -40,7 +40,7 @@
 					</div>
 
 					<ul>
-						<li><a href="<?= $this->url('account') ?>">Mon compte</a></li>
+						<li><a href="<?php echo (empty($_SESSION['user'])) ? $this->url('account') : $this->url('dashboard') ?>">Mon compte</a></li>
 					</ul>
 				</nav>
 			</header>

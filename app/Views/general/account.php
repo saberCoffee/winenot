@@ -54,6 +54,18 @@
                     <input type="password" name="register_password_verif"  id="register_password_verif" class="form-control" required="required" data-min="6" data-max="16" maxlength="16" />
                 </div>
 
+                <div class="form-group <?php if (isset($error['firstname'])) { echo 'has-error'; } ?>">
+                    <label for="firstname">Prénom*</label>
+
+                    <input type="text" name="firstname"  id="firstname" class="form-control" required="required" data-min="2" data-max="16" maxlength="16" />
+                </div>
+
+                <div class="form-group <?php if (isset($error['lastname'])) { echo 'has-error'; } ?>">
+                    <label for="lastname">Nom de famille*</label>
+
+                    <input type="text" name="lastname"  id="lastname" class="form-control" required="required" data-min="2" data-max="16" maxlength="16" />
+                </div>
+
                 <input type="submit" value="S'inscrire" class="btn btn-primary" />
 
             </form>
