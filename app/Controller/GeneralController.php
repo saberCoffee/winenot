@@ -124,6 +124,8 @@ class GeneralController extends Controller
 			'error'    => (isset($error)) ? $error : '',
 
 			'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
+			'firstname' => '',
+			'lastname'  => ''
 		));
 	}
 
