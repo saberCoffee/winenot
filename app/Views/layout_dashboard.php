@@ -25,7 +25,7 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
+                        <li><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
                         <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li>
                         <li><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
 

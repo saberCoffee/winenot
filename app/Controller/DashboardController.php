@@ -3,15 +3,18 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \W\Security\AuthentificationModel;
 use \Model\UserModel;
-use W\Security\AuthentificationModel;
-use Model\WinemakerModel;
+use \Model\WinemakerModel;
+use \Model\PrivateMessageModel;
 
 class DashboardController extends Controller
 {
 
 	/**
 	 * Page d'accueil du dashboard
+	 *
+	 * @return void
 	 */
 	public function dashboard()
 	{
@@ -20,6 +23,8 @@ class DashboardController extends Controller
 
 	/**
 	 * Page de création de newWineMaker
+	 *
+	 * @return void
 	 */
 	public function newWineMaker()
 	{
@@ -28,46 +33,85 @@ class DashboardController extends Controller
 
 	/**
 	 * Page gérer/afficher sa cave
+	 *
+	 * @return void
 	 */
 	public function cave()
 	{
 		$this->show('dashboard/cave');
 	}
-	
+
 	/**
-	 * Page gérer/afficher les membres
+	 * Page Gérer les membres
+	 * Réservée à l'administration
 	 *
+	 * @return void
 	 */
-	public function members() 
+	public function members()
 	{
-
-
+		/*
+			DevNote : Penser à ajouter une vérification que l'utilisateur est bien connecté en tant qu'admin. Si ce n'est pas le cas, le rediriger.
+		*/
 		$members = new UserModel();
 		$members = $members->findAll();
 
-		// debug($members);
-		
-	
 		if(isset($_GET['id'])){
 			$member = new UserModel();
 			$member = $member->find($_GET['id']);
-	
 		}
 
-		$this->show ('dashboard/members', ['members' => $members]);
+		$this->show ('dashboard/members', array(
+			'members' => $members
+		));
 	}
-	
+
+	/**
+	 * Page Gérer les producteurs
+	 * Réservée à l'administration
+	 *
+	 * @return void
+	 */
 	public function winemakers()
 	{
+		/*
+			DevNote : Penser à ajouter une vérification que l'utilisateur est bien connecté en tant qu'admin. Si ce n'est pas le cas, le rediriger.
+		*/
 		$winemakers = new WinemakerModel();
 		$winemakers = $winemakers->findAll();
-		
+
 		if(isset($_GET['id'])){
 			$winemaker = new UserModel();
 			$winemaker = $winemaker->find($_GET['winemakers_id']);
-		
+
 		}
-		
-		$this->show ('dashboard/winemakers', ['winemakers' => $winemakers]);
+
+		$this->show ('dashboard/winemakers', array(
+			'winemakers' => $winemakers
+		));
 	}
+
+	/**
+	 * Messagerie du dashboard
+	 *
+	 * @return void
+	 */
+	public function inbox()
+	{
+		$user     = new UserModel();
+		$messages = new PrivateMessageModel();
+
+		$user     = $user->getUserByToken($_SESSION['user']['id']);
+		$messages = $messages->findMyMessages($user['id']);
+
+		$count_unread_messages = 0;
+		foreach ($messages as $message) {
+			if (!$message['isRead']) $count_unread_messages++;
+		}
+
+		$this->show ('dashboard/inbox', array(
+			'messages'              => $messages,
+			'count_unread_messages' => $count_unread_messages
+		));
+	}
+
 }
