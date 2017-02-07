@@ -45,9 +45,6 @@ class DashboardController extends Controller
 		$members = new UserModel();
 		$members = $members->findAll();
 
-		// debug($members);
-		
-	
 		if(isset($_GET['id'])){
 			$member = new UserModel();
 			$member = $member->find($_GET['id']);
@@ -55,6 +52,24 @@ class DashboardController extends Controller
 		}
 
 		$this->show ('dashboard/members', ['members' => $members]);
+	}
+	
+	public function members_edit() {
+	
+		if(isset($_POST)){
+			
+			$member = new UserModel();
+			$id = $member->find($_GET['id']);
+			$member = $member->find('2620528902ee37259c51a57d2367dd67');
+			debug($member);
+
+			$data = array(
+					'firstname' => strip_tags($_POST['firstname']),
+			);
+				
+			$member->update($data, $id);
+				
+		}
 	}
 	
 	public function winemakers()

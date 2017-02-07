@@ -13,7 +13,7 @@
 	<!-- Propre Style Sheet -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src=<?= $this->assetUrl('js/mike.js') ?>></script>
+	<script src=<?= $this->assetUrl('js/googlemap.js') ?>></script>
 </head>
 
 <body>

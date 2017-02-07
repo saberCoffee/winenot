@@ -89,11 +89,14 @@ class UserModel extends UsersModel
 		$members = new UserModel();
 		$members = $members->findAll();
 		
-		if(isset($_GET['id'])){
-			$member = new UserModel();
-			$member = $member->find($_GET['id']);
-				
-		}
 	}
+	
 
 }
+
+
+
+
+
+
+

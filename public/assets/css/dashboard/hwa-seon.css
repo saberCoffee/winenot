@@ -3,3 +3,32 @@
 .table {
 	margin-top: 20px;
 }
+
+.table-bordered>tbody>tr>th {
+	font-weight: bold;
+	color:#d09038;
+}
+.table-bordered>tbody>tr>td {
+		color:#d09038;
+}
+td.action a:hover {
+	opacity: 0.5;
+}
+
+form.members h2, h2.members {
+	padding: 2rem 0;
+	color:#a4300c;
+}
+
+div.form-group label {
+	color:#a4300c;
+}
+
+form .form-control {
+	width:calc(100%/4);
+	display:inline-block;
+	margin: 0 auto;
+	margin-right: 1.5rem;
+}
+
+
