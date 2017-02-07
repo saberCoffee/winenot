@@ -113,7 +113,7 @@ class UsersModel extends Model
 
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':token', $token, PDO::PARAM_STR);
+		$sth->bindValue(':token', $token);
 		if($sth->execute()){
 			$foundUser = $sth->fetch();
 			if($foundUser){

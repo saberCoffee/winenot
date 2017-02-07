@@ -25,7 +25,7 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
+                        <li><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li>
                         <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li>
                         <li><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
 
@@ -46,9 +46,9 @@
                 <aside>
                     <nav>
                         <ul>
-                            <!--<li><a href="">
-								Logo + Lien homepage</a>
-							</li>-->
+                            <li>
+								<a href="<?= $this->url('home') ?>"><< Retour à la homepage</a>
+							</li>
                             <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>

@@ -82,10 +82,11 @@ Menu de navigation horizontal
         display: none;
         position: absolute;
         top: 5rem;
-        left: 0;
+        right: 0;
 
         margin-top: 5px;
 
+        white-space: nowrap;
         z-index: 5;
     }
 
@@ -95,7 +96,22 @@ Menu de navigation horizontal
         background: #eddcc0;
 
         list-style: none;
+        text-align: right;
     }
+
+    /*
+    div.account-popup ul:before {
+        content:"\A";
+
+        position: absolute;
+        top: -15px;
+        left: 0;
+
+        border-color: transparent transparent #eddcc0 transparent;
+        border-style: solid;
+        border-width: 0 10px 15px 10px;
+    }
+    */
 
     div.account-popup ul li a {
         display: block;
