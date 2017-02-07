@@ -179,29 +179,20 @@ class GeneralController extends Controller
 	{
 		$this->show('general/article');
 	}
-	
-	
+
+
 	/**
 	 * Méthode pour ajax google map latitude et longitude
 	 */
 	public function latlng()
 	{
 		//	if (isset($_POST)) {
-	
+
 		$latlng = new WinemakerModel();
-	
+
 		$latlng = $latlng->latlng();
-	
+
 		echo json_encode($latlng);
 	}
 	
-
-	/**
-	 * Page du magazine
-	 */
-	public function article()
-	{
-		$this->show('general/article');
-	}
-
 }
