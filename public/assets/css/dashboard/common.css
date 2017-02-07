@@ -22,14 +22,17 @@ Reset & propriétés de base
 
     body {
         background-color: #f7ecdb;
-
         font-family: 'Open Sans', sans-serif;
     }
 
     h1, h2, h3, h4, h5, h6 {
         margin: 0;
-
         font-family: 'Roboto', sans-serif;
+    }
+
+    h1 span, h2 span, h3 span {
+        display: block;
+        font-size: 0.7em;
     }
 
     a, a:hover {
@@ -39,36 +42,31 @@ Reset & propriétés de base
     a:hover {
         color: #a7dadc;
     }
+
 /*
 Menu de navigation horizontal
 */
     header {
         position: fixed;
-
         width: 100%;
         height: 5rem;
-
         background: #eddcc0;
-
         z-index: 25;
     }
 
     header nav > ul {
         float: right;
-
         margin: 0 5rem;
     }
 
     header nav > ul > li {
         position: relative;
         display: inline-block;
-
         margin: 0 1rem;
     }
 
     header nav > ul > li > a {
         display: block;
-
         color: #a4300c;
         font-weight: bold;
         line-height: 5rem;
@@ -115,7 +113,6 @@ Menu de navigation horizontal
 
     div.account-popup ul li a {
         display: block;
-
         color: #a4300c;
         line-height: 3rem;
     }
@@ -130,7 +127,6 @@ Menu de navigation latéral
     .col-aside {
         position: fixed;
         height: 100%;
-
         background: #272727;
         border-right: 5px solid #d09038;
     }
@@ -244,10 +240,7 @@ Contenu principal
     }
 
     h1 span {
-        display: block;
-
         color: #d09038;
-        font-size: 0.7em;
         text-transform: none;
     }
 

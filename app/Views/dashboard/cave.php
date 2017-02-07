@@ -4,9 +4,9 @@
 
 	<section class="addProduct">
 		<h2>Ajout de produit</h2>
-	
+
 		<form>
-				
+
 			<div class="form-group">
 						<label for="product">Nom du produit</label>
 						<input type="text" name="Product" class="form-control">
@@ -16,7 +16,7 @@
 					<div class="form-group">
 						<label for="color">Couleur</label>
 						<input type="text" name="color" class="form-control">
-					</div>	
+					</div>
 				</div>
 				<div class="col-md-4 ">
 					<div class="form-group">
@@ -52,20 +52,20 @@
 
 			<div class="addPics">
 				<p>photo du produit</p>
-				
-				<img src="../assets/img/pic.png" alt="photo du produit">
+
+				<img src="<?= $this->assetUrl('img/dashboard/pic.png') ?>"" alt="photo du produit">
 				<input type="file" name="picsProduct" value="">
 			</div>
 
 
-			
+
 			<div>
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
-	
+
 		</form>
 	</section>
-	
+
 
 	<section class="stock">
 		<h2>Mes stocks</h2>
