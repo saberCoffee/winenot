@@ -7,9 +7,11 @@
 
         <p><a href="<?= $this->url('inbox') ?>" class="back-to-prev">Revenir à la messagerie</a></p>
 
-        <h2>Blabla</h2>
+        <?php foreach ($messages as $message): ?>
+        <p>
 
-        <p></p>
+        </p>
+        <?php endforeach; ?>
 
     </section>
 </div>
