@@ -1,8 +1,6 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Ma cave']) ?>
 
 <?php $this->start('main_content') ?>
-<h1>Ma cave</h1>
-
 
 	<section class="addProduct">
 		<h2>Ajout de produit</h2>
@@ -66,6 +64,236 @@
 			</div>
 	
 		</form>
+	</section>
+	
+
+	<section class="stock">
+		<h2>Mes stocks</h2>
+		<table border="1" class="table table-striped">
+			<thead>
+				<tr>
+				  <th>Produits</th>
+				  <th>Couleurs</th>
+				  <th>Millesimes</th>
+				  <th>Vins bio</th>
+				  <th>Prix</th>
+				  <th>Stocks</th>
+				  <th></th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Cabernet Sauvignon</td>
+					<td>Rouge</td>
+					<td>2015</td>
+					<td>/</td>
+					<td>4,50 €</td>
+					<td><img width="20" src="<?= $this->assetUrl('img/dashboard/checked.png') ?>" alt="en stock"></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Merlot </td>
+					<td>Rosé</td>
+					<td>2015</td>
+					<td>/</td>
+					<td>3,20 €</td>
+					<td><img width="20" src="<?= $this->assetUrl('img/dashboard/unchecked.png') ?>" alt="épuisé"></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a>
+						<a href="#"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
 	</section>
 
 <?php $this->stop('main_content') ?>
