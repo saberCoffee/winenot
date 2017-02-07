@@ -11,26 +11,57 @@ class PrivateMessageModel extends Model {
 	 *
 	 * @return array
 	 */
-	public function findMyMessages($receiver_id) {
+	public function getActiveThreads($receiver_id) {
 		$this->setTable('private_messages');
 
-		$sql = 'SELECT mp1.*, users.firstname, users.lastname
-				FROM private_messages mp1
-                INNER JOIN users
+		$sql = "SELECT
+					mp1.*, users.firstname, users.lastname, tokens.token
+				FROM
+					$this->table mp1
+                INNER JOIN
+					users
+				INNER JOIN
+					tokens
 				INNER JOIN
 				(
 				    SELECT max(post_date) MaxPostDate, author_id
-				    FROM private_messages
+				    FROM $this->table
 				    GROUP BY author_id
 				) mp2
 					ON mp1.author_id = mp2.author_id
 					AND mp1.post_date = mp2.MaxPostDate
 				WHERE receiver_id = :receiver_id
                 	AND users.id = mp1.author_id
-				ORDER BY mp1.post_date DESC';
+					AND users.id = tokens.user_id
+					AND tokens.type = 'MP'
+				ORDER BY mp1.post_date DESC";
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':receiver_id', $receiver_id);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+	public function getMessagesFromThread($user1, $user2) {
+		$this->setTable('private_messages');
+
+		$sql = "SELECT private_messages.*, users.firstname, users.lastname
+			FROM
+				private_messages
+			INNER JOIN
+				users
+			WHERE `receiver_id` = :user1
+				AND `author_id` = :user2
+				AND users.`id` = :user2
+			OR `author_id`= :user1
+				AND `receiver_id` = :user2
+				AND users.`id` = :user1
+			ORDER BY `post_date` DESC";
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':user1', $user1);
+		$sth->bindValue(':user2', $user2);
 		$sth->execute();
 
 		return $sth->fetchAll();

@@ -116,7 +116,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Messagerie du dashboard
+	 * Page d'accueil de la messagerie du dashboard
 	 *
 	 * @return void
 	 */
@@ -126,7 +126,7 @@ class DashboardController extends Controller
 		$messages = new PrivateMessageModel();
 
 		$user     = $user->getUserByToken($_SESSION['user']['id']);
-		$messages = $messages->findMyMessages($user['id']);
+		$messages = $messages->getActiveThreads($user['id']);
 
 		$count_unread_messages = 0;
 		foreach ($messages as $message) {
@@ -136,6 +136,30 @@ class DashboardController extends Controller
 		$this->show ('dashboard/inbox', array(
 			'messages'              => $messages,
 			'count_unread_messages' => $count_unread_messages
+		));
+	}
+
+	/**
+	 * Fils de discussion des utilisateurs
+	 *
+	 * @param  [type] $token [description]
+	 * @return [type]        [description]
+	 */
+	public function inbox_thread($token)
+	{
+		$user     = new UserModel();
+		$messages = new PrivateMessageModel();
+
+		$user1 = $user->getUserByToken($_SESSION['user']['id']);
+		$user1 = $user1['id']; // Correspond à mon ID d'utilisateur
+
+		$user2 = $user->getUserByToken($token);
+		$user2 = $user2['id']; // Correspond à l'ID de l'utilisateur avec qui j'ai un fil de discussion
+
+		$messages = $messages->getMessagesFromThread($user1, $user2);
+
+		$this->show ('dashboard/thread', array(
+			'messages' => $messages
 		));
 	}
 

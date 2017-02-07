@@ -14,9 +14,17 @@ $(function() {
     }
     //-- End : Popup "Mon compte" du dashboard --//
 
+    //-- Start : Système d'onglets --//
+    function tabsSystem() {
+        // Good luck Romain
+    }
+    //-- End : Système d'onglets --//
+
     function initJS() {
 		popupMyAccount();
+        tabsSystem();
 	}
 
 	initJS();
+    //
 });
