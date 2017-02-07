@@ -9,8 +9,7 @@
             <div id="magazine-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 col-padded-right">
-                            <div class="row">
+
                                 <div class="col-md-12">
                                     <div class="magazine-blog">
                                         <div class="title ">
@@ -80,8 +79,6 @@
                                         </div> 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

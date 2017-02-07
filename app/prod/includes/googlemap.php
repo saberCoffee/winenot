@@ -22,15 +22,6 @@ use \Model\WinemakerModel;
     <!-- DIV pour google map -->
 	<div id="map"></div>
 
-	<!--  En cours !!! -->
-	<?php
-
-
-		// $winemakers = new WinemakerModel();
-		// $winemaker = $winemakers->findAll();
-
-	?>
-	<!--  En cours !!! -->
 
 	<script type="text/javascript">
 
@@ -88,11 +79,24 @@ use \Model\WinemakerModel;
 
 		var infowindow = new google.maps.InfoWindow();
 
-		var marker = new google.maps.Marker({
-			map: map,
-			anchorPoint: new google.maps.Point(0, -29),
-			icon: image
+		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
+		$.ajax({
+			url: "http://localhost/winenot/public/latlng",
+			type: "GET",
+			dataType: 'json', // selon le retour attendu
+			success: function (response) {
+
+				for(var i in response) {
+
+					 var marker = new google.maps.Marker({
+						 	position : new google.maps.LatLng(response[i].lat, response[i].lng),
+						    map: map,
+						  	icon: image
+					 });				
+				}
+			}
 		});
+
 
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();

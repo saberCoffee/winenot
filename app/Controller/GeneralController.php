@@ -5,7 +5,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\UserModel;
 use \Model\Private_messagesModel;
-
+use \Model\WinemakerModel;
 use W\Security\AuthentificationModel;
 
 class GeneralController extends Controller
@@ -172,5 +172,28 @@ class GeneralController extends Controller
 	{
 		$this->show('general/mag');
 	}
+	/**
+	 * Page d'un article du magazine
+	 */
+	public function article()
+	{
+		$this->show('general/article');
+	}
+	
+	
+	/**
+	 * Méthode pour ajax google map latitude et longitude
+	 */
+	public function latlng()
+	{
+		//	if (isset($_POST)) {
+	
+		$latlng = new WinemakerModel();
+	
+		$latlng = $latlng->latlng();
+	
+		echo json_encode($latlng);
+	}
+	
 
 }
