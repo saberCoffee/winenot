@@ -13,15 +13,19 @@ class TokenModel extends Model
 	}
 	public function generateToken($idUser, $type = "Authentification")
 	{
+		$token = md5(uniqid(rand(), true));
+
+		/*
+			DevNote : Si le token existe déjà, le supprimer et en générer un autre
+		*/
 		/*if ($this->tokenExists($idUser)) {
 			echo "DELETER";
 		}*/
 
-		$token = md5(uniqid(rand(), true));
-
 		$data = array(
-				'token'       => $token,
-				'user_id' => $idUser
+			'token'   => $token,
+			'user_id' => $idUser,
+			'type'    => $type
 		);
 
 		$this->insert($data);

@@ -70,4 +70,42 @@ class DashboardController extends Controller
 		
 		$this->show ('dashboard/winemakers', ['winemakers' => $winemakers]);
 	}
+
+	/**
+	 * Page d'accueil de la messagerie du dashboard 
+	 *
+	 * @return void
+	 */
+	public function inbox()
+	{
+		$user     = new UserModel();
+		$messages = new PrivateMessageModel();
+
+		$user     = $user->getUserByToken($_SESSION['user']['id']);
+		$messages = $messages->findMyMessages($user['id']);
+
+		$count_unread_messages = 0;
+		foreach ($messages as $message) {
+			if (!$message['isRead']) $count_unread_messages++;
+		}
+
+		$this->show ('dashboard/inbox', array(
+			'messages'              => $messages,
+			'count_unread_messages' => $count_unread_messages
+		));
+	}
+
+	/**
+	 * Fils de discussion des utilisateurs
+	 *
+	 * @param  [type] $token [description]
+	 * @return [type]        [description]
+	 */
+	public function inbox_thread($token)
+	{
+		$this->show ('dashboard/thread', array(
+
+		));
+	}
+
 }

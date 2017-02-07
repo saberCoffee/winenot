@@ -5,10 +5,10 @@
 
 <section id="cave">
 		<ul class="tab">
-			<li>Ajout de produit</li>
+			<li class="active">Ajout de produit</li>
 			<li>Mes stocks</li>
 		</ul>
-	<section class="addProduct">
+	<section class="addProduct active">
 		<form>		
 			<div class="form-group">
 						<label for="product">Nom du produit</label>
@@ -61,7 +61,7 @@
 			<div class="addPics">
 				<p>photo du produit</p>
 				
-				<img src="../assets/img/pic.png" alt="photo du produit">
+				<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
 				<input type="file" name="picsProduct" value="">
 			</div>
 
