@@ -104,7 +104,10 @@
         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
-
+    
+    .addProduct .form-group{
+        text-align: left;
+    }
     
     .addProduct .btn {
         display: block;
@@ -131,6 +134,16 @@
         display: inline-block;
     }
     
+    /* CSS pour menu click JS*/
+    .tab{
+        display: none;
+    }
+
+    .tab li.active{
+        background-color: #eddcc0;
+
+    }
+
     .tab{
         position: absolute;
         top: 0%;
@@ -142,23 +155,19 @@
 
 
    .tab li{
+        font-size: 1.1em;
+        font-weight: bold;
         display: inline-block;
         color: #d09038;
-        background-color: #eddcc0;
-        padding: 1.5em 2em 1em 3em;
+        background-color: #e8cb9a;
+        padding: 1.5em 3em 1em 3em;
         border-top-right-radius: 4px;
         border-top-left-radius: 4px;
-
-
     }
 
     .tab li:nth-of-type(2){
         margin-left: -4px;
-        background-color: #dcc9a9;
-
     }
-
-
 
 
 /*
@@ -173,7 +182,8 @@
         left: 0;
         border-radius: 5px;
         transform: translate(0%, 0%);
-        margin-bottom: 10em;
+        /*margin-bottom: 10em;*/
+        z-index: -1;
     }
 
    .stock {

@@ -1,0 +1,21 @@
+section {
+    background: #eddcc0;
+}
+
+section#thread {
+
+}
+
+section#thread p {
+    width: 100%;
+    max-width: 1170px;
+
+    margin: 0 auto;
+}
+
+section#thread p.user1 {
+    background: #fff;
+}
+section#thread p.user2 {
+    background: #ffffbe;
+}

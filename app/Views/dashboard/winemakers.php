@@ -39,25 +39,26 @@
 			</div>
 		</div>
 	</form>
-		
+
 	<h2 class="members">Liste des producteurs</h2>
 	<section class="member-list">
 	<table border="1" class="table table-striped">
+<div class="container-fluid">
+			<input type="hidden" name="id" value="<?= $winemakers['id']; ?>" />
+	<table class="table table-bordered">
 		<tr>
 			<th>Siren</th>
 			<th>Domain</th>
 			<th>Adresse</th>
-			<th>Viille</th>
 			<th>Code Postale</th>
 			<th>N° Téléphone</th>
-			<th colspan="3"></th>
+			<th colspan="3">Action</th>
 		</tr>
 	<?php foreach ($winemakers as $winemaker) : ?>
 		<tr>
 			<td><?= $winemaker['siren'];?></td>
 			<td><?= $winemaker['domain'];?></td>
 			<td><?= $winemaker['adress'];?></td>
-			<td><?= $winemaker['city'];?></td>
 			<td><?= $winemaker['postcode']?></td>
 			<td><?= $winemaker['tel']?></td>
 			<td class="action"><!--
@@ -66,6 +67,8 @@
 			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemakers_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
 			</td>
 		</tr>
+			<td><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemakers_id']]) ?>" style="color:green">Modifier</a> | <a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>">Supprimer</a></td>
+			</tr>
 	<?php endforeach;?>
 	</table>
 	</section>
