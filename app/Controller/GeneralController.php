@@ -5,8 +5,9 @@ namespace Controller;
 use \W\Controller\Controller;
 use \Model\UserModel;
 use \Model\Private_messagesModel;
-
-use W\Security\AuthentificationModel;
+use ModelSecurity\AuthentificationModel;
+use Model\Winemaker;
+use Model\WinemakerModel;
 
 class GeneralController extends Controller
 {
@@ -172,5 +173,20 @@ class GeneralController extends Controller
 	{
 		$this->show('general/mag');
 	}
+	
+	/**
+	 * Méthode pour ajax google map latitude et longitude
+	 */
+	public function latlng()
+	{
+	//	if (isset($_POST)) {
+			
+		$latlng = new WinemakerModel();
+		
+		$latlng = $latlng->latlng();
+
+		echo json_encode($latlng);
+	}
+	
 
 }

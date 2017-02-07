@@ -18,5 +18,13 @@ class WinemakerModel extends Model
 		}
 	}
 	
+	public function latlng() {
+		
+		$winemaker = new WinemakerModel();
+		$winemakers = $this->findAll('lat, lng');
+		
+		return $winemakers;
+		
+	}
 	
 }

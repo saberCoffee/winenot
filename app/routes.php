@@ -9,6 +9,8 @@
 		['POST', '/login', 'General#login', 'login'], // Route vers le traitement de connexion
 		['GET', '/logout', 'General#logout', 'logout'], // Route vers le traitement de déconnexion
         ['POST', '/register', 'General#register', 'register'], // Route ver le traitement d'inscription
+        
+		['GET|POST', '/latlng', 'General#latlng', 'latlng'], // Route pour donner des coordonnées latitude et longitude pour afficher les producteurs sur google map
 
 		['GET', '/mag', 'General#mag', 'mag'], // Page qui affiche des articles
 		['GET', '/mag/edit', 'General#mag_edit', 'mag_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin

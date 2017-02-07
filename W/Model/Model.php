@@ -170,10 +170,10 @@ abstract class Model
 	 * @param $offset La position à partir de laquelle récupérer les résultats
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAll($orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null)
+	public function findAll($cols = "*", $orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null)
 	{
 
-		$sql = 'SELECT * FROM ' . $this->table;
+		$sql = 'SELECT ' . $cols . ' FROM ' . $this->table;
 		if (!empty($orderBy)){
 
 			//sécurisation des paramètres, pour éviter les injections SQL
