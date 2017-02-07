@@ -50,35 +50,35 @@
 								Logo + Lien homepage</a>
 							</li>-->
                             <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('dashboard') ?>">Accueil</a>
+								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>
                             <li>
-								<a href="<?= $this->url('mag') ?>">Le mag</a>
+								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
                             <li>
-								<a href="#"> Trouver un producteur</a>
+								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('wishlist') ?>">Favoris</a>
+								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
 							</li>
                             <li>
-								<a href="#">Reviews</a>
+								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/customer2.png'); ?>">Reviews</a>
 							</li>
 
                             <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('newWineMaker') ?>">Devenir producteur</a>
+								<a href="<?= $this->url('newWineMaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
 							</li>
                             <li class="winemaker-link" <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('cave') ?>">Ma cave</a>
+								<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
 							</li>
 
                             <li class="admin-link">
-								<a href="#">Gérer le mag</a></li>
+								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/contract.png'); ?>">Gérer le mag</a></li>
                             <li class="admin-link">
-								<a href="<?= $this->url('members') ?>">Gérer les membres</a>
+								<a href="<?= $this->url('members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 							</li>
                             <li class="admin-link">
-								<a href="<?= $this->url('winemakers') ?>">Gérer les producteurs</a>
+								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
 							</li>
                         </ul>
                     </nav>

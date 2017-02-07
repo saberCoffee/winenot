@@ -208,7 +208,8 @@ Menu de navigation latéral
     }
 
     aside nav ul li:hover img:last-of-type {
-        display: block;
+        display: inline-block;
+        padding-right: 10px;
     }
 
 
