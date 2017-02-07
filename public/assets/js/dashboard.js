@@ -26,4 +26,5 @@ $(function() {
 	}
 
 	initJS();
+    //
 });
