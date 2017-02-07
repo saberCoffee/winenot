@@ -1,34 +1,123 @@
 /* Affichage des membres */  
 
-.table {
-	margin-top: 20px;
-}
-
-.table-bordered>tbody>tr>th {
-	font-weight: bold;
-	color:#d09038;
-}
-.table-bordered>tbody>tr>td {
+	section.member-list {
+		padding: 3rem;
+	    background-color: #eddcc0;
+	    margin-bottom: 5rem;
+	    border-radius: .5rem;
+	    border-top-left-radius: 0;
+	}
+	
+	table.table {
+		margin-top: 20px;
+		padding:2rem;
+		border-radius:.5rem;
+		border: 3px solid #d09038;
+	}
+	
+	
+	.table-striped>tbody>tr>th {
+		font-weight: bold;
 		color:#d09038;
-}
-td.action a:hover {
-	opacity: 0.5;
-}
+	}
+	.table-striped>tbody>tr>td {
+			color:#d09038;
+	}
+	td.action a:hover {
+		opacity: 0.5;
+	}
+	td.action {
+		text-align:center;
+	}
+	
+	form.members {
+		background-color:#eddcc0;
+		padding: 3rem;
+		border-radius: .5rem;
+		border-top-left-radius: 0;
+		margin-bottom:3rem;
+	}
+	
+	form.members div.row {
+		padding: 1.5rem;
+	}
+	form.members div.row label {
+		display:block;
+		color:#a4300c;
+	}
+	h2.members {
+		color:#d09038;
+		background-color:#eddcc0;
+		width:40%;
+		text-transform:uppercase;
+		margin-top: 5rem;
+		padding:2.5rem;
+	 	border-top-right-radius: .5rem;
+		border-top-left-radius: .5rem; 
+	}
+	
+	div.form-group label {
+		display:block;
+		margin-top: 2rem;
+		color:#a4300c;
+	}
+	
+	form .form-control {
+		margin: 0 auto;
+		margin-right: 1.5rem;
+	}
+	
+	div.row input[type="submit"] {
+		width:100%;
+		margin: 0 auto;
+		background-color: #d09038;
+		text-transform: uppercase;
+		color:#fff;
+		margin-top: 2rem;
+	}
+	
+	input[type="submit"]:hover {
+		background-color:#d09038;
+			color:#fff;
+	}
 
-form.members h2, h2.members {
-	padding: 2rem 0;
-	color:#a4300c;
-}
+/* Affichage des producteurs */  
 
-div.form-group label {
-	color:#a4300c;
-}
+	h2.winemakers {
+		color:#d09038;
+		background-color:#eddcc0;
+		width:40%;
+		text-transform:uppercase;
+		margin-top: 5rem;
+		padding:2.5rem;
+	 	border-top-right-radius: .5rem;
+		border-top-left-radius: .5rem; 
+	}
+	form.winemakers {
+		background-color:#eddcc0;
+		padding: 3rem;
+		border-radius: .5rem;
+		border-top-left-radius: 0;
+		margin-bottom:3rem;
+	}
+	form.winemakers div.row {
+		padding: 1.5rem;
+	}
+	
+	form.winemakers div.row label {
+		display: block;
+    	color: #a4300c;
+	}
+	
+	th {
+		text-align: center;
+	}
 
-form .form-control {
-	width:calc(100%/4);
-	display:inline-block;
-	margin: 0 auto;
-	margin-right: 1.5rem;
-}
+
+
+
+
+
+
 
 
