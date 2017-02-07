@@ -123,7 +123,7 @@ class GeneralController extends Controller
 		$this->show('general/account', array(
 			'error'    => (isset($error)) ? $error : '',
 
-			'email'    => (!empty($_POST['email'])) ? $_POST['email'] : ''
+			'email'    => (!empty($_POST['email'])) ? $_POST['email'] : '',
 			'firstname' => '',
 			'lastname'  => ''
 		));
