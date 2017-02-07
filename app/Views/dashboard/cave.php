@@ -2,11 +2,14 @@
 
 <?php $this->start('main_content') ?>
 
+
+<section id="cave">
+		<ul class="tab">
+			<li>Ajout de produit</li>
+			<li>Mes stocks</li>
+		</ul>
 	<section class="addProduct">
-		<h2>Ajout de produit</h2>
-	
-		<form>
-				
+		<form>		
 			<div class="form-group">
 						<label for="product">Nom du produit</label>
 						<input type="text" name="Product" class="form-control">
@@ -18,12 +21,14 @@
 						<input type="text" name="color" class="form-control">
 					</div>	
 				</div>
+
 				<div class="col-md-4 ">
 					<div class="form-group">
 						<label for="price">Prix</label>
 						<input type="text" name="price" class="form-control">
 					</div>
 				</div>
+
 				<div class="col-md-4 ">
 					<div class="form-group">
 						<label for="millesime">Millesime</label>
@@ -31,6 +36,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
@@ -38,12 +44,14 @@
 						<input type="text" name="cepage" class="form-control">
 					</div>
 				</div>
+
 				<div class="col-md-4 ">
 					<div class="form-group">
 						<label for="stock">Stock</label>
 						<input type="text" name="stock" class="form-control">
 					</div>
 				</div>
+
 				<div class="col-md-4">
 					<label for="bio">Vin bio</label>
 					<input type="checkbox">
@@ -57,18 +65,14 @@
 				<input type="file" name="picsProduct" value="">
 			</div>
 
-
-			
 			<div>
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
-	
 		</form>
 	</section>
 	
 
 	<section class="stock">
-		<h2>Mes stocks</h2>
 		<table border="1" class="table table-striped">
 			<thead>
 				<tr>
@@ -79,8 +83,6 @@
 				  <th>Prix</th>
 				  <th>Stocks</th>
 				  <th></th>
-
-
 				</tr>
 			</thead>
 			<tbody>
@@ -293,8 +295,8 @@
 				</tr>
 			</tbody>
 		</table>
-
 	</section>
+</section>
 
 <?php $this->stop('main_content') ?>
 

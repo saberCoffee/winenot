@@ -3,19 +3,20 @@
 */
     
     
-    .registerNewWineMaker, .addProduct {
+    .registerNewWineMaker {
         width: 60%;
         height: 60%;
-        margin: 10em auto;
+        margin: auto;
+        margin: 5em auto;
         padding: 3em 3em 0;
-        border-radius: 5px;
         background-color: #eddcc0;
         color: #d09038;
+        border-radius: 5px;
         text-transform: uppercase;
     }
     
     .registerNewWineMaker .form-control{
-    	display: block;
+        display: block;
         width: 100%;
         height: 34px;
         padding: 6px 12px;
@@ -52,7 +53,7 @@
     
     .registerNewWineMaker p{
         color: #d09038;
-    	font-size: .8em;
+        font-size: .8em;
         text-decoration: none;
         text-transform: lowercase;
         text-align: center;
@@ -60,46 +61,31 @@
     }
     
     .registerNewWineMaker p:hover{
-    	color: #d09038;
+        color: #d09038;
     }
 
 /*
     Cave
 */
-    section.addProduct h2{
-        position: absolute;
-        top: -5%;
-        left: 0;
-        display: inline-block;
-        width: auto;
-        padding: 1.5rem 2rem;
-        border-radius: 5px;
-        transform: translate(0%, -50%);
-    }
-
-    .addProduct {
-        position: relative;
-        background-color: #eddcc0;
-
-        color: #ffffff;
-        text-align: center;
-    }
-
-    .addProduct h2{
-        color: #d09038;
-        background-color: #eddcc0;
-    }
-
-     .addProduct {
+    #cave {
+        position: relative; 
         width: 60%;
-        height: 60%;
+        /* height: 60%; */
         margin: 10em auto;
-        padding: 3em 3em 2em;
+        padding: 0em 0em 0em;
         background-color: #eddcc0;
         color: #d09038;
         text-transform: uppercase;
+        text-align: center;
+        border-radius: 5px;
     }
-    
+
+    .addProduct{
+        width: 90%;
+        padding: 3em 0;
+        margin: auto;
+    }
+
     .addProduct .form-control{
         display: block;
         width: 100%;
@@ -118,6 +104,7 @@
         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
+
     
     .addProduct .btn {
         display: block;
@@ -143,78 +130,93 @@
     .addProduct .addPics input[type=file]{
         display: inline-block;
     }
+    
+    .tab{
+        position: absolute;
+        top: 0%;
+        left: 0;
+        text-align: left;
+        border-radius: 5px;
+        transform: translate(0%, -100%);
+    }
+
+
+   .tab li{
+        display: inline-block;
+        color: #d09038;
+        background-color: #eddcc0;
+        padding: 1.5em 2em 1em 3em;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+
+
+    }
+
+    .tab li:nth-of-type(2){
+        margin-left: -4px;
+        background-color: #dcc9a9;
+
+    }
+
+
 
 
 /*
     Stock
 */
-
-   section.stock h2{
-        position: absolute;
-        top: -4%;
-        left: 9%;
-        display: inline-block;
-        width: auto;
-        padding: 1.6rem 2rem;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        transform: translate(100%, -50%);
-    }
-
     .stock {
-        position: relative;
+        display: none;
+        position: absolute;
         background-color: #eddcc0;
-
         color: #ffffff;
-        text-align: center;
+        top: 0%;
+        left: 0;
+        border-radius: 5px;
+        transform: translate(0%, 0%);
+        margin-bottom: 10em;
     }
 
-    .stock h2{
-        color: #d09038;
-        background-color: #eddcc0;
-    }
-
-     .stock {
-        width: 60%;
-        height: 60%;
-        margin: 10em auto;
+   .stock {
+        width: 100%;
+        /*text-align: center;*/
+        /* height: 60%; */
+        /* margin: 28.6em 7px; */
         padding: 3em 3em 2em;
         background-color: #eddcc0;
         border-radius: 5px;
-    
         color: #d09038;
         text-transform: uppercase;
     }
-    
-
+   
+ 
     table{
         margin: auto;
         border: 2px solid #d09038;
         text-transform: uppercase;
         background: #fdf5e7;
     }
-
+    
     .table{
         margin-top: 0;
     }
-
+    
     .table>thead>tr>th {
         text-align: center;
         vertical-align: bottom;
         border-bottom: 2px solid #d09038;
     }
-
+    
     .table>tbody>tr>td{
         height: 2em;
         border-top: 1px solid #d09038;
-        text-transform: lowercase;
+        text-transform: normal;
     }
-
+    
     table tr > td:nth-of-type(7) {
         width: 6em;
         padding: 4px;
     }
-
+    
     table img{
         margin: 0 5px;
     }
