@@ -158,6 +158,21 @@ class DashboardController extends Controller
 
 		$messages = $messages->getMessagesFromThread($user1, $user2);
 
+		$i           = 0;
+		$last_author = '';
+
+		foreach ($messages as $message) {
+			if ($last_author != $message['author_id'])  {
+				$messages[$i]['classe'] = 'user1';
+			} else {
+				$messages[$i]['classe'] = 'user2';
+			}
+
+			$last_author = $message['author_id'];
+
+			$i++;
+		}
+
 		$this->show ('dashboard/thread', array(
 			'messages' => $messages
 		));
