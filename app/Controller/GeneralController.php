@@ -196,4 +196,12 @@ class GeneralController extends Controller
 	}
 	
 
+	/**
+	 * Page du magazine
+	 */
+	public function article()
+	{
+		$this->show('general/article');
+	}
+
 }
