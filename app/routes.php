@@ -9,11 +9,12 @@
 		['POST', '/login', 'General#login', 'login'], // Route vers le traitement de connexion
 		['GET', '/logout', 'General#logout', 'logout'], // Route vers le traitement de déconnexion
         ['POST', '/register', 'General#register', 'register'], // Route ver le traitement d'inscription
-        
+
 		['GET|POST', '/latlng', 'General#latlng', 'latlng'], // Route pour donner des coordonnées latitude et longitude pour afficher les producteurs sur google map
 
 		['GET', '/mag', 'General#mag', 'mag'], // Page qui affiche des articles
-		['GET', '/mag/edit', 'General#mag_edit', 'mag_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
+		['GET', '/mag/article', 'General#article', 'article'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
+		['GET', '/mag/article/edit', 'General#article_edit', 'article_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
 
 		['GET', '/about', 'General#about', 'about'], // Page d'a propos
 		['GET|POST', '/contact', 'General#contact', 'contact'], // Page du contact le site web
@@ -30,13 +31,13 @@
 		/* Pages Gestion des produits par producteur */
 		['GET', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
 		['GET', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
-		
+
 		/* Pages Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/members', 'Dashboard#members', 'members'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET', '/dashboard/members/[a:id]', 'Dashboard#members_edit', 'members2'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET', '/dashboard/winemakers/[a:id]', 'Dashboard#winemakers_edit', 'winemakers2'], // Liste des producteurs et gestions de ces producteurs par admin
-			
+
 		/* Pages des profils des utilisateurs */
 		['GET', '/profile/[a:id]', 'Profile#profile_view', 'profile_view'], // Consulter un profil
 		['GET', '/profile/config', 'Profile#profile_config', 'profile_config'], // Page des coordonnées de l'utilisateur
