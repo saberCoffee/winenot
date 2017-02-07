@@ -46,9 +46,9 @@
                 <aside>
                     <nav>
                         <ul>
-                            <!--<li><a href="">
-								Logo + Lien homepage</a>
-							</li>-->
+                            <li>
+								<a href="<?= $this->url('home') ?>"><< Retour à la homepage</a>
+							</li>
                             <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>
