@@ -66,15 +66,14 @@
 /*
     Cave
 */
-    section > h2 {
+    section.addProduct h2{
         position: absolute;
         top: -5%;
         left: 0;
         display: inline-block;
         width: auto;
         padding: 1.5rem 2rem;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-radius: 5px;
         transform: translate(0%, -50%);
     }
 
@@ -145,7 +144,84 @@
         display: inline-block;
     }
 
+
+/*
+    Stock
+*/
+
+   section.stock h2{
+        position: absolute;
+        top: -4%;
+        left: 9%;
+        display: inline-block;
+        width: auto;
+        padding: 1.6rem 2rem;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        transform: translate(100%, -50%);
+    }
+
+    .stock {
+        position: relative;
+        background-color: #eddcc0;
+
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .stock h2{
+        color: #d09038;
+        background-color: #eddcc0;
+    }
+
+     .stock {
+        width: 60%;
+        height: 60%;
+        margin: 10em auto;
+        padding: 3em 3em 2em;
+        background-color: #eddcc0;
+        border-radius: 5px;
+    
+        color: #d09038;
+        text-transform: uppercase;
+    }
     
 
+    table{
+        margin: auto;
+        border: 2px solid #d09038;
+        text-transform: uppercase;
+        background: #fdf5e7;
+    }
 
-    
+    .table{
+        margin-top: 0;
+    }
+
+    .table>thead>tr>th {
+        text-align: center;
+        vertical-align: bottom;
+        border-bottom: 2px solid #d09038;
+    }
+
+    .table>tbody>tr>td{
+        height: 2em;
+        border-top: 1px solid #d09038;
+        text-transform: lowercase;
+    }
+
+    table tr > td:nth-of-type(7) {
+        width: 6em;
+        padding: 4px;
+    }
+
+    table img{
+        margin: 0 5px;
+    }
+
+
+
+
+
+
+

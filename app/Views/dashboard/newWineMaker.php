@@ -1,9 +1,6 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Devenir producteur']) ?>
 
 <?php $this->start('main_content') ?>
-<h1>Devenir producteur</h1>
-
-
 	<section class="registerNewWineMaker">	
 		<form>
 			<div class="form-group">
