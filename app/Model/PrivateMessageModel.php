@@ -14,9 +14,10 @@ class PrivateMessageModel extends Model {
 	public function findMyMessages($receiver_id) {
 		$this->setTable('private_messages');
 
-		$sql = 'SELECT mp1.*, users.firstname, users.lastname
+		$sql = "SELECT mp1.*, users.firstname, users.lastname, tokens.token
 				FROM private_messages mp1
                 INNER JOIN users
+				INNER JOIN tokens
 				INNER JOIN
 				(
 				    SELECT max(post_date) MaxPostDate, author_id
@@ -27,7 +28,9 @@ class PrivateMessageModel extends Model {
 					AND mp1.post_date = mp2.MaxPostDate
 				WHERE receiver_id = :receiver_id
                 	AND users.id = mp1.author_id
-				ORDER BY mp1.post_date DESC';
+					AND users.id = tokens.user_id
+					AND tokens.type = 'MP'
+				ORDER BY mp1.post_date DESC";
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':receiver_id', $receiver_id);

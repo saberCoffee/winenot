@@ -116,7 +116,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Messagerie du dashboard
+	 * Page d'accueil de la messagerie du dashboard 
 	 *
 	 * @return void
 	 */
@@ -136,6 +136,19 @@ class DashboardController extends Controller
 		$this->show ('dashboard/inbox', array(
 			'messages'              => $messages,
 			'count_unread_messages' => $count_unread_messages
+		));
+	}
+
+	/**
+	 * Fils de discussion des utilisateurs
+	 *
+	 * @param  [type] $token [description]
+	 * @return [type]        [description]
+	 */
+	public function inbox_thread($token)
+	{
+		$this->show ('dashboard/thread', array(
+
 		));
 	}
 
