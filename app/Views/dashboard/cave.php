@@ -9,7 +9,7 @@
 			<li>Mes stocks</li>
 		</ul>
 	<section class="addProduct active">
-		<form>		
+		<form>
 			<div class="form-group">
 						<label for="product">Nom du produit</label>
 						<input type="text" name="Product" class="form-control">
@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<label for="color">Couleur</label>
 						<input type="text" name="color" class="form-control">
-					</div>	
+					</div>
 				</div>
 
 				<div class="col-md-4 ">
@@ -60,7 +60,7 @@
 
 			<div class="addPics">
 				<p>photo du produit</p>
-				
+
 				<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
 				<input type="file" name="picsProduct" value="">
 			</div>
@@ -70,7 +70,7 @@
 			</div>
 		</form>
 	</section>
-	
+
 
 	<section class="stock">
 		<table border="1" class="table table-striped">
@@ -301,5 +301,5 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-    <script src="<?= $this->assetUrl('js/main.js') ?>" type="text/javascript"></script>
+    <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
 <?php $this->stop('js') ?>

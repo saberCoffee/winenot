@@ -76,8 +76,10 @@ class PrivateMessageModel extends Model {
 	 *
 	 * @return void
 	 */
-	public function contact($objet, $email, $message) {
-		$message = 'Adresse mail du client: '. $email . ' : ' .$message;
+	public function contact($subject, $email, $content) {
+		$this->setTable('private_messages');
+
+		$content = 'Adresse mail du client: '. $email . ' : ' .$content;
 
 		/*
 			DevNote :
@@ -86,12 +88,27 @@ class PrivateMessageModel extends Model {
 			2 - Boucler desssus, et pour chacun d'entre eux, envoyer le PM en remplaçant 'receiver_id' par leur id respectifs
 		*/
 		$data = array(
-				'receiver_id'	=> '2620528902ee37259c51a57d2367dd67',
-				'author_id'		=> 0,
-				'subject'   	=> $objet,
-				'content' 		=> $message
+			'author_id'		=> 0,
+			'receiver_id'	=> '2620528902ee37259c51a57d2367dd67',
+			'subject'   	=> $subject,
+			'content' 		=> $content
 		);
 
 		return $this->insert($data);
 	}
+
+	public function sendMessage($receiver_id, $author_id, $subject, $content)
+	{
+		$this->setTable('private_messages');
+
+		$data = array(
+			'receiver_id'	=> $receiver_id,
+			'author_id'		=> $author_id,
+			'subject'   	=> $subject,
+			'content' 		=> $content
+		);
+
+		return $this->insert($data);
+	}
+
 }

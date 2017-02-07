@@ -1,21 +1,110 @@
 section {
-    background: #eddcc0;
+
 }
 
 section#thread {
 
 }
 
-section#thread p {
+section#thread form {
+    position: relative;
+
     width: 100%;
-    max-width: 1170px;
+    max-width: 117rem;
 
-    margin: 0 auto;
+    margin: 0 auto 10rem auto;
+    padding: 0;
 }
 
-section#thread p.user1 {
-    background: #fff;
+section#thread form textarea {
+    width: 100%;
+    height: 10rem;
+
+    background: transparent;
+    border: 2px solid #a4300c;
 }
-section#thread p.user2 {
-    background: #ffffbe;
+
+section#thread input[type="submit"] {
+    float: right;
+
+    width: auto;
+
+    margin: 1rem 2rem;
+
+    background: none;
+    border: 0;
+
+    color: #000;
 }
+
+section#thread .col-avatar,
+section#thread .col-message {
+    display: inline-block;
+    vertical-align: top;
+}
+
+section#thread .col-avatar {
+    width: 100px;
+
+    margin-right: 40px;
+}
+
+section#thread .col-avatar img {
+    border-radius: 50%;
+}
+
+section#thread .col-message {
+    width: 80%;
+}
+
+section#thread p {
+    position: relative;
+
+    height: 10rem;
+
+    margin: 0 auto 2.5rem auto;
+    padding: 1.5rem;
+
+    border-radius: 5px;
+}
+
+section#thread p.row1 {
+    background: #ffffff;
+}
+section#thread p.row2 {
+    background: #fff4e8;
+}
+
+/*
+Triangles
+
+section#thread p:after,
+section#thread p:before {
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+}
+
+section#thread p:before {
+    bottom: 11px;
+    left: -30px;
+
+    border-style: solid;
+    border-width: 15px;
+    border-color: transparent #a4300c transparent transparent;
+}
+section#thread p:after {
+    bottom: 10px;
+    left: -28px;
+
+    border-style: solid;
+    border-width: 16px;
+    border-color: transparent #d5b98b transparent transparent;
+}
+section#thread p.row1:after {
+    border-color: transparent #dfcba9 transparent transparent;
+}
+*/

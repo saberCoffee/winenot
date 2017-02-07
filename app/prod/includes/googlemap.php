@@ -92,7 +92,7 @@ use \Model\WinemakerModel;
 						 	position : new google.maps.LatLng(response[i].lat, response[i].lng),
 						    map: map,
 						  	icon: image
-					 });				
+					 });
 				}
 			}
 		});
