@@ -125,7 +125,12 @@
 		});
 
 
-
+			google.maps.event.addDomListener(window, "resize", function() {
+				   var center = map.getCenter();
+				   google.maps.event.trigger(map, "resize");
+				   map.setCenter(center); 
+				});
+			
 
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
@@ -164,7 +169,11 @@
 
 			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
 			infowindow.open(map, marker);
+
+
 		});
+
+		
 	}
 
 

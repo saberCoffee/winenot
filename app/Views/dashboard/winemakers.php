@@ -57,7 +57,7 @@
 		<tr>
 			<td><?= $winemaker['siren'];?></td>
 			<td><?= $winemaker['domain'];?></td>
-			<td><?= $winemaker['adress'];?></td>
+			<td><?= $winemaker['address'];?></td>
 			<td><?= $winemaker['city'];?></td>
 			<td><?= $winemaker['postcode']?></td>
 			<td><?= $winemaker['tel']?></td>
