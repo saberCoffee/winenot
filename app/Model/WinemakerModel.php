@@ -60,6 +60,8 @@ class WinemakerModel extends Model
 			'lng'         => $lng,
 			'lat'         => $lat,
 		);
+
+		$user->update(array('type' => 1), $winemaker_id['id']);
 		$this->insert($data);
 	}
 

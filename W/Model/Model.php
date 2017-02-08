@@ -271,7 +271,6 @@ abstract class Model
 	 */
 	public function insert(array $data, $stripTags = true)
 	{
-
 		$colNames = array_keys($data);
 		$colNamesEscapes = $this->escapeKeys($colNames);
 		$colNamesString = implode(', ', $colNamesEscapes);
@@ -305,10 +304,6 @@ abstract class Model
 	 */
 	public function update(array $data, $id, $stripTags = true)
 	{
-		if (!is_numeric($id)){
-			return false;
-		}
-
 		$sql = 'UPDATE ' . $this->table . ' SET ';
 		foreach($data as $key => $value){
 			$sql .= "`$key` = :$key, ";
