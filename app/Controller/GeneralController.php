@@ -180,6 +180,14 @@ class GeneralController extends Controller
 		$this->show('general/article');
 	}
 
+	/**
+	 * Page du magazine
+	 */
+	public function article_add()
+	{
+		$this->show('general/add_article');
+	}
+
 
 	/**
 	 * Méthode pour ajax google map latitude et longitude
@@ -194,5 +202,4 @@ class GeneralController extends Controller
 
 		echo json_encode($latlng);
 	}
-
 }
