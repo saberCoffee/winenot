@@ -3,10 +3,10 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \W\Security\AuthentificationModel;
 use \Model\UserModel;
-use \Model\Private_messagesModel;
 use \Model\WinemakerModel;
-use W\Security\AuthentificationModel;
+use \Model\PrivateMessageModel;
 
 class GeneralController extends Controller
 {
@@ -147,9 +147,9 @@ class GeneralController extends Controller
 		if (!empty($_POST)) {
 			$objet   = $_POST['contact_objet'];
 			$email   = $_POST['contact_email'];
-			$message = $_POST['contact_msg'];
+			$message = nl2br($_POST['contact_msg']);
 
-			$contact = new Private_messagesModel();
+			$contact = new PrivateMessageModel();
 			$error = $contact->contact($objet, $email, $message);
 
 			if (!is_numeric($error)) {
@@ -194,5 +194,5 @@ class GeneralController extends Controller
 
 		echo json_encode($latlng);
 	}
-	
+
 }

@@ -2,59 +2,87 @@
 
 <?php $this->start('main_content') ?>
 
+<?php if (!empty($_COOKIE['successMsg'])) { ?>
+<p class="bg-success"><?= $_COOKIE['successMsg'] ?></p>
+<?php } ?>
 
 <section id="cave">
-		<ul class="tab">
-			<li class="active">Ajout de produit</li>
-			<li>Mes stocks</li>
-		</ul>
+
+	<ul class="tab">
+		<li class="active">Ajout de produit</li>
+		<li>Mes stocks</li>
+	</ul>
 	<section class="addProduct active">
-		<form>
-			<div class="form-group">
+		<form method="POST">
+			<div class="form-group <?php if (isset($error['name'])) { echo 'has-error'; } ?>">
 						<label for="product">Nom du produit</label>
-						<input type="text" name="Product" class="form-control">
+						<input type="text" name="name" id="name" class="form-control" value="<?= $name; ?>" data-min="3" data-max="16" required="required">
+						<span class="help-block" <?php if (empty($error['name'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['name'])) { echo $error['name']; } ?>
+                   		 </span>
 			</div>
+
 			<div class="row">
 				<div class="col-md-4">
-					<div class="form-group">
+					<div class="form-group <?php if (isset($error['color'])) { echo 'has-error'; } ?>">
 						<label for="color">Couleur</label>
-						<input type="text" name="color" class="form-control">
+						<select name="color" id="color" class="form-control" value="<?= $color; ?>" required="required">
+							<option value="">-- Selectionner --</option>
+							<option value="Blanc" <?php if ($color == 'Blanc') echo 'selected' ?>>Blanc</option>
+							<option value="Rosé"  <?php if ($color == 'Rosé') echo 'selected' ?>>Rosé</option>
+							<option value="Rouge" <?php if ($color == 'Rouge') echo 'selected'?>>Rouge</option>
+						</select>
+						<span class="help-block" <?php if (empty($error['color'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['color'])) { echo $error['color']; } ?>
+                   		</span>
 					</div>
 				</div>
 
 				<div class="col-md-4 ">
-					<div class="form-group">
-						<label for="price">Prix</label>
-						<input type="text" name="price" class="form-control">
+					<div class="form-group <?php if (isset($error['price'])) { echo 'has-error'; } ?>">
+						<label for="price">Prix (en euro)</label>
+						<input type="text" name="price" id="price" class="form-control" value="<?= $price; ?>" required="required">
+						<span class="help-block" <?php if (empty($error['price'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['price'])) { echo $error['price']; } ?>
+                   		 </span>
 					</div>
 				</div>
 
 				<div class="col-md-4 ">
-					<div class="form-group">
+					<div class="form-group <?php if (isset($error['millesime'])) { echo 'has-error'; } ?>">
 						<label for="millesime">Millesime</label>
-						<input type="text" name="millesime" class="form-control">
+						<input type="text" name="millesime" id="millesime" class="form-control" value="<?= $millesime; ?>" data-min="4" data-max="4" required="required">
+						<span class="help-block" <?php if (empty($error['millesime'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['millesime'])) { echo $error['millesime']; } ?>
+                   		</span>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-4">
-					<div class="form-group">
+					<div class="form-group <?php if (isset($error['cepage'])) { echo 'has-error'; } ?>">
 						<label for="cepage">Cépage</label>
-						<input type="text" name="cepage" class="form-control">
+						<input type="text" name="cepage" id="cepage" class="form-control" value="<?= $cepage; ?>" data-min="3" data-max="16" required="required">
+						<span class="help-block" <?php if (empty($error['cepage'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['cepage'])) { echo $error['cepage']; } ?>
+                   		</span>
 					</div>
 				</div>
 
 				<div class="col-md-4 ">
-					<div class="form-group">
+					<div class="form-group <?php if (isset($error['stock'])) { echo 'has-error'; } ?>">
 						<label for="stock">Stock</label>
-						<input type="text" name="stock" class="form-control">
+						<input type="text" name="stock" id="stock" class="form-control" value="<?= $stock; ?>" data-min="2" required="required">
+						<span class="help-block" <?php if (empty($error['stock'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['stock'])) { echo $error['stock']; } ?>
+                   		</span>
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<label for="bio">Vin bio</label>
-					<input type="checkbox">
+					<input type="checkbox" name="bio" id="bio">
 				</div>
 			</div>
 
@@ -66,6 +94,8 @@
 			</div>
 
 			<div>
+			<!-- INPUT HIDDEN TEMPORAIRE -->
+				<input type="hidden" name="winemaker_id" value="e3e6747f8834d39724bbde3b5b133996">
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
 		</form>

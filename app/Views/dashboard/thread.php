@@ -26,7 +26,7 @@
 
                 <div class="col-message">
                     <p class="<?= $message['classe'] ?>">
-                        <?= $message['content'] ?>
+                        <?= nl2br($message['content']) ?>
                     </p>
                 </div>
             </div>

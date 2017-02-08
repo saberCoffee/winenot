@@ -35,7 +35,7 @@
 
 		/* Gestion des produits par producteur */
 		['GET', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
-		['GET', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
+		['GET|POST', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
 
 		/* Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/members', 'Dashboard#members', 'members'], // Liste des producteurs et gestions de ces producteurs par admin
