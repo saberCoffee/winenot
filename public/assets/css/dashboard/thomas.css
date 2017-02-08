@@ -78,37 +78,3 @@ section#thread p.row2 {
 body.jsActive .city-input {
     display: none;
 }
-
-/*
-Triangles
-
-section#thread p:after,
-section#thread p:before {
-    content: "";
-
-    position: absolute;
-
-    width: 0;
-    height: 0;
-}
-
-section#thread p:before {
-    bottom: 11px;
-    left: -30px;
-
-    border-style: solid;
-    border-width: 15px;
-    border-color: transparent #a4300c transparent transparent;
-}
-section#thread p:after {
-    bottom: 10px;
-    left: -28px;
-
-    border-style: solid;
-    border-width: 16px;
-    border-color: transparent #d5b98b transparent transparent;
-}
-section#thread p.row1:after {
-    border-color: transparent #dfcba9 transparent transparent;
-}
-*/
