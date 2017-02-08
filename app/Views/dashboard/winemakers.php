@@ -2,6 +2,7 @@
 <?php $this->start('main_content') ?>
 
 <div class="container">
+
 	<h2 class="winemakers">Ajouter un producteur</h2>
 	<form action="" method="post" class="winemakers">
 		<input type="hidden" name="id" value="<?= $members['id']; ?>" />
@@ -39,7 +40,7 @@
 			</div>
 		</div>
 	</form>
-		
+
 	<h2 class="members">Liste des producteurs</h2>
 	<section class="member-list">
 	<table border="1" class="table table-striped">
