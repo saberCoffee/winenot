@@ -220,7 +220,7 @@
     .table>tbody>tr>td{
         height: 2em;
         border-top: 1px solid #d09038;
-        text-transform: normal;
+        text-transform: none;
     }
     
     table tr > td:nth-of-type(7) {
