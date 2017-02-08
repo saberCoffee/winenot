@@ -75,7 +75,7 @@ section#thread p.row2 {
     background: #fff4e8;
 }
 
-.city-input {
+body.jsActive .city-input {
     display: none;
 }
 

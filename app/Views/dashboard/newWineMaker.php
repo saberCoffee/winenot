@@ -2,10 +2,10 @@
 
 <?php $this->start('main_content') ?>
 <section class="registerNewWineMaker">
-	<form action="<?= $this->url(newWineMaker) ?>" method="post">
+	<form action="<?= $this->url('newWineMaker') ?>" method="post">
 		<div class="form-group">
 			<label for="siren">Numéro de SIREN (9 chiffres)</label>
-			<input type="text" name="siren" id="siren" class="form-control" data-min="9" maxlength="9" required="required" />
+			<input type="text" name="siren" id="siren" class="form-control" data-min="9" maxlength="9" required="required" autocomplete="off" />
 			<span class="help-block" <?php if (empty($error['siren'])) { echo 'style="display: none"'; } ?>>
 				<?php if (isset($error['siren'])) { echo $error['siren']; } ?>
 			</span>
@@ -37,7 +37,7 @@
 		</div>
 		<div class="form-group">
 			<label for="adress">Adresse</label>
-			<input type="text" name="address" id="address" data-max="45" required="required" maxlength="45" class="form-control" />
+			<input type="text" name="address" id="address" data-max="45" required="required" maxlength="45" class="form-control" autocomplete="off" />
 			<span class="help-block" <?php if (empty($error['address'])) { echo 'style="display: none"'; } ?>>
 				<?php if (isset($error['address'])) { echo $error['address']; } ?>
 			</span>
@@ -46,7 +46,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<label for="cp">Code postal</label>
-					<input type="text" name="cp" id="cp" class="form-control">
+					<input type="text" name="cp" id="cp" class="form-control" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['cp'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['cp'])) { echo $error['cp']; } ?>
 					</span>
@@ -55,7 +55,7 @@
 			<div class="col-md-4">
 				<div class="form-group city-input">
 					<label for="city">Ville</label>
-					<input type="text" name="city" id="city" required="required" readonly="readonly" class="form-control"	/>
+					<input type="text" name="city" id="city" required="required" class="form-control" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['city'])) { echo $error['city']; } ?>
 					</span>
@@ -96,8 +96,10 @@ function geocodeAddress(geocoder) {
 				var lng = results[0].geometry.bounds.b.f;
 				var lat = results[0].geometry.bounds.f.f;
 
-				$('.city-input').children('input').val(city);
-				$('.lng')
+				console.log('lng =' + lng);
+				console.log('lat =' + lat);
+
+				$('#city').val(city);
 			} else {
 				$('.city-input').children('input').val('');
 			}
@@ -108,7 +110,7 @@ function geocodeAddress(geocoder) {
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&callback=initGeolocalisation" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&callback=initGeolocalisation" async defer></script>
 
 <?php $this->stop('main_content') ?>
 

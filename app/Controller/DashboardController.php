@@ -4,11 +4,12 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
+use \W\WineNotClasses\Form;
+
 use \Model\UserModel;
+use \Model\ProductModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
-use \Model\ProductModel;
-
 
 class DashboardController extends Controller
 {
@@ -31,16 +32,48 @@ class DashboardController extends Controller
 	 */
 	public function newWineMaker()
 	{
-		if (isset($_POST)) {
-			/*
-			$area  = $_POST['area'];
+		if (!empty($_POST)) {
+			$error = array();
+
+			$form = new Form();
+
+			$id      = $_SESSION['user']['id'];
+			$siren   = $_POST['siren'];
+			$area    = $_POST['area'];
 			$address = $_POST['address'];
-			$city = $_POST['city'];
-			$cp = $_POST['cp'];
-			*/
+			$cp      = $_POST['cp'];
+			$city    = $_POST['city'];
+
+			//-- Start : Géolocalisation de la latitude et la longitude à partir du code postal //--
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $cp;
+			$result_string = file_get_contents($url);
+			$result = json_decode($result_string, true);
+			$result1[] = $result['results'][0];
+			$result2[] = $result1[0]['geometry'];
+			$result3[] = $result2[0]['location'];
+
+			$lng = $result3[0]['lng'];
+			$lat = $result3[0]['lat'];
+			//-- End : Géolocalisation de la latitude et la longitude à partir du code postal //--
+
+			$error['siren']   = $form->isValid($siren, 9, 9);
+			$error['area']    = $form->isValid($area);
+			$error['address'] = $form->isValid($address);
+			$error['cp']      = $form->isValid($cp, 5, 5);
+			$error['city']    = $form->isValid($city);
+
+			$winemaker = new WinemakerModel;
+
+			$winemaker->registerWinemaker($id, $siren, $area, $address, $cp, $city, $lng, $lat, $error);
+
+			if (empty($error)) {
+				$this->redirectToRoute('dashboard');
+			}
 		}
 
-		$this->show('dashboard/newWineMaker');
+		$this->show('dashboard/newWineMaker', array(
+			'error' => (isset($error)) ? $error : '',
+		));
 	}
 
 	/**
