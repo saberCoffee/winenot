@@ -19,7 +19,7 @@
 </head>
 
 <body class="dashboard">
-
+	
     <div class="container-fluid" id="top">
         <div class="row">
             <header>
@@ -68,19 +68,19 @@
 								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/customer.png'); ?>">Reviews</a>
 							</li>
 
-                            <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
+                            <li <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('newWineMaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
 							</li>
-                            <li class="winemaker-link" <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
+                            <li <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
 							</li>
 
-                            <li class="admin-link">
+                            <li>
 								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
-                            <li class="admin-link">
+                            <li <?php echo ($w_current_route == 'members') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 							</li>
-                            <li class="admin-link">
+                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
 							</li>
                         </ul>
