@@ -34,6 +34,23 @@ class ProductModel extends Model {
 		return $this->insert($data);
 	}
 
+
+	public function editProduct($id, $products)
+	{
+		$data = array(
+			'winemakers_id'	=> $id,
+			'name'			=> $products,
+			'couleur'		=> $color,
+			'price'   		=> $price,
+			'millesime' 	=> $millesime,
+			'cepage' 		=> $cepage,
+			'stock' 		=> $stock,
+			'is_bio' 		=> $bio
+
+		);
+
+		return $this->update($data);
+	}
 }
 
 

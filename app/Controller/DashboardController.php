@@ -4,6 +4,8 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
+use \W\Model\Model;
+
 use \Model\UserModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
@@ -49,7 +51,8 @@ class DashboardController extends Controller
 	 * @return void
 	 */
 	public function cave()
-	{
+	{	
+
 		if(!empty($_POST)){
 			$error = array();
 
@@ -67,8 +70,8 @@ class DashboardController extends Controller
 				$error['name'] = 'Vous devez remplir ce champ.';
 			} elseif (strlen($name) < 3) {
 				$error['name'] = 'Vous devez utiliser au moins <strong>3</strong> caractères.';
-			} elseif (strlen($name) > 16) {
-				$error['name'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			} elseif (strlen($name) > 20) {
+				$error['name'] = 'Vous ne pouvez pas utiliser plus de <strong>20</strong> caractères.';
 			}
 
 
@@ -129,6 +132,7 @@ class DashboardController extends Controller
 		// exit;
 
 		$this->show('dashboard/cave', array(
+			
 			'products' 		=>	$products,
 			'winemakers_id'	=>	(!empty($_POST['winemakers_id'])) ? $_POST['winemakers_id'] : '',
 			'name'		    =>	(!empty($_POST['name'])) ? $_POST['name'] : '',
