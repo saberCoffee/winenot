@@ -24,12 +24,22 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Page de création de newWineMaker
+	 * Page de création de producteurs
+	 * Ici, un utilisateur peut créer son profil de producteur
 	 *
 	 * @return void
 	 */
 	public function newWineMaker()
 	{
+		if (isset($_POST)) {
+			/*
+			$area  = $_POST['area'];
+			$address = $_POST['address'];
+			$city = $_POST['city'];
+			$cp = $_POST['cp'];
+			*/
+		}
+
 		$this->show('dashboard/newWineMaker');
 	}
 
@@ -64,14 +74,14 @@ class DashboardController extends Controller
 
 			if (empty($color)) {
 				$error['color'] = 'Vous devez selectionner une couleur.';
-			} 
+			}
 
 
 			if (empty($price)) {
 				$error['price'] = 'Vous devez remplir ce champ.';
 			} elseif (!is_numeric($price)) {
 				$error['price'] = 'Vous devez saisir des chiffres.';
-			} 
+			}
 
 
 
@@ -81,7 +91,7 @@ class DashboardController extends Controller
 				$error['millesime'] = 'Vous devez saisir des chiffres.';
 			} elseif (strlen($millesime) < 4 || strlen($millesime) > 4) {
 				$error['millesime'] = 'Vous devez utiliser <strong>4</strong> chiffres.';
-			} 
+			}
 
 
 			if (empty($cepage)) {
@@ -98,21 +108,18 @@ class DashboardController extends Controller
 				$error['stock'] = 'Vous devez saisir des chiffres.';
 			} elseif (strlen($stock) < 2 ) {
 				$error['stock'] = 'Vous devez utiliser au moins <strong>2</strong> chiffres.';
-			} 
+			}
 
 			if (empty($error)){
 				$product = new ProductModel();
 				$product->addProduct($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
+				$msg = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 
-				$_SESSION['msg'] = array(
-					'mode' => 'succces',
-					'msg'  => 'Vous avez ajouté ' .$stock. 'bouteilles de ' .$name. ', ' .$millesime
-				);
+				setcookie("successMsg", $msg, time() + 10);
 
 				$this->redirectToRoute('cave');
 			}
 
-			
 		}
 
 		$products = new ProductModel();
@@ -132,7 +139,7 @@ class DashboardController extends Controller
 			'stock'			=>	(!empty($_POST['stock'])) ? $_POST['stock'] : '',
 			'bio'			=>	(!empty($_POST['bio'])) ? $_POST['bio'] : '',
 			'error' 		=> 	(isset($error) && !empty($error)) ? $error : ''
-			
+
 
 		));
 	}
@@ -203,7 +210,6 @@ class DashboardController extends Controller
 		if(isset($_GET['id'])){
 			$winemaker = new UserModel();
 			$winemaker = $winemaker->find($_GET['winemakers_id']);
-
 		}
 
 		$this->show ('dashboard/winemakers', array(

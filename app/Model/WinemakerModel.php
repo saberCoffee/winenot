@@ -3,29 +3,26 @@ namespace Model;
 
 use \W\Model\Model;
 
-class WinemakerModel extends Model 
+class WinemakerModel extends Model
 {
 
-	public function winemakers() {
-	
-		$winemakers = new UserModel();
-		$winemakers = $winemakers->findAll();
-	
-		if(isset($_GET['id'])){
-			$winemaker = new UserModel();
-			$winemaker = $winemaker->find($_GET['winemakers_id']);
-	
-		}
-	}
-	
+	protected $primaryKey = 'winemakers_id';
+
+	/**
+	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
+	 *
+	 * @return $array Un tableau ne contenant que la latitude et la longitude
+	 */
 	public function latlng() {
-	
 		$winemaker = new WinemakerModel();
 		$winemakers = $this->findAll('lat, lng');
-	
+
 		return $winemakers;
-	
 	}
-	
-	
+
+	public function addWinemaker($user_id)
+	{
+
+	}
+
 }
