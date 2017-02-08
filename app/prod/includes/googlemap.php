@@ -1,6 +1,3 @@
-<?php
-use \Model\WinemakerModel;
-?>
 
 <div class="row">
 <section id="GoogleMap">
@@ -56,10 +53,10 @@ use \Model\WinemakerModel;
 			}
 		];
 
-		var image = 'assets/img/grapes.png';
+		var image = 'assets/img/grape2.png';
 
 		var mapOptions = {
-			zoom: 6,
+			zoom: 5,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
 			styles: styleArray,
 			scrollwheel: false,
@@ -79,23 +76,55 @@ use \Model\WinemakerModel;
 
 		var infowindow = new google.maps.InfoWindow();
 
+
+
+		/* Style des marqueurs cluster */
+		
+		  var clusterStyles = [{
+		    url:'assets/img/grape3.png',
+		    height:64,
+		    width:64,
+		    textColor: 'white',
+			textSize: 20
+		  }
+		  ]
+		  
+		  var mcOption = {
+		    styles: clusterStyles
+		  }
+		
+
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
-		$.ajax({
+		
+			$.ajax ({
 			url: "http://localhost/winenot/public/latlng",
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
 
+				var markers = [];
+
+				// Appel aux données latitude et longitude
 				for(var i in response) {
 
+					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
+					
 					 var marker = new google.maps.Marker({
-						 	position : new google.maps.LatLng(response[i].lat, response[i].lng),
+						 	position : latLng,
 						    map: map,
 						  	icon: image
 					 });
+					 markers.push(marker);
+				 
 				}
+			  
+				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
+				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
+						
 			}
 		});
+
+
 
 
 		autocomplete.addListener('place_changed', function() {
@@ -139,32 +168,10 @@ use \Model\WinemakerModel;
 	}
 
 
-// 	function geocodeAddress(geocoder, resultsMap) {
-// 		var image = 'assets/img/grapes.png';
-
-// 		var address = 'paris';
-
-// 		geocoder.geocode({'address': address}, function (results, status){
-// 			if (status == google.maps.GeocoderStatus.OK) {
-// 			resultsMap.setCenter(results[0].geometry.location);
-// 			var marker = new google.laps.Marker({
-// 				map: resultsMap,
-// 				position: results[0].geometry.location
-// 				});
-// 				} else {
-// 					 alert("Geocode was not successful for the following reason: " + status);
-// 				}
-// 		})
-
-// 	}
-
-
 	 </script>
+	 	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&libraries=places&callback=initMap" async defer></script>
 
-    <!---------------------------->
-    <!--Territoire de Hwa-Seon  -->
-    <!---------------------------->
 
 </section>
 </div>
