@@ -59,3 +59,7 @@ $(function() {
 
 	initJS();
 });
+
+
+// JS DU POST ARTICLE POUR LE MAG
+
