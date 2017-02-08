@@ -34,12 +34,13 @@
 		['POST', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_posting', 'inbox_posting'], // Envoyer un nouveau message
 
 		/* Gestion des produits par producteur */
-		['GET', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
+		['GET|POST', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
 		['GET|POST', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
 		['GET|POST', '/dashboard/cave/edit/[a:id]', 'Dashboard#cave', 'cave_edit'], // Affichage & gestion des produits d'un producteur
 
 		/* Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/members', 'Dashboard#members', 'members'], // Liste des producteurs et gestions de ces producteurs par admin
+		['POST', '/dashboard/members', 'Dashboard#addMember', 'members3'], // Ajouter un membre par admin
 		['GET', '/dashboard/members/[a:id]', 'Dashboard#members_edit', 'members2'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET', '/dashboard/winemakers/[a:id]', 'Dashboard#winemakers_edit', 'winemakers2'], // Liste des producteurs et gestions de ces producteurs par admin

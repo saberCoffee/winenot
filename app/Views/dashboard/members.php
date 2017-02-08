@@ -4,28 +4,43 @@
 
 
 <div class="container">
+                     
+	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->
 	<h2 class="members">Ajouter un utilisateur</h2>
-	<form action="" method="post" class="members">
-
+	<form action="<?= $this->url('members3') ?>" method="post" class="members">
 		<input type="hidden" name="id" value="<?= $members['id']; ?>" />
+		
 			<div class="row">
-				<div class="col-md-4">
-					<label for="">Prénom</label>
-					<input type="text" value="" name="firstnsame" placeholder="prénom" class="form-control" />
+				<div class="col-md-6">
+					<label for="">Prénom*</label>
+					<input type="text" value="" name="firstname" placeholder="prénom" class="form-control" required />
 				</div>
-				<div class="col-md-4">
-					<label for="">Nom</label>
-					<input type="text" value="" name="lastname" placeholder="nom"  class="form-control"/>
-				</div>
-				<div class="col-md-4">
-					<label for="">Email</label>
-					<input type="email" value="" name="email" placeholder="email"  class="form-control" />
+				<div class="col-md-6">
+					<label for="">Nom*</label>
+					<input type="text" value="" name="lastname" placeholder="nom"  class="form-control" required />
 				</div>
 			</div>
-		<div class="row">
+			<div class="row">
+				<div class="col-md-4">
+					<label for="">Email*</label>
+					<input type="email" value="" name="email" placeholder="email"  class="form-control  <?php if (isset($error['login_email'])) { echo 'has-error'; } ?>" required />
+					 <span class="help-block" <?php if (empty($error['email'])) { echo 'style="display: none"'; } ?>>
+                        <?php if (isset($error['email'])) { echo $error['email']; } ?>
+                    </span>
+				</div>
+				<div class="col-md-4">
+					<label for="">Mot de passe*</label>
+					<input type="password" value="" name="password" placeholder="password"  class="form-control" required/>
+				</div>
+				<div class="col-md-4 <?php if (isset($error['register_password'])) { echo 'has-error'; } ?>">
+                    <label for="password_verif">Vérification du mot de passe*</label>
+                    <input type="password" name="password_verif"  id="password_verif" class="form-control" required="required" data-min="6" data-max="16" maxlength="16" />
+                </div>
+			</div>
+			<div class="row">
 				<div class="col-md-4">
 					<label for="">Adresse</label>
-					<input type="text" value="" name="adress" placeholder="adresse" class="form-control" />
+					<input type="text" value="" name="address" placeholder="adresse" class="form-control" />
 				</div>
 				<div class="col-md-4">
 					<label for="">Ville</label>
@@ -36,21 +51,27 @@
 				<input type="number" value="" name="postcode" placeholder="code postale" class="form-control" />
 				</div>
 			</div>
-		<div class="row">
-			<div class="col-md-6">
-				<label for="">Role</label>
-				<input type="number" value="" name="role" placeholder="admin ou membre"  class="form-control"/>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="">Role</label>
+					<input type="number" value="" name="role" placeholder="admin ou membre"  class="form-control"/>
+				</div>
+				<div class="col-md-6">
+					<label for="">Type</label>
+					<input type="number" value="" name="type" placeholder="producteur ou membre" class="form-control" />
+				</div>
 			</div>
-			<div class="col-md-6">
-				<label for="">Type</label>
-				<input type="number" value="" name="type" placeholder="producteur ou membre" class="form-control" />
+			<div class="row">
+				<div class="col-md-12">
+					<input type="submit" value="ajouter"  class="btn btn-default"/>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-			<input type="submit" value="ajouter"  class="btn btn-default"/>
-		</div>
-		</div>
+				<?php 
+				if (isset($_SESSION['msg'])) {
+					echo '<div class="alert alert-success" role="alert">'.$_SESSION['msg'].'</div>';
+					unset($_SESSION['msg']);
+		}
+	?>
 	</form>
 
 	<h2 class="members">Liste des membres</h2>
@@ -72,7 +93,7 @@
 			<td><?= $member['firstname'];?></td>
 			<td><?= $member['lastname'];?></td>
 			<td><?= $member['email'];?></td>
-			<td><?= $member['adress']?></td>
+			<td><?= $member['address']?></td>
 			<td><?= $member['city']?></td>
 			<td><?= $member['postcode']?></td>
 			<td><?= $member['role']?></td>

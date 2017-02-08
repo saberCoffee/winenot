@@ -5,12 +5,12 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
 use \W\Model\Model;
+use \W\WineNotClasses\Form;
 
 use \Model\UserModel;
+use \Model\ProductModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
-use \Model\ProductModel;
-
 
 class DashboardController extends Controller
 {
@@ -33,16 +33,52 @@ class DashboardController extends Controller
 	 */
 	public function newWineMaker()
 	{
-		if (isset($_POST)) {
-			/*
-			$area  = $_POST['area'];
+		if (!empty($_POST)) {
+			$error = array();
+
+			$form = new Form();
+
+			$token   = $_SESSION['user']['id'];
+			$siren   = $_POST['siren'];
+			$area    = $_POST['area'];
 			$address = $_POST['address'];
-			$city = $_POST['city'];
-			$cp = $_POST['cp'];
-			*/
+			$cp      = $_POST['cp'];
+			$city    = $_POST['city'];
+
+			//-- Start : Géolocalisation de la latitude et la longitude à partir du code postal //--
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $cp;
+			$result_string = file_get_contents($url);
+			$result = json_decode($result_string, true);
+			$result1[] = $result['results'][0];
+			$result2[] = $result1[0]['geometry'];
+			$result3[] = $result2[0]['location'];
+
+			$lng = $result3[0]['lng'];
+			$lat = $result3[0]['lat'];
+			//-- End : Géolocalisation de la latitude et la longitude à partir du code postal //--
+
+			$error['siren']   = $form->isValid($siren, 9, 9);
+			$error['area']    = $form->isValid($area);
+			$error['address'] = $form->isValid($address);
+			$error['cp']      = $form->isValid($cp, 5, 5);
+			$error['city']    = $form->isValid($city);
+
+			$winemaker = new WinemakerModel;
+
+			$winemaker->registerWinemaker($token, $siren, $area, $address, $cp, $city, $lng, $lat, $error);
+
+			if (empty($error)) {
+				$this->redirectToRoute('dashboard');
+
+				$msg = 'Votre profil de producteur a bien été enregistré.';
+
+				setcookie("successMsg", $msg, time() + 10);
+			}
 		}
 
-		$this->show('dashboard/newWineMaker');
+		$this->show('dashboard/newWineMaker', array(
+			'error' => (isset($error)) ? $error : '',
+		));
 	}
 
 	/**
@@ -132,7 +168,6 @@ class DashboardController extends Controller
 		// exit;
 
 		$this->show('dashboard/cave', array(
-			
 			'products' 		=>	$products,
 			'winemakers_id'	=>	(!empty($_POST['winemakers_id'])) ? $_POST['winemakers_id'] : '',
 			'name'		    =>	(!empty($_POST['name'])) ? $_POST['name'] : '',
@@ -148,6 +183,98 @@ class DashboardController extends Controller
 		));
 	}
 
+
+	/**
+	 * Page Ajouter un membre
+	 * Réservée à l'administration
+	 *
+	 * @return void
+	 */
+	public function addMember()
+	{
+		if (!empty($_POST)) {
+			$error = array();
+
+			$email          = htmlentities($_POST['email']);
+			$password       = htmlentities($_POST['password']);
+			$password_verif = htmlentities($_POST['password_verif']);
+			$firstname      = htmlentities($_POST['firstname']);
+			$lastname       = htmlentities($_POST['lastname']);
+			$address        = htmlentities($_POST['address']);
+			$city       	= htmlentities($_POST['city']);
+			$postcode       = htmlentities($_POST['postcode']);
+			$role       	= htmlentities($_POST['role']);
+			$type       	= htmlentities($_POST['type']);
+
+			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+				$error['email'] = 'Cette adresse email est invalide.';
+			}
+
+			if (empty($firstname)) {
+				$error['firstname'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($firstname) < 2) {
+				$error['firstname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
+			} elseif (strlen($firstname) > 16) {
+				$error['firstname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+
+			if (empty($lastname)) {
+				$error['lastname'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($lastname) < 2) {
+				$error['lastname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
+			} elseif (strlen($lastname) > 16) {
+				$error['lastname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+
+			$user = new UserModel;
+
+			$user->registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $type, $error);
+
+
+			if (empty($error)) {
+				$_SESSION['msg'] = "L'utilisateur a bien été enregistré.";
+				$this->redirectToRoute('members');
+			}
+		}
+
+		$this->show('dashboard/members', array(
+				'error' => (isset($error)) ? $error : '',
+				'successMsg' =>  $successMsg,
+				'email'     => (!empty($email)) ? $email : '',
+				'firstname' => (!empty($firstname)) ? $firstname : '',
+				'lastname'  => (!empty($lastname)) ? $lastname : '',
+		));
+	}
+
+// 	public function addMember()
+// 	{
+// 		/*
+// 		 DevNote :
+// 			*/
+// 		if(!empty($_POST)) {
+
+// 			$data = array (
+// 				'id' => $_POST['id'],
+// 				'firstname' => $_POST['firstname'],
+// 				'lastname' => $_POST['lastname'],
+// 				'email' => $_POST['email'],
+// 				'password' => $_POST['password'],
+// 				'address' => $_POST['address'],
+// 				'city' => $_POST['city'],
+// 				'postcode' => $_POST['postcode'],
+// 				'role' => $_POST['role'],
+// 				'type' => $_POST['type']
+// 			);
+// 		}
+
+// 		$members = new UserModel();
+// 		$members = $members->insert($data);
+
+// 		$this->show ('dashboard/members', array(
+// 				'members' => $members
+// 		));
+// 	}
+
 	/**
 	 * Page Gérer les membres
 	 * Réservée à l'administration
@@ -161,11 +288,6 @@ class DashboardController extends Controller
 		*/
 		$members = new UserModel();
 		$members = $members->findAll();
-
-		if(isset($_GET['id'])){
-			$member = new UserModel();
-			$member = $member->find($_GET['id']);
-		}
 
 		$this->show ('dashboard/members', array(
 			'members' => $members
