@@ -17,7 +17,7 @@ class ProductModel extends Model {
 	 *
 	 * @return void
 	 */
-	public function product($id, $products, $color, $price, $millesime, $cepage, $stock, $bio)
+	public function addProduct($id, $products, $color, $price, $millesime, $cepage, $stock, $bio)
 	{
 		$this->setTable('products');
 		
@@ -37,3 +37,6 @@ class ProductModel extends Model {
 	}
 
 }
+
+
+

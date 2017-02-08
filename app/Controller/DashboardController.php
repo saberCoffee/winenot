@@ -113,7 +113,7 @@ class DashboardController extends Controller
 
 
 			$product = new ProductModel();
-			$product->product($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
+			$product->addProduct($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
 			//debug($name['color']);
 		}
 
