@@ -79,6 +79,12 @@
 		background-color:#d09038;
 			color:#fff;
 	}
+/* Ajouter un membre */
+
+	.alert-success {
+		width:97%;
+		margin:0 auto;
+	}
 
 /* Affichage des producteurs */  
 
@@ -111,6 +117,7 @@
 	th {
 		text-align: center;
 	}
+	
 
 
 

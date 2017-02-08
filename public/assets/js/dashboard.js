@@ -41,6 +41,8 @@ $(function() {
     //-- End : Système d'onglets --//
 
     function initJS() {
+        $('body').addClass('jsActive');
+        
 		popupMyAccount();
         tabsSystem();
 	}

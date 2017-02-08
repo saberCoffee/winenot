@@ -56,6 +56,9 @@
 								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
                             <li>
+								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un produit</a>
+							</li>
+                            <li>
 								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>

@@ -2,6 +2,7 @@
 namespace Model;
 
 use \W\Model\Model;
+use \Model\UserModel;
 
 class PrivateMessageModel extends Model {
 	/**
@@ -79,22 +80,22 @@ class PrivateMessageModel extends Model {
 	public function contact($subject, $email, $content) {
 		$this->setTable('private_messages');
 
-		$content = 'Adresse mail du client: '. $email . ' : ' .$content;
+		$admins = new UserModel();
+		$admins = $admins->getAllAdmins();
 
-		/*
-			DevNote :
-			A terme, il faudrait :
-			1 - Chercher tous les users dont le role est 1 (admin)
-			2 - Boucler desssus, et pour chacun d'entre eux, envoyer le PM en remplaçant 'receiver_id' par leur id respectifs
-		*/
+		$content = 'Adresse mail de l\'utilisateur : ' . $email . '' . $content;
+
 		$data = array(
-			'author_id'		=> 0,
-			'receiver_id'	=> '2620528902ee37259c51a57d2367dd67',
+			'author_id'		=> -1, // -1 correspond à l'id d'un invité
 			'subject'   	=> $subject,
 			'content' 		=> $content
 		);
 
-		return $this->insert($data);
+		foreach($admins as $admin) {
+			$data['receiver_id'] = $admin['id'];
+
+			$this->insert($data);
+		}
 	}
 
 	public function sendMessage($receiver_id, $author_id, $subject, $content)

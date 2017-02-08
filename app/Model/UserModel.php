@@ -3,7 +3,7 @@ namespace Model;
 
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
-use Model\TokenModel;
+use \Model\TokenModel;
 
 class UserModel extends UsersModel
 {
@@ -54,6 +54,70 @@ class UserModel extends UsersModel
 	}
 
 	/**
+	 * Cette fonction réservée aux administrateur permet d'ajoutera un utilisateur à la BDD
+	 * si aucune erreur n'a été rencontrée lors du processus de validation.
+	 * Seuls le nom, le prénom, l'email, et le password sont obligatoire.
+	 *
+	 * @param $email string L'email de l'utilisateur
+	 * @param $password string le mot de passe de l'utilisateur
+	 * @param $firstname string Le prénom de l'utilisateur
+	 * @param $firstname string Le nom de famille de l'utilisateur
+	 * @param &$error L'array contenant les potentielles erreurs rencontrées à la validation du formulaire
+	 *
+	 */
+	public function registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $type, $error)
+	{
+		if ($this->emailExists($email)) {
+			$error['email'] = 'Cette adresse email est déjà enregistrée.';
+			return;
+		}
+
+		$auth = new AuthentificationModel;
+
+		$hashedPassword = $auth->hashPassword($password);
+
+		$id =  md5(uniqid(rand(), true));
+
+		$data = array(
+				'id'        => $id,
+				'email'     => $email,
+				'password'  => $hashedPassword,
+				'firstname' => $firstname,
+				'lastname'  => $lastname,
+				'address'	=> $address,
+				'city'		=> $city,
+				'postcode'	=> $postcode,
+				'role'		=> $role,
+				'type'		=> $type
+
+		);
+
+		$this->insert($data);
+
+		$classToken = new TokenModel();
+
+		$mp_token   = $classToken->generateToken($id, 'MP');
+
+		$user = $this->find($id);
+
+	}
+
+	/**
+	 * Cette fonction récupère tous les membres dont le rôle est 1 (les administrateurs)
+	 *
+	 * @return $array Tableau contenant toutes les informations des utilisateurs admin
+	 */
+	public function getAllAdmins()
+	{
+		$sql = "SELECT * FROM users WHERE role = 1";
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+	/**
 	 *
 	 */
 	public function login($email, $password, &$error)
@@ -90,11 +154,11 @@ class UserModel extends UsersModel
 
 		$members = new UserModel();
 		$members = $members->findAll();
-		
+
 		if(isset($_GET['id'])){
 			$member = new UserModel();
 			$member = $member->find($_GET['id']);
-				
+
 		}
 	}
 }
