@@ -3,7 +3,7 @@ namespace Model;
 
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
-use Model\TokenModel;
+use \Model\TokenModel;
 
 class UserModel extends UsersModel
 {
@@ -52,7 +52,7 @@ class UserModel extends UsersModel
 		$auth->logUserIn($user, $auth_token);
 		return $auth_token;
 	}
-	
+
 	/**
 	 * Cette fonction réservée aux administrateur permet d'ajoutera un utilisateur à la BDD
 	 * si aucune erreur n'a été rencontrée lors du processus de validation.
@@ -71,13 +71,13 @@ class UserModel extends UsersModel
 			$error['email'] = 'Cette adresse email est déjà enregistrée.';
 			return;
 		}
-	
+
 		$auth = new AuthentificationModel;
-	
+
 		$hashedPassword = $auth->hashPassword($password);
-	
+
 		$id =  md5(uniqid(rand(), true));
-	
+
 		$data = array(
 				'id'        => $id,
 				'email'     => $email,
@@ -89,17 +89,17 @@ class UserModel extends UsersModel
 				'postcode'	=> $postcode,
 				'role'		=> $role,
 				'type'		=> $type
-				
+
 		);
-	
+
 		$this->insert($data);
-	
+
 		$classToken = new TokenModel();
-	
+
 		$mp_token   = $classToken->generateToken($id, 'MP');
-	
+
 		$user = $this->find($id);
-	
+
 	}
 
 	/**

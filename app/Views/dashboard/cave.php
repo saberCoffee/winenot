@@ -2,11 +2,11 @@
 
 <?php $this->start('main_content') ?>
 
-<?php if (!empty($_COOKIE['successMsg'])) { ?>
-<p class="bg-success"><?= $_COOKIE['successMsg'] ?></p>
-<?php } ?>
-
 <section id="cave">
+
+	<?php if (!empty($_COOKIE['successMsg'])) { ?>
+	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+	<?php } ?>
 
 	<ul class="tab">
 		<li class="active">Ajout de produit</li>
