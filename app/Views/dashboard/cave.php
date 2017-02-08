@@ -12,12 +12,12 @@
 		<form method="POST">
 			<div class="form-group">
 						<label for="product">Nom du produit</label>
-						<input type="text" name="name" class="form-control" value="<?= $name; ?>">
+						<input type="text" name="name" class="form-control" value="<?= $name; ?>" required="required">
 						<span class="help-block" <?php if (empty($error['name'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['name'])) { echo $error['name']; } ?>
                    		 </span>
 			</div>
-	
+
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">

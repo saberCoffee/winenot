@@ -74,14 +74,14 @@ class DashboardController extends Controller
 
 			if (empty($color)) {
 				$error['color'] = 'Vous devez selectionner une couleur.';
-			} 
+			}
 
 
 			if (empty($price)) {
 				$error['price'] = 'Vous devez remplir ce champ.';
 			} elseif (!is_numeric($price)) {
 				$error['price'] = 'Vous devez saisir des chiffres.';
-			} 
+			}
 
 
 
@@ -91,7 +91,7 @@ class DashboardController extends Controller
 				$error['millesime'] = 'Vous devez saisir des chiffres.';
 			} elseif (strlen($millesime) < 4 || strlen($millesime) > 4) {
 				$error['millesime'] = 'Vous devez utiliser <strong>4</strong> chiffres.';
-			} 
+			}
 
 
 			if (empty($cepage)) {
@@ -108,9 +108,9 @@ class DashboardController extends Controller
 				$error['stock'] = 'Vous devez saisir des chiffres.';
 			} elseif (strlen($stock) < 2 ) {
 				$error['stock'] = 'Vous devez utiliser au moins <strong>2</strong> chiffres.';
-			} 
+			}
 
-			
+
 
 			$product = new ProductModel();
 			$product->product($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
@@ -127,7 +127,7 @@ class DashboardController extends Controller
 			'stock'			=>	(!empty($_POST['stock'])) ? $_POST['stock'] : '',
 			'bio'			=>	(!empty($_POST['bio'])) ? $_POST['bio'] : '',
 			'error' 		=> 	(isset($error) && !empty($error)) ? $error : ''
-			
+
 
 		));
 	}

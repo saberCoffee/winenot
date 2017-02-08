@@ -5,14 +5,14 @@
 	<form action="<?= $this->url(newWineMaker) ?>" method="post">
 		<div class="form-group">
 			<label for="siren">Numéro de SIREN (9 chiffres)</label>
-			<input type="text" name="siren" class="form-control" data-min="9" maxlength="9" required="required" />
+			<input type="text" name="siren" id="siren" class="form-control" data-min="9" maxlength="9" required="required" />
 			<span class="help-block" <?php if (empty($error['siren'])) { echo 'style="display: none"'; } ?>>
 				<?php if (isset($error['siren'])) { echo $error['siren']; } ?>
 			</span>
 		</div>
 		<div class="form-group">
 			<label for="area">Région</label>
-			<select name="area" class="form-control" required="required">
+			<select name="area" id="area" class="form-control" required="required">
 				<option value="" class="test">-- Selectionnez votre région --</option>
 				<option value="Alsace">Alsace</option>
 				<option value="Bourgogne">Bourgogne</option>
@@ -37,7 +37,7 @@
 		</div>
 		<div class="form-group">
 			<label for="adress">Adresse</label>
-			<input type="text" name="address" data-max="45" required="required" maxlength="45" class="form-control" />
+			<input type="text" name="address" id="address" data-max="45" required="required" maxlength="45" class="form-control" />
 			<span class="help-block" <?php if (empty($error['address'])) { echo 'style="display: none"'; } ?>>
 				<?php if (isset($error['address'])) { echo $error['address']; } ?>
 			</span>
@@ -55,7 +55,7 @@
 			<div class="col-md-4">
 				<div class="form-group city-input">
 					<label for="city">Ville</label>
-					<input type="text" name="city" required="required" readonly="readonly" class="form-control"	/>
+					<input type="text" name="city" id="city" required="required" readonly="readonly" class="form-control"	/>
 					<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['city'])) { echo $error['city']; } ?>
 					</span>
@@ -92,9 +92,12 @@ function geocodeAddress(geocoder) {
 			var country = results[0].address_components[4].long_name;
 
 			if (country == 'France') {
-				var city    = results[0].address_components[1].long_name;
+				var city = results[0].address_components[1].long_name;
+				var lng = results[0].geometry.bounds.b.f;
+				var lat = results[0].geometry.bounds.f.f;
 
 				$('.city-input').children('input').val(city);
+				$('.lng')
 			} else {
 				$('.city-input').children('input').val('');
 			}

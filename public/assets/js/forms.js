@@ -22,6 +22,7 @@ $(function() {
                 }
 
                 if (hasError) {
+                    console.log($(this).parent('div.form-group'));
                     isValid = false;
 
                     $(this).parent('div.form-group').addClass('has-error');
