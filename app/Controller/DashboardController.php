@@ -110,11 +110,17 @@ class DashboardController extends Controller
 				$error['stock'] = 'Vous devez utiliser au moins <strong>2</strong> chiffres.';
 			}
 
+			if (empty($error)){
+				$product = new ProductModel();
+				$product->addProduct($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
 
+				$msg = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 
-			$product = new ProductModel();
-			$product->addProduct($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
-			//debug($name['color']);
+				setcookie("successMsg", $msg, time() + 10);
+
+				$this->redirectToRoute('cave');
+			}
+
 		}
 
 		$this->show('dashboard/cave', array(

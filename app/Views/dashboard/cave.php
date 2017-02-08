@@ -2,12 +2,16 @@
 
 <?php $this->start('main_content') ?>
 
+<?php if (!empty($_COOKIE['successMsg'])) { ?>
+<p class="bg-success"><?= $_COOKIE['successMsg'] ?></p>
+<?php } ?>
 
 <section id="cave">
-		<ul class="tab">
-			<li class="active">Ajout de produit</li>
-			<li>Mes stocks</li>
-		</ul>
+
+	<ul class="tab">
+		<li class="active">Ajout de produit</li>
+		<li>Mes stocks</li>
+	</ul>
 	<section class="addProduct active">
 		<form method="POST">
 			<div class="form-group <?php if (isset($error['name'])) { echo 'has-error'; } ?>">
