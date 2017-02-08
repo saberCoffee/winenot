@@ -56,18 +56,14 @@
 								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
                             <li>
-								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un produit</a>
+								<a href="<?= $this->url('find_product') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un produit</a>
 							</li>
                             <li>
-								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
+								<a href="<?= $this->url('find_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
 							</li>
-                            <li>
-								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/customer.png'); ?>">Reviews</a>
-							</li>
-
                             <li <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('newWineMaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
 							</li>

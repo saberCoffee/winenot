@@ -29,6 +29,13 @@
 		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
 		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
 
+			
+		/* Trouver un produit */
+		['GET', '/dashboard/find_product', 'Dashboard#find_product', 'find_product'],
+			
+		/* Trouver un producteur */
+		['GET', '/dashboard/find_winemaker', 'Dashboard#find_winemaker', 'find_winemaker'],
+			
 		/* Inbox */
 		['GET', '/dashboard/inbox', 'Dashboard#inbox', 'inbox'], // Liste des fils des communications entre un utilisateur et un autre
 		['GET', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_thread', 'inbox_thread'], // Détails d'un fil de communication

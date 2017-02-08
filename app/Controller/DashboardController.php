@@ -24,6 +24,21 @@ class DashboardController extends Controller
 	{
 		$this->show('dashboard/dashboard');
 	}
+	
+	public function find_product()
+	{
+		$this->show('dashboard/find_product');
+	}
+		
+	public function find_winemaker()
+	{
+		$this->show('dashboard/find_winemaker');
+	}
+	
+	public function wishlist()
+	{
+		$this->show('dashboard/wishlist');
+	}
 
 	/**
 	 * Page de création de producteurs
