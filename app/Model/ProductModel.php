@@ -18,9 +18,7 @@ class ProductModel extends Model {
 	 * @return void
 	 */
 	public function addProduct($id, $products, $color, $price, $millesime, $cepage, $stock, $bio)
-	{
-		$this->setTable('products');
-		
+	{		
 		$data = array(
 			'winemakers_id'	=> $id,
 			'name'			=> $products,

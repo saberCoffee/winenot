@@ -106,7 +106,7 @@ class DashboardController extends Controller
 
 				$_SESSION['msg'] = array(
 					'mode' => 'succces',
-					'msg'  => 'Vous avez ajouté ' .$stock. 'bouteilles de ' .$name. ', ' .$millesime;
+					'msg'  => 'Vous avez ajouté ' .$stock. 'bouteilles de ' .$name. ', ' .$millesime
 				);
 
 				$this->redirectToRoute('cave');
@@ -115,7 +115,14 @@ class DashboardController extends Controller
 			
 		}
 
+		$products = new ProductModel();
+		$products = $products->findAll();
+
+		// debug($products);
+		// exit;
+
 		$this->show('dashboard/cave', array(
+			'products' 		=>	$products,
 			'winemakers_id'	=>	(!empty($_POST['winemakers_id'])) ? $_POST['winemakers_id'] : '',
 			'name'		    =>	(!empty($_POST['name'])) ? $_POST['name'] : '',
 			'color' 		=>  (!empty($_POST['color'])) ? $_POST['color'] : '',
