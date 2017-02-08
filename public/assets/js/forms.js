@@ -70,5 +70,6 @@ $(function() {
         if (!isValid) {
             event.preventDefault();
         }
+
     });
 });

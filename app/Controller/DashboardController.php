@@ -158,24 +158,58 @@ class DashboardController extends Controller
 
 		$messages = $messages->getMessagesFromThread($user1, $user2);
 
-		$i           = 0;
-		$last_author = '';
-
+		/*
+			Ce bout de code sert à attribuer une classe row à chaque auteur
+		*/
+		$i       = 0;
+		$classes = array();
+		// Afin de garder le même ordre pour les classes CSS, il faut inverser l'ordre de l'array car le premier utilisateur rencontré récupère la classe row1. Or, si un nouveau message est posté, l'ordre serait potentiellement inversé car le premier posteur serait peut-être différent du précédent.
+		$messages = array_reverse($messages);
 		foreach ($messages as $message) {
-			if ($last_author != $message['author_id'])  {
-				$messages[$i]['classe'] = 'user1';
-			} else {
-				$messages[$i]['classe'] = 'user2';
+			if ($i == 0) {
+				$subject = $message['subject'];
 			}
 
-			$last_author = $message['author_id'];
+			if (empty($classes[$message['firstname']])) {
+				if (empty($classes)) {
+					$classes[$message['firstname']] = 'row1';
+				} else {
+					$classes[$message['firstname']] = 'row2';
+				}
+			}
+
+			$messages[$i]['classe'] = $classes[$message['firstname']];
 
 			$i++;
 		}
+		$messages = array_reverse($messages);
 
 		$this->show ('dashboard/thread', array(
-			'messages' => $messages
+			'messages' => $messages,
+			'subject'  => $subject,
+			'token'    => $token
 		));
+	}
+
+	/**
+	 * [inbox_posting description]
+	 * @param  [type] $token [description]
+	 * @return [type]        [description]
+	 */
+	public function inbox_posting($token)
+	{
+		$user    = new UserModel();
+		$message = new PrivateMessageModel();
+
+		$receiver_id = $user->getUserByToken($token);
+		$receiver_id = $receiver_id['id'];
+
+		$author_id = $user->getUserByToken($_SESSION['user']['id']);
+		$author_id = $author_id['id']; // Correspond à mon ID d'utilisateur
+
+		$message->sendMessage($receiver_id, $author_id, $_POST['subject'], $_POST['content']);
+
+		$this->redirectToRoute('inbox_thread', ['id' => $token]);
 	}
 
 }

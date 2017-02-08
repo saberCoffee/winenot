@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('fonts/font-awesome-4.7.0/css/font-awesome.min.css')?> "/>
 	<!-- Propre Style Sheet -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>" />
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -32,7 +34,7 @@
 						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li><!--
 						--><li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li><!--
 						--><li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li><!--
-						--><li><a href="#">Le Mag</a></li>
+						--><li><a href="<?= $this->url('mag') ?>">Le Mag</a></li>
 					</ul>
 
 					<div class="logo">
@@ -89,7 +91,6 @@
 		</footer>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 	<?= $this->section('js') ?>
 </body>
