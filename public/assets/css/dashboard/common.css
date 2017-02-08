@@ -191,22 +191,16 @@ Menu de navigation latéral
     }
 
     aside nav ul li img {
-        display: block;
 
         margin: 0 auto;
     }
 
-    aside nav ul li img:last-of-type {
-        display: none;
-    }
-
-    aside nav ul li:hover img {
-        display: none;
-    }
-
-    aside nav ul li:hover img:last-of-type {
+    aside nav ul li img {
         display: inline-block;
         padding-right: 10px;
+    }
+    aside nav ul li img:hover {
+    	        color: yellow;
     }
 
 

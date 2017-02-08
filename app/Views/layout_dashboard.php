@@ -47,7 +47,7 @@
                     <nav>
                         <ul>
                             <li>
-								<a href="<?= $this->url('home') ?>"><< Retour à la homepage</a>
+								<a href="<?= $this->url('home') ?>"><img src="<?= $this->assetUrl('img/dashboard/previous.png'); ?>"> Retour à la homepage</a>
 							</li>
                             <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
@@ -65,7 +65,7 @@
 								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
 							</li>
                             <li>
-								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/customer2.png'); ?>">Reviews</a>
+								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/customer.png'); ?>">Reviews</a>
 							</li>
 
                             <li class="winemaker-link" <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
@@ -76,7 +76,7 @@
 							</li>
 
                             <li class="admin-link">
-								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/contract.png'); ?>">Gérer le mag</a></li>
+								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
                             <li class="admin-link">
 								<a href="<?= $this->url('members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 							</li>

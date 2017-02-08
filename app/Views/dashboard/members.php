@@ -73,6 +73,7 @@
 		}
 	?>
 	</form>
+	
 
 	<h2 class="members">Liste des membres</h2>
 	<section class="member-list">
