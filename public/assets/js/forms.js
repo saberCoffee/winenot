@@ -3,7 +3,7 @@ $(function() {
     function checkIfFormIsValid(form) {
         var isValid = true;
 
-        form.children('div.form-group').children('input, textarea').each(function() {
+        form.children('div.form-group').children('input, textarea, select').each(function() {
             var minCharacters = $(this).data('min');
             var maxCharacters = $(this).data('max');
 

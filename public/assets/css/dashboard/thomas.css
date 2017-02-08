@@ -60,7 +60,7 @@ section#thread .col-message {
 section#thread p {
     position: relative;
 
-    height: 10rem;
+    min-height: 10rem;
 
     margin: 0 auto 2.5rem auto;
     padding: 1.5rem;
@@ -73,6 +73,10 @@ section#thread p.row1 {
 }
 section#thread p.row2 {
     background: #fff4e8;
+}
+
+.city-input {
+    display: none;
 }
 
 /*

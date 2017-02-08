@@ -54,6 +54,21 @@ class UserModel extends UsersModel
 	}
 
 	/**
+	 * Cette fonction récupère tous les membres dont le rôle est 1 (les administrateurs)
+	 *
+	 * @return $array Tableau contenant toutes les informations des utilisateurs admin
+	 */
+	public function getAllAdmins()
+	{
+		$sql = "SELECT * FROM users WHERE role = 1";
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+	/**
 	 *
 	 */
 	public function login($email, $password, &$error)
@@ -90,11 +105,11 @@ class UserModel extends UsersModel
 
 		$members = new UserModel();
 		$members = $members->findAll();
-		
+
 		if(isset($_GET['id'])){
 			$member = new UserModel();
 			$member = $member->find($_GET['id']);
-				
+
 		}
 	}
 }

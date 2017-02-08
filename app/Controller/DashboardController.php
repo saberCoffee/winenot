@@ -22,12 +22,22 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Page de création de newWineMaker
+	 * Page de création de producteurs
+	 * Ici, un utilisateur peut créer son profil de producteur
 	 *
 	 * @return void
 	 */
 	public function newWineMaker()
 	{
+		if (isset($_POST)) {
+			/*
+			$area  = $_POST['area'];
+			$address = $_POST['address'];
+			$city = $_POST['city'];
+			$cp = $_POST['cp'];
+			*/
+		}
+
 		$this->show('dashboard/newWineMaker');
 	}
 
@@ -107,7 +117,6 @@ class DashboardController extends Controller
 		if(isset($_GET['id'])){
 			$winemaker = new UserModel();
 			$winemaker = $winemaker->find($_GET['winemakers_id']);
-
 		}
 
 		$this->show ('dashboard/winemakers', array(
