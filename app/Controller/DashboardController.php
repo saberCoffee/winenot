@@ -7,6 +7,8 @@ use \W\Security\AuthentificationModel;
 use \Model\UserModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
+use \Model\ProductModel;
+
 
 class DashboardController extends Controller
 {
@@ -38,7 +40,86 @@ class DashboardController extends Controller
 	 */
 	public function cave()
 	{
-		$this->show('dashboard/cave');
+		if(!empty($_POST)){
+			$error = array();
+
+			$id 			= $_POST['winemaker_id'];
+ 			$name   	    = $_POST['name'];
+			$color  		= $_POST['color'];
+			$price 			= $_POST['price'];
+			$price 			= str_replace(',','.', $price);
+			$millesime 		= $_POST['millesime'];
+			$cepage 		= $_POST['cepage'];
+			$stock 			= $_POST['stock'];
+			$bio = (empty($_POST['bio'])) ? 0 : 1;
+
+			if (empty($name)) {
+				$error['name'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($name) < 3) {
+				$error['name'] = 'Vous devez utiliser au moins <strong>3</strong> caractères.';
+			} elseif (strlen($name) > 16) {
+				$error['name'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+
+
+			if (empty($color)) {
+				$error['color'] = 'Vous devez selectionner une couleur.';
+			} 
+
+
+			if (empty($price)) {
+				$error['price'] = 'Vous devez remplir ce champ.';
+			} elseif (!is_numeric($price)) {
+				$error['price'] = 'Vous devez saisir des chiffres.';
+			} 
+
+
+
+			if (empty($millesime)) {
+				$error['millesime'] = 'Vous devez remplir ce champ.';
+			} elseif (!is_numeric($millesime)) {
+				$error['millesime'] = 'Vous devez saisir des chiffres.';
+			} elseif (strlen($millesime) < 4 || strlen($millesime) > 4) {
+				$error['millesime'] = 'Vous devez utiliser <strong>4</strong> chiffres.';
+			} 
+
+
+			if (empty($cepage)) {
+				$error['cepage'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($cepage) < 3) {
+				$error['cepage'] = 'Vous devez utiliser au moins <strong>3</strong> caractères.';
+			} elseif (strlen($cepage) > 16) {
+				$error['cepage'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+
+			if (empty($stock)) {
+				$error['stock'] = 'Vous devez remplir ce champ.';
+			} elseif (!is_numeric($stock)) {
+				$error['stock'] = 'Vous devez saisir des chiffres.';
+			} elseif (strlen($stock) < 2 ) {
+				$error['stock'] = 'Vous devez utiliser au moins <strong>2</strong> chiffres.';
+			} 
+
+			
+
+			$product = new ProductModel();
+			$product->product($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
+			//debug($name['color']);
+		}
+
+		$this->show('dashboard/cave', array(
+			'winemakers_id'	=>	(!empty($_POST['winemakers_id'])) ? $_POST['winemakers_id'] : '',
+			'name'		    =>	(!empty($_POST['name'])) ? $_POST['name'] : '',
+			'color' 		=>  (!empty($_POST['color'])) ? $_POST['color'] : '',
+			'price'			=>	(!empty($_POST['price'])) ? $_POST['price'] : '',
+			'millesime'		=>	(!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
+			'cepage'		=>	(!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
+			'stock'			=>	(!empty($_POST['stock'])) ? $_POST['stock'] : '',
+			'bio'			=>	(!empty($_POST['bio'])) ? $_POST['bio'] : '',
+			'error' 		=> 	(isset($error) && !empty($error)) ? $error : ''
+			
+
+		));
 	}
 
 	/**
