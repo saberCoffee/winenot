@@ -177,6 +177,108 @@ class DashboardController extends Controller
 		));
 	}
 
+	
+	/**
+	 * Page Ajouter un membre
+	 * Réservée à l'administration
+	 *
+	 * @return void
+	 */
+	public function addMember()
+	{
+		if (!empty($_POST)) {
+			$error = array();
+			
+			$email          = htmlentities($_POST['email']);
+			$password       = htmlentities($_POST['password']);
+			$password_verif = htmlentities($_POST['password_verif']);
+			$firstname      = htmlentities($_POST['firstname']);
+			$lastname       = htmlentities($_POST['lastname']);
+			$address        = htmlentities($_POST['address']);
+			$city       	= htmlentities($_POST['city']);
+			$postcode       = htmlentities($_POST['postcode']);
+			$role       	= htmlentities($_POST['role']);
+			$type       	= htmlentities($_POST['type']);
+	
+			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+				$error['email'] = 'Cette adresse email est invalide.';
+			}
+	
+			if (empty($password)) {
+				$error['password'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($password) < 6) {
+				$error['password'] = 'Vous devez utiliser au moins <strong>6</strong> caractères.';
+			} elseif (strlen($password) > 16) {
+				$error['password'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			} elseif ($password != $password_verif) {
+				$error['password'] = 'Les mots de passe ne sont pas identiques.';
+			}
+	
+			if (empty($firstname)) {
+				$error['firstname'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($firstname) < 2) {
+				$error['firstname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
+			} elseif (strlen($firstname) > 16) {
+				$error['firstname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+	
+			if (empty($lastname)) {
+				$error['lastname'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($lastname) < 2) {
+				$error['lastname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
+			} elseif (strlen($lastname) > 16) {
+				$error['lastname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			}
+	
+			$user = new UserModel;
+	
+			$user->registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $type, $error);
+	
+			
+			if (empty($error)) {
+				$_SESSION['msg'] = "L'utilisateur a bien été enregistré.";
+				$this->redirectToRoute('members');
+			}
+		}
+	
+		$this->show('dashboard/members', array(
+				'error' => (isset($error)) ? $error : '',
+				'successMsg' =>  $successMsg,
+				'email'     => (!empty($email)) ? $email : '',
+				'firstname' => (!empty($firstname)) ? $firstname : '',
+				'lastname'  => (!empty($lastname)) ? $lastname : '',
+		));
+	}
+	
+// 	public function addMember()
+// 	{
+// 		/*
+// 		 DevNote : 
+// 			*/
+// 		if(!empty($_POST)) {
+			
+// 			$data = array (
+// 				'id' => $_POST['id'],
+// 				'firstname' => $_POST['firstname'],
+// 				'lastname' => $_POST['lastname'],
+// 				'email' => $_POST['email'],
+// 				'password' => $_POST['password'],
+// 				'address' => $_POST['address'],
+// 				'city' => $_POST['city'],
+// 				'postcode' => $_POST['postcode'],
+// 				'role' => $_POST['role'],
+// 				'type' => $_POST['type']
+// 			);
+// 		}
+		
+// 		$members = new UserModel();
+// 		$members = $members->insert($data);
+		
+// 		$this->show ('dashboard/members', array(
+// 				'members' => $members
+// 		));
+// 	}
+	
 	/**
 	 * Page Gérer les membres
 	 * Réservée à l'administration
@@ -190,11 +292,6 @@ class DashboardController extends Controller
 		*/
 		$members = new UserModel();
 		$members = $members->findAll();
-
-		if(isset($_GET['id'])){
-			$member = new UserModel();
-			$member = $member->find($_GET['id']);
-		}
 
 		$this->show ('dashboard/members', array(
 			'members' => $members
