@@ -19,9 +19,6 @@
 		font-weight: bold;
 		color:#d09038;
 	}
-	.table-striped>tbody>tr>td {
-			color:#d09038;
-	} 
 	td.action a:hover {
 		opacity: 0.5;
 	}
@@ -118,6 +115,41 @@
 		text-align: center;
 	}
 	
+
+/* Affichage du profil d'utilisateur */  
+
+	div.profile-view {
+		margin:4rem auto;
+		background-color:white;
+	}
+	div.profile-view > h2 {
+		margin: 2rem 0;
+	}
+	h3.user-photos {
+		margin: 2rem 0;
+	}
+
+	nav ul {
+		list-style:none;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

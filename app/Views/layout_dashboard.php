@@ -31,7 +31,7 @@
 
 							<div class="account-popup">
 								<ul>
-									<li><a href="#">Mon compte</a></li>
+									<li><a href="<?= $this->url('profile_view', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
 							</div>
