@@ -1,10 +1,10 @@
-<?php $this->layout('layout_dashboard', ['title' => 'Tous nos producteurs']) ?>
+<?php $this->layout('layout_dashboard', ['title' => 'Administration des producteurs']) ?>
 <?php $this->start('main_content') ?>
 
 <div id="onglet" class="container">
-	<ul class="tab">
-		<li class="active">Ajouter un producteur</li>
-		<li>Liste des producteurs</li>
+	<ul class="tabs">
+		<li id="addProducer" class="active">Ajouter un producteur</li>
+		<li id="member-list">Liste des producteurs</li>
 	</ul>
 	<section class="addProducer">
 		<form action="" method="post" class="winemakers">

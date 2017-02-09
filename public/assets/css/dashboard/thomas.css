@@ -11,18 +11,8 @@ h2 {
     color: #d09038;
 }
 
-section#profile {
-    width: 1170px;
-    max-width: 100%;
-
-    margin: 10rem auto;
-    padding: 2rem;
-
-    background: #eddcc0;
-}
-
-section#thread {
-
+section.edit-profile {
+    display: none;
 }
 
 section#thread form {

@@ -68,14 +68,14 @@
     Cave
 */
     #onglet {
-        position: relative; 
+        position: relative;
         width: 60%;
         /* height: 60%; */
         margin: 10em auto;
         padding: 0em 0em 0em;
         background-color: #eddcc0;
         color: #d09038;
-      
+
     }
 
     .addProduct{
@@ -134,17 +134,12 @@
 
     }
 
-    /* CSS pour menu click JS*/
-    .tab{
-        display: none;
-    }
-
-    .tab li.active{
+    .tabs li.active{
         background-color: #eddcc0;
 
     }
 
-    .tab{
+    .tabs {
         position: absolute;
         top: 0%;
         left: 0;
@@ -152,9 +147,8 @@
         border-radius: 5px;
         transform: translate(0%, -100%);
     }
-
-
-   .tab li{
+    
+   .tabs li{
         font-size: 1.1em;
         font-weight: bold;
         display: inline-block;
@@ -166,7 +160,7 @@
         cursor: pointer;
     }
 
-    .tab li:nth-of-type(2){
+    .tabs li:nth-of-type(2){
         margin-left: -4px;
     }
 
@@ -237,7 +231,7 @@
     }
 
 
-/* 
+/*
     logo dashboard
 */
 
@@ -258,5 +252,3 @@
     aside nav ul li:nth-of-type(1){
         padding-top: 48%;
     }
-
-    

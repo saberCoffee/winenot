@@ -1,4 +1,4 @@
-<?php $this->layout('layout_dashboard', ['title' => 'Ma cave']) ?>
+<?php $this->layout('layout_dashboard', ['title' => 'Gérer ma cave']) ?>
 
 <?php $this->start('main_content') ?>
 
@@ -8,9 +8,9 @@
 	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 	<?php } ?>
 
-	<ul class="tab">
-		<li class="active">Ajout de produit</li>
-		<li>Mes stocks</li>
+	<ul class="tabs">
+		<li id="addProduct" class="active">Ajout de produit</li>
+		<li id="stock">Mes stocks</li>
 	</ul>
 
 	<section class="addProduct active">
@@ -101,7 +101,6 @@
 			</div>
 		</form>
 	</section>
-
 
 	<section class="stock">
 		<table border="1" class="table table-striped">

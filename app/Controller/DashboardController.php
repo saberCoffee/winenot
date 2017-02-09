@@ -360,9 +360,16 @@ class DashboardController extends Controller
 		$newformat = date('Y F', $date);
 		$newDate = str_replace($monthEng, $monthFr, date('F')).' '.date('Y');
 
+		// Afin de cacher certaines informations, on initialise une variable qui détermine si le profil consulté appartient à l'utilisateur
+		$is_owner = ($user['id'] == $_SESSION['user']['id']) ? 1 : 0;
+		$profile  = ($is_owner) ? 'Mon profil' : 'Profil de ' . $user['firstname'] . ' ' . $user['lastname'];
+
 		$this->show('dashboard/profile', array(
 			'user'          => $user,
-			'register_date' => $newDate
+			'register_date' => $newDate,
+
+			'is_owner'      => $is_owner,
+			'profile'       => $profile
 		));
 	}
 

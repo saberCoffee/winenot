@@ -1,13 +1,13 @@
-<?php $this->layout('layout_dashboard', ['title' => 'Tous nos membres']) ?>
+<?php $this->layout('layout_dashboard', ['title' => 'Administration des membres']) ?>
 
 <?php $this->start('main_content') ?>
 
 <div id="onglet" class="container">
 
 	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->
-	<ul class="tab">
-		<li class="active">Ajouter un utilisateur</li>
-		<li>Liste des membres</li>
+	<ul class="tabs">
+		<li id="addUser" class="active">Ajouter un utilisateur</li>
+		<li id="member-list">Liste des membres</li>
 	</ul>
 
 	<section class="addUser active">
@@ -101,7 +101,7 @@
 					<input type="submit" value="ajouter"  class="btn btn-default"/>
 				</div>
 			</div>
-				<?php 
+				<?php
 				if (isset($_SESSION['msg'])) {
 					echo '<div class="alert alert-success" role="alert">'.$_SESSION['msg'].'</div>';
 					unset($_SESSION['msg']);
