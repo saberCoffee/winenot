@@ -98,26 +98,79 @@ class AdminController extends Controller
 	}
 
 	/**
-	 * Traitement "Gérer les membres"
+	 * Traitement "Modifier les membres"
 	 * Réservé à l'administration
 	 *
 	 * @return void
 	 */
-	public function editMember()
+	public function editMember($id)
 	{
 		$this->allowTo('admin', 'dashboard');
 
-		if(isset($_POST)){
-			$member = new UserModel();
-			$id = $member->find($_GET['id']);
-			$member = $member->find('2620528902ee37259c51a57d2367dd67');
-
-		    $data = array(
-				'firstname' => strip_tags($_POST['firstname']),
+		if(!empty($_POST)) {
+			
+			$error = array();
+			$form  = new Form();
+			
+			// Données du formulaire
+			$firstname = $_POST['firstname'];
+			$lastname = $_POST['lastname'];
+			$email = $_POST['email'];
+			$address = $_POST['address'];
+			$city = $_POST['city'];
+			$postcode = $_POST['postcode'];
+			$role = $_POST['role'];
+			$type = $_POST['type'];
+			
+			$data = array(
+				'firstname' => $firstname,
+				'lastname' => $lastname,
+				'email' => $email,
+				'address' => $address,
+				'city' => $city,
+				'postcode' => $postcode,
+				'role' => $role,
+				'type' => type
 			);
-
-			$member->update($data, $id);
-		}
+			
+			// Vérificationo des données du formualire
+			$error['firstname'] = $form->isValide($firstname, '', '', true);
+			$error['lastname'] = $form->isValide($lastname, '', '', true);
+			$error['email'] = $form->isValide($email, '', '', true);
+			$error['address'] = $form->isValide($address, '', '', true);
+			$error['city'] = $form->isValide($city, '', '', true);
+			$error['postcode'] = $form->isValide($postcode, '', '', true);
+			$error['role'] = $form->isValide($role, '', '', true);
+			$error['type'] = $form->isValide($type, '', '', true);
+			
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+			
+			if (empty($error)) {
+				$member = new UserModel();
+				$member->update($data, $id);
+				
+				$msg = 'Votre modification a été bien enregistré.';
+				
+				setcookie("successMsg", $msg, time() + 5);
+				
+				$this->redirectToRoute('admin_members');
+				}
+			}
+			
+			$members = new UserModel();
+			$member = new UserModel();
+			
+			$members = $members->findAll();
+			$member =  $member->find($id);
+			
+			$this->show('admin/admin_members', array(
+					
+				'member' => $member,
+				'members' => $members,
+				// Erreurs du formulaire
+				'error'    => (!empty($error)) ? $error : '',
+			));
 	}
 
 	/**

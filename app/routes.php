@@ -49,7 +49,7 @@
 		/* Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/admin/members', 'Admin#members', 'admin_members'], // Liste des producteurs et gestions de ces producteurs par admin
 		['POST', '/dashboard/admin/members/add', 'Admin#addMember', 'admin_add_member'], // Ajouter un membre par admin
-		['GET|POST', '/dashboard/admin/members/edit/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
+		['GET|POST', '/dashboard/admin/members/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		['GET', '/dashboard/admin/winemakers', 'Admin#winemakers', 'admin_winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
 		['POST', '/dashboard/admin/winemakers/add/', 'Admin#addWinemaker', 'admin_add_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin

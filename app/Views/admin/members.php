@@ -105,7 +105,7 @@
 				<td><?= $member['type']?></td>
 				<td class="action"><!--
 				--><a href="<?= $this->url('admin_members', ['id'	 => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" 		alt="utilisateur"></a><!--
-				--><a href="<?= $this->url('admin_add_member', ['id' => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" 		alt="modifier"></a><!--
+				--><a href="<?= $this->url('admin_edit_member', ['id' => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" 		alt="modifier"></a><!--
 				--><a href="<?= $this->url('admin_members', ['id'	 => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>"	alt="supprimer"></a><!--
 				--></td>
 			</tr>
