@@ -89,7 +89,7 @@
 				<div class="col-md-4">
 					<div class="form-group <?php if (isset($error['postcode'])) { echo 'has-error'; } ?>">
 						<label for="">Code Postal</label>
-						<input type="text" name="postcode" value="<?= $postcode; ?>" class="form-control" />
+						<input type="text" name="postcode" value="<?= $postcode; ?>" class="form-control" required="required" data-min="5" data-max="5" />
 						<span class="help-block" <?php if (empty($error['postcode'])) { echo 'style="display: none"'; } ?>>
 	                	    <?php if (isset($error['postcode'])) { echo $error['postcode']; } ?>
 	                	</span>
