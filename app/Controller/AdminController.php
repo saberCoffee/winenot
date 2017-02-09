@@ -42,7 +42,10 @@ class AdminController extends Controller
 	public function addMember()
 	{
 		$this->allowTo('admin', 'dashboard');
-
+	
+		$members = new UserModel();
+		$members = $members->findAll();
+		
 		if (!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -65,19 +68,29 @@ class AdminController extends Controller
 			$error['firstname'] = $form->isValid($firstname, 2, 16);
 			$error['lastname']  = $form->isValid($lastname, 2, 16);
 
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+
 			$user = new UserModel;
 
 			$user->registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $type, $error);
 
 			if (empty($error)) {
-				$_SESSION['msg'] = "L'utilisateur a bien été enregistré.";
-				$this->redirectToRoute('members');
+			
+				$msg = 'Votre profil de producteur a bien été enregistré.';
+			
+				setcookie("successMsg", $msg, time() + 5);
+				
+				$this->redirectToRoute('admin_members');
 			}
 		}
+		
+		$this->redirectToRoute('admin_members');
 
 		$this->show('admin/members', array(
 				'error' => (isset($error)) ? $error : '',
-				'successMsg' =>  $successMsg,
+            	'members' => $members,
+				// 'successMsg' =>  $successMsg,
 				'email'     => (!empty($email)) ? $email : '',
 				'firstname' => (!empty($firstname)) ? $firstname : '',
 				'lastname'  => (!empty($lastname)) ? $lastname : '',
