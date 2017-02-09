@@ -16,54 +16,85 @@
 		<input type="hidden" name="id" value="<?= $members['id']; ?>" />
 
 			<div class="row">
-				<div class="col-md-6">
-					<label for="">Prénom*</label>
-					<input type="text" value="" name="firstname" placeholder="prénom" class="form-control" required />
+				<div class="col-md-4">
+					<div class="form-group <?php if (isset($error['firstname'])) { echo 'has-error'; } ?>">
+						<label for="">Prénom*</label>
+						<input type="text" name="firstname" value="<?= $firstname; ?>" class="form-control" required />
+						<span class="help-block" <?php if (empty($error['firstname'])) { echo 'style="display: none"'; } ?>>
+		            	<?php if (isset($error['firstname'])) { echo $error['firstname']; } ?>
+		       			</span>
+		       		</div>
 				</div>
-				<div class="col-md-6">
-					<label for="">Nom*</label>
-					<input type="text" value="" name="lastname" placeholder="nom"  class="form-control" required />
+				<div class="col-md-4">
+					<div class="form-group <?php if (isset($error['lastname'])) { echo 'has-error'; } ?>">
+						<label for="">Nom*</label>
+						<input type="text" name="lastname" value="<?= $lastname; ?>"  class="form-control" required />
+						<span class="help-block" <?php if (empty($error['lastname'])) { echo 'style="display: none"'; } ?>>
+                		<?php if (isset($error['lastname'])) { echo $error['lastname']; } ?>
+           				</span>
+           			</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group <?php if (isset($error['email'])) { echo 'has-error'; } ?>">
+						<label for="">Email*</label>
+						<input type="email" name="email" value="<?= $email; ?>"  class="form-control  <?php if (isset($error['login_email'])) { echo 'has-error'; } ?>" 	required />
+						<span class="help-block" <?php if (empty($error['email'])) { echo 'style="display: none"'; } ?>>
+	                	    <?php if (isset($error['email'])) { echo $error['email']; } ?>
+	                	</span>
+	                </div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<label for="">Email*</label>
-					<input type="email" value="" name="email" placeholder="email"  class="form-control  <?php if (isset($error['login_email'])) { echo 'has-error'; } ?>" required />
-					 <span class="help-block" <?php if (empty($error['email'])) { echo 'style="display: none"'; } ?>>
-	                    <?php if (isset($error['email'])) { echo $error['email']; } ?>
-	                </span>
+					<div class="form-group <?php if (isset($error['password'])) { echo 'has-error'; } ?>">
+						<label for="">Mot de passe*</label>
+						<input type="password" name="password"  class="form-control" required="required" data-min="6" 	data-max="16" maxlength="16"/>
+						<span class="help-block" <?php if (empty($error['password'])) { echo 'style="display: none"'; } ?>>
+	                	    <?php if (isset($error['password'])) { echo $error['password']; } ?>
+	                	</span>
+	                </div>
 				</div>
 				<div class="col-md-4">
-					<label for="">Mot de passe*</label>
-					<input type="password" value="" name="password" placeholder="password"  class="form-control" required/>
-				</div>
-				<div class="col-md-4 <?php if (isset($error['register_password'])) { echo 'has-error'; } ?>">
-	                <label for="password_verif">Vérification du mot de passe*</label>
-	                <input type="password" name="password_verif"  id="password_verif" class="form-control" required="required" data-min="6" data-max="16" maxlength="16" />
+					<div class="form-group <?php if (isset($error['password_verif'])) { echo 'has-error'; } ?>">
+	                	<label for="password_verif">Vérification du mot de passe*</label>
+	                	<input type="password" name="password_verif"  id="password_verif" class="form-control" required="required" data-min="6" 	data-max="16" maxlength="16" />
+	                	<span class="help-block" <?php if (empty($error['password_verif'])) { echo 'style="display: none"'; } ?>>
+	                	    <?php if (isset($error['password_verif'])) { echo $error['password_verif']; } ?>
+	                	</span>
+	                </div>
+	            </div>
+				<div class="col-md-4">
+					<div class="form-group <?php if (isset($error['password_verif'])) { echo 'has-error'; } ?>">
+						<label for="">Role</label>
+						<select name="role" id="role" class="form-control" value="<?= $role; ?>" required="required">
+								<option value="">-- Selectionner --</option>
+								<option value="user" <?php if ($role == 'user') echo 'selected' ?>>Utilisateur</option>
+								<option value="admin"  <?php if ($role == 'admin') echo 'selected' ?>>Administrateur</option>
+						</select>
+					</div>
 	            </div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<label for="">Adresse</label>
-					<input type="text" value="" name="address" placeholder="adresse" class="form-control" />
+					<div class="form-group <?php if (isset($error['address'])) { echo 'has-error'; } ?>">
+						<label for="">Adresse</label>
+						<input type="text" name="address" value="<?= $address; ?>" class="form-control" />
+					</div>
 				</div>
 				<div class="col-md-4">
-					<label for="">Ville</label>
-					<input type="text" value="" name="city" placeholder="ville" class="form-control" />
+					<div class="form-group <?php if (isset($error['city'])) { echo 'has-error'; } ?>">
+						<label for="">Ville</label>
+						<input type="text" name="city" value="<?= $city; ?>" class="form-control" />
+					</div>
 				</div>
 				<div class="col-md-4">
-				<label for="">Code Postale</label>
-				<input type="number" value="" name="postcode" placeholder="code postale" class="form-control" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<label for="">Role</label>
-					<input type="text" value="" name="role" placeholder="admin ou membre"  class="form-control"/>
-				</div>
-				<div class="col-md-6">
-					<label for="">Type</label>
-					<input type="number" value="" name="type" placeholder="producteur ou membre" class="form-control" />
+					<div class="form-group <?php if (isset($error['postcode'])) { echo 'has-error'; } ?>">
+						<label for="">Code Postal</label>
+						<input type="text" name="postcode" value="<?= $postcode; ?>" class="form-control" />
+						<span class="help-block" <?php if (empty($error['postcode'])) { echo 'style="display: none"'; } ?>>
+	                	    <?php if (isset($error['postcode'])) { echo $error['postcode']; } ?>
+	                	</span>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -71,10 +102,10 @@
 					<input type="submit" value="ajouter"  class="btn btn-default"/>
 				</div>
 			</div>
-				<?php
-				if (isset($_COOKIE['msg'])) {
-					echo '<div class="alert alert-success" role="alert">'.$_COOKIE['msg'].'</div>';
-					unset($_COOKIE['msg']);
+				<?php 
+				if (isset($_SESSION['msg'])) {
+					echo '<div class="alert alert-success" role="alert">'.$_SESSION['msg'].'</div>';
+					unset($_SESSION['msg']);
 				}
 				?>
 		</form>
@@ -120,6 +151,4 @@
 
 <?php $this->start('js') ?>
     <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
-    <script src="<?= $this->assetUrl('js/dashboard.js') ?>"></script>
-
 <?php $this->stop('js') ?>
