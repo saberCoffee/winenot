@@ -15,7 +15,7 @@
 
 	<section class="addProduct active">
 		<form method="post" action="<?= $this->url('cave') ?>">
-			<div class="form-group <?php if (isset($error['name'])) { echo 'has-error'; } ?>">
+			<div class="form-group  ?>">
 				<label for="product">Nom du produit</label>
 				<input type="text" name="name" id="name" class="form-control" value="<?= $name; ?>" data-min="3" data-max="50" required="required">
 				<span class="help-block" <?php if (empty($error['name'])) { echo 'style="display: none"'; } ?>>

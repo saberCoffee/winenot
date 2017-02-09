@@ -29,7 +29,17 @@ class AdminController extends Controller
         $members = $members->findAll();
 
         $this->show ('admin/members', array(
-            'members' => $members
+            'members' 	=> $members,
+			'email'     => '',
+			'firstname' => '',
+			'lastname'  => '',
+			'address'   => '',
+			'city'     	=> '',
+			'postcode'  => '',
+			'role'     	=> '',
+			'type'     	=> '',
+
+
         ));
     }
 
@@ -59,24 +69,35 @@ class AdminController extends Controller
 			$city       	= htmlentities($_POST['city']);
 			$postcode       = htmlentities($_POST['postcode']);
 			$role       	= htmlentities($_POST['role']);
-			$type       	= htmlentities($_POST['type']);
+			
 
 			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 				$error['email'] = 'Cette adresse email est invalide.';
 			}
 
+			if (empty($password)) {
+				$error['password'] = 'Vous devez remplir ce champ.';
+			} elseif (strlen($password) < 6) {
+				$error['password'] = 'Vous devez utiliser au moins <strong>6</strong> caractères.';
+			} elseif (strlen($password) > 16) {
+				$error['password'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
+			} elseif ($password != $password_verif) {
+				$error['password'] = 'Les mots de passe ne sont pas identiques.';
+			}
+
 			$error['firstname'] = $form->isValid($firstname, 2, 16);
 			$error['lastname']  = $form->isValid($lastname, 2, 16);
+			$error['postcode']  = $form->isValid($postcode, 5, 5);
+
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
 			$user = new UserModel;
 
-			$user->registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $type, $error);
+			$user->registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $error);
 
 			if (empty($error)) {
-			
 				$msg = 'Votre profil de producteur a bien été enregistré.';
 			
 				setcookie("successMsg", $msg, time() + 5);
@@ -84,16 +105,20 @@ class AdminController extends Controller
 				$this->redirectToRoute('admin_members');
 			}
 		}
-		
-		$this->redirectToRoute('admin_members');
 
 		$this->show('admin/members', array(
-				'error' => (isset($error)) ? $error : '',
-            	'members' => $members,
-				// 'successMsg' =>  $successMsg,
+				'error' 	=> (isset($error)) ? $error : '',
+            	'members' 	=> $members,
 				'email'     => (!empty($email)) ? $email : '',
 				'firstname' => (!empty($firstname)) ? $firstname : '',
 				'lastname'  => (!empty($lastname)) ? $lastname : '',
+				'address'  	=> (!empty($address)) ? $address : '',
+				'city'  	=> (!empty($city)) ? $city : '',
+				'postcode'  => (!empty($postcode)) ? $postcode : '',
+				'role' 		=> (!empty($role)) ? $role : '',
+			
+				
+
 		));
 	}
 
