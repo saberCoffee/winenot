@@ -22,7 +22,8 @@ $(function() {
                     hasError = false;
                 }
 
-                errorMessage = 'JS'+errorMessage;
+                // Debug : afficher 'JS' devant le message pour ne pas confondre avec la gestion des erreurs PHP
+                //errorMessage = 'JS'+errorMessage;
 
                 if (hasError) {
                     console.log($(this).parent('div.form-group'));

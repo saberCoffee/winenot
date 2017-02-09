@@ -90,7 +90,7 @@ class DashboardController extends Controller
 
 				$msg = 'Votre profil de producteur a bien été enregistré.';
 
-				setcookie("successMsg", $msg, time() + 10);
+				setcookie("successMsg", $msg, time() + 5);
 			}
 		}
 
@@ -141,7 +141,7 @@ class DashboardController extends Controller
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 
-				setcookie("successMsg", $msg, time() + 10);
+				setcookie("successMsg", $msg, time() + 5);
 
 				$this->redirectToRoute('cave');
 			}
@@ -201,7 +201,7 @@ class DashboardController extends Controller
 
 				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
 
-				setcookie("successMsg", $msg, time() + 10);
+				setcookie("successMsg", $msg, time() + 5);
 
 				$this->redirectToRoute('cave');
 			}
