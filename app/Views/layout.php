@@ -42,7 +42,7 @@
 					</div>
 
 					<ul>
-						<li><a href="<?php echo (empty($_SESSION['user'])) ? $this->url('account') : $this->url('dashboard') ?>">Mon compte</a></li>
+						<li><a href="<?php echo (empty($_SESSION['user'])) ? $this->url('account') : $this->url('dashboard') ?>"><?php echo (!empty($_SESSION['user'])) ? $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] : 'Mon Compte';?></a></li>
 					</ul>
 				</nav>
 			</header>

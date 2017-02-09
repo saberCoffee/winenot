@@ -8,7 +8,7 @@
 	</ul>
 	<section class="addProducer">
 		<form action="" method="post" class="winemakers">
-			<input type="hidden" name="id" value="<?= $members['id']; ?>" />
+			<input type="hidden" name="id" value="<?= $winemakers['id']; ?>" />
 			<div class="row">
 				<div class="col-md-4">
 					<label for="">Adresse</label>

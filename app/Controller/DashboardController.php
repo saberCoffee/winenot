@@ -335,7 +335,7 @@ class DashboardController extends Controller
 		$winemakers = new WinemakerModel();
 		// $winemakers = $winemakers->findAll();
 	
-		$winemakers = $winemakers->getWinemakerbyUser();
+		$winemakers = $winemakers->getWinemakerbyUser($_SESSION['user']['id']);
 
 		$this->show ('dashboard/winemakers', array(
 			'winemakers' => $winemakers,
@@ -482,16 +482,4 @@ class DashboardController extends Controller
 		));
 	}
 	
-	public function winemakerByUser() {
-		$winemakers = new WinemkaerModel();
-		$winemaker = $winemakers->getWinemakerbyUser();
-
-		$this->show('dashboard/winemakers', array(
-				'winemaker' => $winemaker,
-
-		
-		));
-	}
-
-
 }

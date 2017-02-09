@@ -119,7 +119,7 @@ class WinemakerModel extends Model
 		return false;
 	}
 	
-	public function getWinemakerbyUser()
+	public function getWinemakerbyUser($token)
 	{
 		$user = new UserModel();
 		$winemaker_id = $user->getUserByToken($token);
