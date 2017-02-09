@@ -1,4 +1,4 @@
-/* Affichage des membres */  
+/* Affichage des membres */
 
 	section.member-list {
 		padding: 3rem;
@@ -28,10 +28,10 @@
         background-color: #eddcc0;
         color: #d09038;
         text-transform: uppercase;
-   
+
 	}
-	
-	
+
+
 
 	table.table {
 		margin-top: 20px;
@@ -39,7 +39,7 @@
 		border-radius:.5rem;
 		border: 3px solid #d09038;
 	}
-	
+
  	.table-striped>tbody>tr>th {
 		font-weight: bold;
 		color:#d09038;
@@ -50,7 +50,7 @@
 	td.action {
 		text-align:center;
 	}
-	
+
 	form.members {
 		background-color:#eddcc0;
 		padding: 3rem;
@@ -58,7 +58,7 @@
 		border-top-left-radius: 0;
 		margin-bottom:3rem;
 	}
-	
+
 	form.members div.row {
 		padding: 1.5rem;
 	}
@@ -74,20 +74,20 @@
 		margin-top: 5rem;
 		padding:2.5rem;
 	 	border-top-right-radius: .5rem;
-		border-top-left-radius: .5rem; 
+		border-top-left-radius: .5rem;
 	}
-	
+
 	div.form-group label {
 		display:block;
 		margin-top: 2rem;
 	/*	color:#a4300c;*/
 	}
-	
+
 	form .form-control {
 		margin: 0 auto;
 		margin-right: 1.5rem;
 	}
-	
+
 	div.row input[type="submit"] {
 		width:100%;
 		margin: 0 auto;
@@ -96,7 +96,7 @@
 		color:#fff;
 		margin-top: 2rem;
 	}
-	
+
 	input[type="submit"]:hover {
 		background-color:#d09038;
 			color:#fff;
@@ -108,7 +108,7 @@
 		margin:0 auto;
 	}
 
-/* Affichage des producteurs */  
+/* Affichage des producteurs */
 
 	h2.winemakers {
 		color:#d09038;
@@ -118,7 +118,7 @@
 		margin-top: 5rem;
 		padding:2.5rem;
 	 	border-top-right-radius: .5rem;
-		border-top-left-radius: .5rem; 
+		border-top-left-radius: .5rem;
 	}
 	form.winemakers {
 		background-color:#eddcc0;
@@ -130,12 +130,12 @@
 	form.winemakers div.row {
 		padding: 1.5rem;
 	}
-	
+
 	form.winemakers div.row label {
 		display: block;
 
 	}
-	
+
 	th {
 		text-align: center;
 	}
@@ -143,9 +143,9 @@
 	td.action a:hover {
 		opacity: 0.5;
 	}
-	
 
-/* Affichage du profil d'utilisateur */  
+
+/* Affichage du profil d'utilisateur */
 
 	div.profile-view {
 		margin:4rem auto;
@@ -161,31 +161,3 @@
 	nav ul {
 		list-style:none;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

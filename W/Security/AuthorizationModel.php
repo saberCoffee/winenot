@@ -17,7 +17,7 @@ class AuthorizationModel
 	 * @return boolean 	true si droit d'accès, false sinon
 	 */
 	public function isGranted($role)
-	{
+	{		
 		$app = getApp();
 		$roleProperty = $app->getConfig('security_role_property');
 

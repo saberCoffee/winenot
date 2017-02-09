@@ -22,7 +22,7 @@ class DashboardController extends Controller
 	 */
 	public function dashboard()
 	{
-		$this->allowTo(array('0','1'), 'home');
+		$this->allowTo(array('user','admin'), 'home');
 		$this->show('dashboard/dashboard');
 	}
 
@@ -237,7 +237,7 @@ class DashboardController extends Controller
 	 */
 	public function addMember()
 	{
-		$this->allowTo('1', 'dashboard');
+		$this->allowTo('admin', 'dashboard');
 
 		if (!empty($_POST)) {
 			$error = array();
@@ -288,7 +288,7 @@ class DashboardController extends Controller
 	 */
 	public function members()
 	{
-		$this->allowTo('1', 'dashboard');
+		$this->allowTo('admin', 'dashboard');
 
 		$members = new UserModel();
 		$members = $members->findAll();
@@ -306,7 +306,7 @@ class DashboardController extends Controller
 	 */
 	public function members_edit()
 	{
-		$this->allowTo('1', 'dashboard');
+		$this->allowTo('admin', 'dashboard');
 
 		if(isset($_POST)){
 			$member = new UserModel();
@@ -330,7 +330,7 @@ class DashboardController extends Controller
 	 */
 	public function winemakers()
 	{
-		$this->allowTo('1', 'dashboard');
+		$this->allowTo('admin', 'dashboard');
 
 		$winemakers = new WinemakerModel();
 		// $winemakers = $winemakers->findAll();
