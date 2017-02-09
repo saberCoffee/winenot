@@ -22,7 +22,7 @@
 	<div class="logoDashboard">
 		<a href="<?= $this->url('home') ?>"><img src="<?= $this->assetUrl('img/logo_clean.png'); ?>"></a>
 	</div>
-	
+
     <div class="container-fluid" id="top">
         <div class="row">
             <header>
@@ -43,7 +43,7 @@
                 </nav>
             </header>
         </div>
-		
+
 
         <div class="row">
             <div class="col-lg-2 r-p r-m col-aside">
@@ -51,7 +51,7 @@
                     <nav>
                         <ul>
                         	<li>
-                        		
+
                         	</li>
                             <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
@@ -79,7 +79,7 @@
 								</li>
 							<?php endif; ?>
 
-							<?php if ($_SESSION['user']['role'] == 1): ?>
+							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
 									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'members') ? 'class="current"' : '' ?>>
