@@ -19,7 +19,10 @@
 </head>
 
 <body class="dashboard">
-
+	<div class="logoDashboard">
+		<a href="<?= $this->url('home') ?>"><img src="<?= $this->assetUrl('img/logo_clean.png'); ?>"></a>
+	</div>
+	
     <div class="container-fluid" id="top">
         <div class="row">
             <header>
@@ -40,15 +43,16 @@
                 </nav>
             </header>
         </div>
+		
 
         <div class="row">
             <div class="col-lg-2 r-p r-m col-aside">
                 <aside>
                     <nav>
                         <ul>
-                            <li>
-								<a href="<?= $this->url('home') ?>"><img src="<?= $this->assetUrl('img/dashboard/previous.png'); ?>"> Retour à la homepage</a>
-							</li>
+                        	<li>
+                        		
+                        	</li>
                             <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>
