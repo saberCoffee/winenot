@@ -79,7 +79,7 @@
 								</li>
 							<?php endif; ?>
 
-							<?php if ($_SESSION['user']['role'] == 1): ?>
+							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
 									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'members') ? 'class="current"' : '' ?>>
