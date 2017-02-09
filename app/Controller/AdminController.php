@@ -87,7 +87,9 @@ class AdminController extends Controller
 
 			$error['firstname'] = $form->isValid($firstname, 2, 16);
 			$error['lastname']  = $form->isValid($lastname, 2, 16);
-			$error['postcode']  = $form->isValid($postcode, 5, 5);
+			if (!empty($postcode)){
+				$error['postcode']  = $form->isValid($postcode, 5, 5);
+			}
 
 
 			// On filtre le tableau pour retirer les erreurs "vides"
