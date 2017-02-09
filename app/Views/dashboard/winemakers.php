@@ -45,6 +45,8 @@
 	<section class="member-list">
 	<table border="1" class="table table-striped">
 		<tr>
+			<th>Prénom</th>
+			<th>Nom</th>
 			<th>Siren</th>
 			<th>Région</th>
 			<th>Adresse</th>
@@ -55,6 +57,8 @@
 		</tr>
 	<?php foreach ($winemakers as $winemaker) : ?>
 		<tr>
+			<td><?= $winemaker['firstname'];?></td>
+			<td><?= $winemaker['lastname'];?></td>
 			<td><?= $winemaker['siren'];?></td>
 			<td><?= $winemaker['region'];?></td>
 			<td><?= $winemaker['address'];?></td>

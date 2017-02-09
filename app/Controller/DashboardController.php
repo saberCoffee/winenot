@@ -339,15 +339,12 @@ class DashboardController extends Controller
 		$this->allowTo('1', 'dashboard');
 
 		$winemakers = new WinemakerModel();
-		$winemakers = $winemakers->findAll();
-
-		if(isset($_GET['id'])){
-			$winemaker = new UserModel();
-			$winemaker = $winemaker->find($_GET['winemakers_id']);
-		}
+		// $winemakers = $winemakers->findAll();
+	
+		$winemakers = $winemakers->getWinemakerbyUser();
 
 		$this->show ('dashboard/winemakers', array(
-			'winemakers' => $winemakers
+			'winemakers' => $winemakers,
 		));
 	}
 
@@ -489,6 +486,17 @@ class DashboardController extends Controller
 				'user' => $user,
 				'date' => $newDate
 
+		));
+	}
+	
+	public function winemakerByUser() {
+		$winemakers = new WinemkaerModel();
+		$winemaker = $winemakers->getWinemakerbyUser();
+
+		$this->show('dashboard/winemakers', array(
+				'winemaker' => $winemaker,
+
+		
 		));
 	}
 

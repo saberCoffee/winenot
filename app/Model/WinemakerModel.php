@@ -111,5 +111,30 @@ class WinemakerModel extends Model
 		}
 		return false;
 	}
+	
+	public function getWinemakerbyUser()
+	{
+		$user = new UserModel();
+		$winemaker_id = $user->getUserByToken($token);
+		
+		$sql = 'SELECT *
+			FROM users
+			RIGHT JOIN '.$this->table.' ON users.id = '.$this->table.'.winemaker_id
+			WHERE users.type = 1';
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+		
+		return $sth->fetchAll();
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
