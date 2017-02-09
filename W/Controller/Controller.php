@@ -149,11 +149,6 @@ class Controller
 		foreach($roles as $role){
 			if ($authorizationModel->isGranted($role)){
 				return true;
-			} else {
-				echo 'oups';
-						debug($_SESSION);
-
-						exit;
 			}
 		}
 
