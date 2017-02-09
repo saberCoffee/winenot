@@ -8,7 +8,7 @@ use W\Security\AuthorizationModel;
 /**
  * Le contrôleur de base à étendre
  */
-class Controller 
+class Controller
 {
 
 	/**
@@ -45,7 +45,7 @@ class Controller
 	public function redirect($uri)
 	{
 		header("Location: $uri");
-		die();	
+		die();
 	}
 
 	/**
@@ -122,7 +122,7 @@ class Controller
 		}
 		else {
 			die('404');
-		}	
+		}
 	}
 
 	/**
@@ -138,8 +138,9 @@ class Controller
 	/**
 	 * Autorise l'accès à un ou plusieurs rôles
 	 * @param mixed $roles Tableau de rôles, ou chaîne pour un seul
+	 * @param string $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
 	 */
-	public function allowTo($roles)
+	public function allowTo($roles, $redirectRoute = '')
 	{
 		if (!is_array($roles)){
 			$roles = [$roles];
@@ -151,9 +152,12 @@ class Controller
 			}
 		}
 
+		if (!empty($redirectRoute)) {
+			$this->redirectToRoute($redirectRoute);
+		}
+
 		$this->showForbidden();
 	}
-
 
 	/**
 	 * Retourne une réponse JSON au client

@@ -79,8 +79,33 @@ class WinemakerModel extends Model
 		$sth = $dbh->prepare($sql);
 		$sth->bindValue(':siren', $siren);
 		if($sth->execute()){
-			$foundUser = $sth->fetch();
-			if($foundUser){
+			$foundSiren = $sth->fetch();
+			if($foundSiren){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Vérifie si un utilisateur est bien un producteur
+	 *
+	 * @param  string $token Le token de la session de l'utilisateur
+	 * @return boolean        [description]
+	 */
+	public function isAWineMaker($token)
+	{
+		$user = new UserModel();
+
+		$winemaker_id = $user->getUserByToken($token);
+
+		$sql = 'SELECT winemaker_id FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':winemaker_id', winemaker_id);
+		if($sth->execute()){
+			$foundWinemaker = $sth->fetch();
+			if($foundWinemaker){
 				return true;
 			}
 		}

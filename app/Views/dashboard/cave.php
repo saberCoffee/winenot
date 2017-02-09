@@ -12,14 +12,15 @@
 		<li class="active">Ajout de produit</li>
 		<li>Mes stocks</li>
 	</ul>
+
 	<section class="addProduct active">
-		<form method="POST" action="<?= $this->url('cave') ?>">
+		<form method="post" action="<?= $this->url('cave') ?>">
 			<div class="form-group <?php if (isset($error['name'])) { echo 'has-error'; } ?>">
-						<label for="product">Nom du produit</label>
-						<input type="text" name="name" id="name" class="form-control" value="<?= $name; ?>" data-min="3" data-max="16" required="required">
-						<span class="help-block" <?php if (empty($error['name'])) { echo 'style="display: none"'; } ?>>
-                        <?php if (isset($error['name'])) { echo $error['name']; } ?>
-                   		 </span>
+				<label for="product">Nom du produit</label>
+				<input type="text" name="name" id="name" class="form-control" value="<?= $name; ?>" data-min="3" data-max="50" required="required">
+				<span class="help-block" <?php if (empty($error['name'])) { echo 'style="display: none"'; } ?>>
+                <?php if (isset($error['name'])) { echo $error['name']; } ?>
+           		 </span>
 			</div>
 
 			<div class="row">
@@ -96,8 +97,6 @@
 			<div>
 			<!-- INPUT HIDDEN TEMPORAIRE -->
 				<input type="hidden" name="id" value="1">
-
-				<input type="hidden" name="winemaker_id" value="e3e6747f8834d39724bbde3b5b133996">
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
 		</form>
@@ -119,7 +118,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 				<?php foreach ($products as $product) : ?>
 				<tr>
 					<td><?= $product['name'];?></td>

@@ -1,8 +1,8 @@
 /*
     New Wine Maker
 */
-    
-    
+
+
     .registerNewWineMaker {
         width: 60%;
         height: 60%;
@@ -14,7 +14,7 @@
         border-radius: 5px;
         text-transform: uppercase;
     }
-    
+
     .registerNewWineMaker .form-control{
         display: block;
         width: 100%;
@@ -33,7 +33,7 @@
         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
-    
+
     .registerNewWineMaker .btn {
         display: block;
         width: 100%;
@@ -45,12 +45,12 @@
         text-transform: uppercase;
         background-color: #d09038;
     }
-    
+
     .registerNewWineMaker select{
         color: #d09038;
-    
+
     }
-    
+
     .registerNewWineMaker p{
         color: #d09038;
         font-size: .8em;
@@ -59,7 +59,7 @@
         text-align: center;
         margin-top: 4em;
     }
-    
+
     .registerNewWineMaker p:hover{
         color: #d09038;
     }
@@ -68,16 +68,14 @@
     Cave
 */
     #cave {
-        position: relative; 
+        position: relative;
         width: 60%;
         /* height: 60%; */
         margin: 10em auto;
         padding: 0em 0em 0em;
         background-color: #eddcc0;
         color: #d09038;
-        text-transform: uppercase;
-        text-align: center;
-        border-radius: 0 4px 4px 4px; 
+        border-radius: 0 4px 4px 4px;
     }
 
     .addProduct{
@@ -104,11 +102,11 @@
         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
-    
+
     .addProduct .form-group{
         text-align: left;
     }
-    
+
     .addProduct .btn {
         display: block;
         width: 100%;
@@ -133,7 +131,7 @@
     .addProduct .addPics input[type=file]{
         display: inline-block;
     }
-    
+
     /* CSS pour menu click JS*/
     .tab{
         display: none;
@@ -198,43 +196,36 @@
         color: #d09038;
         text-transform: uppercase;
     }
-   
- 
+
+
     table{
         margin: auto;
         border: 2px solid #d09038;
         text-transform: uppercase;
         background: #fdf5e7;
     }
-    
+
     .table{
         margin-top: 0;
     }
-    
+
     .table>thead>tr>th {
         text-align: center;
         vertical-align: bottom;
         border-bottom: 2px solid #d09038;
     }
-    
+
     .table>tbody>tr>td{
         height: 2em;
         border-top: 1px solid #d09038;
         text-transform: none;
     }
-    
+
     table tr > td:nth-of-type(7) {
         width: 6em;
         padding: 4px;
     }
-    
+
     table img{
         margin: 0 5px;
     }
-
-
-
-
-
-
-

@@ -3,11 +3,12 @@ $(function() {
     function checkIfFormIsValid(form) {
         var isValid = true;
 
-        form.children('div.form-group').children('input, textarea, select').each(function() {
+        form.find('div.form-group').children('input, textarea, select').each(function() {
             var minCharacters = $(this).data('min');
             var maxCharacters = $(this).data('max');
 
             if ($(this).attr('required') == 'required') {
+                console.log($(this).val());
                 if ($(this).val() === '') { // ... Si le champ est vide, on ajoute une class erreur au div parent et on affiche le message d'erreur adéquat...
                     var errorMessage = 'Vous devez remplir ce champ.';
                     hasError = true;
@@ -20,6 +21,8 @@ $(function() {
                 } else { // ... Sinon, s'il est rempli correctement
                     hasError = false;
                 }
+
+                errorMessage = 'JS'+errorMessage;
 
                 if (hasError) {
                     console.log($(this).parent('div.form-group'));
@@ -71,6 +74,5 @@ $(function() {
         if (!isValid) {
             event.preventDefault();
         }
-
     });
 });

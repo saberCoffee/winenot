@@ -4,10 +4,10 @@ namespace W\WineNotClasses;
 class Form
 {
 
-    public function isValid($inputValue = '', $min = '', $max = '')
+    public function isValid($inputValue, $min = '', $max = '', $int = false)
     {
         $error = '';
-        if (empty($inputValue)) {
+        if (strlen($inputValue) === 0) {
             $error = 'Vous devez remplir ce champ.';
         } else {
             if (!empty($min) OR !empty($max)) {
@@ -19,8 +19,12 @@ class Form
                     $error = 'Vous ne pouvez pas utiliser plus de <strong>' . $max . '</strong> caractères.';
                 }
             }
+
+            if ($int && !is_numeric($inputValue)) {
+                $error = 'Vous devez saisir des chiffres valides.';
+            }
         }
         return $error;
     }
-    
+
 }
