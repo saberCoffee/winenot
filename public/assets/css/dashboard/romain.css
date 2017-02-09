@@ -67,15 +67,15 @@
 /*
     Cave
 */
-    #cave {
-        position: relative;
+    #onglet {
+        position: relative; 
         width: 60%;
         /* height: 60%; */
         margin: 10em auto;
         padding: 0em 0em 0em;
         background-color: #eddcc0;
         color: #d09038;
-        border-radius: 0 4px 4px 4px;
+      
     }
 
     .addProduct{
@@ -129,7 +129,9 @@
     }
 
     .addProduct .addPics input[type=file]{
-        display: inline-block;
+
+        margin: auto;
+
     }
 
     /* CSS pour menu click JS*/
@@ -192,7 +194,6 @@
         /* margin: 28.6em 7px; */
         padding: 3em 3em 2em;
         background-color: #eddcc0;
-        border-radius: 5px;
         color: #d09038;
         text-transform: uppercase;
     }
@@ -219,13 +220,43 @@
         height: 2em;
         border-top: 1px solid #d09038;
         text-transform: none;
+        text-align: center;
     }
 
     table tr > td:nth-of-type(7) {
-        width: 6em;
+        /*width: 6em;*/
         padding: 4px;
     }
 
     table img{
         margin: 0 5px;
     }
+
+    td a:hover {
+        opacity: 0.5;
+    }
+
+
+/* 
+    logo dashboard
+*/
+
+    .logoDashboard a img{
+    width: 12em;
+    margin: 0 7rem;
+    position: fixed;
+    z-index: 30;
+    filter: grayscale(0.5);
+    transition-duration: .3s;
+    }
+
+    .logoDashboard  img:hover{
+        filter: grayscale(0);
+         transition-duration: .3s;
+    }
+
+    aside nav ul li:nth-of-type(1){
+        padding-top: 48%;
+    }
+
+    

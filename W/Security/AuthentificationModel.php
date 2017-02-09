@@ -78,10 +78,16 @@ class AuthentificationModel
 		$app = getApp();
 		$usersModel = new UsersModel();
 		$userFromSession = $this->getLoggedUser();
+
+		// Comme l'id de la session a été remplacée par un token, il est nécessaire de récupérer le véritable id avant de refresh l'utilisateur
+		$token = $userFromSession['id'];
+		$user_id = $usersModel->getUserByToken($token);
+		$userFromSession['id'] = $user_id['id'];
+
 		if ($userFromSession){
 			$userFromDb = $usersModel->find($userFromSession[$app->getConfig('security_id_property')]);
 			if($userFromDb){
-				$this->logUserIn($userFromDb);
+				$this->logUserIn($userFromDb, $token);
 				return true;
 			}
 		}

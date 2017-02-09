@@ -31,9 +31,9 @@ $(function() {
             var modeAffichage;
             $('.tab li').each(function(rang) {
                 modeAffichageOff = $(this).hasClass('active') ? '' : 'none';
-                $('.addProduct').eq(rang).css('display', modeAffichageOff);
+                $('.addProduct, .addUser, .addProducer').eq(rang).css('display', modeAffichageOff);
                 modeAffichageOn = $(this).hasClass('active') ? '' : 'block';
-                $('.stock').eq(rang).css('display', modeAffichageOn);
+                $('.stock, .member-list').eq(rang).css('display', modeAffichageOn);
             });
         }
     }
