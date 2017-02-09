@@ -39,6 +39,10 @@
 		border-radius:.5rem;
 		border: 3px solid #d09038;
 	}
+	
+	.table>tbody>tr>td {
+		word-break: break-all;
+	}
 
  	.table-striped>tbody>tr>th {
 		font-weight: bold;

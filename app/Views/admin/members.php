@@ -72,9 +72,9 @@
 				</div>
 			</div>
 				<?php
-				if (isset($_SESSION['msg'])) {
-					echo '<div class="alert alert-success" role="alert">'.$_SESSION['msg'].'</div>';
-					unset($_SESSION['msg']);
+				if (isset($_COOKIE['msg'])) {
+					echo '<div class="alert alert-success" role="alert">'.$_COOKIE['msg'].'</div>';
+					unset($_COOKIE['msg']);
 				}
 				?>
 		</form>
