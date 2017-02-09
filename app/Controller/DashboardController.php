@@ -350,9 +350,7 @@ class DashboardController extends Controller
 		$user = new UserModel();
 
 		$user = $user->getUserByToken($id);
-		$user_id = $user['id']; // Correspond à mon ID d'utilisateur
-
-		debug($user);
+		$user['id'] = $id; // On remplace l'id de l'utilisateur par son token
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
 		$monthEng = array('January', 'February');
@@ -362,11 +360,9 @@ class DashboardController extends Controller
 		$newformat = date('Y F', $date);
 		$newDate = str_replace($monthEng, $monthFr, date('F')).' '.date('Y');
 
-
 		$this->show('dashboard/profile', array(
-				'user' => $user,
-				'date' => $newDate
-
+			'user'          => $user,
+			'register_date' => $newDate
 		));
 	}
 

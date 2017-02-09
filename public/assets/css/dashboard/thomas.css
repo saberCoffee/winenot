@@ -1,5 +1,24 @@
-section {
+/* @import url('https://fonts.googleapis.com/css?family=Pacifico'); */
+p.user-infos span {
+    font-weight: bold;
+}
 
+p.user-infos span.user-registerdate {
+    font-size: 0.8em;
+}
+
+h2 {
+    color: #d09038;
+}
+
+section#profile {
+    width: 1170px;
+    max-width: 100%;
+
+    margin: 10rem auto;
+    padding: 2rem;
+
+    background: #eddcc0;
 }
 
 section#thread {
@@ -78,3 +97,5 @@ section#thread p.row2 {
 body.jsActive .city-input {
     display: none;
 }
+
+p#

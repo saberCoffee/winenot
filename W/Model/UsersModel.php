@@ -102,7 +102,7 @@ class UsersModel extends Model
 	/**
 	 * Récuupère les informations d'un utilisateur à partir de son tokens
 	 * @param string $email L'email à tester
-	 * 
+	 *
 	 * @return boolean true si présent en base de données, false sinon
 	 */
 	public function getUserByToken($token)
@@ -110,7 +110,7 @@ class UsersModel extends Model
 
 		$app = getApp();
 
-		$sql = 'SELECT * FROM users, tokens WHERE user_id = id AND token = :token LIMIT 1';
+		$sql = 'SELECT users.* FROM users, tokens WHERE user_id = id AND token = :token LIMIT 1';
 
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);

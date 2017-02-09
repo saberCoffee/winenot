@@ -1,7 +1,6 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Tous nos membres']) ?>
+
 <?php $this->start('main_content') ?>
-
-
 
 <div id="onglet" class="container">
 

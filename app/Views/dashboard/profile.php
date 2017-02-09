@@ -1,22 +1,40 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Mon profil']) ?>
 <?php $this->start('main_content') ?>
 
-<div class="container profile-view">
-	<h2>Mon profil</h2>
-	<div class="row">
-	<aside class="col-md-2"><img src="#" alt="profil image" /></aside>
-	<nav class="col-md-10">
-		<ul>
-			<li>Prénom: <?= $user['firstname'] ?></li>
-			<li>Nom: 	<?= $user['lastname'] ?></li>
-			<li>Adresse e-mail: <?= $user['email'] ?></li>
-			<li>Adresse: <?= $user['address'] ?></li>
-			<li>Code Postale: <?= $user['postcode'] ?></li>
-			<li>Membre depuis: <?= $date ?></li>
-		</ul>
-	</nav>
+<section id="profile">
+	<div class="container-fluid">
+		<div class="row">
+			<?php if ($user['id'] == $_SESSION['user']['id']): ?>
+				<h2>Mon profil</h2>
+			<?php else: ?>
+				<h2>Profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?></h2>
+			<?php endif; ?>
+
+			<aside class="col-md-3">
+				<p class="user-infos">
+					<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar">
+					<br />
+					<span class="user-name"><?= $user['firstname'] . ' ' . $user['lastname'] ?></span>
+					<br />
+					<span class="user-registerdate">Membre depuis <?= $register_date ?></span>
+				</p>
+			</aside>
+
+			<div class="col-md-9">
+				<?php if ($user['id'] == $_SESSION['user']['id']): ?>
+					<p>
+						Ces informations ne sont pas accessibles par les autres membres.
+					</p>
+					<ul>
+						<li>Adresse e-mail : <?= $user['email'] ?></li>
+						<li>Adresse : <?= $user['address'] ?></li>
+						<li>Code Postal : <?= $user['postcode'] ?></li>
+					</ul>
+				<?php endif; ?>
+			</div>
+		</div>
 	</div>
-</div>
+</section>
 
 <?php $this->stop('main_content') ?>
 

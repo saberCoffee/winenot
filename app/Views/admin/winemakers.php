@@ -12,29 +12,29 @@
 			<div class="row">
 				<div class="col-md-4">
 					<label for="">Adresse</label>
-					<input type="text" value="" name="adress" placeholder="adresse" class="form-control" />
+					<input type="text" value="" name="adress" placeholder="" class="form-control" />
 				</div>
 				<div class="col-md-4">
 					<label for="">Ville</label>
-					<input type="text" value="" name="city" placeholder="ville" class="form-control" />
+					<input type="text" value="" name="city" placeholder="" class="form-control" />
 				</div>
 				<div class="col-md-4">
-					<label for="">Code Postale</label>
-					<input type="number" value="" name="postcode" placeholder="code postale" class="form-control" />
+					<label for="">Code Postal</label>
+					<input type="number" value="" name="postcode" placeholder="" class="form-control" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
 					<label for="">Siren</label>
-					<input type="number" value="" name="siren" placeholder="sinen" class="form-control" />
+					<input type="number" value="" name="siren" placeholder="" class="form-control" />
 				</div>
 				<div class="col-md-4">
 					<label for="">domain</label>
-					<input type="text" value="" name="domain" placeholder="domain"  class="form-control"/>
+					<input type="text" value="" name="domain" placeholder=""  class="form-control"/>
 				</div>
 				<div class="col-md-4">
 					<label for="">N° Téléphone</label>
-					<input type="number" value="" name="tel" placeholder="numéro de téléphone" class="form-control" />
+					<input type="number" value="" name="tel" placeholder=" " class="form-control" />
 				</div>
 			</div>
 			<div class="row">
@@ -54,8 +54,8 @@
 			<th>Siren</th>
 			<th>Région</th>
 			<th>Adresse</th>
-			<th>Viille</th>
-			<th>Code Postale</th>
+			<th>Ville</th>
+			<th>Code Postal</th>
 			<th>N° Téléphone</th>
 			<th></th>
 		</tr>
@@ -84,7 +84,5 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-    <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
-    <script src="<?= $this->assetUrl('js/dashboard.js') ?>"></script>
-
+<script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
 <?php $this->stop('js') ?>
