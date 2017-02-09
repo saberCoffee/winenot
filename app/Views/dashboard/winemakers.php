@@ -46,7 +46,7 @@
 	<table border="1" class="table table-striped">
 		<tr>
 			<th>Siren</th>
-			<th>Domain</th>
+			<th>Région</th>
 			<th>Adresse</th>
 			<th>Viille</th>
 			<th>Code Postale</th>
@@ -56,15 +56,15 @@
 	<?php foreach ($winemakers as $winemaker) : ?>
 		<tr>
 			<td><?= $winemaker['siren'];?></td>
-			<td><?= $winemaker['domain'];?></td>
+			<td><?= $winemaker['region'];?></td>
 			<td><?= $winemaker['address'];?></td>
 			<td><?= $winemaker['city'];?></td>
 			<td><?= $winemaker['postcode']?></td>
 			<td><?= $winemaker['tel']?></td>
 			<td class="action"><!--
-			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemakers_id']]) ?>" style="color:black"><i class="fa fa-user" aria-hidden="true"></i></a><!--
-			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemakers_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a><!--
-			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemakers_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
+			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>" style="color:black"><i class="fa fa-user" aria-hidden="true"></i></a><!--
+			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a><!--
+			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
 			</td>
 		</tr>
 	<?php endforeach;?>

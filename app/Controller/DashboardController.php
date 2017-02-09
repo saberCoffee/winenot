@@ -286,35 +286,6 @@ class DashboardController extends Controller
 		));
 	}
 
-// 	public function addMember()
-// 	{
-// 		/*
-// 		 DevNote :
-// 			*/
-// 		if(!empty($_POST)) {
-
-// 			$data = array (
-// 				'id' => $_POST['id'],
-// 				'firstname' => $_POST['firstname'],
-// 				'lastname' => $_POST['lastname'],
-// 				'email' => $_POST['email'],
-// 				'password' => $_POST['password'],
-// 				'address' => $_POST['address'],
-// 				'city' => $_POST['city'],
-// 				'postcode' => $_POST['postcode'],
-// 				'role' => $_POST['role'],
-// 				'type' => $_POST['type']
-// 			);
-// 		}
-
-// 		$members = new UserModel();
-// 		$members = $members->insert($data);
-
-// 		$this->show ('dashboard/members', array(
-// 				'members' => $members
-// 		));
-// 	}
-
 	/**
 	 * Page Gérer les membres
 	 * Réservée à l'administration
@@ -366,7 +337,7 @@ class DashboardController extends Controller
 	public function winemakers()
 	{
 		$this->allowTo('1', 'dashboard');
-		
+
 		$winemakers = new WinemakerModel();
 		$winemakers = $winemakers->findAll();
 
@@ -497,5 +468,31 @@ class DashboardController extends Controller
 
 		$this->showForbidden();
 	}
+
+}
+
+	public function profile_view() {
+
+		$user     = new UserModel();
+
+		$user = $user->getUserByToken($_SESSION['user']['id']);
+		$user_id = $user['id']; // Correspond à mon ID d'utilisateur
+
+		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
+		$monthEng = array('January', 'February');
+		$monthFr = array('Janvier', 'Février');
+
+		$date = strtotime($_SESSION['user']['register_date']);
+		$newformat = date('Y F', $date);
+		$newDate = str_replace($monthEng, $monthFr, date('F')).' '.date('Y');
+
+
+		$this->show('dashboard/profile_view', array(
+				'user' => $user,
+				'date' => $newDate
+
+		));
+	}
+
 
 }

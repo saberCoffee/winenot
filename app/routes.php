@@ -54,8 +54,8 @@
 		['GET', '/dashboard/winemakers/[a:id]', 'Dashboard#winemakers_edit', 'winemakers2'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		/* des profils des utilisateurs */
-		['GET', '/profile/[a:id]', 'Profile#profile_view', 'profile_view'], // Consulter un profil
-		['GET', '/profile/config', 'Profile#profile_config', 'profile_config'], // Page des coordonnées de l'utilisateur
+		['GET', '/dashboard/profile_view/[a:id]', 'Dashboard#profile_view', 'profile_view'], // Consulter un profil
+		['GET', '/dashboard/profile_config/config', 'Dashboard#profile_conig', 'profile_config'], // Page des coordonnées de l'utilisateur
 		//-- End : Pages Dashboard --//
 
 
