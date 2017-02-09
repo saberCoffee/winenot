@@ -3,6 +3,7 @@ namespace Model;
 
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
+
 use \Model\TokenModel;
 
 class UserModel extends UsersModel

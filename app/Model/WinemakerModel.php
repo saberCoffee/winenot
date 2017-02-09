@@ -3,6 +3,7 @@ namespace Model;
 
 use \W\Model\Model;
 use \W\Model\ConnectionModel;
+use \W\Security\AuthentificationModel;
 
 use \Model\UserModel;
 use \Model\TokenModel;
@@ -39,7 +40,7 @@ class WinemakerModel extends Model
 	 *
 	 * @return void
 	 */
-	public function registerWinemaker($token, $siren, $domain, $address, $postcode, $city, $lng, $lat, &$error)
+	public function registerWinemaker($token, $siren, $region, $address, $postcode, $city, $lng, $lat, &$error)
 	{
 		if ($this->sirenExists($siren)) {
 			$error['siren'] = 'Ce numéro siren est déjà enregistré.';
@@ -53,7 +54,7 @@ class WinemakerModel extends Model
 		$data = array(
 			'winemaker_id'=> $winemaker_id['id'],
 			'siren'       => $siren,
-			'domain'      => $domain,
+			'region'      => $region,
 			'address'     => $address,
 			'postcode'    => $postcode,
 			'city'        => $city,
@@ -61,8 +62,14 @@ class WinemakerModel extends Model
 			'lat'         => $lat,
 		);
 
-		$user->update(array('type' => 1), $winemaker_id['id']);
 		$this->insert($data);
+
+		// On met à jour le champ 'type' de l'utilisateur
+		$user->update(array('type' => 1), $winemaker_id['id']);
+
+		// Puis on refresh sa sessopn
+		$auth = new AuthentificationModel();
+		$auth->refreshUser();
 	}
 
 	/**
@@ -102,7 +109,7 @@ class WinemakerModel extends Model
 		$sql = 'SELECT winemaker_id FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':winemaker_id', winemaker_id);
+		$sth->bindValue(':winemaker_id', $winemaker_id['id']);
 		if($sth->execute()){
 			$foundWinemaker = $sth->fetch();
 			if($foundWinemaker){

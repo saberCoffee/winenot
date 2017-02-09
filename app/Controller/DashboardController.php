@@ -22,6 +22,7 @@ class DashboardController extends Controller
 	 */
 	public function dashboard()
 	{
+		$this->allowTo(array('0','1'), 'home');
 		$this->show('dashboard/dashboard');
 	}
 
@@ -106,6 +107,8 @@ class DashboardController extends Controller
 	 */
 	public function cave()
 	{
+		$this->allowToWinemakers('dashboard');
+
 		if(!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -123,8 +126,8 @@ class DashboardController extends Controller
 			$error['name']      = $form->isValid($name, 3, 50);
 			$error['color']     = $form->isValid($color);
 			$error['price']     = $form->isValid($price, '', '', true);
-			$error['millesime'] = $form->isValid($millesime, '4', '4', true);
-			$error['cepage']    = $form->isValid($cepage, '3', '50');
+			$error['millesime'] = $form->isValid($millesime, 4, 4, true);
+			$error['cepage']    = $form->isValid($cepage, 3, 50);
 			$error['stock']     = $form->isValid($stock, '', '', true);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
@@ -175,6 +178,8 @@ class DashboardController extends Controller
 	 */
 	public function cave_edit($id)
 	{
+		$this->allowToWinemakers('dashboard');
+
 		if(!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -232,8 +237,11 @@ class DashboardController extends Controller
 	 */
 	public function addMember()
 	{
+		$this->allowTo('1', 'dashboard');
+
 		if (!empty($_POST)) {
 			$error = array();
+			$form  = new Form();
 
 			$email          = htmlentities($_POST['email']);
 			$password       = htmlentities($_POST['password']);
@@ -250,26 +258,12 @@ class DashboardController extends Controller
 				$error['email'] = 'Cette adresse email est invalide.';
 			}
 
-			if (empty($firstname)) {
-				$error['firstname'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($firstname) < 2) {
-				$error['firstname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
-			} elseif (strlen($firstname) > 16) {
-				$error['firstname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
-			}
-
-			if (empty($lastname)) {
-				$error['lastname'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($lastname) < 2) {
-				$error['lastname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
-			} elseif (strlen($lastname) > 16) {
-				$error['lastname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
-			}
+			$error['firstname'] = $form->isValid($firstname, 2, 16);
+			$error['lastname']  = $form->isValid($lastname, 2, 16);
 
 			$user = new UserModel;
 
 			$user->registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $type, $error);
-
 
 			if (empty($error)) {
 				$_SESSION['msg'] = "L'utilisateur a bien été enregistré.";
@@ -468,9 +462,8 @@ class DashboardController extends Controller
 
 		$this->showForbidden();
 	}
-	
-	public function profile_view() {
 
+	public function profile_view() {
 		$user     = new UserModel();
 
 		$user = $user->getUserByToken($_SESSION['user']['id']);
