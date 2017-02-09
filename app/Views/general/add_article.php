@@ -15,12 +15,21 @@
     <script src="external/google-code-prettify/prettify.js"></script>
 		<link href="index.css" rel="stylesheet">
     <script src="bootstrap-wysiwyg.js"></script>
-  </head>
-  <body>
+
+
+
 
 <div class="container">
+
+
   <div class="hero-unit">
 	
+<div class="input-group input-group-lg">
+  <span class="input-group-addon" id="sizing-addon1">Titre</span>
+  <input type="text" class="form-control" placeholder="Titre de l'article" aria-describedby="sizing-addon1">
+</div>
+
+
 	<div id="alerts"></div>
     <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">
@@ -64,10 +73,10 @@
 
       </div>
       
-      <div class="btn-group">
+      <!-- <div class="btn-group">
         <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
         <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
-      </div>
+      </div> -->
       <div class="btn-group">
         <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
@@ -76,13 +85,25 @@
     </div>
 
     <div id="editor" >
-      Go ahead&hellip;
+      
     </div>
-    <br>
+
+    
+
+    <!-- image upload button -->
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+      <span class="btn btn-primary btn-file"><span class="fileupload-new">importer une image</span>
+      <span class="fileupload-exists">modifier</span> <input type="file" /></span>
+      <span class="fileupload-preview"></span>
+      <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+    </div>
+
+    <!-- post button -->
     <button type="button" class="btn btn-success">Poster</button>
   </div>
     
 </div>
+
 
 <!-- Choix des typos -->
 <script>
