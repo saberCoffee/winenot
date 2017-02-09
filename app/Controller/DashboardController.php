@@ -468,9 +468,7 @@ class DashboardController extends Controller
 
 		$this->showForbidden();
 	}
-
-}
-
+	
 	public function profile_view() {
 
 		$user     = new UserModel();
