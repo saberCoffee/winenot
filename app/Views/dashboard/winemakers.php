@@ -50,7 +50,7 @@
 	<table border="1" class="table table-striped">
 		<tr>
 			<th>Siren</th>
-			<th>Domain</th>
+			<th>Région</th>
 			<th>Adresse</th>
 			<th>Viille</th>
 			<th>Code Postale</th>
@@ -60,7 +60,7 @@
 	<?php foreach ($winemakers as $winemaker) : ?>
 		<tr>
 			<td><?= $winemaker['siren'];?></td>
-			<td><?= $winemaker['domain'];?></td>
+			<td><?= $winemaker['region'];?></td>
 			<td><?= $winemaker['address'];?></td>
 			<td><?= $winemaker['city'];?></td>
 			<td><?= $winemaker['postcode']?></td>

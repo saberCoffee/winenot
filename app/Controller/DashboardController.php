@@ -24,17 +24,17 @@ class DashboardController extends Controller
 	{
 		$this->show('dashboard/dashboard');
 	}
-	
+
 	public function find_product()
 	{
 		$this->show('dashboard/find_product');
 	}
-		
+
 	public function find_winemaker()
 	{
 		$this->show('dashboard/find_winemaker');
 	}
-	
+
 	public function wishlist()
 	{
 		$this->show('dashboard/wishlist');
@@ -50,8 +50,7 @@ class DashboardController extends Controller
 	{
 		if (!empty($_POST)) {
 			$error = array();
-
-			$form = new Form();
+			$form  = new Form();
 
 			$token   = $_SESSION['user']['id'];
 			$siren   = $_POST['siren'];
@@ -78,6 +77,9 @@ class DashboardController extends Controller
 			$error['cp']      = $form->isValid($cp, 5, 5);
 			$error['city']    = $form->isValid($city);
 
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+
 			$winemaker = new WinemakerModel;
 
 			$winemaker->registerWinemaker($token, $siren, $area, $address, $cp, $city, $lng, $lat, $error);
@@ -97,104 +99,127 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Page gérer/afficher sa cave
+	 * Page gérer/afficher sa cave (Mode Ajout)
+	 * Deux onglets : un premier pour ajouter un produit, un second pour afficher tous les produits du producteur (avec des liens pour les éditer)
 	 *
 	 * @return void
 	 */
 	public function cave()
-	{	
-
-		if(!empty($_POST)){
+	{
+		if(!empty($_POST)) {
 			$error = array();
+			$form  = new Form();
 
-			$id 			= $_POST['winemaker_id'];
- 			$name   	    = $_POST['name'];
-			$color  		= $_POST['color'];
-			$price 			= $_POST['price'];
-			$price 			= str_replace(',','.', $price);
-			$millesime 		= $_POST['millesime'];
-			$cepage 		= $_POST['cepage'];
-			$stock 			= $_POST['stock'];
-			$bio = (empty($_POST['bio'])) ? 0 : 1;
+			// Données du formulaire
+ 			$name      = $_POST['name'];
+			$color     = $_POST['color'];
+			$price 	   = str_replace(',','.', $_POST['price']);
+			$millesime = $_POST['millesime'];
+			$cepage    = $_POST['cepage'];
+			$stock 	   = $_POST['stock'];
+			$bio       = (empty($_POST['bio'])) ? 0 : 1;
 
-			if (empty($name)) {
-				$error['name'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($name) < 3) {
-				$error['name'] = 'Vous devez utiliser au moins <strong>3</strong> caractères.';
-			} elseif (strlen($name) > 20) {
-				$error['name'] = 'Vous ne pouvez pas utiliser plus de <strong>20</strong> caractères.';
-			}
+			// Vérification des données du formulaire
+			$error['name']      = $form->isValid($name, 3, 50);
+			$error['color']     = $form->isValid($color);
+			$error['price']     = $form->isValid($price, '', '', true);
+			$error['millesime'] = $form->isValid($millesime, '4', '4', true);
+			$error['cepage']    = $form->isValid($cepage, '3', '50');
+			$error['stock']     = $form->isValid($stock, '', '', true);
 
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
 
-			if (empty($color)) {
-				$error['color'] = 'Vous devez selectionner une couleur.';
-			}
+			if (empty($error)) {
+				$token = $_SESSION['user']['id'];
 
-
-			if (empty($price)) {
-				$error['price'] = 'Vous devez remplir ce champ.';
-			} elseif (!is_numeric($price)) {
-				$error['price'] = 'Vous devez saisir des chiffres.';
-			}
-
-
-
-			if (empty($millesime)) {
-				$error['millesime'] = 'Vous devez remplir ce champ.';
-			} elseif (!is_numeric($millesime)) {
-				$error['millesime'] = 'Vous devez saisir des chiffres.';
-			} elseif (strlen($millesime) < 4 || strlen($millesime) > 4) {
-				$error['millesime'] = 'Vous devez utiliser <strong>4</strong> chiffres.';
-			}
-
-
-			if (empty($cepage)) {
-				$error['cepage'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($cepage) < 3) {
-				$error['cepage'] = 'Vous devez utiliser au moins <strong>3</strong> caractères.';
-			} elseif (strlen($cepage) > 16) {
-				$error['cepage'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
-			}
-
-			if (empty($stock)) {
-				$error['stock'] = 'Vous devez remplir ce champ.';
-			} elseif (!is_numeric($stock)) {
-				$error['stock'] = 'Vous devez saisir des chiffres.';
-			} elseif (strlen($stock) < 2 ) {
-				$error['stock'] = 'Vous devez utiliser au moins <strong>2</strong> chiffres.';
-			}
-
-			if (empty($error)){
 				$product = new ProductModel();
-				$product->addProduct($id, $name, $color, $price, $millesime, $cepage, $stock, $bio, $error);
-				$msg = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
+				$product->addProduct($token, $name, $color, $price, $millesime, $cepage, $stock, $bio);
+
+				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 
 				setcookie("successMsg", $msg, time() + 10);
 
 				$this->redirectToRoute('cave');
 			}
-
 		}
 
 		$products = new ProductModel();
 		$products = $products->findAll();
 
-		// debug($products);
-		// exit;
-
 		$this->show('dashboard/cave', array(
-			'products' 		=>	$products,
-			'winemakers_id'	=>	(!empty($_POST['winemakers_id'])) ? $_POST['winemakers_id'] : '',
-			'name'		    =>	(!empty($_POST['name'])) ? $_POST['name'] : '',
-			'color' 		=>  (!empty($_POST['color'])) ? $_POST['color'] : '',
-			'price'			=>	(!empty($_POST['price'])) ? $_POST['price'] : '',
-			'millesime'		=>	(!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
-			'cepage'		=>	(!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
-			'stock'			=>	(!empty($_POST['stock'])) ? $_POST['stock'] : '',
-			'bio'			=>	(!empty($_POST['bio'])) ? $_POST['bio'] : '',
-			'error' 		=> 	(isset($error) && !empty($error)) ? $error : ''
+			// Liste des produits de la cave
+			'products' 	=> $products,
 
+			// Données du formulaire
+			'name'		=> (!empty($_POST['name'])) ? $_POST['name'] : '',
+			'color' 	=> (!empty($_POST['color'])) ? $_POST['color'] : '',
+			'price'		=> (!empty($_POST['price'])) ? $_POST['price'] : '',
+			'millesime' => (!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
+			'cepage'    => (!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
+			'stock'	    => (!empty($_POST['stock'])) ? $_POST['stock'] : '',
+			'bio'	    => (!empty($_POST['bio'])) ? $_POST['bio'] : '',
 
+			// Erreurs du formulaire
+			'error'     => (!empty($error)) ? $error : '',
+		));
+	}
+
+	/**
+	 * Page gérer/afficher sa cave (Mode Édition)
+	 * Deux onglets : un premier pour éditer un produit, un second pour afficher tous les produits du producteur
+	 *
+	 * @param int $id L'id du produit
+	 *
+	 * @return void
+	 */
+	public function cave_edit($id)
+	{
+		if(!empty($_POST)) {
+			$error = array();
+			$form  = new Form();
+
+			// Données du formulaire
+			$price = str_replace(',','.', $_POST['price']);
+			$stock = (string) $_POST['stock'];
+
+			// Vérification des données du formulaire
+			$error['price'] = $form->isValid($price, '', '', true);
+			$error['stock'] = $form->isValid($stock, '', '', true);
+
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+
+			if (empty($error)) {
+				$product = new ProductModel();
+				$product->editProduct($id, $price, $stock);
+
+				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
+
+				setcookie("successMsg", $msg, time() + 10);
+
+				$this->redirectToRoute('cave');
+			}
+		}
+
+		$products = new ProductModel();
+		$product  = new ProductModel();
+
+		$products = $products->findAll();
+		$product  = $product->find($id);
+
+		$this->show('dashboard/cave_edit', array(
+			// Liste des produits de la cave
+			'products' => $products,
+			// Fiche du produit en cours d'édition
+			'product'  => $product,
+
+			// Données du formulaire
+			'price'	   => (!empty($_POST['price'])) ? $_POST['price'] : $product['price'],
+			'stock'	   => (!empty($_POST['stock'])) ? $_POST['stock'] : $product['stock'],
+
+			// Erreurs du formulaire
+			'error'    => (!empty($error)) ? $error : '',
 		));
 	}
 
@@ -261,35 +286,6 @@ class DashboardController extends Controller
 		));
 	}
 
-// 	public function addMember()
-// 	{
-// 		/*
-// 		 DevNote :
-// 			*/
-// 		if(!empty($_POST)) {
-
-// 			$data = array (
-// 				'id' => $_POST['id'],
-// 				'firstname' => $_POST['firstname'],
-// 				'lastname' => $_POST['lastname'],
-// 				'email' => $_POST['email'],
-// 				'password' => $_POST['password'],
-// 				'address' => $_POST['address'],
-// 				'city' => $_POST['city'],
-// 				'postcode' => $_POST['postcode'],
-// 				'role' => $_POST['role'],
-// 				'type' => $_POST['type']
-// 			);
-// 		}
-
-// 		$members = new UserModel();
-// 		$members = $members->insert($data);
-
-// 		$this->show ('dashboard/members', array(
-// 				'members' => $members
-// 		));
-// 	}
-
 	/**
 	 * Page Gérer les membres
 	 * Réservée à l'administration
@@ -298,9 +294,8 @@ class DashboardController extends Controller
 	 */
 	public function members()
 	{
-		/*
-			DevNote : Penser à ajouter une vérification que l'utilisateur est bien connecté en tant qu'admin. Si ce n'est pas le cas, le rediriger.
-		*/
+		$this->allowTo('1', 'dashboard');
+
 		$members = new UserModel();
 		$members = $members->findAll();
 
@@ -315,12 +310,11 @@ class DashboardController extends Controller
 	 *
 	 * @return void
 	 */
-	public function members_edit() {
-		/*
-			DevNote : Penser à ajouter une vérification que l'utilisateur est bien connecté en tant qu'admin. Si ce n'est pas le cas, le rediriger.
-		*/
-		if(isset($_POST)){
+	public function members_edit()
+	{
+		$this->allowTo('1', 'dashboard');
 
+		if(isset($_POST)){
 			$member = new UserModel();
 			$id = $member->find($_GET['id']);
 			$member = $member->find('2620528902ee37259c51a57d2367dd67');
@@ -342,9 +336,8 @@ class DashboardController extends Controller
 	 */
 	public function winemakers()
 	{
-		/*
-			DevNote : Penser à ajouter une vérification que l'utilisateur est bien connecté en tant qu'admin. Si ce n'est pas le cas, le rediriger.
-		*/
+		$this->allowTo('1', 'dashboard');
+
 		$winemakers = new WinemakerModel();
 		$winemakers = $winemakers->findAll();
 
@@ -454,5 +447,50 @@ class DashboardController extends Controller
 
 		$this->redirectToRoute('inbox_thread', ['id' => $token]);
 	}
+
+	/**
+	 * Autorise l'accès aux producteurs uniquement
+	 * @param string $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
+	 */
+	public function allowToWinemakers($redirectRoute = '')
+	{
+		$winemaker = new WinemakerModel();
+
+		$token = $_SESSION['user']['id'];
+
+		if ($winemaker->isAWineMaker($token)) {
+			return true;
+		}
+
+		if (!empty($redirectRoute)) {
+			$this->redirectToRoute($redirectRoute);
+		}
+
+		$this->showForbidden();
+	}
+	
+	public function profile_view() {
+
+		$user     = new UserModel();
+
+		$user = $user->getUserByToken($_SESSION['user']['id']);
+		$user_id = $user['id']; // Correspond à mon ID d'utilisateur
+
+		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
+		$monthEng = array('January', 'February');
+		$monthFr = array('Janvier', 'Février');
+
+		$date = strtotime($_SESSION['user']['register_date']);
+		$newformat = date('Y F', $date);
+		$newDate = str_replace($monthEng, $monthFr, date('F')).' '.date('Y');
+
+
+		$this->show('dashboard/profile_view', array(
+				'user' => $user,
+				'date' => $newDate
+
+		));
+	}
+
 
 }

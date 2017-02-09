@@ -29,13 +29,13 @@
 		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
 		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
 
-			
+
 		/* Trouver un produit */
 		['GET', '/dashboard/find_product', 'Dashboard#find_product', 'find_product'],
-			
+
 		/* Trouver un producteur */
 		['GET', '/dashboard/find_winemaker', 'Dashboard#find_winemaker', 'find_winemaker'],
-			
+
 		/* Inbox */
 		['GET', '/dashboard/inbox', 'Dashboard#inbox', 'inbox'], // Liste des fils des communications entre un utilisateur et un autre
 		['GET', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_thread', 'inbox_thread'], // Détails d'un fil de communication
@@ -44,7 +44,7 @@
 		/* Gestion des produits par producteur */
 		['GET|POST', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
 		['GET|POST', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
-		['GET|POST', '/dashboard/cave/edit/[a:id]', 'Dashboard#cave', 'cave_edit'], // Affichage & gestion des produits d'un producteur
+		['GET|POST', '/dashboard/cave/edit/[a:id]', 'Dashboard#cave_edit', 'cave_edit'], // Affichage & gestion des produits d'un producteur
 
 		/* Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/members', 'Dashboard#members', 'members'], // Liste des producteurs et gestions de ces producteurs par admin
@@ -54,8 +54,8 @@
 		['GET', '/dashboard/winemakers/[a:id]', 'Dashboard#winemakers_edit', 'winemakers2'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		/* des profils des utilisateurs */
-		['GET', '/profile/[a:id]', 'Profile#profile_view', 'profile_view'], // Consulter un profil
-		['GET', '/profile/config', 'Profile#profile_config', 'profile_config'], // Page des coordonnées de l'utilisateur
+		['GET', '/dashboard/profile_view/[a:id]', 'Dashboard#profile_view', 'profile_view'], // Consulter un profil
+		['GET', '/dashboard/profile_config/config', 'Dashboard#profile_conig', 'profile_config'], // Page des coordonnées de l'utilisateur
 		//-- End : Pages Dashboard --//
 
 

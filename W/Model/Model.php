@@ -97,7 +97,7 @@ abstract class Model
 
 	/**
 	 * Récupère une ligne de la table en fonction d'un identifiant
-	 * @param  integer Identifiant
+	 * @param  string Identifiant
 	 * @return mixed Les données sous forme de tableau associatif
 	 */
 	public function find($id)

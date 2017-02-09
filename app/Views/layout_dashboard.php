@@ -34,7 +34,7 @@
 
 							<div class="account-popup">
 								<ul>
-									<li><a href="#">Mon compte</a></li>
+									<li><a href="<?= $this->url('profile_view', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
 							</div>
@@ -68,21 +68,27 @@
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
 							</li>
-                            <li <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('newWineMaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
-							</li>
-                            <li <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
-							</li>
 
-                            <li>
-								<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
-                            <li <?php echo ($w_current_route == 'members') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
-							</li>
-                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
-							</li>
+							<?php if ($_SESSION['user']['type'] == 0): ?>
+	                            <li <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('newWineMaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
+								</li>
+							<?php else: ?>
+	                            <li <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ($_SESSION['user']['role'] == 1): ?>
+	                            <li>
+									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+	                            <li <?php echo ($w_current_route == 'members') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
+								</li>
+	                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
+								</li>
+							<?php endif; ?>
                         </ul>
                     </nav>
                 </aside>
