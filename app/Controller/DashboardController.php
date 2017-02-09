@@ -333,15 +333,12 @@ class DashboardController extends Controller
 		$this->allowTo('admin', 'dashboard');
 
 		$winemakers = new WinemakerModel();
-		$winemakers = $winemakers->findAll();
-
-		if(isset($_GET['id'])){
-			$winemaker = new UserModel();
-			$winemaker = $winemaker->find($_GET['winemakers_id']);
-		}
+		// $winemakers = $winemakers->findAll();
+	
+		$winemakers = $winemakers->getWinemakerbyUser($_SESSION['user']['id']);
 
 		$this->show ('dashboard/winemakers', array(
-			'winemakers' => $winemakers
+			'winemakers' => $winemakers,
 		));
 	}
 
@@ -484,6 +481,5 @@ class DashboardController extends Controller
 
 		));
 	}
-
-
+	
 }

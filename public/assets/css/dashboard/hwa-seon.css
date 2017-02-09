@@ -148,6 +148,7 @@
 /* Affichage du profil d'utilisateur */
 
 	div.profile-view {
+		width:50%;
 		margin:4rem auto;
 		background-color:white;
 	}

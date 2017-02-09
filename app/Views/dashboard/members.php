@@ -59,7 +59,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<label for="">Role</label>
-					<input type="number" value="" name="role" placeholder="admin ou membre"  class="form-control"/>
+					<input type="text" value="" name="role" placeholder="admin ou membre"  class="form-control"/>
 				</div>
 				<div class="col-md-6">
 					<label for="">Type</label>
@@ -80,8 +80,6 @@
 		</form>
 	</section>
 	
-
-	
 	<section class="member-list">
 		<table border="1" class="table table-striped">
 			<tr>
@@ -90,7 +88,7 @@
 				<th>Email</th>
 				<th>Adresse</th>
 				<th>Ville</th>
-				<th>Code Postale</th>
+				<th>Code Postal</th>
 				<th>Role</th>
 				<th>Type</th>
 				<th></th>
