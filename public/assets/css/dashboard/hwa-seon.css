@@ -6,8 +6,33 @@
 	    margin-bottom: 5rem;
 	    border-radius: .5rem;
 	    border-top-left-radius: 0;
+
+	    /*display: none;*/
+        position: absolute;
+        background-color: #eddcc0;
+        color: #ffffff;
+        top: 0%;
+        left: 0;
+        transform: translate(0%, 0%);
+        margin-bottom: 10em;
+        z-index: -1;
+        border-radius: 0 4px 4px 4px;
+	}
+
+	section.member-list {
+        width: 100%;
+        /*text-align: center;*/
+        /* height: 60%; */
+        /* margin: 28.6em 7px; */
+        padding: 3em 3em 2em;
+        background-color: #eddcc0;
+        color: #d09038;
+        text-transform: uppercase;
+   
 	}
 	
+	
+
 	table.table {
 		margin-top: 20px;
 		padding:2rem;
@@ -40,10 +65,10 @@
 	form.members div.row {
 		padding: 1.5rem;
 	}
-	form.members div.row label {
+/*	form.members div.row label {
 		display:block;
 		color:#a4300c;
-	}
+	}*/
 	h2.members {
 		color:#d09038;
 		background-color:#eddcc0;
@@ -58,7 +83,7 @@
 	div.form-group label {
 		display:block;
 		margin-top: 2rem;
-		color:#a4300c;
+	/*	color:#a4300c;*/
 	}
 	
 	form .form-control {
@@ -111,11 +136,15 @@
 	
 	form.winemakers div.row label {
 		display: block;
-    	color: #a4300c;
+
 	}
 	
 	th {
 		text-align: center;
+	}
+
+	td.action a:hover {
+		opacity: 0.5;
 	}
 	
 

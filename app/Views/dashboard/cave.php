@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-<section id="cave">
+<section id="onglet">
 
 	<?php if (!empty($_COOKIE['successMsg'])) { ?>
 	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
