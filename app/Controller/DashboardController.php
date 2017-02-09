@@ -20,20 +20,20 @@ class DashboardController extends Controller
 	 *
 	 * @return void
 	 */
-	public function dashboard()
+	public function home()
 	{
 		$this->allowTo(array('user','admin'), 'home');
-		$this->show('dashboard/dashboard');
+		$this->show('dashboard/home');
 	}
 
 	public function find_product()
 	{
-		$this->show('dashboard/find_product');
+		$this->show('dashboard/products');
 	}
 
 	public function find_winemaker()
 	{
-		$this->show('dashboard/find_winemaker');
+		$this->show('dashboard/winemakers');
 	}
 
 	public function wishlist()
@@ -47,7 +47,7 @@ class DashboardController extends Controller
 	 *
 	 * @return void
 	 */
-	public function newWineMaker()
+	public function registerWinemaker()
 	{
 		if (!empty($_POST)) {
 			$error = array();
@@ -86,7 +86,7 @@ class DashboardController extends Controller
 			$winemaker->registerWinemaker($token, $siren, $area, $address, $cp, $city, $lng, $lat, $error);
 
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard');
+				$this->redirectToRoute('dashboard_home');
 
 				$msg = 'Votre profil de producteur a bien été enregistré.';
 
@@ -94,7 +94,7 @@ class DashboardController extends Controller
 			}
 		}
 
-		$this->show('dashboard/newWineMaker', array(
+		$this->show('dashboard/register_winemaker', array(
 			'error' => (isset($error)) ? $error : '',
 		));
 	}
@@ -107,7 +107,7 @@ class DashboardController extends Controller
 	 */
 	public function cave()
 	{
-		$this->allowToWinemakers('dashboard');
+		$this->allowToWinemakers('dashboard_home');
 
 		if(!empty($_POST)) {
 			$error = array();
@@ -178,7 +178,7 @@ class DashboardController extends Controller
 	 */
 	public function cave_edit($id)
 	{
-		$this->allowToWinemakers('dashboard');
+		$this->allowToWinemakers('dashboard_home');
 
 		if(!empty($_POST)) {
 			$error = array();
@@ -361,7 +361,7 @@ class DashboardController extends Controller
 		$newDate = str_replace($monthEng, $monthFr, date('F')).' '.date('Y');
 
 
-		$this->show('dashboard/profile_view', array(
+		$this->show('dashboard/profile', array(
 				'user' => $user,
 				'date' => $newDate
 

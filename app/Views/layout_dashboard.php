@@ -34,7 +34,7 @@
 
 							<div class="account-popup">
 								<ul>
-									<li><a href="<?= $this->url('profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
+									<li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
 							</div>
@@ -53,8 +53,8 @@
                         	<li>
 
                         	</li>
-                            <li <?php echo ($w_current_route == 'dashboard') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('dashboard') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
+                            <li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>
                             <li>
 								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
@@ -70,8 +70,8 @@
 							</li>
 
 							<?php if ($_SESSION['user']['type'] == 0): ?>
-	                            <li <?php echo ($w_current_route == 'newWineMaker') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('newWineMaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
+	                            <li <?php echo ($w_current_route == 'register_winemaker') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('register_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
 								</li>
 							<?php else: ?>
 	                            <li <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>

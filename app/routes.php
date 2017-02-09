@@ -25,7 +25,7 @@
 		//-- End : Pages générales --//
 
 		//-- Start : Pages Dashboard --//
-		['GET', '/dashboard', 'Dashboard#dashboard', 'dashboard'], // Accueil de dashboard lorsqu'un utilisateur est loggué
+		['GET', '/dashboard', 'Dashboard#home', 'dashboard_home'], // Accueil de dashboard lorsqu'un utilisateur est loggué
 		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
 		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
 
@@ -42,7 +42,7 @@
 		['POST', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_posting', 'inbox_posting'], // Envoyer un nouveau message
 
 		/* Gestion des produits par producteur */
-		['GET|POST', '/dashboard/newWineMaker', 'Dashboard#newWineMaker', 'newWineMaker'], // Création d'un nouveau producteur
+		['GET|POST', '/dashboard/register/winemaker', 'Dashboard#registerWinemaker', 'register_winemaker'], // Création d'un nouveau producteur
 		['GET|POST', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
 		['GET|POST', '/dashboard/cave/edit/[a:id]', 'Dashboard#cave_edit', 'cave_edit'], // Affichage & gestion des produits d'un producteur
 
@@ -56,8 +56,10 @@
 		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		/* des profils des utilisateurs */
-		['GET', '/dashboard/profile/[a:id]', 'Dashboard#profile', 'profile'], // Consulter un profil
-		['GET|POST', '/dashboard/profile/config/[a:id]', 'Dashboard#profileConfig', 'profile_config'], // Page des coordonnées de l'utilisateur
+		['GET', '/dashboard/profile/user/[a:id]', 'Dashboard#profile', 'user_profile'], // Consulter un profil
+		['GET', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#profile', 'winemaker_profile'], // Consulter un profil
+		['GET|POST', '/dashboard/profile/user/config/[a:id]', 'Dashboard#profileConfig', 'profile_config'], // Page des coordonnées de l'utilisateur
+
 		//-- End : Pages Dashboard --//
 
 

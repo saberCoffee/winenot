@@ -7,7 +7,7 @@
 	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 	<?php } ?>
 
-	<form action="<?= $this->url('newWineMaker') ?>" method="post">
+	<form action="<?= $this->url('register_winemaker') ?>" method="post">
 		<div class="form-group">
 			<label for="siren">Numéro de SIREN (9 chiffres)</label>
 			<input type="text" name="siren" id="siren" class="form-control" data-min="9" maxlength="9" required="required" autocomplete="off" />

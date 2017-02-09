@@ -80,7 +80,7 @@ class GeneralController extends Controller
 			$user->register($email, $password, $firstname, $lastname, $error);
 
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard');
+				$this->redirectToRoute('dashboard_home');
 			}
 		}
 
@@ -116,7 +116,7 @@ class GeneralController extends Controller
 			$user->login($email, $password, $error);
 
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard');
+				$this->redirectToRoute('dashboard_home');
 			}
 		}
 
@@ -160,10 +160,10 @@ class GeneralController extends Controller
 		}
 
 		$this->show('general/contact', array(
-			'objet'		=>	(!empty($_POST['contact_objet'])) ? $_POST['contact_objet'] : '',
-			'email' 	=>  (!empty($_POST['contact_email'])) ? $_POST['contact_email'] : '',
-			'message'	=>	(!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
-			'error' 	=> 	(isset($error) && !empty($error)) ? $error : ''
+			'objet'	  => (!empty($_POST['contact_objet'])) ? $_POST['contact_objet'] : '',
+			'email'   => (!empty($_POST['contact_email'])) ? $_POST['contact_email'] : '',
+			'message' => (!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
+			'error'   => (isset($error) && !empty($error)) ? $error : ''
 		));
 	}
 

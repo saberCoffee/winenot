@@ -28,7 +28,7 @@ class AdminController extends Controller
         $members = new UserModel();
         $members = $members->findAll();
 
-        $this->show ('dashboard/members', array(
+        $this->show ('admin/members', array(
             'members' => $members
         ));
     }
@@ -75,7 +75,7 @@ class AdminController extends Controller
 			}
 		}
 
-		$this->show('dashboard/members', array(
+		$this->show('admin/members', array(
 				'error' => (isset($error)) ? $error : '',
 				'successMsg' =>  $successMsg,
 				'email'     => (!empty($email)) ? $email : '',
@@ -123,7 +123,7 @@ class AdminController extends Controller
 
 		$winemakers = $winemakers->getWinemakerbyUser($_SESSION['user']['id']);
 
-		$this->show ('dashboard/winemakers', array(
+		$this->show ('admin/winemakers', array(
 			'winemakers' => $winemakers,
 		));
 	}
