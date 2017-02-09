@@ -38,8 +38,8 @@
 
 		/* Inbox */
 		['GET', '/dashboard/inbox', 'Dashboard#inbox', 'inbox'], // Liste des fils des communications entre un utilisateur et un autre
-		['GET', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_thread', 'inbox_thread'], // Détails d'un fil de communication
-		['POST', '/dashboard/inbox/[a:id]', 'Dashboard#inbox_posting', 'inbox_posting'], // Envoyer un nouveau message
+		['GET', '/dashboard/inbox/[a:id]', 'Dashboard#inboxThread', 'inbox_thread'], // Détails d'un fil de communication
+		['POST', '/dashboard/inbox/[a:id]', 'Dashboard#inboxPosting', 'inbox_posting'], // Envoyer un nouveau message
 
 		/* Gestion des produits par producteur */
 		['GET|POST', '/dashboard/register/winemaker', 'Dashboard#registerWinemaker', 'register_winemaker'], // Création d'un nouveau producteur
@@ -49,15 +49,15 @@
 		/* Gestion des membres & producteurs pour Admin */
 		['GET', '/dashboard/admin/members', 'Admin#members', 'admin_members'], // Liste des producteurs et gestions de ces producteurs par admin
 		['POST', '/dashboard/admin/members/add', 'Admin#addMember', 'admin_add_member'], // Ajouter un membre par admin
-		['GET|POST', '/dashboard/admin/members/add/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
+		['GET|POST', '/dashboard/admin/members/edit/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		['GET', '/dashboard/admin/winemakers', 'Admin#winemakers', 'admin_winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
 		['POST', '/dashboard/admin/winemakers/add/', 'Admin#addWinemaker', 'admin_add_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		/* des profils des utilisateurs */
-		['GET', '/dashboard/profile/user/[a:id]', 'Dashboard#profile', 'user_profile'], // Consulter un profil
-		['GET', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#profile', 'winemaker_profile'], // Consulter un profil
+		['GET', '/dashboard/profile/user/[a:id]', 'Dashboard#userProfile', 'user_profile'], // Consulter un profil
+		['GET', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#winemakerProfile', 'winemaker_profile'], // Consulter un profil
 		['GET|POST', '/dashboard/profile/user/config/[a:id]', 'Dashboard#profileConfig', 'profile_config'], // Page des coordonnées de l'utilisateur
 
 		//-- End : Pages Dashboard --//

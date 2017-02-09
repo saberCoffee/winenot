@@ -98,10 +98,9 @@ class AdminController extends Controller
 			$member = new UserModel();
 			$id = $member->find($_GET['id']);
 			$member = $member->find('2620528902ee37259c51a57d2367dd67');
-			debug($member);
 
-			$data = array(
-					'firstname' => strip_tags($_POST['firstname']),
+		    $data = array(
+				'firstname' => strip_tags($_POST['firstname']),
 			);
 
 			$member->update($data, $id);

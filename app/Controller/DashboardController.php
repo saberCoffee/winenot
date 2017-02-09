@@ -26,12 +26,12 @@ class DashboardController extends Controller
 		$this->show('dashboard/home');
 	}
 
-	public function find_product()
+	public function products()
 	{
 		$this->show('dashboard/products');
 	}
 
-	public function find_winemaker()
+	public function winemakers()
 	{
 		$this->show('dashboard/winemakers');
 	}
@@ -258,7 +258,7 @@ class DashboardController extends Controller
 	 * @param  [type] $token [description]
 	 * @return [type]        [description]
 	 */
-	public function inbox_thread($token)
+	public function inboxThread($token)
 	{
 		$user     = new UserModel();
 		$messages = new PrivateMessageModel();
@@ -309,7 +309,7 @@ class DashboardController extends Controller
 	 * @param  [type] $token [description]
 	 * @return [type]        [description]
 	 */
-	public function inbox_posting($token)
+	public function inboxPosting($token)
 	{
 		$user    = new UserModel();
 		$message = new PrivateMessageModel();
@@ -346,11 +346,13 @@ class DashboardController extends Controller
 		$this->showForbidden();
 	}
 
-	public function profile() {
-		$user     = new UserModel();
+	public function userProfile($id) {
+		$user = new UserModel();
 
-		$user = $user->getUserByToken($_SESSION['user']['id']);
+		$user = $user->getUserByToken($id);
 		$user_id = $user['id']; // Correspond à mon ID d'utilisateur
+
+		debug($user);
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
 		$monthEng = array('January', 'February');

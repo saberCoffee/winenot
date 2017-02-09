@@ -74,7 +74,7 @@
 				<div class="col-md-4 ">
 					<div class="form-group <?php if (isset($error['stock'])) { echo 'has-error'; } ?>">
 						<label for="stock">Stock</label>
-						<input type="text" name="stock" id="stock" class="form-control" value="<?= $stock; ?>" data-min="2" required="required">
+						<input type="text" name="stock" id="stock" class="form-control" value="<?= $stock; ?>" data-min="1" required="required">
 						<span class="help-block" <?php if (empty($error['stock'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['stock'])) { echo $error['stock']; } ?>
                    		</span>

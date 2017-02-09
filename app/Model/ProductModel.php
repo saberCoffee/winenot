@@ -33,7 +33,7 @@ class ProductModel extends Model {
 			'cepage' 	   => $cepage,
 			'stock' 	   => $stock,
 			'is_bio' 	   => $bio,
-			'winemaker_id' => $winemaker_id
+			'winemaker_id' => $winemaker_id['id']
 		);
 
 		return $this->insert($data);
