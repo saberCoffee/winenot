@@ -34,7 +34,7 @@
 
 							<div class="account-popup">
 								<ul>
-									<li><a href="<?= $this->url('profile_view', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
+									<li><a href="<?= $this->url('profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
 							</div>
@@ -60,10 +60,10 @@
 								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
                             <li>
-								<a href="<?= $this->url('find_product') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un produit</a>
+								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un produit</a>
 							</li>
                             <li>
-								<a href="<?= $this->url('find_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
+								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
@@ -82,11 +82,11 @@
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
 									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
-	                            <li <?php echo ($w_current_route == 'members') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
+	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 								</li>
-	                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
+	                            <li <?php echo ($w_current_route == 'admin_winemakers') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('admin_winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
 								</li>
 							<?php endif; ?>
                         </ul>

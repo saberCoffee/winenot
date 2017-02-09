@@ -31,10 +31,10 @@
 
 
 		/* Trouver un produit */
-		['GET', '/dashboard/find_product', 'Dashboard#find_product', 'find_product'],
+		['GET', '/dashboard/products', 'Dashboard#products', 'products'],
 
 		/* Trouver un producteur */
-		['GET', '/dashboard/find_winemaker', 'Dashboard#find_winemaker', 'find_winemaker'],
+		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'],
 
 		/* Inbox */
 		['GET', '/dashboard/inbox', 'Dashboard#inbox', 'inbox'], // Liste des fils des communications entre un utilisateur et un autre
@@ -47,15 +47,17 @@
 		['GET|POST', '/dashboard/cave/edit/[a:id]', 'Dashboard#cave_edit', 'cave_edit'], // Affichage & gestion des produits d'un producteur
 
 		/* Gestion des membres & producteurs pour Admin */
-		['GET', '/dashboard/members', 'Dashboard#members', 'members'], // Liste des producteurs et gestions de ces producteurs par admin
-		['POST', '/dashboard/members', 'Dashboard#addMember', 'members3'], // Ajouter un membre par admin
-		['GET', '/dashboard/members/[a:id]', 'Dashboard#members_edit', 'members2'], // Liste des producteurs et gestions de ces producteurs par admin
-		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
-		['GET', '/dashboard/winemakers/[a:id]', 'Dashboard#winemakers_edit', 'winemakers2'], // Liste des producteurs et gestions de ces producteurs par admin
+		['GET', '/dashboard/admin/members', 'Admin#members', 'admin_members'], // Liste des producteurs et gestions de ces producteurs par admin
+		['POST', '/dashboard/admin/members/add', 'Admin#addMember', 'admin_add_member'], // Ajouter un membre par admin
+		['GET|POST', '/dashboard/admin/members/add/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
+
+		['GET', '/dashboard/admin/winemakers', 'Admin#winemakers', 'admin_winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
+		['POST', '/dashboard/admin/winemakers/add/', 'Admin#addWinemaker', 'admin_add_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
+		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		/* des profils des utilisateurs */
-		['GET', '/dashboard/profile_view/[a:id]', 'Dashboard#profile_view', 'profile_view'], // Consulter un profil
-		['GET', '/dashboard/profile_config/config', 'Dashboard#profile_conig', 'profile_config'], // Page des coordonnées de l'utilisateur
+		['GET', '/dashboard/profile/[a:id]', 'Dashboard#profile', 'profile'], // Consulter un profil
+		['GET|POST', '/dashboard/profile/config/[a:id]', 'Dashboard#profileConfig', 'profile_config'], // Page des coordonnées de l'utilisateur
 		//-- End : Pages Dashboard --//
 
 

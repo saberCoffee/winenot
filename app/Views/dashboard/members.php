@@ -4,17 +4,17 @@
 
 
 <div id="onglet" class="container">
-                     
+
 	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->
 	<ul class="tab">
 		<li class="active">Ajouter un utilisateur</li>
 		<li>Liste des membres</li>
 	</ul>
-	
+
 	<section class="addUser active">
-		<form action="<?= $this->url('members3') ?>" method="post" class="members">
+		<form action="<?= $this->url('admin_add_member') ?>" method="post" class="members">
 		<input type="hidden" name="id" value="<?= $members['id']; ?>" />
-		
+
 			<div class="row">
 				<div class="col-md-6">
 					<label for="">Prénom*</label>
@@ -71,7 +71,7 @@
 					<input type="submit" value="ajouter"  class="btn btn-default"/>
 				</div>
 			</div>
-				<?php 
+				<?php
 				if (isset($_SESSION['msg'])) {
 					echo '<div class="alert alert-success" role="alert">'.$_SESSION['msg'].'</div>';
 					unset($_SESSION['msg']);
@@ -79,7 +79,7 @@
 				?>
 		</form>
 	</section>
-	
+
 	<section class="member-list">
 		<table border="1" class="table table-striped">
 			<tr>
@@ -104,9 +104,9 @@
 				<td><?= $member['role']?></td>
 				<td><?= $member['type']?></td>
 				<td class="action"><!--
-				--><a href="<?= $this->url('members', ['id'	 => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" 		alt="utilisateur"></a><!--
-				--><a href="<?= $this->url('members2', ['id' => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" 		alt="modifier"></a><!--
-				--><a href="<?= $this->url('members', ['id'	 => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>"	alt="supprimer"></a><!--
+				--><a href="<?= $this->url('admin_members', ['id'	 => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" 		alt="utilisateur"></a><!--
+				--><a href="<?= $this->url('admin_add_member', ['id' => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" 		alt="modifier"></a><!--
+				--><a href="<?= $this->url('admin_members', ['id'	 => $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>"	alt="supprimer"></a><!--
 				--></td>
 			</tr>
 				<?php endforeach;?>
