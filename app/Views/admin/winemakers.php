@@ -1,7 +1,8 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Administration des producteurs']) ?>
 <?php $this->start('main_content') ?>
 
-<div id="onglet" class="container">
+<section class="section-with-panels">
+<div class="container">
 	<ul class="tabs">
 		<li id="addProducer" class="active">Ajouter un producteur</li>
 		<li id="member-list">Liste des producteurs</li>
@@ -70,7 +71,7 @@
 			<td><?= $winemaker['postcode']?></td>
 			<td><?= $winemaker['tel']?></td>
 			<td class="action"><!--
-			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" alt="modifier"></a><!--<!--
+			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" alt="modifier"></a><!--
 			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a><!--
 			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
 			</td>
@@ -79,6 +80,7 @@
 	</table>
 	</section>
 </div>
+</section>
 
 
 <?php $this->stop('main_content') ?>

@@ -32,7 +32,7 @@ Reset & propriétés de base
         font-family: 'Roboto', sans-serif;
     }
 
-    a, a:hover {
+    a, a:hover, a:visited, a:active, a:focus {
         text-decoration: none;
     }
 
@@ -63,19 +63,42 @@ Menu de navigation horizontal
         position: relative;
         display: inline-block;
 
-        margin: 0 1rem;
+        margin: 0;
     }
 
     header nav > ul > li > a {
         display: block;
+
+        padding: 0 1rem;
 
         color: #a4300c;
         font-weight: bold;
         line-height: 5rem;
     }
 
-    header nav > ul > li a:hover {
+    header nav > ul > li.current > a {
+        position: relative;
         color: #d09038;
+    }
+
+    header nav > ul > li:hover > a {
+        color: #d09038;
+    }
+
+    header nav > ul > li.current > a:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+
+        width: 0;
+        height: 0;
+
+        border-style: solid;
+        border-width: 7px 7px 0 7px;
+        border-color: #d09038 transparent transparent transparent;
+
+        transform: translate(-50%, 0);
     }
 
     div.account-popup {

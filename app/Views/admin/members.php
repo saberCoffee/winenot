@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-<div id="onglet" class="container">
+<section class="section-with-panels">
 
 	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->
 	<ul class="tabs">
@@ -65,9 +65,8 @@
 				<div class="col-md-4">
 					<div class="form-group <?php if (isset($error['password_verif'])) { echo 'has-error'; } ?>">
 						<label for="">Role</label>
-						<select name="role" id="role" class="form-control" value="<?= $role; ?>" required="required">
-								<option value="">-- Selectionner --</option>
-								<option value="user" <?php if ($role == 'user') echo 'selected' ?>>Utilisateur</option>
+						<select name="role" id="role" class="form-control" value="<?= $role; ?>">
+								<option value="user">Utilisateur</option>
 								<option value="admin"  <?php if ($role == 'admin') echo 'selected' ?>>Administrateur</option>
 						</select>
 					</div>
@@ -89,7 +88,7 @@
 				<div class="col-md-4">
 					<div class="form-group <?php if (isset($error['postcode'])) { echo 'has-error'; } ?>">
 						<label for="">Code Postal</label>
-						<input type="text" name="postcode" value="<?= $postcode; ?>" class="form-control" required="required" data-min="5" data-max="5" />
+						<input type="text" name="postcode" value="<?= $postcode; ?>" class="form-control" data-min="5" data-max="5" />
 						<span class="help-block" <?php if (empty($error['postcode'])) { echo 'style="display: none"'; } ?>>
 	                	    <?php if (isset($error['postcode'])) { echo $error['postcode']; } ?>
 	                	</span>
@@ -101,12 +100,10 @@
 					<input type="submit" value="ajouter"  class="btn btn-default"/>
 				</div>
 			</div>
-				<?php
-				if (isset($_SESSION['msg'])) {
-					echo '<div class="alert alert-success" role="alert">'.$_SESSION['msg'].'</div>';
-					unset($_SESSION['msg']);
-				}
-				?>
+			
+			<?php if (!empty($_COOKIE['successMsg'])) { ?>
+			<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+			<?php } ?>
 		</form>
 	</section>
 
@@ -143,7 +140,7 @@
 
 		</table>
 	</section>
-</div>
+</section>
 
 
 <?php $this->stop('main_content') ?>

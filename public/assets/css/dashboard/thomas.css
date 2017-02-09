@@ -11,8 +11,39 @@ h2 {
     color: #d09038;
 }
 
-section.edit-profile {
-    display: none;
+p.info {
+
+}
+
+dl {
+    width: 70%;
+}
+
+dt, dd {
+    display: inline-block;
+    width: 48%;
+}
+
+section#profile > section {
+    padding: 5rem;
+
+    color: #333;
+}
+
+section#profile section section {
+    vertical-align: middle;
+}
+
+section#profile aside {
+    border-right: 5px solid #d09038;
+}
+
+section#profile aside img {
+    display: block;
+
+    margin: 0 auto;
+
+    border-radius: 50%;
 }
 
 section#thread form {

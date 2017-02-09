@@ -63,11 +63,14 @@ $(function() {
     */
     function tabsSystem() {
         $('.tabs li').on('click', function(event) {
-            $(this).addClass('active').siblings().removeClass('active');
+            if ($(this).attr('class') != 'active') {
+                $(this).addClass('active').siblings().removeClass('active');
 
-            var target = $(this).attr('id');
-            $('section.'+target).toggle();
-            $('section.'+target).siblings('section').toggle();
+                var target = $(this).attr('id');
+                
+                $('section.'+target).toggle();
+                $('section.'+target).siblings('section').toggle();
+            }
         });
     }
     //-- End : Système d'onglets --//

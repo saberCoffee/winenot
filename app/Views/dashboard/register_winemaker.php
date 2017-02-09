@@ -74,45 +74,10 @@
 	</form>
 </section>
 
-<script type="text/javascript">
-function initGeolocalisation() {
-	var geocoder = new google.maps.Geocoder();
-
-	// A chaque fois qu'on tape un caractère dans le champ "Code Postal"...
-	$('#cp').on('keyup', function() {
-		$('.city-input').fadeIn(); // La première fois, on affiche le champ "Ville"
-
-		if ($(this).val().length == 5) { // Puis, dès qu'il y a bien 5 caractères dans le code postal, on appelle la fonction de géolocalisation
-			geocodeAddress(geocoder);
-		}
-	});
-}
-
-function geocodeAddress(geocoder) {
-	var address = $('#cp').val();
-
-	geocoder.geocode({'address': address}, function(results, status) {
-		if (status === google.maps.GeocoderStatus.OK) {
-			var country = results[0].address_components[4].long_name;
-
-			if (country == 'France') {
-				var city = results[0].address_components[1].long_name;
-
-				$('.city-input').children('input').val(city);
-			} else {
-				$('.city-input').children('input').val('');
-			}
-		} else {
-			$('.city-input').children('input').val('');
-		}
-	});
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&callback=initGeolocalisation" async defer></script>
-
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-    <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/geolocalisation.js') ?>" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&callback=initGeolocalisation" async defer></script>
 <?php $this->stop('js') ?>

@@ -67,7 +67,7 @@
 /*
     Cave
 */
-    #onglet {
+    .section-with-panels {
         position: relative;
         width: 60%;
         /* height: 60%; */
@@ -76,6 +76,14 @@
         background-color: #eddcc0;
         color: #d09038;
 
+    }
+
+    .section-with-panels section {
+        display: none;
+    }
+
+    .section-with-panels section:first-of-type {
+        display: block;
     }
 
     .addProduct{
@@ -147,7 +155,7 @@
         border-radius: 5px;
         transform: translate(0%, -100%);
     }
-    
+
    .tabs li{
         font-size: 1.1em;
         font-weight: bold;

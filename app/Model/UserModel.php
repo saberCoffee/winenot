@@ -80,17 +80,15 @@ class UserModel extends UsersModel
 		$id =  md5(uniqid(rand(), true));
 
 		$data = array(
-				'id'        => $id,
-				'email'     => $email,
-				'password'  => $hashedPassword,
-				'firstname' => $firstname,
-				'lastname'  => $lastname,
-				'address'	=> $address,
-				'city'		=> $city,
-				'postcode'	=> $postcode,
-				'role'		=> $role,
-			
-
+			'id'        => $id,
+			'email'     => $email,
+			'password'  => $hashedPassword,
+			'firstname' => $firstname,
+			'lastname'  => $lastname,
+			'address'	=> $address,
+			'city'		=> $city,
+			'postcode'	=> $postcode,
+			'role'		=> $role,
 		);
 
 		$this->insert($data);
@@ -100,6 +98,11 @@ class UserModel extends UsersModel
 		$mp_token   = $classToken->generateToken($id, 'MP');
 
 		$user = $this->find($id);
+	}
+
+
+	public function updateProfile($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $error)
+	{
 
 	}
 
@@ -110,7 +113,7 @@ class UserModel extends UsersModel
 	 */
 	public function getAllAdmins()
 	{
-		$sql = "SELECT * FROM users WHERE role = 1";
+		$sql = "SELECT * FROM users WHERE role = 'admin'";
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();

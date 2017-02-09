@@ -2,11 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-<section id="onglet">
-
-	<?php if (!empty($_COOKIE['successMsg'])) { ?>
-	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
-	<?php } ?>
+<section class="section-with-panels">
 
 	<ul class="tabs">
 		<li id="addProduct" class="active">Ajout de produit</li>
@@ -95,10 +91,12 @@
 			</div>
 
 			<div>
-			<!-- INPUT HIDDEN TEMPORAIRE -->
-				<input type="hidden" name="id" value="1">
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
+
+			<?php if (!empty($_COOKIE['successMsg'])) { ?>
+			<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+			<?php } ?>
 		</form>
 	</section>
 

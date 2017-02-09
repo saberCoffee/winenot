@@ -353,23 +353,32 @@ class DashboardController extends Controller
 		$user['id'] = $id; // On remplace l'id de l'utilisateur par son token
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
-		$monthEng = array('January', 'February');
-		$monthFr = array('Janvier', 'Février');
+		$monthsEng = array('January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December');
+		$monthsFr  = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
 
-		$date = strtotime($_SESSION['user']['register_date']);
+		$date      = strtotime($_SESSION['user']['register_date']);
 		$newformat = date('Y F', $date);
-		$newDate = str_replace($monthEng, $monthFr, date('F')).' '.date('Y');
+		$newDate   = str_replace($monthsEng, $monthsFr, date('F')).' '.date('Y');
 
 		// Afin de cacher certaines informations, on initialise une variable qui détermine si le profil consulté appartient à l'utilisateur
 		$is_owner = ($user['id'] == $_SESSION['user']['id']) ? 1 : 0;
 		$profile  = ($is_owner) ? 'Mon profil' : 'Profil de ' . $user['firstname'] . ' ' . $user['lastname'];
 
 		$this->show('dashboard/profile', array(
+			// Données du profil
+			'is_owner'      => $is_owner,
+			'profile'       => $profile,
 			'user'          => $user,
 			'register_date' => $newDate,
 
-			'is_owner'      => $is_owner,
-			'profile'       => $profile
+			// Données du formulaire
+			'email'	        => (!empty($_POST['email'])) ? $_POST['email'] : $user['email'],
+			'address'       => (!empty($_POST['address'])) ? $_POST['address'] : $user['address'],
+			'postcode'	    => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $user['postcode'],
+			'city'	        => (!empty($_POST['city'])) ? $_POST['city'] : $user['city'],
+
+			// Erreurs du formulaire
+			'error'        => (!empty($error)) ? $error : '',
 		));
 	}
 
