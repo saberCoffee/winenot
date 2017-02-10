@@ -294,6 +294,7 @@ HOMEPAGE
 
     #AboutUs p {
 		margin: 1rem auto;
+		text-align: left;
     }
 
 

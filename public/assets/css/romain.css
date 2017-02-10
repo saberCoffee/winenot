@@ -113,6 +113,11 @@
 			margin-bottom: 0rem;
 		}
 
+		#adjustPaddingBootstrap{
+			padding-left: 0px;
+			padding-right: 0px ;
+		}
+
 		.flip-container {
 			height: auto;
 

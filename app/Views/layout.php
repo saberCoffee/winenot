@@ -47,6 +47,7 @@
 				</nav>
 			</header>
 		</div>
+	
 
 		<main>
 			<?= $this->section('main_content') ?>
