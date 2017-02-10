@@ -58,10 +58,10 @@
                             <li>
 								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
-                            <li>
-								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Tous nos vins</a>
+                            <li <?php echo ($w_current_route == 'products') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>">Tous nos vins</a>
 							</li>
-                            <li>
+                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
