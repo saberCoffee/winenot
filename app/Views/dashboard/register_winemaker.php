@@ -50,10 +50,10 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="form-group">
-					<label for="cp">Code postal</label>
-					<input type="text" name="cp" id="cp" class="form-control" maxlength="5" autocomplete="off" />
-					<span class="help-block" <?php if (empty($error['cp'])) { echo 'style="display: none"'; } ?>>
-						<?php if (isset($error['cp'])) { echo $error['cp']; } ?>
+					<label for="postcode">Code postal</label>
+					<input type="text" name="postcode" id="postcode" class="form-control" maxlength="5" autocomplete="off" />
+					<span class="help-block" <?php if (empty($error['postcode'])) { echo 'style="display: none"'; } ?>>
+						<?php if (isset($error['postcode'])) { echo $error['postcode']; } ?>
 					</span>
 				</div>
 			</div>
