@@ -126,6 +126,32 @@ class UsersModel extends Model
 	}
 
 	/**
+	 * Récuupère les informations d'un utilisateur à partir de son tokens
+	 * @param string $email L'email à tester
+	 *
+	 * @return boolean true si présent en base de données, false sinon
+	 */
+	public function getUserById($id)
+	{
+
+		$app = getApp();
+
+		$sql = 'SELECT `token` FROM `tokens` WHERE `user_id` = :id LIMIT 1';
+
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':id', $id);
+		if($sth->execute()){
+			$foundUser = $sth->fetch();
+			if($foundUser){
+				return $foundUser;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Teste si un pseudo est présent en base de données
 	 * @param string $username Le pseudo à tester
 	 * @return boolean true si présent en base de données, false sinon

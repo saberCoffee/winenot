@@ -9,6 +9,7 @@ use \W\WineNotClasses\Form;
 
 use \Model\UserModel;
 use \Model\ProductModel;
+use \Model\TokenModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
 
@@ -31,8 +32,13 @@ class AdminController extends Controller
      */
     public function members()
     {
-        $members = new UserModel();
-        $members = $members->findAll();
+        $memberModel = new UserModel();
+        $members = $memberModel->findAll();
+
+        foreach($members as $member)
+        {
+        	$member['id'] = $memberModel->getUserById($member['id']);
+        }
 
         $this->show ('admin/members', array(
             'members' 	=> $members,

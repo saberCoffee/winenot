@@ -164,18 +164,23 @@ abstract class Model
 
 	/**
 	 * Récupère toutes les lignes de la table
+	 * @param $cols Les colonnes à récupérer dans la requête
+	 * @param $where La condition selon laquelle effectuer la requête
 	 * @param $orderBy La colonne en fonction de laquelle trier
 	 * @param $orderDir La direction du tri, ASC ou DESC
 	 * @param $limit Le nombre maximum de résultat à récupérer
 	 * @param $offset La position à partir de laquelle récupérer les résultats
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAll($cols = "*", $orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null)
+	public function findAll($cols = "*", $where = '', $orderBy = '', $orderDir = 'ASC', $limit = null, $offset = null)
  	{
-
  		$sql = 'SELECT ' . $cols . ' FROM ' . $this->table;
- 		if (!empty($orderBy)){
 
+		if (!empty($where)) {
+			$sql .= 'WHERE ' . $where;
+		}
+
+ 		if (!empty($orderBy)) {
  			//sécurisation des paramètres, pour éviter les injections SQL
  			if(!preg_match('#^[a-zA-Z0-9_$]+$#', $orderBy)){
  				die('Error: invalid orderBy param');
@@ -193,16 +198,17 @@ abstract class Model
 
  			$sql .= ' ORDER BY '.$orderBy.' '.$orderDir;
  		}
-         if($limit){
-             $sql .= ' LIMIT '.$limit;
-             if($offset){
-                 $sql .= ' OFFSET '.$offset;
-             }
-         }
- 		$sth = $this->dbh->prepare($sql);
- 		$sth->execute();
 
- 		return $sth->fetchAll();
+		if($limit){
+			$sql .= ' LIMIT '.$limit;
+			if($offset){
+				$sql .= ' OFFSET '.$offset;
+			}
+		}
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
  	}
 
 	/**
