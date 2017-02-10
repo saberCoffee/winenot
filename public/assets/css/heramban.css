@@ -1,3 +1,7 @@
+
+/*
+CAROUSEL
+*/
 .hide-bullets {
 list-style:none;
 margin-left: 2px;
@@ -19,6 +23,13 @@ margin-top:20px;
     overflow: hidden;
 }
 
+/*PARAGRAPHE A COTE DU CAROUSEL*/
+
+h4{
+  margin-bottom: 10px;
+  color: #e5e5e5;
+}
+
 #ProductMonth p {
     color: #e5e5e5;
     margin-bottom: 21px;
@@ -26,6 +37,7 @@ margin-top:20px;
     font-size: 14px;
 }
 
+/*UNE CITATION DU PRODUCTEUR*/
 blockquote {
   color: #e5e5e5;
   width: 80%;
@@ -45,8 +57,9 @@ blockquote small{
 
 section#ProductMonth .col-sm-2 {
     width: 11.666667%;
-    margin: 4px;
+    margin: 0px auto;
 }
+
 
 /*
 LE MAG

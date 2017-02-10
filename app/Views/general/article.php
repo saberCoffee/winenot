@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-<body>
+
     <section id="lemag">
     <h2>Le Mag</h2>
         <div id="page">
@@ -57,7 +57,7 @@
                  </div>
              </div>
     </section>
-</body>
+
 
 
 
