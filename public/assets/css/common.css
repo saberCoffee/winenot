@@ -8,6 +8,7 @@
 	#d09038 orange claire
 	#a7dadc bleu
 	#eddcc0 beige
+	#242424 NoirGris
 */
 
 
@@ -362,12 +363,13 @@ HOMEPAGE
 	/* Fin animation*/
 
 	#ProductMonth {
-		background-color: #a22b49;
+		background-color: #242424;
 		text-align: center;
 	}
 
 	#ProductMonth h2 {
-		background-color: #a22b49;
+		color: #c1d039;
+		background-color: #242424;
 	}
 
 	#WinmakerSearch {
