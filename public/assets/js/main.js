@@ -32,7 +32,7 @@ $(function() {
 	//-- Start : Carousel de la homepage --//
 	function carouselHomepage() {
 		$('#myCarousel').carousel({
-		    interval: 0
+		    interval: 5000
 		});
 
 		$('#carousel-text').html($('#slide-content-0').html());

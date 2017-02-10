@@ -75,7 +75,7 @@
 
 	                        <div id="slide-content-1">
 	                            <h2>Héramban Minatchy</h2>
-	                            <p>Producteur à La Réunion</p>
+	                            <h4>Producteur à La Réunion</h4>
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -83,7 +83,7 @@
 	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-	                            <blockquote> <em>"Il court, il court, le furet, Le furet du bois joli..."</em>
+	                            <blockquote> <em>"Un matin on défend toute la galaxie et à cinq heures, on se retrouve à siroter du darjeeling avec marie-Antoinette et sa petite soeur..."</em>
 	                           <small>Héramban Minatchy</small></blockquote></p>
 
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -100,7 +100,7 @@
 
 	                        <div id="slide-content-2">
 	                            <h2>Thomas Mion</h2>
-	                            <p>Producteur à Vincennes</p>
+	                            <h4>Producteur à Vincennes</h4>
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -108,8 +108,8 @@
 	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-	                            <blockquote> <em>"Il court, il court, le furet, Le furet du bois joli..."</em>
-	                           <small>Héramban Minatchy</small></blockquote></p>
+	                            <blockquote> <em>"Votre manque de foie me consterne..."</em>
+	                           <small>Thomas Mion</small></blockquote></p>
 
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -126,7 +126,7 @@
 
 	                        <div id="slide-content-3">
 	                            <h2>Romain Hamel</h2>
-	                            <p>Producteur chez lui</p>
+	                            <h4>Producteur chez lui</h4>
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -134,8 +134,8 @@
 	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-	                            <blockquote> <em>"Il court, il court, le furet, Le furet du bois joli..."</em>
-	                           <small>Héramban Minatchy</small></blockquote></p>
+	                            <blockquote> <em>"Dans mille ans, y aura plus de mecs ni de nanas. Que des branleurs. Je trouve ça génial..."</em>
+	                           <small>Romain Hamel</small></blockquote></p>
 
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -151,7 +151,7 @@
 
 	                        <div id="slide-content-4">
 	                            <h2>Hwa Seon Lecouey</h2>
-	                            <p>Producteur à Séoul</p>
+	                            <h4>Producteur à Séoul</h4>
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -159,8 +159,8 @@
 	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-	                            <blockquote> <em>"Il court, il court, le furet, Le furet du bois joli..."</em>
-	                           <small>Héramban Minatchy</small></blockquote></p>
+	                            <blockquote> <em>"Vous êtes venu dans cette casserole ? Vous êtes plus brave que je ne pensais..."</em>
+	                           <small>Hwa Seon Lecouey</small></blockquote></p>
 
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -176,7 +176,7 @@
 
 	                        <div id="slide-content-5">
 	                            <h2>Yann Le Merrer</h2>
-	                            <p>Producteur à la Retraite</p>
+	                            <h4>Producteur à la Retraite</h4>
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -184,7 +184,7 @@
 	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-	                            <blockquote> <em>"Il court, il court, le furet, Le furet du bois joli..."</em>
+	                            <blockquote> <em>"Ecoutez Thérèse. Je n'aime pas dire du mal mais effectivement elle est gentille..."</em>
 	                           <small>Héramban Minatchy</small></blockquote></p>
 
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
