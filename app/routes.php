@@ -29,10 +29,9 @@
 		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
 		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
 
-
 		/* Produits */
 		['GET', '/dashboard/products', 'Dashboard#products', 'products'], // Tous les produits
-		['GET', '/dashboard/products/[a:name]/[:id]', 'Dashboard#product', 'dashboard_product'], // Fiche produit (version dashboard)
+		['GET', '/dashboard/products/[:name]/[:id]', 'Dashboard#product', 'dashboard_product'], // Fiche produit (version dashboard)
 
 		/* Producteurs*/
 		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'], // Tous producteurs
