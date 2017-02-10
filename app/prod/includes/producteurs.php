@@ -185,7 +185,7 @@
 	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 	                            <blockquote> <em>"Ecoutez Thérèse. Je n'aime pas dire du mal mais effectivement elle est gentille..."</em>
-	                           <small>Héramban Minatchy</small></blockquote></p>
+	                           <small>Yann Le Merrer</small></blockquote></p>
 
 	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
