@@ -415,7 +415,7 @@ class DashboardController extends Controller
 
 	public function userProfile($token)
 	{
-
+		// Pour Hwa-Seon
 		$user = new UserModel();
 
 		$user = $user->getUserByToken($token);
