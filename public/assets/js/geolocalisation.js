@@ -23,12 +23,12 @@ function geocodeAddress(geocoder) {
 			if (country == 'France') {
 				var city = results[0].address_components[1].long_name;
 
-				$('.city-input').children('input').val(city);
+				$('#city').val(city);
 			} else {
-				$('.city-input').children('input').val('Ville introuvable');
+				$('#city').val('Ville introuvable');
 			}
 		} else {
-			$('.city-input').children('input').val('Ville introuvable');
+			$('#city').val('Ville introuvable');
 		}
 	});
 }

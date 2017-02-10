@@ -62,7 +62,7 @@
 					<div class="col-md-4">
 						<div class="form-group <?php if (isset($error['password'])) { echo 'has-error'; } ?>">
 							<label for="">Mot de passe</label>
-							<input type="password" name="password"  class="form-control" required="required" data-min="6" 	data-max="16" maxlength="16"/>
+							<input type="password" name="password"  class="form-control" required="required" data-min="6" data-max="16" maxlength="16" placeholder="" />
 							<span class="help-block" <?php if (empty($error['password'])) { echo 'style="display: none"'; } ?>>
 								<?php if (isset($error['password'])) { echo $error['password']; } ?>
 							</span>
@@ -99,7 +99,7 @@
 					</div>
 
 					<div class="col-md-4">
-						<div class="form-group city-input">
+						<div class="form-group <?php if (empty($city)) { echo 'city-input'; } ?>">
 							<label for="city">Ville</label>
 							<input type="text" name="city" id="city" required="required" class="form-control" autocomplete="off" />
 							<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
