@@ -86,9 +86,12 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="descriptionProduct">
-						<div class="form-group">
+						<div class="form-group <?php if (isset($error['description'])) { echo 'has-error'; } ?>">
 							<label for="description">Description de votre produit</label>
-  							<textarea class="form-control"  id="description"></textarea>
+  							<textarea class="form-control"  id="description" name="description" required="required" data-max="200" maxlength="200"></textarea>
+							<span class="help-block" <?php if (empty($error['description'])) { echo 'style="display: none"'; } ?>>
+	                        <?php if (isset($error['description'])) { echo $error['description']; } ?>
+	                   		</span>
 						</div>
 					</div>
 				</div>

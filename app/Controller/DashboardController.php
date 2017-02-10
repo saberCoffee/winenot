@@ -145,29 +145,31 @@ class DashboardController extends Controller
 			$form  = new Form();
 
 			// Données du formulaire
- 			$name      = $_POST['name'];
-			$color     = $_POST['color'];
-			$region    = $winemaker['region'];
-			$price 	   = str_replace(',','.', $_POST['price']);
-			$millesime = $_POST['millesime'];
-			$cepage    = $_POST['cepage'];
-			$stock 	   = $_POST['stock'];
-			$bio       = (empty($_POST['bio'])) ? 0 : 1;
+ 			$name        = $_POST['name'];
+			$color       = $_POST['color'];
+			$region      = $winemaker['region'];
+			$price 	     = str_replace(',','.', $_POST['price']);
+			$description = $_POST['description'],
+			$millesime   = $_POST['millesime'];
+			$cepage      = $_POST['cepage'];
+			$stock 	     = $_POST['stock'];
+			$bio         = (empty($_POST['bio'])) ? 0 : 1;
 
 			// Vérification des données du formulaire
-			$error['name']      = $form->isValid($name, 3, 50);
-			$error['color']     = $form->isValid($color);
-			$error['price']     = $form->isValid($price, '', '', true);
-			$error['millesime'] = $form->isValid($millesime, 4, 4, true);
-			$error['cepage']    = $form->isValid($cepage, 3, 50);
-			$error['stock']     = $form->isValid($stock, '', '', true);
+			$error['name']        = $form->isValid($name, 3, 50);
+			$error['color']       = $form->isValid($color);
+			$error['price']       = $form->isValid($price, '', '', true);
+			$error['description'] = $form->isValid($description, '', 200)
+			$error['millesime']   = $form->isValid($millesime, 4, 4, true);
+			$error['cepage']      = $form->isValid($cepage, 3, 50);
+			$error['stock']       = $form->isValid($stock, '', '', true);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
 			if (empty($error)) {
 				$token = $_SESSION['user']['id'];
-				$products->addProduct($token, $name, $color, $region, $price, $millesime, $cepage, $stock, $bio);
+				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio);
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 				setcookie("successMsg", $msg, time() + 5, '/');
@@ -183,13 +185,14 @@ class DashboardController extends Controller
 			'products' 	=> $products,
 
 			// Données du formulaire
-			'name'		=> (!empty($_POST['name'])) ? $_POST['name'] : '',
-			'color' 	=> (!empty($_POST['color'])) ? $_POST['color'] : '',
-			'price'		=> (!empty($_POST['price'])) ? $_POST['price'] : '',
-			'millesime' => (!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
-			'cepage'    => (!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
-			'stock'	    => (!empty($_POST['stock'])) ? $_POST['stock'] : '',
-			'bio'	    => (!empty($_POST['bio'])) ? $_POST['bio'] : '',
+			'name'		  => (!empty($_POST['name'])) ? $_POST['name'] : '',
+			'color' 	  => (!empty($_POST['color'])) ? $_POST['color'] : '',
+			'price'		  => (!empty($_POST['price'])) ? $_POST['price'] : '',
+			'description' => (!empty($_POST['description'])) ? $_POST['description'] : '',
+			'millesime'   => (!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
+			'cepage'      => (!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
+			'stock'	      => (!empty($_POST['stock'])) ? $_POST['stock'] : '',
+			'bio'	      => (!empty($_POST['bio'])) ? $_POST['bio'] : '',
 
 			// Erreurs du formulaire
 			'error'     => (!empty($error)) ? $error : '',
@@ -248,8 +251,9 @@ class DashboardController extends Controller
 			'product'  => $product,
 
 			// Données du formulaire
-			'price'	   => (!empty($_POST['price'])) ? $_POST['price'] : $product['price'],
-			'stock'	   => (!empty($_POST['stock'])) ? $_POST['stock'] : $product['stock'],
+			'price'	      => (!empty($_POST['price'])) ? $_POST['price'] : $product['price'],
+			'description' => (!empty($_POST['description'])) ? $_POST['description'] : '',
+			'stock'	      => (!empty($_POST['stock'])) ? $_POST['stock'] : $product['stock'],
 
 			// Erreurs du formulaire
 			'error'    => (!empty($error)) ? $error : '',
