@@ -69,9 +69,7 @@
 					    </div>
 					</div>
 				</div>
-			</div><!-- Fin de la row bootstrap -->
-
-			<div class="row">
+			
 
 				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="">
@@ -113,7 +111,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 col-sm-12 ">
+				<div class="col-sm-12 col-md-6 col-lg-4 ">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
