@@ -1,3 +1,6 @@
+
+/* DASHBOARD/CSS */
+
 /* Affichage des membres */
 
 	section.member-list {
@@ -166,3 +169,72 @@
 	nav ul {
 		list-style:none;
 	}
+
+	
+/* Trouver les producteurs */
+	input.pac-input {
+		border:0
+	}
+	.input-group {
+		border-radius: 5px;
+
+	}
+	.input-group .form-control:first-child {
+		border: 1px solid #eddcc0;
+		border-radius: 5px;
+	}
+	.stylish-input-group .form-control {
+		box-shadow: 0 0 0;
+	}
+	#GoogleMap {
+		margin: 2em auto;
+		background-color: #eddcc0;
+		padding:4em;
+		border-radius: 5px;
+	}
+
+	#dashboard_map {
+		height:400px;
+		margin-top: 2em;
+		border-radius: 5px;
+	}
+	
+	#dashboard_winmakerSearch > p {
+		color: #d09038;
+	}
+	#dashboard_winmakerSearch form {
+	    width: 100%;
+	    max-width: 1170px;
+	    margin: 2rem auto;
+	}
+	.input-group-addon:last-child {
+	    border: none;
+	    border-radius: 5px;
+	}
+	.stylish-input-group button {
+	    border: 0;
+	    background: transparent;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
