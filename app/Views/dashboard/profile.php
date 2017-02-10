@@ -159,6 +159,13 @@
 				</div>
 
 				<div class="row">
+					 <div class="productPics">
+						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
+						<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
+					</div>
+				</div>
+
+				<div class="row">
 					<input type="submit" value="Mettre à jour"  class="btn btn-default"/>
 				</div>
 

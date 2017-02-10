@@ -128,6 +128,12 @@ body.jsActive .city-input {
 }
 
 /* Modifications des classes bootstrap */
+.alert {
+    display: inline-block;
+
+    width: 100%;
+}
+
 .alert-info {
     background-color: #e8c791;
     border-color: #d09038;

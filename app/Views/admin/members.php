@@ -2,6 +2,10 @@
 
 <?php $this->start('main_content') ?>
 
+<?php if (!empty($_COOKIE['successMsg'])) { ?>
+<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+<?php } ?>
+
 <section class="section-with-panels">
 
 	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->
@@ -100,10 +104,7 @@
 					<input type="submit" value="ajouter"  class="btn btn-default"/>
 				</div>
 			</div>
-			
-			<?php if (!empty($_COOKIE['successMsg'])) { ?>
-			<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
-			<?php } ?>
+
 		</form>
 	</section>
 

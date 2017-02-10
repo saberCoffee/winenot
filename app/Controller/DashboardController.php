@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \W\Security\StringUtils;
 use \W\Security\AuthentificationModel;
 use \W\Model\Model;
 use \W\WineNotClasses\Form;
@@ -46,11 +47,26 @@ class DashboardController extends Controller
 			$token = $user->getTokenByUserId($product['winemaker_id']);
 
 			$products[$i]['winemaker'] = $winemakers->getWinemakerFullDetails($token);
+
+			// Pour créer un lien avec le nom du produit dans l'url, on doit créer une version clean du nom du produit
+			$products[$i]['clean_name'] = StringUtils::clean_url($products[$i]['name']);
+
 			++$i;
 		}
 
 		$this->show('dashboard/products', array(
 			'products' => $products
+		));
+	}
+
+	public function product($name, $id)
+	{
+		$productModel = new ProductModel();
+
+		$product = $productModel->find($id);
+
+		$this->show('dashboard/product', array(
+			'product' => $product
 		));
 	}
 
@@ -224,18 +240,20 @@ class DashboardController extends Controller
 			$form  = new Form();
 
 			// Données du formulaire
-			$price = str_replace(',','.', $_POST['price']);
-			$stock = (string) $_POST['stock'];
+			$price       = str_replace(',','.', $_POST['price']);
+			$description = $_POST['description'];
+			$stock       = (string) $_POST['stock'];
 
 			// Vérification des données du formulaire
-			$error['price'] = $form->isValid($price, '', '', true);
-			$error['stock'] = $form->isValid($stock, '', '', true);
+			$error['price']       = $form->isValid($price, '', '', true);
+			$error['description'] = $form->isValid($description, '', 200);
+			$error['stock']       = $form->isValid($stock, '', '', true);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$productModel->editProduct($id, $price, $stock);
+				$productModel->editProduct($id, $price, $description, $stock);
 
 				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
 				setcookie("successMsg", $msg, time() + 5, '/');

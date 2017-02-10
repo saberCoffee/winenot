@@ -2,6 +2,10 @@
 
 <?php $this->start('main_content') ?>
 
+<?php if (!empty($_COOKIE['successMsg'])) { ?>
+	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+<?php } ?>
+
 <section class="section-with-panels">
 
 	<ul class="tabs">
@@ -22,7 +26,7 @@
 			<div class="row">
 				<div class="col-md-4 ">
 					<div class="form-group <?php if (isset($error['price'])) { echo 'has-error'; } ?>">
-						<label for="price">Prix (en euro)</label>
+						<label for="price">Prix (en euro)*</label>
 						<input type="text" name="price" id="price" class="form-control" value="<?= $price; ?>" required="required">
 						<span class="help-block" <?php if (empty($error['price'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['price'])) { echo $error['price']; } ?>
@@ -32,7 +36,7 @@
 
 				<div class="col-md-4 ">
 					<div class="form-group <?php if (isset($error['stock'])) { echo 'has-error'; } ?>">
-						<label for="stock">Stock</label>
+						<label for="stock">Stock*</label>
 						<input type="text" name="stock" id="stock" class="form-control" value="<?= $stock; ?>" required="required">
 						<span class="help-block" <?php if (empty($error['stock'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['stock'])) { echo $error['stock']; } ?>
@@ -45,7 +49,7 @@
 				<div class="col-md-8">
 					<div class="descriptionProduct">
 						<div class="form-group <?php if (isset($error['description'])) { echo 'has-error'; } ?>">
-							<label for="description">Description de votre produit</label>
+							<label for="description">Description de votre produit*</label>
   							<textarea class="form-control"  id="description" name="description" required="required" data-max="200" maxlength="200"></textarea>
 							<span class="help-block" <?php if (empty($error['description'])) { echo 'style="display: none"'; } ?>>
 	                        <?php if (isset($error['description'])) { echo $error['description']; } ?>
@@ -65,10 +69,6 @@
 			<div>
 				<input type="submit" class="btn btn-default" value="Modifier">
 			</div>
-
-			<?php if (!empty($_COOKIE['successMsg'])) { ?>
-				<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
-			<?php } ?>
 		</form>
 	</section>
 

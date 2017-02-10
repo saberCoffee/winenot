@@ -115,6 +115,7 @@
         text-align: left;
     }
 
+    .edit-profile .btn,
     .addProduct .btn {
         display: block;
         width: 100%;
@@ -180,12 +181,12 @@
         text-align: center;
     }
 
-    .productPics>.btn-file {
+    .productPics .btn-file {
         position: relative;
         overflow: hidden;
     }
 
-    .productPics>.btn-file input[type=file] {
+    .productPics .btn-file input[type=file] {
         position: absolute;
         top: 0;
         right: 0;
@@ -201,7 +202,7 @@
         display: block;
     }
 
-     .productPics>.btn {
+     .productPics .btn {
         width: 60%;
         margin: 1em auto 0;
         font-size: 1rem;

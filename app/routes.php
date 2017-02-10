@@ -29,12 +29,12 @@
 		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
 		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
 
+		/* Produits */
+		['GET', '/dashboard/products', 'Dashboard#products', 'products'], // Tous les produits
+		['GET', '/dashboard/products/[:name]/[:id]', 'Dashboard#product', 'dashboard_product'], // Fiche produit (version dashboard)
 
-		/* Trouver un produit */
-		['GET', '/dashboard/products', 'Dashboard#products', 'products'],
-
-		/* Trouver un producteur */
-		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'],
+		/* Producteurs*/
+		['GET', '/dashboard/winemakers', 'Dashboard#winemakers', 'winemakers'], // Tous producteurs
 
 		/* Inbox */
 		['GET', '/dashboard/inbox', 'Dashboard#inbox', 'inbox'], // Liste des fils des communications entre un utilisateur et un autre
@@ -55,7 +55,7 @@
 		['POST', '/dashboard/admin/winemakers/add/', 'Admin#addWinemaker', 'admin_add_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 
-		/* des profils des utilisateurs */
+		/* Pages des profils des utilisateurs */
 		['GET|POST', '/dashboard/profile/user/[a:id]', 'Dashboard#userProfile', 'user_profile'], // Consulter un profil
 		['GET|POST', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#winemakerProfile', 'winemaker_profile'], // Consulter un profil
 

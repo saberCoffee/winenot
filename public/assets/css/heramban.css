@@ -6,6 +6,7 @@ CAROUSEL
 list-style:none;
 margin-left: 2px;
 margin-top:20px;
+
 }
 
 .carousel-inner{
@@ -23,12 +24,39 @@ margin-top:20px;
     overflow: hidden;
 }
 
+/*
+GRAYSCALE
+*/
+
+ul{
+  list-style-type: none;
+}
+
+.grayscale img{
+        filter: grayscale(1);
+        -webkit-filter: grayscale(1);
+        -moz-filter: grayscale(1);
+        -o-filter: grayscale(1);
+        -ms-filter: grayscale(1);
+}
+
+.grayscale img:hover{
+        filter: grayscale(0);
+        -webkit-filter: grayscale(0);
+        -moz-filter: grayscale(0);
+        -o-filter: grayscale(0);
+        -ms-filter: grayscale(0);
+}
+
+
 /*PARAGRAPHE A COTE DU CAROUSEL*/
 
 h4{
   margin-bottom: 10px;
   color: #e5e5e5;
 }
+
+
 
 #ProductMonth p {
     color: #e5e5e5;
@@ -44,7 +72,7 @@ blockquote {
     padding: 6px 26px 2px 15px;
     margin: 0px auto;
     font-size: 15.5px;
-    border-left: 5px solid #4b1d3f;
+    border-left: 5px solid #a22b49;
 }
 
 blockquote small{
@@ -104,8 +132,8 @@ a {
   font-size: 18px;
 }
 
-h3{
-  color: #000;
+#slide-content, h3{
+  color: #fff;
   font-weight: 400;
   margin: 0 0 20px 0;
 }
