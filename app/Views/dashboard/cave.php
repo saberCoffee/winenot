@@ -48,7 +48,7 @@
 				<div class="col-md-4 ">
 					<div class="form-group <?php if (isset($error['millesime'])) { echo 'has-error'; } ?>">
 						<label for="millesime">Millesime</label>
-						<input type="text" name="millesime" id="millesime" class="form-control" value="<?= $millesime; ?>" data-min="4" data-max="4" required="required">
+						<input type="text" name="millesime" id="millesime" class="form-control" value="<?= $millesime; ?>" data-min="4" data-max="4" maxlength="4" required="required">
 						<span class="help-block" <?php if (empty($error['millesime'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['millesime'])) { echo $error['millesime']; } ?>
                    		</span>
@@ -78,16 +78,30 @@
 				</div>
 
 				<div class="col-md-4">
-					<label for="bio">Vin bio</label>
-					<input type="checkbox" name="bio" id="bio">
+					<label for="bio"><input type="radio" name="bio" id="bio">Vin bio</label>
+
 				</div>
 			</div>
 
-			<div class="addPics">
-				<p>photo du produit</p>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="descriptionProduct">
+						<div class="form-group <?php if (isset($error['description'])) { echo 'has-error'; } ?>">
+							<label for="description">Description de votre produit</label>
+  							<textarea class="form-control"  id="description" name="description" required="required" data-max="200" maxlength="200"></textarea>
+							<span class="help-block" <?php if (empty($error['description'])) { echo 'style="display: none"'; } ?>>
+	                        <?php if (isset($error['description'])) { echo $error['description']; } ?>
+	                   		</span>
+						</div>
+					</div>
+				</div>
 
-				<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-				<input type="file" name="picsProduct" value="">
+				<div class="col-md-4">
+					 <div class="productPics">
+						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
+    					<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
+    				</div>
+				</div>
 			</div>
 
 			<div>
@@ -95,7 +109,7 @@
 			</div>
 
 			<?php if (!empty($_COOKIE['successMsg'])) { ?>
-			<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+				<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 			<?php } ?>
 		</form>
 	</section>

@@ -127,8 +127,8 @@
         background-color: #d09038;
     }
 
-    .addProduct input[type=checkbox]{
-        margin-top: 2em;
+    .addProduct input[type=radio]{
+        margin: 4em 1em 4em 6em;
     }
 
     .addProduct .addPics img{
@@ -170,6 +170,52 @@
 
     .tabs li:nth-of-type(2){
         margin-left: -4px;
+    }
+
+
+
+/*    Modif style input file d'origine   */
+    .productPics{
+        background-color: rgba(255, 255, 255, 0);
+        text-align: center;
+    }
+
+    .productPics>.btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .productPics>.btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+     .productPics>.btn {
+        width: 60%;
+        margin: 1em auto 0;
+        font-size: 1rem;
+        margin-bottom: 10%;
+        line-height: 1rem;
+    }
+
+    .productPics img{
+        margin: 10% auto;
+    }
+
+    .addProduct textarea.form-control  {
+        height: 108px;
+        resize: none;
     }
 
 

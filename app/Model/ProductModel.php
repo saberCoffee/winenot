@@ -5,7 +5,9 @@ use \W\Model\Model;
 
 use \Model\UserModel;
 
-class ProductModel extends Model {
+class ProductModel extends Model
+{
+
 	/**
 	 * Cette fonction insert les produits du producteur dans la bdd.
 	 *
@@ -19,7 +21,7 @@ class ProductModel extends Model {
 	 *
 	 * @return void
 	 */
-	public function addProduct($token, $name, $color, $price, $millesime, $cepage, $stock, $bio)
+	public function addProduct($token, $name, $color, $region, $price, $millesime, $cepage, $stock, $bio)
 	{
 		$user = new UserModel();
 
@@ -28,6 +30,7 @@ class ProductModel extends Model {
 		$data = array(
 			'name'		   => $name,
 			'couleur'	   => $color,
+			'region'       => $region,
 			'price'   	   => $price,
 			'millesime'    => $millesime,
 			'cepage' 	   => $cepage,
@@ -48,4 +51,24 @@ class ProductModel extends Model {
 
 		return $this->update($data, $idProduct);
 	}
+
+	/**
+	 * Retourne tous les produits d'un producteurs
+	 *
+	 * @param  [int] $winemaker_id   L'id d'un producteur
+	 *
+	 * @return [array]               Un array contenant toutes les informations des produits d'un producteur
+	 */
+	public function findProductsFrom($winemaker_id)
+	{
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id';
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':winemaker_id', $winemaker_id);
+
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
 }

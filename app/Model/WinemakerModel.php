@@ -121,25 +121,46 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * Récupère, via une jointure, les informations d'utilisateur et de producteur d'un producteur
+	 * Récupère, via une jointure, les informations d'utilisateur et de producteur de tous les producteurs
 	 *
-	 * @param  [string] $token    Le token de l'utilisateur, dont on se sert pour déterminer son id
-	 *
-	 * @return [array]            Un array contenant les informations d'utilisateur et de producteur d'un producteur
+	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) de tous les producteurs
 	 */
-	public function getWinemakerbyUser($token)
+	public function getWinemakersFullDetails()
 	{
-		$user = new UserModel();
-		$winemaker_id = $user->getUserByToken($token);
-
 		$sql = 'SELECT *
 			FROM users
 			RIGHT JOIN '.$this->table.' ON users.id = '.$this->table.'.winemaker_id
-			WHERE users.type = 1';
+			WHERE users.type = 1 ';
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 
 		return $sth->fetchAll();
+	}
+
+	/**
+	 * Récupère, via une jointure, les informations d'utilisateur et de producteur d'un producteur spécifique
+	 *
+	 * @param  [string] $token    Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 *
+	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) du producteur recherché
+	 */
+	public function getWinemakerFullDetails($token)
+	{
+		$user = new UserModel();
+
+		$winemaker = $user->getUserByToken($token);
+
+		$sql = 'SELECT *
+			FROM users
+			RIGHT JOIN ' . $this->table . '
+				ON users.id = ' . $this->table . '.winemaker_id
+			WHERE users.type = 1
+			 	AND ' . $this->table . '.winemaker_id = :winemaker_id';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':winemaker_id', $winemaker['id']);
+		$sth->execute();
+
+		return $sth->fetch();
 	}
 
 }

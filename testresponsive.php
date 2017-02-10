@@ -49,45 +49,14 @@
                 <aside>
                     <nav>
                         <ul>
-                        	<li>
-
-                        	</li>
-                            <li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
-							</li>
-                            <li>
-								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
-							</li>
-                            <li <?php echo ($w_current_route == 'products') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>">Tous nos vins</a>
-							</li>
-                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
-							</li>
-                            <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
-							</li>
-
-							<?php if ($_SESSION['user']['type'] == 0): ?>
-	                            <li <?php echo ($w_current_route == 'register_winemaker') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('register_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
-								</li>
-							<?php else: ?>
-	                            <li <?php echo ($w_current_route == 'cave' OR $w_current_route == 'cave_edit') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
-								</li>
-							<?php endif; ?>
-
-							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
-	                            <li>
-									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
-	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
-								</li>
-	                            <li <?php echo ($w_current_route == 'admin_winemakers') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('admin_winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
-								</li>
-							<?php endif; ?>
+                        	
+                            <li>L'accueil</li>
+                            <li>Le mag</li>
+                            <li>Tous nos vins</li>
+                            <li>Trouver un producteur</li>
+                            <li>Favoris</li>
+	                        <li>Devenir producteur</li>
+	                        <li>Ma cave</li>
                         </ul>
                     </nav>
                 </aside>

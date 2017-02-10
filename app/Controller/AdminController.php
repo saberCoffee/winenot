@@ -35,12 +35,13 @@ class AdminController extends Controller
         $memberModel = new UserModel();
         $members = $memberModel->findAll();
 
+        // On réécrit l'id réel du membre par son token
+        $i = 0;
         foreach($members as $member)
         {
-        	$member['id'] = $memberModel->getTokenByUserId($member['id']);
+            $members[$i]['id'] = $memberModel->getTokenByUserId($member['id']);
+            $i++;
         }
-
-        debug($members);
 
         $this->show ('admin/members', array(
             'members' 	=> $members,
@@ -220,7 +221,7 @@ class AdminController extends Controller
 		$winemakers = new WinemakerModel();
 		// $winemakers = $winemakers->findAll();
 
-		$winemakers = $winemakers->getWinemakerbyUser($_SESSION['user']['id']);
+		$winemakers = $winemakers->getWinemakersFullDetails();
 
 		$this->show ('admin/winemakers', array(
 			'winemakers' => $winemakers,

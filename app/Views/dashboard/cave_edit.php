@@ -4,23 +4,19 @@
 
 <section class="section-with-panels">
 
-	<?php if (!empty($_COOKIE['successMsg'])) { ?>
-	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
-	<?php } ?>
-
 	<ul class="tabs">
 		<li id="addProduct" class="active">Éditer votre produit</li>
 		<li id="stock">Mes stocks</li>
 	</ul>
 
 	<section class="addProduct active">
-        <ul>
-            <li>Nom : <?= $product['name']; ?></li>
-            <li>Couleur : <?= $product['couleur']; ?></li>
-            <li>Prix : <?= $product['price']; ?></li>
-            <li>Millésime : <?= $product['millesime']; ?></li>
-            <li>Cépage : <?= $product['cepage']; ?></li>
-        </ul>
+		<dl>
+			<dt>Nom</dt><dd><?= $product['name'] ?></dd>
+			<dt>Couleur</dt><dd><?= $product['couleur'] ?></dd>
+			<dt>Prix</dt><dd><?= $product['price'] ?></dd>
+			<dt>Millésime</dt><dd><?= $product['millesime'] ?></dd>
+			<dt>Cépage</dt><dd><?= $product['cepage'] ?></dd>
+		</dl>
 
 		<form method="post" action="<?= $this->url('cave_edit', ['id' => $product['id']]) ?>">
 			<div class="row">
@@ -45,17 +41,34 @@
 				</div>
 			</div>
 
-			<div class="addPics">
-				<p>photo du produit</p>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="descriptionProduct">
+						<div class="form-group <?php if (isset($error['description'])) { echo 'has-error'; } ?>">
+							<label for="description">Description de votre produit</label>
+  							<textarea class="form-control"  id="description" name="description" required="required" data-max="200" maxlength="200"></textarea>
+							<span class="help-block" <?php if (empty($error['description'])) { echo 'style="display: none"'; } ?>>
+	                        <?php if (isset($error['description'])) { echo $error['description']; } ?>
+	                   		</span>
+						</div>
+					</div>
+				</div>
 
-				<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-				<input type="file" name="picsProduct" value="">
+				<div class="col-md-4">
+					 <div class="productPics">
+						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
+						<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
+					</div>
+				</div>
 			</div>
 
 			<div>
-			<!-- INPUT HIDDEN TEMPORAIRE -->
 				<input type="submit" class="btn btn-default" value="Modifier">
 			</div>
+
+			<?php if (!empty($_COOKIE['successMsg'])) { ?>
+				<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+			<?php } ?>
 		</form>
 	</section>
 

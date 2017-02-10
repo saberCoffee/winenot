@@ -144,7 +144,7 @@ class UsersModel extends Model
 		if($sth->execute()){
 			$foundUser = $sth->fetch();
 			if($foundUser){
-				return $foundUser;
+				return $foundUser['token'];
 			}
 		}
 
