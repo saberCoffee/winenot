@@ -15,9 +15,9 @@
                             </div>
                         </div>
 
-                        <a href="#"><div class="back">
+                        <a href="<?= $this->url('dashboard_product', ['name' => $product['clean_name'], 'id' => $product['id']]) ?>"><div class="back">
                             <p>
-                                Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…
+                                <?= $product['description'] ?>
                                 <div class="nameWineBottle">
                                     <p>
                                         Produit par <strong><?= $product['winemaker']['firstname'] . ' ' . $product['winemaker']['lastname'] ?></strong>
@@ -35,10 +35,6 @@
 
     </div>
 </section>
-
-<?php
-debug($products);
-?>
 
 <?php $this->stop('main_content') ?>
 

@@ -28,9 +28,9 @@
 								</div>
 					        </div>
 
-							<a href="#"><div class="back">
+							<div class="back">
 								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-					        </div></a>
+					        </div>
 					    </div>
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 					    </div>
 					</div>
 				</div>
-			
+
 
 				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
 					<div class="">

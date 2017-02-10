@@ -21,7 +21,7 @@ class ProductModel extends Model
 	 *
 	 * @return void
 	 */
-	public function addProduct($token, $name, $color, $region, $price, $millesime, $cepage, $stock, $bio)
+	public function addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio)
 	{
 		$user = new UserModel();
 
@@ -32,6 +32,7 @@ class ProductModel extends Model
 			'couleur'	   => $color,
 			'region'       => $region,
 			'price'   	   => $price,
+			'description'  => $description,
 			'millesime'    => $millesime,
 			'cepage' 	   => $cepage,
 			'stock' 	   => $stock,
@@ -42,11 +43,12 @@ class ProductModel extends Model
 		return $this->insert($data);
 	}
 
-	public function editProduct($idProduct, $price, $stock)
+	public function editProduct($idProduct, $price, $description, $stock)
 	{
 		$data = array(
-			'price' => $price,
-			'stock' => $stock
+			'price'       => $price,
+			'description' => $description,
+			'stock'       => $stock
 		);
 
 		return $this->update($data, $idProduct);
