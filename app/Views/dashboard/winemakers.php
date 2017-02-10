@@ -24,14 +24,14 @@
 </section>
 </div>
 	
-<div class="container">
-	<?php foreach ($winemakers as $winemaker) { ?>
+<div class="container winemakerInfo">
+	<h2>Tous nos producteurs</h2>
 	<div class="row">
-		<div class="col-md-4"><?= $winemaker['firstname'];?><?=$winemaker['lastname'];?></div>
-
-	</div>
-
+	<?php foreach ($winemakers as $winemaker) { ?>
+		<div class="col-md-3"><a href="#"><img class="photoProfil" src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="photo profil" /><br><?= $winemaker['firstname'];?> <?=$winemaker['lastname'];?></a></div>
 <?php }?>
+	
+	</div>
 </div>
 <?php $this->stop('main_content') ?>
 

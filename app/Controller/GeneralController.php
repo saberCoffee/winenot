@@ -204,4 +204,5 @@ class GeneralController extends Controller
 
 		echo json_encode($latlng);
 	}
+	
 }

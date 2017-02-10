@@ -56,8 +56,8 @@ class DashboardController extends Controller
 
 	public function winemakers()
 	{
-		$winemakers = new UserModel();
-		$winemakers = $winemakers->findAll();
+		$winemakers = new WinemakerModel();
+		$winemakers = $winemakers->getWinemakersFullDetails();
 		
 		$this->show('dashboard/winemakers', ['winemakers' => $winemakers]);
 	}
@@ -152,7 +152,7 @@ class DashboardController extends Controller
 			$color       = $_POST['color'];
 			$region      = $winemaker['region'];
 			$price 	     = str_replace(',','.', $_POST['price']);
-			$description = $_POST['description'],
+			$description = $_POST['description'];
 			$millesime   = $_POST['millesime'];
 			$cepage      = $_POST['cepage'];
 			$stock 	     = $_POST['stock'];
@@ -162,7 +162,7 @@ class DashboardController extends Controller
 			$error['name']        = $form->isValid($name, 3, 50);
 			$error['color']       = $form->isValid($color);
 			$error['price']       = $form->isValid($price, '', '', true);
-			$error['description'] = $form->isValid($description, '', 200)
+			$error['description'] = $form->isValid($description, '', 200);
 			$error['millesime']   = $form->isValid($millesime, 4, 4, true);
 			$error['cepage']      = $form->isValid($cepage, 3, 50);
 			$error['stock']       = $form->isValid($stock, '', '', true);

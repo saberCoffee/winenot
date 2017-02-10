@@ -24,6 +24,7 @@ class WinemakerModel extends Model
 
 		return $winemakers;
 	}
+	
 
 	/**
  	 * Créé un nouveau profil de producteur associé à un utilisateur

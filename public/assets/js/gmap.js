@@ -98,7 +98,8 @@ function initMap() {
 						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + '<div><p>' + this.position + '</p></div>');
 						    infowindow.open(map, this);
 						   
-						  });			
+						  });	
+
 					 
 					 markers.push(marker);
 						
@@ -117,10 +118,17 @@ function initMap() {
 				   google.maps.event.trigger(map, "resize");
 				   map.setCenter(center); 
 				});
+		
+		
+		
 
+		
 		// Autocomplete 
 		autocomplete.addListener('place_changed', function() {
-			infowindow.close();
+			
+			
+			
+			// infowindow.close();
 			 var marker = new google.maps.Marker({
 			    map: map,
 			    icon: image2,
@@ -128,6 +136,7 @@ function initMap() {
 			  });
 			marker.setVisible(false);
 			var place = autocomplete.getPlace();
+	
 			if (!place.geometry) {
 				window.alert("Autocomplete's returned place contains no geometry");
 				return;
@@ -158,9 +167,9 @@ function initMap() {
 				(place.address_components[2] && place.address_components[2].short_name || '')
 				].join(' ');
 			}
-
-			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-			infowindow.open(map, marker);
+// 			Fenetre d'info qui affiche le nom de la ville mais nous n'avons pas besoin d'afficher alors je commente
+//			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+//			infowindow.open(map, marker);
 		});		
 		
 }
