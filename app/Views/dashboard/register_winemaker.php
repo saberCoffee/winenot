@@ -58,7 +58,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="form-group">
+				<div class="form-group city-input">
 					<label for="city">Ville</label>
 					<input type="text" name="city" id="city" required="required" class="form-control" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
