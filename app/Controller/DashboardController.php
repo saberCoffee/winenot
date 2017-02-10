@@ -71,7 +71,10 @@ class DashboardController extends Controller
 
 	public function winemakers()
 	{
-		$this->show('dashboard/winemakers');
+		$winemakers = new WinemakerModel();
+		$winemakers = $winemakers->getWinemakersFullDetails();
+		
+		$this->show('dashboard/winemakers', ['winemakers' => $winemakers]);
 	}
 
 	public function wishlist()

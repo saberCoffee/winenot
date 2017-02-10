@@ -104,25 +104,15 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * Teste si un numéro siren est présent en base de données
+	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
 	 *
-	 * @param [string]   $siren Le numéro à tester
-	 *
-	 * @return [boolean] Vrai si le numéro siren est déjà existant, faux sinon
+	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
 	 */
-	public function sirenExists($siren)
-	{
-		$sql = 'SELECT siren FROM ' . $this->table . ' WHERE siren = :siren LIMIT 1';
-		$dbh = ConnectionModel::getDbh();
-		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':siren', $siren);
-		if($sth->execute()){
-			$foundSiren = $sth->fetch();
-			if($foundSiren){
-				return true;
-			}
-		}
-		return false;
+	public function latlng() {
+		$winemaker = new WinemakerModel();
+		$winemakers = $this->findAll('lat, lng');
+
+		return $winemakers;
 	}
 
 	/**
@@ -152,15 +142,25 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
+	 * Teste si un numéro siren est présent en base de données
 	 *
-	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
+	 * @param [string]   $siren Le numéro à tester
+	 *
+	 * @return [boolean] Vrai si le numéro siren est déjà existant, faux sinon
 	 */
-	public function latlng() {
-		$winemaker = new WinemakerModel();
-		$winemakers = $this->findAll('lat, lng');
-
-		return $winemakers;
+	public function sirenExists($siren)
+	{
+		$sql = 'SELECT siren FROM ' . $this->table . ' WHERE siren = :siren LIMIT 1';
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':siren', $siren);
+		if($sth->execute()){
+			$foundSiren = $sth->fetch();
+			if($foundSiren){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
