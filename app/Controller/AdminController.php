@@ -40,8 +40,6 @@ class AdminController extends Controller
         	$member['id'] = $memberModel->getTokenByUserId($member['id']);
         }
 
-        debug($members);
-
         $this->show ('admin/members', array(
             'members' 	=> $members,
 			'email'     => '',

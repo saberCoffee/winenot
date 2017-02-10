@@ -1,28 +1,4 @@
-
-<div class="row">
-<section id="GoogleMap">
-	<div id="WinmakerSearch">
-        <h2>Où trouver nos 500 producteurs</h2>
-        <p>Trouver un producteur près de chez vous</p>
-        <form>
-            <div class="input-group stylish-input-group">
-                <input id="pac-input" type="text" class="form-control"  placeholder="Où résidez-vous ?" />
-                <span class="input-group-addon">
-                    <button type="submit">
-                        <span class="glyphicon glyphicon-search"></span> Rechercher
-                    </button>
-                </span>
-            </div>
-        </form>
-    </div>
-
-    <!-- DIV pour google map -->
-	<div id="map"></div>
-	<div id="infoProd"></div>
-
-	<script type="text/javascript">
-
- 	function initMap() {
+function initMap() {
 
 		var styleArray = [
 			{
@@ -53,7 +29,8 @@
 			}
 		];
 
-		var image = 'assets/img/grape2.png';
+		var image = '../assets/img/grape2.png';
+		var image2 = '../assets/img/map-marker3.png';
 
 		var mapOptions = {
 			zoom: 5,
@@ -65,24 +42,25 @@
             types: ["(regions)"]
 		};
 
-		var map = new google.maps.Map(document.getElementById('map'),
+		var map = new google.maps.Map(document.getElementById('dashboard_map'),
 		mapOptions);
 
 		var markers = [];
-		
+
 		var input = /** @type {!HTMLInputElement} */(
 		document.getElementById('pac-input'));
 
 		var autocomplete = new google.maps.places.Autocomplete(input, mapOptions);
 		autocomplete.bindTo('bounds', map);
 
-
-		var infowindow = new google.maps.InfoWindow();
+		var infowindow = new google.maps.InfoWindow({
+			position: new google.maps.LatLng()
+			});
 
 		/* Style des marqueurs cluster */
 		
 		  var clusterStyles = [{
-		    url:'assets/img/grape3.png',
+		    url:'../assets/img/grape3.png',
 		    height:64,
 		    width:64,
 		    textColor: 'white',
@@ -93,8 +71,8 @@
 		  var mcOption = {
 		    styles: clusterStyles
 		  }
+		
 
-		  
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
 		
 			$.ajax ({
@@ -102,55 +80,52 @@
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
-			  
+
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-					  
-					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
 
-					var marker = new google.maps.Marker({
+					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
+					
+					 var marker = new google.maps.Marker({
 						 	position : latLng,
 						    map: map,
 						  	icon: image,
-							titre: 'notre producteur: '
+						  	titre: 'notre producteur: '
 					 });
-
+					 					
 					 marker.addListener('click', function() {
-							
-						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + this.position + '</div>');
-
+		
+						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + '<div><p>' + this.position + '</p></div>');
 						    infowindow.open(map, this);
-						    // $('#hook').parent().parent().parent().parent().css({ "background-color": "yellow", "border-radius": "10px" });
 						   
-						  });	
+						  });			
+					 
 					 markers.push(marker);
-					
-				 
+						
 				}
-			 
+
 				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
 				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
-				 
-			}
-		});	
 
+			}
+
+		});
+		  
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
 				   google.maps.event.trigger(map, "resize");
 				   map.setCenter(center); 
 				});
-			
 
+		// Autocomplete 
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
-			
-			var marker = new google.maps.Marker({
+			 var marker = new google.maps.Marker({
 			    map: map,
-			    icon: image,
+			    icon: image2,
 			    anchorPoint: new google.maps.Point(0, -29)
 			  });
-			  
 			marker.setVisible(false);
 			var place = autocomplete.getPlace();
 			if (!place.geometry) {
@@ -186,18 +161,6 @@
 
 			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
 			infowindow.open(map, marker);
-
-
-		});
-
-	}
-
- 	
- 	
-	 </script>
-	 	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&libraries=places&callback=initMap" async defer></script>
-
-
-</section>
-</div>
+		});		
+		
+}
