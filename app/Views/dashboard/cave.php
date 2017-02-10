@@ -78,17 +78,28 @@
 				</div>
 
 				<div class="col-md-4">
-					<label for="bio">Vin bio</label>
-					<input type="checkbox" name="bio" id="bio">
+					<label for="bio"><input type="radio" name="bio" id="bio">Vin bio</label>
+					
 				</div>
 			</div>
 
-			<div class="addPics">
-				<p>photo du produit</p>
-
-				<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-				<input type="file" name="picsProduct" value="">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="descriptionProduct">
+						<div class="form-group">
+							<label for="description">Description de votre produit:</label>
+  							<textarea class="form-control"  id="description"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					 <div class="productPics">
+						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
+    					<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
+    				</div>
+				</div>
 			</div>
+
 
 			<div>
 				<input type="submit" class="btn btn-default" value="Ajouter">
