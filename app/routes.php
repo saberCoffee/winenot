@@ -56,9 +56,8 @@
 		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
 
 		/* des profils des utilisateurs */
-		['GET', '/dashboard/profile/user/[a:id]', 'Dashboard#userProfile', 'user_profile'], // Consulter un profil
-		['GET', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#winemakerProfile', 'winemaker_profile'], // Consulter un profil
-		['GET|POST', '/dashboard/profile/user/config/[a:id]', 'Dashboard#profileConfig', 'profile_config'], // Page des coordonnées de l'utilisateur
+		['GET|POST', '/dashboard/profile/user/[a:id]', 'Dashboard#userProfile', 'user_profile'], // Consulter un profil
+		['GET|POST', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#winemakerProfile', 'winemaker_profile'], // Consulter un profil
 
 		//-- End : Pages Dashboard --//
 

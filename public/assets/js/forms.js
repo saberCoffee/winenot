@@ -52,21 +52,21 @@ $(function() {
         //-- Start : Formulaire d'inscription --
         if ($(this).attr('id') == 'register-form') {
             // On vérifie que le mot de passe et le mot de passe de vérification concordent bien
-            if ($('input[name="password"]').val() != $('input[name="password_verif"]').val()) {
+            if ($('input[name="register_password"]').val() != $('input[name="register_password_verif"]').val()) {
                 var errorMessage = 'Les mots de passe ne sont pas identiques.'
 
                 isValid = false;
 
                 // On met en évidence les erreurs avec la classe "has-error"
-                $('input[name="password"]').parent('div.form-group').addClass('has-error');
-                $('input[name="password_verif"]').parent('div.form-group').addClass('has-error');
+                $('input[name="register_password"]').parent('div.form-group').addClass('has-error');
+                $('input[name="register_password_verif"]').parent('div.form-group').addClass('has-error');
 
                 // On affiche le message au-dessous de l'input "password"
-                $('input[name="password"]').next('.help-block').html(errorMessage).show();
+                $('input[name="register_password"]').next('.help-block').html(errorMessage).show();
 
                 // Et enfin, on vide les deux input
-                $('input[name="password"]').val('');
-                $('input[name="password_verif"]').val('');
+                $('input[name="register_password"]').val('');
+                $('input[name="register_password_verif"]').val('');
             }
         }
         //-- End : Formulaire d'inscription --
