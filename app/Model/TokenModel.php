@@ -7,10 +7,19 @@ class TokenModel extends Model
 {
 	protected $primaryKey = 'token';
 
+
 	public function getIdbyToken($token)
 	{
 		return $this->getUserByToken($token);
 	}
+
+
+	public function getTokenById($id)
+	{
+		return $this->getUserById($id);
+	}
+
+
 	public function generateToken($idUser, $type = "Authentification")
 	{
 		$token = md5(uniqid(rand(), true));

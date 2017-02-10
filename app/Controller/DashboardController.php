@@ -401,9 +401,10 @@ class DashboardController extends Controller
 		}
 
 		$user = new UserModel();
-
+        
 		$user = $user->getUserByToken($token);
 		$user['id'] = $token; // On remplace l'id de l'utilisateur par son token
+
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
 		$monthsEng = array('January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December');
@@ -450,5 +451,4 @@ class DashboardController extends Controller
 			'lang'               => $lang
 		));
 	}
-
 }
