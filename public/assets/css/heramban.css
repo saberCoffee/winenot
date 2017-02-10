@@ -77,7 +77,7 @@ blockquote small{
   color: #e5e5e5;;
 }
 
-#slide-content, h2 {
+#slide-content h2 {
     margin-bottom: 10px;
 }
 
