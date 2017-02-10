@@ -36,18 +36,17 @@ class DashboardController extends Controller
 
 	public function products()
 	{
-		$user       = new UserModel();
-		$winemakers = new WinemakerModel();
-		$products   = new ProductModel();
+		$userModel       = new UserModel();
+		$winemakerModel = new WinemakerModel();
+		$productModel   = new ProductModel();
 
-		$products = $products->findAll('*', 'couleur');
+		$products = $productModel->findAll('*', 'couleur');
 
 		$i = 0;
 		foreach ($products as $product) {
-			$token = $user->getTokenByUserId($product['winemaker_id']);
+			$token = $userModel->getTokenByUserId($product['winemaker_id']);
 
-			$products[$i]['winemaker'] = $winemakers->getWinemakerFullDetails($token);
-
+			$products[$i]['winemaker'] = $winemakerModel->getWinemakerFullDetails($token);
 			// Pour créer un lien avec le nom du produit dans l'url, on doit créer une version clean du nom du produit
 			$products[$i]['clean_name'] = StringUtils::clean_url($products[$i]['name']);
 
@@ -88,7 +87,15 @@ class DashboardController extends Controller
 	 */
 	public function registerWinemaker()
 	{
-		$this->allowToWinemakers('dashboard_home', true);
+		$this->allowToWinemakers('dashboard_home', true); // Si l'utilisateur est déjà winemaker, on le vire
+
+		/* Si l'utilisateur n'a pas rempli son profil (user) il ne peut pas devenir producteur
+		$user = new UserModel();
+		$user = $user->getUserByToken($_SESSION['user']['id']);
+		if (empty($user[''])) {
+			$this->redirectToRoute('user_profile', ['id'] => $_SESSION['user']['id']);
+		}
+		*/
 
 		if (!empty($_POST)) {
 			$error = array();
@@ -128,7 +135,7 @@ class DashboardController extends Controller
 				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
 
 				$msg = 'Votre profil de producteur a bien été enregistré.';
-				setcookie("successMsg", $msg, time() + 5, '/');
+				setcookie("successMsg", $msg, time() + 1, '/');
 
 				$this->redirectToRoute('dashboard_home');
 			}
@@ -188,7 +195,7 @@ class DashboardController extends Controller
 				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio);
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
-				setcookie("successMsg", $msg, time() + 5, '/');
+				setcookie("successMsg", $msg, time() + 1, '/');
 
 				$this->redirectToRoute('cave');
 			}
@@ -253,7 +260,7 @@ class DashboardController extends Controller
 				$productModel->editProduct($id, $price, $description, $stock);
 
 				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
-				setcookie("successMsg", $msg, time() + 5, '/');
+				setcookie("successMsg", $msg, time() + 1, '/');
 
 				$this->redirectToRoute('cave', ['id' => $id]);
 			}
@@ -270,7 +277,7 @@ class DashboardController extends Controller
 
 			// Données du formulaire
 			'price'	      => (!empty($_POST['price'])) ? $_POST['price'] : $product['price'],
-			'description' => (!empty($_POST['description'])) ? $_POST['description'] : '',
+			'description' => (!empty($_POST['description'])) ? $_POST['description'] : $product['description'],
 			'stock'	      => (!empty($_POST['stock'])) ? $_POST['stock'] : $product['stock'],
 
 			// Erreurs du formulaire
@@ -408,6 +415,20 @@ class DashboardController extends Controller
 
 	public function userProfile($token)
 	{
+
+		$user = new UserModel();
+
+		$user = $user->getUserByToken($token);
+		if (empty($user)) {
+			$errorMessage['dashboard'] = 'Il semblerait que cet utilisateur n\'existe pas.';
+
+			$this->show('w_errors/404', array(
+				'layout' => 'layout_dashboard',
+				'errorMessage' => $errorMessage
+			));
+		}
+		$user['id'] = $token; // On remplace l'id de l'utilisateur par son token
+
 		if (!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -453,11 +474,6 @@ class DashboardController extends Controller
 			}
 		}
 
-		$user = new UserModel();
-
-		$user = $user->getUserByToken($token);
-		$user['id'] = $token; // On remplace l'id de l'utilisateur par son token
-
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
 		$monthsEng = array('January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December');
 		$monthsFr  = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
@@ -477,7 +493,7 @@ class DashboardController extends Controller
 			'profile_edit' => ($is_owner) ? 'Éditer mes informations' : 'Éditer les informations de ' . $user['firstname'] . ' ' . $user['lastname']
 		);
 
-		$this->show('dashboard/profile', array(
+		$this->show('dashboard/user_profile', array(
 			// Permissions de l'utilisateur sur la page
 			'is_allowed_to_read' => $is_allowed_to_read,
 			'is_allowed_to_edit' => $is_allowed_to_edit,
@@ -495,6 +511,71 @@ class DashboardController extends Controller
 			'address'            => (!empty($_POST['address'])) ? $_POST['address'] : $user['address'],
 			'postcode'	         => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $user['postcode'],
 			'city'	             => (!empty($_POST['city'])) ? $_POST['city'] : $user['city'],
+
+			// Erreurs du formulaire
+			'error'              => (!empty($error)) ? $error : '',
+
+			// Textes changeants selon le contexte
+			'lang'               => $lang
+		));
+	}
+
+	public function winemakerProfile($token)
+	{
+		if (!empty($_POST)) {
+
+		}
+
+		$winemakerModel = new WinemakerModel();
+		$productModel   = new ProductModel();
+
+		$winemaker       = $winemakerModel->getWinemakerFullDetails($token);
+		$products        = $productModel->findProductsFrom($winemaker['id']);
+		$winemaker['id'] = $token; // On remplace l'id du winemaker par son token
+
+		$i = 0;
+		foreach ($products as $product) {
+			$products[$i]['winemaker'] = $winemakerModel->getWinemakerFullDetails($winemaker['id']);
+
+			// Pour créer un lien avec le nom du produit dans l'url, on doit créer une version clean du nom du produit
+			$products[$i]['clean_name'] = StringUtils::clean_url($products[$i]['name']);
+
+			++$i;
+		}
+
+		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
+		$monthsEng = array('January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December');
+		$monthsFr  = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
+
+		$date      = strtotime($_SESSION['user']['register_date']);
+		$newformat = date('Y F', $date);
+		$newDate   = str_replace($monthsEng, $monthsFr, date('F')).' '.date('Y');
+
+		// Afin de cacher certaines informations, on initialise une variable qui détermine si le profil consulté appartient au producteur, et une autre si on a l'autorisation de le lire (car on est admin, ou car on est en discussion avec l'utilisateur)
+		$is_owner           = ($winemaker['id'] == $_SESSION['user']['id']) ? 1 : 0;
+		$is_allowed_to_edit = ($winemaker['id'] == $_SESSION['user']['id'] || $_SESSION['user']['role'] == 'admin') ? 1 : 0;
+
+		// Certains textes vont changer selon le contexte
+		$lang = array(
+			'profile'      => ($is_owner) ? 'Ma cave' : 'Cave de ' . $winemaker['firstname'] . ' ' . $winemaker['lastname'],
+			'profile_edit' => ($is_owner) ? 'Éditer mes informations producteur' : 'Éditer les informations producteur de ' . $winemaker['firstname'] . ' ' . $winemaker['lastname']
+		);
+
+		$this->show('dashboard/winemaker_profile', array(
+			// Permissions de l'utilisateur sur la page
+			'is_allowed_to_edit' => $is_allowed_to_edit,
+			'is_owner'			 => $is_owner,
+
+			// Données du profil
+			'winemaker'          => $winemaker,
+			'products'           => $products,
+			'register_date'      => $newDate,
+
+			// Données du formulaire
+			'email'	             => (!empty($_POST['email'])) ? $_POST['email'] : $winemaker['email'],
+			'address'            => (!empty($_POST['address'])) ? $_POST['address'] : $winemaker['address'],
+			'postcode'	         => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $winemaker['postcode'],
+			'city'	             => (!empty($_POST['city'])) ? $_POST['city'] : $winemaker['city'],
 
 			// Erreurs du formulaire
 			'error'              => (!empty($error)) ? $error : '',

@@ -14,18 +14,6 @@ class WinemakerModel extends Model
 	protected $primaryKey = 'winemaker_id';
 
 	/**
-	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
-	 *
-	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
-	 */
-	public function latlng() {
-		$winemaker = new WinemakerModel();
-		$winemakers = $this->findAll('lat, lng');
-
-		return $winemakers;
-	}
-
-	/**
  	 * Créé un nouveau profil de producteur associé à un utilisateur
  	 *
 	 * @param  [string]  $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
@@ -70,6 +58,49 @@ class WinemakerModel extends Model
 		// Puis on refresh sa sessipn
 		$auth = new AuthentificationModel();
 		$auth->refreshUser();
+	}
+
+	/**
+	 * Récupère, via une jointure, les informations d'utilisateur et de producteur de tous les producteurs
+	 *
+	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) de tous les producteurs
+	 */
+	public function getWinemakersFullDetails()
+	{
+		$sql = 'SELECT *
+			FROM users
+			RIGHT JOIN '.$this->table.' ON users.id = '.$this->table.'.winemaker_id
+			WHERE users.type = 1 ';
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+	/**
+	 * Récupère, via une jointure, les informations d'utilisateur et de producteur d'un producteur spécifique
+	 *
+	 * @param  [string] $token    Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 *
+	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) du producteur recherché
+	 */
+	public function getWinemakerFullDetails($token)
+	{
+		$user = new UserModel();
+
+		$winemaker = $user->getUserByToken($token);
+
+		$sql = 'SELECT *
+			FROM users
+			RIGHT JOIN ' . $this->table . '
+				ON users.id = ' . $this->table . '.winemaker_id
+			WHERE users.type = 1
+			 	AND ' . $this->table . '.winemaker_id = :winemaker_id';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':winemaker_id', $winemaker['id']);
+		$sth->execute();
+
+		return $sth->fetch();
 	}
 
 	/**
@@ -121,46 +152,15 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * Récupère, via une jointure, les informations d'utilisateur et de producteur de tous les producteurs
+	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
 	 *
-	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) de tous les producteurs
+	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
 	 */
-	public function getWinemakersFullDetails()
-	{
-		$sql = 'SELECT *
-			FROM users
-			RIGHT JOIN '.$this->table.' ON users.id = '.$this->table.'.winemaker_id
-			WHERE users.type = 1 ';
-		$sth = $this->dbh->prepare($sql);
-		$sth->execute();
+	public function latlng() {
+		$winemaker = new WinemakerModel();
+		$winemakers = $this->findAll('lat, lng');
 
-		return $sth->fetchAll();
-	}
-
-	/**
-	 * Récupère, via une jointure, les informations d'utilisateur et de producteur d'un producteur spécifique
-	 *
-	 * @param  [string] $token    Le token de l'utilisateur, dont on se sert pour déterminer son id
-	 *
-	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) du producteur recherché
-	 */
-	public function getWinemakerFullDetails($token)
-	{
-		$user = new UserModel();
-
-		$winemaker = $user->getUserByToken($token);
-
-		$sql = 'SELECT *
-			FROM users
-			RIGHT JOIN ' . $this->table . '
-				ON users.id = ' . $this->table . '.winemaker_id
-			WHERE users.type = 1
-			 	AND ' . $this->table . '.winemaker_id = :winemaker_id';
-		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':winemaker_id', $winemaker['id']);
-		$sth->execute();
-
-		return $sth->fetch();
+		return $winemakers;
 	}
 
 }

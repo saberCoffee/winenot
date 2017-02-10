@@ -56,7 +56,7 @@
 								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>
                             <li>
-								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
+								<a href="<?= $this->url('mag') ?>#lemag"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
                             <li <?php echo ($w_current_route == 'products') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>">Tous nos vins</a>
@@ -74,7 +74,7 @@
 								</li>
 							<?php else: ?>
 	                            <li <?php echo ($w_current_route == 'cave' OR $w_current_route == 'cave_edit') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
+									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Gérer ma cave</a>
 								</li>
 							<?php endif; ?>
 

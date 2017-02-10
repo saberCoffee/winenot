@@ -7,7 +7,7 @@
     <h2>Le Mag</h2>
         <div id="page">
             <div class="container">
-                <div class="row"> 
+                <div class="row">
                     <div id="magazine-content">
                         <div class="col-md-12">
                             <div class="magazine-blog">
@@ -19,7 +19,7 @@
                                 <a href="#"><img src="assets/img/mag/blog-3.jpg" alt=""></a>
                                 <div class="blog-text">
                                     <p>Le marché du vin aux états unis se porte bien, voir très bien avec sa hausse de 2,8% en volume et 4% en valeur affichant plus de 383 millions de caisses de 9L vendues en 2016. C’est d’ailleurs la première année où le prix moyen d’une bouteille achetée dépasse les $10. Les américains, eux aussi, se mettent à payer plus pour espérer une meilleure qualité.</p>
-                                </div>   
+                                </div>
                             </div>
                         </div>
                          <div class="col-md-6">
@@ -32,7 +32,7 @@
                                 <a href="#"><img src="assets/img/mag/blog-7.jpg" alt=""></a>
                                 <div class="blog-text">
                                     <p>Plats délicieux et de caractère, les grands classiques de la cuisine française mijotés avec du vin.</p>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -45,7 +45,7 @@
                                 <a href="#"><img src="assets/img/mag/blog-2.jpg" alt=""></a>
                                 <div class="blog-text">
                                     <p>Terroir : le mot est à la mode et on l’entend un peu partout. Il est associé dans la tradition, la gastronomie, et aux grands vins français.</p>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -58,7 +58,7 @@
                                 <a href="#"><img src="assets/img/mag/blog-1.jpg" alt=""></a>
                                 <div class="blog-text">
                                     <p>L’Alsace est une région viticole, avec une diversité de terroirs et des cépages locaux donnant des vins particulièrement typés.</p>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -71,10 +71,10 @@
                                 <a href="#"><img src="assets/img/mag/blog-8.jpg" alt=""></a>
                                 <div class="blog-text">
                                     <p>« Pour le vin, vous êtes plutôt bio ou biodynamie ? ». Vous n'avez aucune idée, cet article est pour vous !</p>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>

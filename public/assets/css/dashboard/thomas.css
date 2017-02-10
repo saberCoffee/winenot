@@ -1,9 +1,13 @@
 /* @import url('https://fonts.googleapis.com/css?family=Pacifico'); */
+p.user-infos {
+    text-align: center;
+}
+
 p.user-infos span {
     font-weight: bold;
 }
 
-p.user-infos span.user-registerdate {
+p.user-infos span:last-of-type {
     font-size: 0.8em;
 }
 
@@ -29,7 +33,7 @@ section {
 }
 
 section#profile > section {
-    padding: 2rem 5rem;
+    padding: 2rem 2rem;
 
     color: #333;
 }

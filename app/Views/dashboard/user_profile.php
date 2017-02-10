@@ -16,9 +16,9 @@
 						<p class="user-infos">
 							<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar">
 							<br />
-							<span class="user-name"><?= $user['firstname'] . ' ' . $user['lastname'] ?></span>
+							<span><?= $user['firstname'] . ' ' . $user['lastname'] ?></span>
 							<br />
-							<span class="user-registerdate">Membre depuis <?= $register_date ?></span>
+							<span>Membre depuis <?= $register_date ?></span>
 						</p>
 					</aside>
 				</div>
@@ -34,8 +34,8 @@
 							<dl>
 								<dt>Adresse e-mail</dt><dd><?= $user['email'] ?></dd>
 								<dt>Adresse</dt><dd><?= $user['address'] ?></dd>
-								<dt>Ville</dt><dd><?= $user['city'] ?></dd>
 								<dt>Code Postal</dt><dd><?= $user['postcode'] ?></dd>
+								<dt>Ville</dt><dd><?= $user['city'] ?></dd>
 							</dl>
 						<?php else: ?>
 							<p>
@@ -46,13 +46,15 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<?php if ($is_owner): ?>
-					<div class="alert alert-info">
-						Tant que toutes les informations du profil n'auront pas été renseignées, vous ne pourrez pas entrer en contact avec un producteur.
+			<?php if ($is_owner): ?>
+				<div class="row">
+	            	<div class="col-md-10 col-md-offset-1">
+						<div class="alert alert-info">
+							Tant que vous n'aurez pas rempli toutes les informations de votre profil, vous ne pourrez pas entrer en contact avec un producteur.
+						</div>
 					</div>
-				<?php endif; ?>
-			</div>
+				</div>
+			<?php endif; ?>
 		</section>
 
 		<section class="edit-profile <?php if (!empty($error)) { echo 'active'; } ?>">
