@@ -108,14 +108,13 @@ class DashboardController extends Controller
 
 			$winemaker = new WinemakerModel;
 
-			$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
-
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard_home');
+				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
 
 				$msg = 'Votre profil de producteur a bien été enregistré.';
+				setcookie("successMsg", $msg, time() + 5, '/');
 
-				setcookie("successMsg", $msg, time() + 5);
+				$this->redirectToRoute('dashboard_home');
 			}
 		}
 
@@ -140,7 +139,6 @@ class DashboardController extends Controller
 
 		$user      = $user->getUserByToken($_SESSION['user']['id']);
 		$winemaker = $winemaker->find($user['id']);
-
 
 		if(!empty($_POST)) {
 			$error = array();
@@ -172,8 +170,7 @@ class DashboardController extends Controller
 				$products->addProduct($token, $name, $color, $region, $price, $millesime, $cepage, $stock, $bio);
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
-
-				setcookie("successMsg", $msg, time() + 5);
+				setcookie("successMsg", $msg, time() + 5, '/');
 
 				$this->redirectToRoute('cave');
 			}
@@ -211,7 +208,10 @@ class DashboardController extends Controller
 	{
 		$this->allowToWinemakers('dashboard_home');
 
-		$products = new ProductModel();
+		$userModel     = new UserModel();
+		$productModel  = new ProductModel();
+
+		$user      = $userModel->getUserByToken($_SESSION['user']['id']);
 
 		if(!empty($_POST)) {
 			$error = array();
@@ -229,18 +229,17 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$products->editProduct($id, $price, $stock);
+				$productModel->editProduct($id, $price, $stock);
 
 				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
+				setcookie("successMsg", $msg, time() + 5, '/');
 
-				setcookie("successMsg", $msg, time() + 5);
-
-				$this->redirectToRoute('cave');
+				$this->redirectToRoute('cave', ['id' => $id]);
 			}
 		}
 
-		$products = $products->findProductsFrom($user['id']);
-		$product  = $products->find($id);
+		$products = $productModel->findProductsFrom($user['id']);
+		$product  = $productModel->find($id);
 
 		$this->show('dashboard/cave_edit', array(
 			// Liste des produits de la cave

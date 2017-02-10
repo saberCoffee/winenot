@@ -79,7 +79,7 @@
 
 				<div class="col-md-4">
 					<label for="bio"><input type="radio" name="bio" id="bio">Vin bio</label>
-					
+
 				</div>
 			</div>
 
@@ -87,11 +87,12 @@
 				<div class="col-md-8">
 					<div class="descriptionProduct">
 						<div class="form-group">
-							<label for="description">Description de votre produit:</label>
+							<label for="description">Description de votre produit</label>
   							<textarea class="form-control"  id="description"></textarea>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-4">
 					 <div class="productPics">
 						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
@@ -100,13 +101,12 @@
 				</div>
 			</div>
 
-
 			<div>
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
 
 			<?php if (!empty($_COOKIE['successMsg'])) { ?>
-			<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+				<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 			<?php } ?>
 		</form>
 	</section>

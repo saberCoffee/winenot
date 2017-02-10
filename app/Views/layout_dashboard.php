@@ -73,7 +73,7 @@
 									<a href="<?= $this->url('register_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
 								</li>
 							<?php else: ?>
-	                            <li <?php echo ($w_current_route == 'cave') ? 'class="current"' : '' ?>>
+	                            <li <?php echo ($w_current_route == 'cave' OR $w_current_route == 'cave_edit') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Ma cave</a>
 								</li>
 							<?php endif; ?>
