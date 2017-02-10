@@ -59,7 +59,7 @@ class DashboardController extends Controller
 		));
 	}
 
-	public function dashboard_product($name, $id)
+	public function product($name, $id)
 	{
 		$productModel = new ProductModel();
 
