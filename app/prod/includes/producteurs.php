@@ -70,7 +70,7 @@
 	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercita</p>
-	                            <p class="sub-text">October 24 2014 - <a href="#">lire la suite...</a></p>
+	                            <p class="sub-text">October 24 2014 - </p>
 	                        </div>
 
 	                        <div id="slide-content-1">
@@ -95,7 +95,7 @@
 	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercita</p>
-	                            <p class="sub-text">October 24 2014 - <a href="#">lire la suite...</a></p>
+	                            <p class="sub-text">October 24 2014 - </p>
 	                        </div>
 
 	                        <div id="slide-content-2">
@@ -121,7 +121,7 @@
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercita</p>
 
-	                            <p class="sub-text">October 24 2014 - <a href="#">lire la suite...</a></p>
+	                            <p class="sub-text">October 24 2014 - </p>
 	                        </div>
 
 	                        <div id="slide-content-3">
@@ -146,7 +146,7 @@
 	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercita</p>
-	                            <p class="sub-text">October 24 2014 - <a href="#">lire la suite...</a></p>
+	                            <p class="sub-text">October 24 2014 - </p>
 	                        </div>
 
 	                        <div id="slide-content-4">
@@ -171,7 +171,7 @@
 	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercita</p>
-	                            <p class="sub-text">October 24 2014 - <a href="#">lire la suite...</a></p>
+	                            <p class="sub-text">October 24 2014 -</p>
 	                        </div>
 
 	                        <div id="slide-content-5">
@@ -196,7 +196,7 @@
 	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	                            quis nostrud exercita</p>
-	                            <p class="sub-text">October 24 2014 - <a href="#">lire la suite...</a></p>
+	                            <p class="sub-text">October 24 2014 - </p>
 	                        </div>
 	                    </div>
 	                </div>
