@@ -131,7 +131,7 @@ class UsersModel extends Model
 	 *
 	 * @return boolean true si présent en base de données, false sinon
 	 */
-	public function getUserById($id)
+	public function getTokenByUserId($id)
 	{
 
 		$app = getApp();

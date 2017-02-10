@@ -68,6 +68,8 @@
 		var map = new google.maps.Map(document.getElementById('map'),
 		mapOptions);
 
+		var markers = [];
+		
 		var input = /** @type {!HTMLInputElement} */(
 		document.getElementById('pac-input'));
 
@@ -75,8 +77,6 @@
 		autocomplete.bindTo('bounds', map);
 
 		var infowindow = new google.maps.InfoWindow();
-
-
 
 		/* Style des marqueurs cluster */
 		
@@ -93,7 +93,7 @@
 		    styles: clusterStyles
 		  }
 		
-
+			
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
 		
 			$.ajax ({
@@ -101,31 +101,39 @@
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
-
-				var markers = [];
-
+			  
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-
+					  
 					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
-					
-					 var marker = new google.maps.Marker({
+
+					var marker = new google.maps.Marker({
 						 	position : latLng,
 						    map: map,
-						  	icon: image
+						  	icon: image,
+							titre: 'notre producteur: '
 					 });
+
+					 marker.addListener('click', function() {
+							
+						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + '<div>' + this.position + '</div>');
+						    infowindow.open(map, this);
+						   
+						  });	
 					 markers.push(marker);
+
 				 
 				}
-			  
+
+				  
 				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
 				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
-						
+
 			}
-		});
+		});	
 
-
-			google.maps.event.addDomListener(window, "resize", function() {
+		// Réponsive du plan
+		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
 				   google.maps.event.trigger(map, "resize");
 				   map.setCenter(center); 
@@ -134,6 +142,13 @@
 
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
+			
+			var marker = new google.maps.Marker({
+			    map: map,
+			    icon: image,
+			    anchorPoint: new google.maps.Point(0, -29)
+			  });
+			  
 			marker.setVisible(false);
 			var place = autocomplete.getPlace();
 			if (!place.geometry) {
@@ -173,7 +188,6 @@
 
 		});
 
-		
 	}
 
 
