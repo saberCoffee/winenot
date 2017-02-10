@@ -16,7 +16,7 @@ class WinemakerModel extends Model
 	/**
 	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
 	 *
-	 * @return $array Un tableau ne contenant que la latitude et la longitude
+	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
 	 */
 	public function latlng() {
 		$winemaker = new WinemakerModel();
@@ -26,17 +26,17 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * [registerWinemaker description]
-	 *
-	 * @param  [type] $id      [description]
-	 * @param  [type] $siren   [description]
-	 * @param  [type] $area    [description]
-	 * @param  [type] $address [description]
-	 * @param  [type] $cp      [description]
-	 * @param  [type] $city    [description]
-	 * @param  [type] $lng     [description]
-	 * @param  [type] $lat     [description]
-	 * @param  [type] $error   [description]
+ 	 * Créé un nouveau profil de producteur associé à un utilisateur
+ 	 *
+	 * @param  [string]  $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 * @param  [int]     $siren        Le numéro siren du producteur
+	 * @param  [string]  $region       La région du producteur, qui détermine aussi la région de tous ses futurs produits
+	 * @param  [string]  $address      L'adresse du lieu de travail du producteur
+	 * @param  [int]     $postcode     Le code postal du lieu de travail du producteur
+	 * @param  [string]  $city         La ville du lieu de travail du producteur
+	 * @param  [decimal] $lng          La longitude du lieu de travail du producteur
+	 * @param  [decimal] $lat          La latitude du lieu de travail du producteur
+	 * @param  [array]   $error        Un tableau contenant les erreurs potentielles rencontrées à la validation du formulaire
 	 *
 	 * @return void
 	 */
@@ -52,14 +52,14 @@ class WinemakerModel extends Model
 		$winemaker_id = $user->getUserByToken($token);
 
 		$data = array(
-			'winemaker_id'=> $winemaker_id['id'],
-			'siren'       => $siren,
-			'region'      => $region,
-			'address'     => $address,
-			'postcode'    => $postcode,
-			'city'        => $city,
-			'lng'         => $lng,
-			'lat'         => $lat,
+			'winemaker_id' => $winemaker_id['id'],
+			'siren'        => $siren,
+			'region'       => $region,
+			'address'      => $address,
+			'postcode'     => $postcode,
+			'city'         => $city,
+			'lng'          => $lng,
+			'lat'          => $lat,
 		);
 
 		$this->insert($data);
@@ -67,7 +67,7 @@ class WinemakerModel extends Model
 		// On met à jour le champ 'type' de l'utilisateur
 		$user->update(array('type' => 1), $winemaker_id['id']);
 
-		// Puis on refresh sa sessopn
+		// Puis on refresh sa sessipn
 		$auth = new AuthentificationModel();
 		$auth->refreshUser();
 	}
@@ -75,9 +75,9 @@ class WinemakerModel extends Model
 	/**
 	 * Teste si un numéro siren est présent en base de données
 	 *
-	 * @param string $siren Le numéro à tester
+	 * @param [string]   $siren Le numéro à tester
 	 *
-	 * @return boolean true si présent en base de données, false sinon
+	 * @return [boolean] Vrai si le numéro siren est déjà existant, faux sinon
 	 */
 	public function sirenExists($siren)
 	{
@@ -97,8 +97,9 @@ class WinemakerModel extends Model
 	/**
 	 * Vérifie si un utilisateur est bien un producteur
 	 *
-	 * @param  string $token Le token de la session de l'utilisateur
-	 * @return boolean        [description]
+	 * @param  [string]  $token Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 *
+	 * @return [boolean] Vrai si l'utilisateur est producteur, faux s'il n'est pas producteur
 	 */
 	public function isAWineMaker($token)
 	{
@@ -118,30 +119,27 @@ class WinemakerModel extends Model
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Récupère, via une jointure, les informations d'utilisateur et de producteur d'un producteur
+	 *
+	 * @param  [string] $token    Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 *
+	 * @return [array]            Un array contenant les informations d'utilisateur et de producteur d'un producteur
+	 */
 	public function getWinemakerbyUser($token)
 	{
 		$user = new UserModel();
 		$winemaker_id = $user->getUserByToken($token);
-		
+
 		$sql = 'SELECT *
 			FROM users
 			RIGHT JOIN '.$this->table.' ON users.id = '.$this->table.'.winemaker_id
 			WHERE users.type = 1';
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
-		
+
 		return $sth->fetchAll();
-		
 	}
 
 }
-
-
-
-
-
-
-
-
-

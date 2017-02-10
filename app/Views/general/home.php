@@ -18,7 +18,7 @@
 		<div class="container-fluid">
 			<div class="row">
 
-				<div class="col-sm-12 col-md-6 col-lg-4">
+				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-12 col-md-6 col-lg-4">
+				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
@@ -53,7 +53,7 @@
 				</div>
 
 
-				<div class="col-sm-12 col-md-6 col-lg-4">
+				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
@@ -69,11 +69,9 @@
 					    </div>
 					</div>
 				</div>
-			</div><!-- Fin de la row bootstrap -->
+			
 
-			<div class="row">
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
+				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
 					<div class="">
 						<div class="flip-container">
 						    <div class="flipper">
@@ -94,7 +92,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-12 col-md-6 col-lg-4">
+				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
@@ -113,7 +111,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-4 col-md-6 col-sm-12 ">
+				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4 ">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">

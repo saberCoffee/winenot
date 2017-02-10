@@ -1,3 +1,7 @@
+
+/*
+CAROUSEL
+*/
 .hide-bullets {
 list-style:none;
 margin-left: 2px;
@@ -19,10 +23,43 @@ margin-top:20px;
     overflow: hidden;
 }
 
+/*PARAGRAPHE A COTE DU CAROUSEL*/
+
+h4{
+  margin-bottom: 10px;
+  color: #e5e5e5;
+}
+
+#ProductMonth p {
+    color: #e5e5e5;
+    margin-bottom: 21px;
+    text-align: justify;
+    font-size: 14px;
+}
+
+/*UNE CITATION DU PRODUCTEUR*/
+blockquote {
+  color: #e5e5e5;
+  width: 80%;
+    padding: 6px 26px 2px 15px;
+    margin: 0px auto;
+    font-size: 15.5px;
+    border-left: 5px solid #4b1d3f;
+}
+
+blockquote small{
+  color: #e5e5e5;;
+}
+
+#slide-content, h2 {
+    margin-bottom: 10px;
+}
+
 section#ProductMonth .col-sm-2 {
     width: 11.666667%;
-    margin: 4px;
+    margin: 0px auto;
 }
+
 
 /*
 LE MAG
@@ -62,7 +99,7 @@ a {
 }
 
 
-p {
+.blog-text p {
   margin-bottom: 20px;
   font-size: 18px;
 }
@@ -287,4 +324,57 @@ nav ul li a {
 .fileupload-exists .fileupload-new,
 .fileupload-new .fileupload-exists {
   display: none;
+}
+
+/* Caption Style */
+.mask figure {
+  overflow: hidden;
+}
+
+.mask figure img {
+  -webkit-transition: -webkit-transform 0.4s;
+  -moz-transition: -moz-transform 0.4s;
+  transition: transform 0.4s;
+}
+
+.no-touch .mask figure:hover img,
+.mask figure.cs-hover img {
+  -webkit-transform: translateY(-30px);
+  -moz-transform: translateY(-30px);
+  -ms-transform: translateY(-30px);
+  transform: translateY(-30px);
+}
+
+.mask figcaption {
+  height: 50px;
+  width: 100%;
+  top: auto;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+
+.no-touch .mask figure:hover figcaption,
+.mask figure.cs-hover figcaption {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s;
+  transition: transform 0.4s, opacity 0.1s;
+}
+
+.mask figcaption a {
+  position: absolute;
+  top:10px;
+  bottom: 10px;
+  right: 30px;
 }

@@ -15,7 +15,7 @@
 	.flip-container {
 		perspective: 1000px;
 
-		margin: 0 auto;
+		margin: 0 auto 50px;
 
 		width: 300px;
 		height: 300px;
@@ -85,7 +85,7 @@
   		display: flex; /* contexte sur le parent */
 		flex-direction: column; /* direction d'affichage verticale */
 		justify-content: center; /* alignement vertical */
-
+		border-radius: 50%;
 		background: #270c0c;
 
 		transform: rotateY(180deg);
@@ -113,11 +113,16 @@
 			margin-bottom: 0rem;
 		}
 
+		#adjustPaddingBootstrap{
+			padding-left: 0px;
+			padding-right: 0px ;
+		}
+
 		.flip-container {
 			height: auto;
 
 			margin: 0 auto;
-			margin-bottom: 3.5rem;
+			margin-bottom: 5rem;
 		}
 
 		.flip-container:hover .flipper {
@@ -145,6 +150,7 @@
 		.back {
 			position: static;
 			height: auto;
+			border-radius: 0%;
 		}
 
 		.back p {

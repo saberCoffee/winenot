@@ -11,8 +11,8 @@ h2 {
     color: #d09038;
 }
 
-p.info {
-
+p {
+    margin: 2rem 0;
 }
 
 dl {
@@ -25,9 +25,13 @@ dt, dd {
 }
 
 section#profile > section {
-    padding: 5rem;
+    padding: 2rem 5rem;
 
     color: #333;
+}
+
+section#profile > section div.row {
+    margin-top: 1rem;
 }
 
 section#profile section section {
@@ -119,4 +123,10 @@ body.jsActive .city-input {
     display: none;
 }
 
-p#
+/* Modifications des classes bootstrap */
+.alert-info {
+    background-color: #e8c791;
+    border-color: #d09038;
+
+    color: #cc830a;
+}

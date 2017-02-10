@@ -9,11 +9,20 @@ use \W\WineNotClasses\Form;
 
 use \Model\UserModel;
 use \Model\ProductModel;
+use \Model\TokenModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
 
 class AdminController extends Controller
 {
+
+	/**
+	 * Constructeur
+	 */
+	public function __construct()
+	{
+		$this->allowTo(array('user','admin'));
+	}
 
     /**
      * Page Gérer les membres
@@ -23,10 +32,13 @@ class AdminController extends Controller
      */
     public function members()
     {
-        $this->allowTo('admin', 'dashboard');
+        $memberModel = new UserModel();
+        $members = $memberModel->findAll();
 
-        $members = new UserModel();
-        $members = $members->findAll();
+        foreach($members as $member)
+        {
+        	$member['id'] = $memberModel->getUserById($member['id']);
+        }
 
         $this->show ('admin/members', array(
             'members' 	=> $members,
@@ -51,11 +63,9 @@ class AdminController extends Controller
 	 */
 	public function addMember()
 	{
-		$this->allowTo('admin', 'dashboard');
-	
 		$members = new UserModel();
 		$members = $members->findAll();
-		
+
 		if (!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -69,7 +79,7 @@ class AdminController extends Controller
 			$city       	= htmlentities($_POST['city']);
 			$postcode       = htmlentities($_POST['postcode']);
 			$role       	= htmlentities($_POST['role']);
-			
+
 
 			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 				$error['email'] = 'Cette adresse email est invalide.';
@@ -101,9 +111,9 @@ class AdminController extends Controller
 
 			if (empty($error)) {
 				$msg = 'Votre profil de producteur a bien été enregistré.';
-			
+
 				setcookie("successMsg", $msg, time() + 5);
-				
+
 				$this->redirectToRoute('admin_members');
 			}
 		}
@@ -118,8 +128,8 @@ class AdminController extends Controller
 				'city'  	=> (!empty($city)) ? $city : '',
 				'postcode'  => (!empty($postcode)) ? $postcode : '',
 				'role' 		=> (!empty($role)) ? $role : '',
-			
-				
+
+
 
 		));
 	}
@@ -132,13 +142,11 @@ class AdminController extends Controller
 	 */
 	public function editMember($id)
 	{
-		$this->allowTo('admin', 'dashboard');
-
 		if(!empty($_POST)) {
-			
+
 			$error = array();
 			$form  = new Form();
-			
+
 			// Données du formulaire
 			$firstname = $_POST['firstname'];
 			$lastname = $_POST['lastname'];
@@ -148,7 +156,7 @@ class AdminController extends Controller
 			$postcode = $_POST['postcode'];
 			$role = $_POST['role'];
 			$type = $_POST['type'];
-			
+
 			$data = array(
 				'firstname' => $firstname,
 				'lastname' => $lastname,
@@ -159,7 +167,7 @@ class AdminController extends Controller
 				'role' => $role,
 				'type' => type
 			);
-			
+
 			// Vérificationo des données du formualire
 			$error['firstname'] = $form->isValide($firstname, '', '', true);
 			$error['lastname'] = $form->isValide($lastname, '', '', true);
@@ -168,31 +176,30 @@ class AdminController extends Controller
 			$error['city'] = $form->isValide($city, '', '', true);
 			$error['postcode'] = $form->isValide($postcode, '', '', true);
 			$error['role'] = $form->isValide($role, '', '', true);
-			$error['type'] = $form->isValide($type, '', '', true);
-			
+
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
-			
+
 			if (empty($error)) {
 				$member = new UserModel();
 				$member->update($data, $id);
-				
+
 				$msg = 'Votre modification a été bien enregistré.';
-				
+
 				setcookie("successMsg", $msg, time() + 5);
-				
+
 				$this->redirectToRoute('admin_members');
 				}
 			}
-			
+
 			$members = new UserModel();
 			$member = new UserModel();
-			
+
 			$members = $members->findAll();
 			$member =  $member->find($id);
-			
+
 			$this->show('admin/admin_members', array(
-					
+
 				'member' => $member,
 				'members' => $members,
 				// Erreurs du formulaire
@@ -208,8 +215,6 @@ class AdminController extends Controller
 	 */
 	public function winemakers()
 	{
-		$this->allowTo('admin', 'dashboard');
-
 		$winemakers = new WinemakerModel();
 		// $winemakers = $winemakers->findAll();
 

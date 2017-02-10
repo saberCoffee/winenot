@@ -16,13 +16,20 @@ class DashboardController extends Controller
 {
 
 	/**
+	 * Constructeur
+	 */
+	public function __construct()
+	{
+		$this->allowTo(array('user','admin'));
+	}
+
+	/**
 	 * Page d'accueil du dashboard
 	 *
 	 * @return void
 	 */
 	public function home()
 	{
-		$this->allowTo(array('user','admin'), 'home');
 		$this->show('dashboard/home');
 	}
 
@@ -346,11 +353,58 @@ class DashboardController extends Controller
 		$this->showForbidden();
 	}
 
-	public function userProfile($id) {
-		$user = new UserModel();
+	public function userProfile($token)
+	{
+		if (!empty($_POST)) {
+			$error = array();
+			$form  = new Form();
 
-		$user = $user->getUserByToken($id);
-		$user['id'] = $id; // On remplace l'id de l'utilisateur par son token
+			$firstname      = (!empty($_POST['firstname'])) ? $_POST['firstname'] : '';
+			$lastname       = (!empty($_POST['lastname'])) ? $_POST['lastname'] : '';
+			$role           = (!empty($_POST['role'])) ? $_POST['role'] : '';
+
+			$email          = $_POST['email'];
+			$password       = $_POST['password'];
+			$password_verif = $_POST['password_verif'];
+			$address        = $_POST['address'];
+			$postcode       = $_POST['postcode'];
+			$city           = $_POST['city'];
+
+			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+				$error['email'] = 'Cette adresse email est invalide.';
+			}
+
+			// Changer son mot de passe est optionnel ; on vérifie si les bonnes informations ont été rentrées uniquement s'il n'est pas vide
+			if (!empty($password)) {
+				$error['password'] = $form->isValid($password, 6, 16);
+
+				if ($password != $password_verif) {
+					$error['password'] = 'Les mots de passe ne sont pas identiques.';
+				}
+			}
+
+			$error['address']  = $form->isValid($address);
+			$error['postcode'] = $form->isValid($postcode, 5, 5, true);
+			$error['city']     = $form->isValid($city);
+
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+
+			$user = new UserModel;
+
+			$user->updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $error);
+
+			if (empty($error)) {
+				$this->redirectToRoute('user_profile', ['id' => $token]);
+				echo 'aucune erreur';
+			}
+		}
+
+		$user = new UserModel();
+        
+		$user = $user->getUserByToken($token);
+		$user['id'] = $token; // On remplace l'id de l'utilisateur par son token
+
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
 		$monthsEng = array('January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December');
@@ -360,26 +414,41 @@ class DashboardController extends Controller
 		$newformat = date('Y F', $date);
 		$newDate   = str_replace($monthsEng, $monthsFr, date('F')).' '.date('Y');
 
-		// Afin de cacher certaines informations, on initialise une variable qui détermine si le profil consulté appartient à l'utilisateur
-		$is_owner = ($user['id'] == $_SESSION['user']['id']) ? 1 : 0;
-		$profile  = ($is_owner) ? 'Mon profil' : 'Profil de ' . $user['firstname'] . ' ' . $user['lastname'];
+		// Afin de cacher certaines informations, on initialise une variable qui détermine si le profil consulté appartient à l'utilisateur, et une autre si on a l'autorisation de le lire (car on est admin, ou car on est en discussion avec l'utilisateur)
+		$is_owner           = ($user['id'] == $_SESSION['user']['id']) ? 1 : 0;
+		$is_allowed_to_read = ($user['id'] == $_SESSION['user']['id'] || $_SESSION['user']['role'] == 'admin') ? 1 : 0;
+		$is_allowed_to_edit = ($user['id'] == $_SESSION['user']['id'] || $_SESSION['user']['role'] == 'admin') ? 1 : 0;
+
+		// Certains textes vont changer selon le contexte
+		$lang = array(
+			'profile'      => ($is_owner) ? 'Mon profil' : 'Profil de ' . $user['firstname'] . ' ' . $user['lastname'],
+			'profile_edit' => ($is_owner) ? 'Éditer mes informations' : 'Éditer les informations de ' . $user['firstname'] . ' ' . $user['lastname']
+		);
 
 		$this->show('dashboard/profile', array(
+			// Permissions de l'utilisateur sur la page
+			'is_allowed_to_read' => $is_allowed_to_read,
+			'is_allowed_to_edit' => $is_allowed_to_edit,
+			'is_owner'			 => $is_owner,
+
 			// Données du profil
-			'is_owner'      => $is_owner,
-			'profile'       => $profile,
-			'user'          => $user,
-			'register_date' => $newDate,
+			'user'               => $user,
+			'register_date'      => $newDate,
 
 			// Données du formulaire
-			'email'	        => (!empty($_POST['email'])) ? $_POST['email'] : $user['email'],
-			'address'       => (!empty($_POST['address'])) ? $_POST['address'] : $user['address'],
-			'postcode'	    => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $user['postcode'],
-			'city'	        => (!empty($_POST['city'])) ? $_POST['city'] : $user['city'],
+			'firstname'          => (!empty($_POST['firstname'])) ? $_POST['firstname'] : $user['firstname'],
+			'lastname'           => (!empty($_POST['lastname'])) ? $_POST['lastname'] : $user['lastname'],
+			'role'               => (!empty($_POST['role'])) ? $_POST['role'] : $user['role'],
+			'email'	             => (!empty($_POST['email'])) ? $_POST['email'] : $user['email'],
+			'address'            => (!empty($_POST['address'])) ? $_POST['address'] : $user['address'],
+			'postcode'	         => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $user['postcode'],
+			'city'	             => (!empty($_POST['city'])) ? $_POST['city'] : $user['city'],
 
 			// Erreurs du formulaire
-			'error'        => (!empty($error)) ? $error : '',
+			'error'              => (!empty($error)) ? $error : '',
+
+			// Textes changeants selon le contexte
+			'lang'               => $lang
 		));
 	}
-
 }
