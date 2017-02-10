@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
-
+<div class="row">
     <section id="lemag">
     <h2>Le Mag</h2>
         <div id="page">
@@ -14,14 +14,14 @@
                                 <div class="col-md-12">
                                    <div class="magazine-blog">
                                         <div class="title ">
-                                            
+
                                             <h2>LE VIN AUX USA: PRÉDICTIONS 2017</h2>
                                             <span class="posted-on category">06 Fev 2017</span>
-                                           
+
                                         </div>
                                         <a><img src="<?= $this->assetUrl('img/mag/blog-3.jpg') ?>" alt=""></a>
                                         <article class="blog-text ">
-                                        
+
                                             <p><strong>Le marché du vin aux états unis se porte bien, voir très bien avec sa hausse de 2,8% en volume et 4% en valeur affichant plus de 383 millions de caisses de 9L vendues en 2016. C’est d’ailleurs la première année où le prix moyen d’une bouteille achetée dépasse les $10. Les américains, eux aussi, se mettent à payer plus pour espérer une meilleure qualité.</strong></p>
 
                                             <h3>Mais alors, à quoi pouvons-nous nous attendre pour 2017 ?</h3>
@@ -54,11 +54,11 @@
                             </div>
                         </div>
                     </div>
-                 </div>
-             </div>
+                </div>
+            </div>
+        </div>
     </section>
-
-
+</div>
 
 
 <?php $this->stop('main_content') ?>

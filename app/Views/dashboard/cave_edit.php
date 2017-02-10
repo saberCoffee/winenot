@@ -2,15 +2,15 @@
 
 <?php $this->start('main_content') ?>
 
-<section id="onglet">
+<section class="section-with-panels">
 
 	<?php if (!empty($_COOKIE['successMsg'])) { ?>
 	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 	<?php } ?>
 
-	<ul class="tab">
-		<li class="active">Éditer votre produit</li>
-		<li>Mes stocks</li>
+	<ul class="tabs">
+		<li id="addProduct" class="active">Éditer votre produit</li>
+		<li id="stock">Mes stocks</li>
 	</ul>
 
 	<section class="addProduct active">
@@ -54,7 +54,7 @@
 
 			<div>
 			<!-- INPUT HIDDEN TEMPORAIRE -->
-				<input type="submit" class="btn btn-default" value="Ajouter">
+				<input type="submit" class="btn btn-default" value="Modifier">
 			</div>
 		</form>
 	</section>

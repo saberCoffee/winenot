@@ -294,11 +294,12 @@ HOMEPAGE
 
     #AboutUs p {
 		margin: 1rem auto;
+		text-align: left;
     }
 
 
     #WineMonth {
-		padding-bottom: 5em;
+		padding: 5em 0 0;
         background-color: #c1d039 ;
         text-align: center;
     }
