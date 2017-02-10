@@ -37,8 +37,10 @@ class AdminController extends Controller
 
         foreach($members as $member)
         {
-        	$member['id'] = $memberModel->getUserById($member['id']);
+        	$member['id'] = $memberModel->getTokenByUserId($member['id']);
         }
+
+        debug($members);
 
         $this->show ('admin/members', array(
             'members' 	=> $members,

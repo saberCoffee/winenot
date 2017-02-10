@@ -35,7 +35,12 @@ class DashboardController extends Controller
 
 	public function products()
 	{
-		$this->show('dashboard/products');
+		$products = new ProductModel();
+		$products = $products->findAll();
+
+		$this->show('dashboard/products', array(
+			'products' => $products
+		));
 	}
 
 	public function winemakers()
@@ -401,10 +406,9 @@ class DashboardController extends Controller
 		}
 
 		$user = new UserModel();
-        
+
 		$user = $user->getUserByToken($token);
 		$user['id'] = $token; // On remplace l'id de l'utilisateur par son token
-
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
 		$monthsEng = array('January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December');
@@ -451,4 +455,5 @@ class DashboardController extends Controller
 			'lang'               => $lang
 		));
 	}
+
 }
