@@ -45,10 +45,10 @@ $(function() {
 		});
 
 		// When the carousel slides, auto update the text
-		$('#myCarousel').on('slid.bs.carousel', function (e) {
-		         var id = $('.item.active').data('slide-number');
-		        $('#carousel-text').html($('#slide-content-'+id).html());
-		});
+		// $('#myCarousel').on('slid.bs.carousel', function (e) {
+		//          var id = $('.item.active').data('slide-number');
+		//         $('#carousel-text').html($('#slide-content-'+id).html());
+		// });
 	}
 	//-- End : Carousel de la homepage --//
 

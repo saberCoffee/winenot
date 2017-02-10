@@ -46,7 +46,7 @@
 	                            </div>
 	                    </div>
 
-	                    <div class="col-sm-4" id="carousel-text"></div>
+	                    <div class="col-sm-8 " id="carousel-text"></div>
 
 	                    <div id="slide-content" style="display: none;">
 	                        <div id="slide-content-0">
@@ -57,7 +57,19 @@
 	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	                            <blockquote> "Il court, il court, le furet, Le furet du bois joli..."
+	                           <small>Pierre Vaneste</small></blockquote></p>
+
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	                            quis nostrud exercita</p>
 	                            <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
 	                        </div>
 
