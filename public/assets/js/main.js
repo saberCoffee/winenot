@@ -45,10 +45,10 @@ $(function() {
 		});
 
 		// When the carousel slides, auto update the text
-		// $('#myCarousel').on('slid.bs.carousel', function (e) {
-		//          var id = $('.item.active').data('slide-number');
-		//         $('#carousel-text').html($('#slide-content-'+id).html());
-		// });
+		$('#myCarousel').on('slid.bs.carousel', function (e) {
+		         var id = $('.item.active').data('slide-number');
+		        $('#carousel-text').html($('#slide-content-'+id).html());
+		});
 	}
 	//-- End : Carousel de la homepage --//
 
@@ -141,20 +141,20 @@ $(function() {
 					selection.addRange(selectedRange);
 				}
 			},
-			// insertFiles = function (files) {
-			// 	editor.focus();
-			// 	$.each(files, function (idx, fileInfo) {
-			// 		if (/^image\//.test(fileInfo.type)) {
-			// 			$.when(readFileIntoDataUrl(fileInfo)).done(function (dataUrl) {
-			// 				execCommand('insertimage', dataUrl);
-			// 			}).fail(function (e) {
-			// 				options.fileUploadError("file-reader", e);
-			// 			});
-			// 		} else {
-			// 			options.fileUploadError("unsupported-file-type", fileInfo.type);
-			// 		}
-			// 	});
-			// },
+			insertFiles = function (files) {
+				editor.focus();
+				$.each(files, function (idx, fileInfo) {
+					if (/^image\//.test(fileInfo.type)) {
+						$.when(readFileIntoDataUrl(fileInfo)).done(function (dataUrl) {
+							execCommand('insertimage', dataUrl);
+						}).fail(function (e) {
+							options.fileUploadError("file-reader", e);
+						});
+					} else {
+						options.fileUploadError("unsupported-file-type", fileInfo.type);
+					}
+				});
+			},
 			markSelection = function (input, color) {
 				restoreSelection();
 				if (document.queryCommandSupported('hiliteColor')) {
