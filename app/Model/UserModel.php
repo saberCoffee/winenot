@@ -100,10 +100,62 @@ class UserModel extends UsersModel
 		$user = $this->find($id);
 	}
 
-
-	public function updateProfile($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $error)
+	/**
+	 * [updateProfile description]
+	 * @param  [type] $email     [description]
+	 * @param  [type] $password  [description]
+	 * @param  [type] $firstname [description]
+	 * @param  [type] $lastname  [description]
+	 * @param  [type] $address   [description]
+	 * @param  [type] $city      [description]
+	 * @param  [type] $postcode  [description]
+	 * @param  [type] $role      [description]
+	 * @param  [type] $error     [description]
+	 *
+	 * @return [type]            [description]
+	 */
+	public function updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $error)
 	{
+		$user = $this->getUserByToken($token);
 
+		if ($this->emailExists($email)) {
+			$email_owner = $this->getUserByUsernameOrEmail($email);
+
+			if ($user['id'] != $email_owner['id']) {
+				$error['email'] = 'Cette adresse email est déjà enregistrée.';
+				return;
+			}
+		}
+
+		$auth = new AuthentificationModel;
+
+		$data = array(
+			'email'    => $email,
+			'address'  => $address,
+			'city'     => $city,
+			'postcode' => $postcode
+		);
+
+		if (!empty($password)) {
+			$hashedPassword = $auth->hashPassword($password);
+
+			$data['password'] = $hashedPassword;
+		}
+
+		if (!empty($firstname)) {
+			$data['firstname'] = $firstname;
+		}
+
+		if (!empty($lastname)) {
+			$data['lastname'] = $lastname;
+		}
+
+		if (!empty($role)) {
+			$data['role'] = $role;
+		}
+
+		$this->update($data, $user['id']);
+		$auth->refreshUser();
 	}
 
 	/**
