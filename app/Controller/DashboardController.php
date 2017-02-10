@@ -35,8 +35,19 @@ class DashboardController extends Controller
 
 	public function products()
 	{
-		$products = new ProductModel();
-		$products = $products->findAll();
+		$user       = new UserModel();
+		$winemakers = new WinemakerModel();
+		$products   = new ProductModel();
+
+		$products = $products->findAll('*', 'couleur');
+
+		$i = 0;
+		foreach ($products as $product) {
+			$token = $user->getTokenByUserId($product['winemaker_id']);
+
+			$products[$i]['winemaker'] = $winemakers->getWinemakerFullDetails($token);
+			++$i;
+		}
 
 		$this->show('dashboard/products', array(
 			'products' => $products
@@ -61,19 +72,21 @@ class DashboardController extends Controller
 	 */
 	public function registerWinemaker()
 	{
+		$this->allowToWinemakers('dashboard_home', true);
+
 		if (!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
 
-			$token   = $_SESSION['user']['id'];
-			$siren   = $_POST['siren'];
-			$area    = $_POST['area'];
-			$address = $_POST['address'];
-			$cp      = $_POST['cp'];
-			$city    = $_POST['city'];
+			$token    = $_SESSION['user']['id'];
+			$siren    = $_POST['siren'];
+			$area     = $_POST['area'];
+			$address  = $_POST['address'];
+			$postcode = $_POST['postcode'];
+			$city     = $_POST['city'];
 
 			//-- Start : Géolocalisation de la latitude et la longitude à partir du code postal //--
-			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $cp;
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $postcode;
 			$result_string = file_get_contents($url);
 			$result = json_decode($result_string, true);
 			$result1[] = $result['results'][0];
@@ -84,18 +97,18 @@ class DashboardController extends Controller
 			$lat = $result3[0]['lat'];
 			//-- End : Géolocalisation de la latitude et la longitude à partir du code postal //--
 
-			$error['siren']   = $form->isValid($siren, 9, 9);
-			$error['area']    = $form->isValid($area);
-			$error['address'] = $form->isValid($address);
-			$error['cp']      = $form->isValid($cp, 5, 5);
-			$error['city']    = $form->isValid($city);
+			$error['siren']    = $form->isValid($siren, 9, 9);
+			$error['area']     = $form->isValid($area);
+			$error['address']  = $form->isValid($address);
+			$error['postcode'] = $form->isValid($postcode, 5, 5);
+			$error['city']     = $form->isValid($city);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
 			$winemaker = new WinemakerModel;
 
-			$winemaker->registerWinemaker($token, $siren, $area, $address, $cp, $city, $lng, $lat, $error);
+			$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
 
 			if (empty($error)) {
 				$this->redirectToRoute('dashboard_home');
@@ -121,6 +134,14 @@ class DashboardController extends Controller
 	{
 		$this->allowToWinemakers('dashboard_home');
 
+		$user      = new UserModel();
+		$winemaker = new WinemakerModel();
+		$products  = new ProductModel();
+
+		$user      = $user->getUserByToken($_SESSION['user']['id']);
+		$winemaker = $winemaker->find($user['id']);
+
+
 		if(!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -128,6 +149,7 @@ class DashboardController extends Controller
 			// Données du formulaire
  			$name      = $_POST['name'];
 			$color     = $_POST['color'];
+			$region    = $winemaker['region'];
 			$price 	   = str_replace(',','.', $_POST['price']);
 			$millesime = $_POST['millesime'];
 			$cepage    = $_POST['cepage'];
@@ -147,9 +169,7 @@ class DashboardController extends Controller
 
 			if (empty($error)) {
 				$token = $_SESSION['user']['id'];
-
-				$product = new ProductModel();
-				$product->addProduct($token, $name, $color, $price, $millesime, $cepage, $stock, $bio);
+				$products->addProduct($token, $name, $color, $region, $price, $millesime, $cepage, $stock, $bio);
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 
@@ -159,8 +179,7 @@ class DashboardController extends Controller
 			}
 		}
 
-		$products = new ProductModel();
-		$products = $products->findAll();
+		$products = $products->findProductsFrom($user['id']);
 
 		$this->show('dashboard/cave', array(
 			// Liste des produits de la cave
@@ -192,6 +211,8 @@ class DashboardController extends Controller
 	{
 		$this->allowToWinemakers('dashboard_home');
 
+		$products = new ProductModel();
+
 		if(!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -208,8 +229,7 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$product = new ProductModel();
-				$product->editProduct($id, $price, $stock);
+				$products->editProduct($id, $price, $stock);
 
 				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
 
@@ -219,11 +239,8 @@ class DashboardController extends Controller
 			}
 		}
 
-		$products = new ProductModel();
-		$product  = new ProductModel();
-
-		$products = $products->findAll();
-		$product  = $product->find($id);
+		$products = $products->findProductsFrom($user['id']);
+		$product  = $products->find($id);
 
 		$this->show('dashboard/cave_edit', array(
 			// Liste des produits de la cave
@@ -338,17 +355,27 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Autorise l'accès aux producteurs uniquement
-	 * @param string $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
+	 * Autorise l'accès aux producteurs (par défaut) ou, inversement, aux NON-producteurs
+	 *
+	 * @param [string]  $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
+	 * @param [boolean] $noWinemaker Si réglé sur false, on autorise l'accès aux producteurs. Sinon, on autorise l'accès aux non-producteurS.
+	 *
+	 * @return [mixed] Un boolean true si le passage est autorisé | void sinon
 	 */
-	public function allowToWinemakers($redirectRoute = '')
+	public function allowToWinemakers($redirectRoute = '', $noWinemaker = false)
 	{
 		$winemaker = new WinemakerModel();
 
 		$token = $_SESSION['user']['id'];
 
-		if ($winemaker->isAWineMaker($token)) {
-			return true;
+		if (!$noWinemaker) {
+			if ($winemaker->isAWineMaker($token)) {
+				return true;
+			}
+		} else {
+			if (!$winemaker->isAWineMaker($token)) {
+				return true;
+			}
 		}
 
 		if (!empty($redirectRoute)) {

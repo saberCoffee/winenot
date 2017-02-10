@@ -48,7 +48,7 @@
 				<div class="col-md-4 ">
 					<div class="form-group <?php if (isset($error['millesime'])) { echo 'has-error'; } ?>">
 						<label for="millesime">Millesime</label>
-						<input type="text" name="millesime" id="millesime" class="form-control" value="<?= $millesime; ?>" data-min="4" data-max="4" required="required">
+						<input type="text" name="millesime" id="millesime" class="form-control" value="<?= $millesime; ?>" data-min="4" data-max="4" maxlength="4" required="required">
 						<span class="help-block" <?php if (empty($error['millesime'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['millesime'])) { echo $error['millesime']; } ?>
                    		</span>
