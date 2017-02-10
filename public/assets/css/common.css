@@ -54,6 +54,10 @@ RESET
 		color: #a7dadc;
 	}
 
+	a, a:focus, a:hover, a:active, a:visited {
+		text-decoration: none;
+	}
+
 	#goto-top {
 		display: none;
 

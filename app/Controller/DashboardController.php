@@ -35,8 +35,19 @@ class DashboardController extends Controller
 
 	public function products()
 	{
-		$products = new ProductModel();
-		$products = $products->findAll();
+		$user       = new UserModel();
+		$winemakers = new WinemakerModel();
+		$products   = new ProductModel();
+
+		$products = $products->findAll('*', 'couleur');
+
+		$i = 0;
+		foreach ($products as $product) {
+			$token = $user->getTokenByUserId($product['winemaker_id']);
+
+			$products[$i]['winemaker'] = $winemakers->getWinemakerFullDetails($token);
+			++$i;
+		}
 
 		$this->show('dashboard/products', array(
 			'products' => $products
@@ -64,19 +75,21 @@ class DashboardController extends Controller
 	 */
 	public function registerWinemaker()
 	{
+		$this->allowToWinemakers('dashboard_home', true);
+
 		if (!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
 
-			$token   = $_SESSION['user']['id'];
-			$siren   = $_POST['siren'];
-			$area    = $_POST['area'];
-			$address = $_POST['address'];
-			$cp      = $_POST['cp'];
-			$city    = $_POST['city'];
+			$token    = $_SESSION['user']['id'];
+			$siren    = $_POST['siren'];
+			$area     = $_POST['area'];
+			$address  = $_POST['address'];
+			$postcode = $_POST['postcode'];
+			$city     = $_POST['city'];
 
 			//-- Start : Géolocalisation de la latitude et la longitude à partir du code postal //--
-			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $cp;
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $postcode;
 			$result_string = file_get_contents($url);
 			$result = json_decode($result_string, true);
 			$result1[] = $result['results'][0];
@@ -87,25 +100,24 @@ class DashboardController extends Controller
 			$lat = $result3[0]['lat'];
 			//-- End : Géolocalisation de la latitude et la longitude à partir du code postal //--
 
-			$error['siren']   = $form->isValid($siren, 9, 9);
-			$error['area']    = $form->isValid($area);
-			$error['address'] = $form->isValid($address);
-			$error['cp']      = $form->isValid($cp, 5, 5);
-			$error['city']    = $form->isValid($city);
+			$error['siren']    = $form->isValid($siren, 9, 9);
+			$error['area']     = $form->isValid($area);
+			$error['address']  = $form->isValid($address);
+			$error['postcode'] = $form->isValid($postcode, 5, 5);
+			$error['city']     = $form->isValid($city);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
 			$winemaker = new WinemakerModel;
 
-			$winemaker->registerWinemaker($token, $siren, $area, $address, $cp, $city, $lng, $lat, $error);
-
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard_home');
+				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
 
 				$msg = 'Votre profil de producteur a bien été enregistré.';
+				setcookie("successMsg", $msg, time() + 5, '/');
 
-				setcookie("successMsg", $msg, time() + 5);
+				$this->redirectToRoute('dashboard_home');
 			}
 		}
 
@@ -124,59 +136,66 @@ class DashboardController extends Controller
 	{
 		$this->allowToWinemakers('dashboard_home');
 
+		$user      = new UserModel();
+		$winemaker = new WinemakerModel();
+		$products  = new ProductModel();
+
+		$user      = $user->getUserByToken($_SESSION['user']['id']);
+		$winemaker = $winemaker->find($user['id']);
+
 		if(!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
 
 			// Données du formulaire
- 			$name      = $_POST['name'];
-			$color     = $_POST['color'];
-			$price 	   = str_replace(',','.', $_POST['price']);
-			$millesime = $_POST['millesime'];
-			$cepage    = $_POST['cepage'];
-			$stock 	   = $_POST['stock'];
-			$bio       = (empty($_POST['bio'])) ? 0 : 1;
+ 			$name        = $_POST['name'];
+			$color       = $_POST['color'];
+			$region      = $winemaker['region'];
+			$price 	     = str_replace(',','.', $_POST['price']);
+			$description = $_POST['description'],
+			$millesime   = $_POST['millesime'];
+			$cepage      = $_POST['cepage'];
+			$stock 	     = $_POST['stock'];
+			$bio         = (empty($_POST['bio'])) ? 0 : 1;
 
 			// Vérification des données du formulaire
-			$error['name']      = $form->isValid($name, 3, 50);
-			$error['color']     = $form->isValid($color);
-			$error['price']     = $form->isValid($price, '', '', true);
-			$error['millesime'] = $form->isValid($millesime, 4, 4, true);
-			$error['cepage']    = $form->isValid($cepage, 3, 50);
-			$error['stock']     = $form->isValid($stock, '', '', true);
+			$error['name']        = $form->isValid($name, 3, 50);
+			$error['color']       = $form->isValid($color);
+			$error['price']       = $form->isValid($price, '', '', true);
+			$error['description'] = $form->isValid($description, '', 200)
+			$error['millesime']   = $form->isValid($millesime, 4, 4, true);
+			$error['cepage']      = $form->isValid($cepage, 3, 50);
+			$error['stock']       = $form->isValid($stock, '', '', true);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
 			if (empty($error)) {
 				$token = $_SESSION['user']['id'];
-
-				$product = new ProductModel();
-				$product->addProduct($token, $name, $color, $price, $millesime, $cepage, $stock, $bio);
+				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio);
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
-
-				setcookie("successMsg", $msg, time() + 5);
+				setcookie("successMsg", $msg, time() + 5, '/');
 
 				$this->redirectToRoute('cave');
 			}
 		}
 
-		$products = new ProductModel();
-		$products = $products->findAll();
+		$products = $products->findProductsFrom($user['id']);
 
 		$this->show('dashboard/cave', array(
 			// Liste des produits de la cave
 			'products' 	=> $products,
 
 			// Données du formulaire
-			'name'		=> (!empty($_POST['name'])) ? $_POST['name'] : '',
-			'color' 	=> (!empty($_POST['color'])) ? $_POST['color'] : '',
-			'price'		=> (!empty($_POST['price'])) ? $_POST['price'] : '',
-			'millesime' => (!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
-			'cepage'    => (!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
-			'stock'	    => (!empty($_POST['stock'])) ? $_POST['stock'] : '',
-			'bio'	    => (!empty($_POST['bio'])) ? $_POST['bio'] : '',
+			'name'		  => (!empty($_POST['name'])) ? $_POST['name'] : '',
+			'color' 	  => (!empty($_POST['color'])) ? $_POST['color'] : '',
+			'price'		  => (!empty($_POST['price'])) ? $_POST['price'] : '',
+			'description' => (!empty($_POST['description'])) ? $_POST['description'] : '',
+			'millesime'   => (!empty($_POST['millesime'])) ? $_POST['millesime'] : '',
+			'cepage'      => (!empty($_POST['cepage'])) ? $_POST['cepage'] : '',
+			'stock'	      => (!empty($_POST['stock'])) ? $_POST['stock'] : '',
+			'bio'	      => (!empty($_POST['bio'])) ? $_POST['bio'] : '',
 
 			// Erreurs du formulaire
 			'error'     => (!empty($error)) ? $error : '',
@@ -195,6 +214,11 @@ class DashboardController extends Controller
 	{
 		$this->allowToWinemakers('dashboard_home');
 
+		$userModel     = new UserModel();
+		$productModel  = new ProductModel();
+
+		$user      = $userModel->getUserByToken($_SESSION['user']['id']);
+
 		if(!empty($_POST)) {
 			$error = array();
 			$form  = new Form();
@@ -211,22 +235,17 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$product = new ProductModel();
-				$product->editProduct($id, $price, $stock);
+				$productModel->editProduct($id, $price, $stock);
 
 				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
+				setcookie("successMsg", $msg, time() + 5, '/');
 
-				setcookie("successMsg", $msg, time() + 5);
-
-				$this->redirectToRoute('cave');
+				$this->redirectToRoute('cave', ['id' => $id]);
 			}
 		}
 
-		$products = new ProductModel();
-		$product  = new ProductModel();
-
-		$products = $products->findAll();
-		$product  = $product->find($id);
+		$products = $productModel->findProductsFrom($user['id']);
+		$product  = $productModel->find($id);
 
 		$this->show('dashboard/cave_edit', array(
 			// Liste des produits de la cave
@@ -235,8 +254,9 @@ class DashboardController extends Controller
 			'product'  => $product,
 
 			// Données du formulaire
-			'price'	   => (!empty($_POST['price'])) ? $_POST['price'] : $product['price'],
-			'stock'	   => (!empty($_POST['stock'])) ? $_POST['stock'] : $product['stock'],
+			'price'	      => (!empty($_POST['price'])) ? $_POST['price'] : $product['price'],
+			'description' => (!empty($_POST['description'])) ? $_POST['description'] : '',
+			'stock'	      => (!empty($_POST['stock'])) ? $_POST['stock'] : $product['stock'],
 
 			// Erreurs du formulaire
 			'error'    => (!empty($error)) ? $error : '',
@@ -341,17 +361,27 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Autorise l'accès aux producteurs uniquement
-	 * @param string $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
+	 * Autorise l'accès aux producteurs (par défaut) ou, inversement, aux NON-producteurs
+	 *
+	 * @param [string]  $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
+	 * @param [boolean] $noWinemaker Si réglé sur false, on autorise l'accès aux producteurs. Sinon, on autorise l'accès aux non-producteurS.
+	 *
+	 * @return [mixed] Un boolean true si le passage est autorisé | void sinon
 	 */
-	public function allowToWinemakers($redirectRoute = '')
+	public function allowToWinemakers($redirectRoute = '', $noWinemaker = false)
 	{
 		$winemaker = new WinemakerModel();
 
 		$token = $_SESSION['user']['id'];
 
-		if ($winemaker->isAWineMaker($token)) {
-			return true;
+		if (!$noWinemaker) {
+			if ($winemaker->isAWineMaker($token)) {
+				return true;
+			}
+		} else {
+			if (!$winemaker->isAWineMaker($token)) {
+				return true;
+			}
 		}
 
 		if (!empty($redirectRoute)) {
