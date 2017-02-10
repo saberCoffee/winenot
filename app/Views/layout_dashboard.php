@@ -44,7 +44,6 @@
             </header>
         </div>
 
-
         <div class="row">
             <div class="col-lg-2 r-p r-m col-aside">
                 <aside>
@@ -60,7 +59,7 @@
 								<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
                             <li>
-								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un produit</a>
+								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Tous nos vins</a>
 							</li>
                             <li>
 								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>

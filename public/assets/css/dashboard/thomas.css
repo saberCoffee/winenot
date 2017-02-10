@@ -123,4 +123,10 @@ body.jsActive .city-input {
     display: none;
 }
 
-p#
+/* Modifications des classes bootstrap */
+.alert-info {
+    background-color: #e8c791;
+    border-color: #d09038;
+
+    color: #cc830a;
+}
