@@ -18,7 +18,7 @@ class TokenModel extends Model
 			$token = md5(uniqid(rand(), true));
 		}
 
-		if ($userModel->getTokenById($idUser)) {  // Si l'utilisateur a déjà un token, on le met à jour
+		if ($userModel->getTokenByUserId($idUser)) {  // Si l'utilisateur a déjà un token, on le met à jour
 			$data = array(
 				'token' => $token,
 			);
