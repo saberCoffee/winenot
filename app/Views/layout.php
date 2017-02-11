@@ -63,7 +63,7 @@
 						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li>
 						<li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du moi</a></li>
 						<li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 					</ul>
 				</div>
 

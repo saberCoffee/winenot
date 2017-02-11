@@ -132,7 +132,8 @@ HEADER
 	}
 
 	nav ul li a {
-		color: #4b1d3f;
+		/* color: #4b1d3f; */
+		color: black;
 		font-size: 1.8rem;
 
 		transition: all 0.2s ease-out;
@@ -611,7 +612,7 @@ FOOTER
 	}
 	footer ul li a:hover {
 		text-decoration:none;
-		color:#a22b49;
+		/* color:#a22b49; */
 		font-weight: bold;
 	}
 	footer p.copyright {
