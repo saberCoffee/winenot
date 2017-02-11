@@ -7,19 +7,15 @@
 <div class="row">
 	<section id="AboutUs">
 			<h2>À propos</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>
+				Bienvenue sur WineNot, la première plateforme entièrement gratuite qui met en relation <strong>producteurs</strong> et <strong>consommateurs</strong> de vin.
+			</p>
+			<p>
+				Tous les mois, notre équipe met en avant les meilleurs produits et producteurs de WineNot. Amateur de vin, professionnel du milieu ou simple curieux, n'attendez-plus : rejoignez-nous pour découvrir ce que nous avons à offrir !
+			</p>
+			<p>
+				<a href="<?= $this->url('account') ;?>" class="register">S'inscrire</a>
+			</p>
 	</section>
 </div>
 

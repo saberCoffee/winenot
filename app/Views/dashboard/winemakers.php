@@ -23,14 +23,14 @@
 	<div id="dashboard_map"></div>
 </section>
 </div>
-	
+
 <div class="container winemakerInfo">
 	<h2>Tous nos producteurs</h2>
 	<div class="row">
 	<?php foreach ($winemakers as $winemaker) { ?>
-		<div class="col-md-3"><a href="#"><img class="photoProfil" src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="photo profil" /><br><?= $winemaker['firstname'];?> <?=$winemaker['lastname'];?></a></div>
+		<div class="col-md-3"><a href="<?= $this->url('winemaker_profile', ['id' => $winemaker['winemaker_id']]) ?>"><img class="photoProfil" src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="photo profil" /><br><?= $winemaker['firstname'];?> <?=$winemaker['lastname'];?></a></div>
 <?php }?>
-	
+
 	</div>
 </div>
 <?php $this->stop('main_content') ?>

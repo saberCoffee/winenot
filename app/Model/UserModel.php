@@ -201,9 +201,11 @@ class UserModel extends UsersModel
 	 */
 	public function logout()
 	{
-		$auth = new AuthentificationModel;
+		$auth  = new AuthentificationModel();
+		$token = new TokenModel();
 
-		$auth->logUserOut();
+		$token->delete($_SESSION['user']['id']); // On supprime le token créé par la session en cours
+		$auth->logUserOut(); // Puis on déconnecte l'utilisateur
 	}
 
 	public function members() {

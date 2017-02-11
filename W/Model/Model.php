@@ -255,10 +255,6 @@ abstract class Model
 	 */
 	public function delete($id)
 	{
-		if (!is_numeric($id)){
-			return false;
-		}
-
 		$sql = 'DELETE FROM ' . $this->table . ' WHERE ' . $this->primaryKey .' = :id LIMIT 1';
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':id', $id);

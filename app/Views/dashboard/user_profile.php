@@ -11,9 +11,9 @@
 
 		<section class="view-profile <?php if (empty($error)) { echo 'active'; } ?>">
 			<div class="row">
-				<div class="col-md-3">
-					<aside>
-						<p class="user-infos">
+				<div class="col-md-3 vcenter">
+					<aside class="user-infos-left">
+						<p>
 							<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar">
 							<br />
 							<span><?= $user['firstname'] . ' ' . $user['lastname'] ?></span>
@@ -23,8 +23,8 @@
 					</aside>
 				</div>
 
-				<div class="col-md-9">
-					<section>
+				<div class="col-md-9 vcenter">
+					<section class="user-infos-right">
 						<?php if ($is_allowed_to_read): ?>
 							<?php if ($is_owner): ?>
 								<p>

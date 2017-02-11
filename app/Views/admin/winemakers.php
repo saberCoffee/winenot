@@ -2,7 +2,7 @@
 <?php $this->start('main_content') ?>
 
 <section class="section-with-panels">
-<div class="container">
+<div class="container-fluid">
 	<ul class="tabs">
 		<li id="addProducer" class="active">Ajouter un producteur</li>
 		<li id="member-list">Liste des producteurs</li>
@@ -12,29 +12,29 @@
 			<input type="hidden" name="id" value="<?= $winemakers['id']; ?>" />
 			<div class="row">
 				<div class="col-md-4">
-					<label for="">Adresse</label>
+					<label for="">Adresse*</label>
 					<input type="text" value="" name="adress" placeholder="" class="form-control" />
 				</div>
 				<div class="col-md-4">
-					<label for="">Ville</label>
+					<label for="">Ville*</label>
 					<input type="text" value="" name="city" placeholder="" class="form-control" />
 				</div>
 				<div class="col-md-4">
-					<label for="">Code Postal</label>
+					<label for="">Code Postal*</label>
 					<input type="number" value="" name="postcode" placeholder="" class="form-control" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<label for="">Siren</label>
+					<label for="">Siren*</label>
 					<input type="number" value="" name="siren" placeholder="" class="form-control" />
 				</div>
 				<div class="col-md-4">
-					<label for="">domain</label>
+					<label for="">Région*</label>
 					<input type="text" value="" name="domain" placeholder=""  class="form-control"/>
 				</div>
 				<div class="col-md-4">
-					<label for="">N° Téléphone</label>
+					<label for="">N° Téléphone*</label>
 					<input type="number" value="" name="tel" placeholder=" " class="form-control" />
 				</div>
 			</div>
