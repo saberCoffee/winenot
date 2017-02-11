@@ -24,6 +24,7 @@ class TokenModel extends Model
 			);
 
 			$sql = 'UPDATE ' . $this->table . ' SET token = :token WHERE user_id = :id';
+			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(':id', $idUser);
 			$sth->bindValue(':token', $token);
 
