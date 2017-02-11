@@ -19,7 +19,7 @@
 
 	<ul class="tabs">
 		<li id="addProduct" class="active">Ajout de produit</li>
-		<li id="stock">Mes stocks</li>
+		<li id="stock">Mes vins</li>
 	</ul>
 
 	<section class="addProduct active">

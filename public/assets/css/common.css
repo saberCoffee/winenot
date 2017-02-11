@@ -59,6 +59,18 @@ RESET
 		text-decoration: none;
 	}
 
+	a.link-register {
+		display: inline-block;
+
+		margin-top: 1rem;
+		padding: 2rem 5rem;
+
+		background: #fff;
+		border-radius: 5px;
+
+		text-transform: uppercase;
+	}
+
 	#goto-top {
 		display: none;
 
@@ -132,7 +144,8 @@ HEADER
 	}
 
 	nav ul li a {
-		color: #4b1d3f;
+		/* color: #4b1d3f; */
+		color: black;
 		font-size: 1.8rem;
 
 		transition: all 0.2s ease-out;
@@ -300,18 +313,6 @@ HOMEPAGE
     #AboutUs p {
 		margin: 1rem auto;
     }
-
-	#AboutUs a.register {
-		display: inline-block;
-
-		margin-top: 1rem;
-		padding: 2rem 5rem;
-
-		background: #fff;
-		border-radius: 5px;
-
-		text-transform: uppercase;
-	}
 
 
     #WineMonth {
@@ -611,7 +612,7 @@ FOOTER
 	}
 	footer ul li a:hover {
 		text-decoration:none;
-		color:#a22b49;
+		/* color:#a22b49; */
 		font-weight: bold;
 	}
 	footer p.copyright {

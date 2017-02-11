@@ -28,7 +28,7 @@
             <header>
                 <nav>
                     <ul>
-                        <li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li><!--
+                        <li <?php echo ($w_current_route == 'inbox' || $w_current_route == 'inbox_thread') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li><!--
                         --><li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li><!--
 						--><li <?php echo ($w_current_route == 'user_profile') ? 'class="current"' : '' ?>><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
 
@@ -60,10 +60,10 @@
                             <li>
 								<a href="<?= $this->url('mag') ?>#lemag"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
 							</li>
-                            <li <?php echo ($w_current_route == 'products') ? 'class="current"' : '' ?>>
+                            <li <?php echo ($w_current_route == 'products' || $w_current_route == 'dashboard_product') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>">Tous nos vins</a>
 							</li>
-                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
+                            <li <?php echo ($w_current_route == 'winemakers' || $w_current_route == 'winemaker_profile') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'favorites') ? 'class="current"' : '' ?>>
@@ -82,7 +82,7 @@
 
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
-									<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+									<a href="<?= $this->url('add_article') ?>"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 								</li>

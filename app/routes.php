@@ -61,7 +61,7 @@
 		['GET', '/mag', 'General#mag', 'mag'], // Page qui affiche des articles
 		['GET', '/mag/article', 'General#article', 'article'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
 		['GET', '/mag/article/edit', 'General#article_edit', 'article_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
-		['GET', '/mag/article/add', 'General#article_add', 'article_add'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
+		['GET', '/mag/article/add', 'General#add_article', 'add_article'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
 			
 		//-- End : Pages Dashboard/Admin --//
 

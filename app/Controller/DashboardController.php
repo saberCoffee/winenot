@@ -339,16 +339,15 @@ class DashboardController extends Controller
 	 */
 	public function inboxThread($token)
 	{
-		$user     = new UserModel();
-		$messages = new PrivateMessageModel();
+		$userModel    = new UserModel();
+		$messageModel = new PrivateMessageModel();
 
-		$user1 = $user->getUserByToken($_SESSION['user']['id']);
-		$user1 = $user1['id']; // Correspond à mon ID d'utilisateur
+		$users['self']             = $userModel->getUserByToken($_SESSION['user']['id']); // Correspond à mon ID d'utilisateur
+		$users['self']['token']    = $userModel->getTokenByUserId($users['self']['id']);
+		$users['contact']          = $userModel->getUserByToken($token, 'MP'); // Correspond à l'ID de l'utilisateur avec qui j'ai un fil de discussion
+		$users['contact']['token'] = $userModel->getTokenByUserId($users['contact']['id']);
 
-		$user2 = $user->getUserByToken($token);
-		$user2 = $user2['id']; // Correspond à l'ID de l'utilisateur avec qui j'ai un fil de discussion
-
-		$messages = $messages->getMessagesFromThread($user1, $user2);
+		$messages = $messageModel->getMessagesFromThread($users['self']['id'], $users['contact']['id']);
 
 		/*
 			Ce bout de code sert à attribuer une classe row à chaque auteur
@@ -376,10 +375,17 @@ class DashboardController extends Controller
 		}
 		$messages = array_reverse($messages);
 
+		$nb_messages = $i;
+
 		$this->show ('dashboard/thread', array(
-			'messages' => $messages,
-			'subject'  => $subject,
-			'token'    => $token
+			// Données de l'utilisateur avec qui la discussion est ouverte
+			'token'       => $token,
+			'users'       => $users,
+
+			// Données du fil de discussion
+			'subject'     => (!empty($subject)) ? $subject : '',
+			'messages'    => $messages,
+			'nb_messages' => $nb_messages
 		));
 	}
 
@@ -390,16 +396,13 @@ class DashboardController extends Controller
 	 */
 	public function inboxPosting($token)
 	{
-		$user    = new UserModel();
-		$message = new PrivateMessageModel();
+		$userModel           = new UserModel();
+		$privateMessageModel = new PrivateMessageModel();
 
-		$receiver_id = $user->getUserByToken($token);
-		$receiver_id = $receiver_id['id'];
+		$receiver = $userModel->getUserByToken($token, 'MP');
+		$author   = $userModel->getUserByToken($_SESSION['user']['id']);
 
-		$author_id = $user->getUserByToken($_SESSION['user']['id']);
-		$author_id = $author_id['id']; // Correspond à mon ID d'utilisateur
-
-		$message->sendMessage($receiver_id, $author_id, $_POST['subject'], $_POST['content']);
+		$privateMessageModel->sendMessage($receiver['id'], $author['id'], $_POST['subject'], $_POST['content']);
 
 		$this->redirectToRoute('inbox_thread', ['id' => $token]);
 	}
@@ -545,8 +548,9 @@ class DashboardController extends Controller
 	{
 		$winemakerModel = new WinemakerModel();
 		$productModel   = new ProductModel();
+		$userModel      = new UserModel();
 
-		$winemaker      = $winemakerModel->getWinemakerFullDetails($token);
+		$winemaker = $winemakerModel->getWinemakerFullDetails($token);
 
 		if (empty($winemaker)) {
 			$errorMessage['dashboard'] = 'Il semblerait que ce producteur n\'existe pas.';
@@ -556,6 +560,8 @@ class DashboardController extends Controller
 				'errorMessage' => $errorMessage
 			));
 		}
+
+		$winemaker['mp_token'] = $userModel->getTokenByUserId($winemaker['winemaker_id'], 'MP');
 
 		if (!empty($_POST)) {
 

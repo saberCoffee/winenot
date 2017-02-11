@@ -11,7 +11,7 @@
             <tr>
                 <td>Photo</td>
                 <td>
-                    <a href="<?= $this->url('inbox_thread', ['id' => $message['token']]) ?>">
+                    <a href="<?= $this->url('inbox_thread', ['id' => $message['mp_token']]) ?>">
                     <?php if (!empty($message['firstname'])): ?>
                         <?= $message['firstname'] . ' ' . $message['lastname'] ?>
                     <?php else: ?>
