@@ -1,7 +1,7 @@
 <?php $this->layout('layout_dashboard', ['title' => $product['name'] . ' ' . $product['millesime']]) ?>
 <?php $this->start('main_content') ?>
 
-<section>
+<section id="ficheProduit">
 
 <!-- <div class="container">
 	<div class="row">
