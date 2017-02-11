@@ -34,20 +34,20 @@
 						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li><!--
 						--><li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li><!--
 						--><li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li><!--
-						--><li><a href="<?= $this->url('mag') ?>">Le Mag</a></li>
+						--><li><a href="<?= $this->url('mag') ?>#lemag">Le Mag</a></li>
 					</ul>
 
 					<div class="logo">
 						<a href="<?= $this->url('home') ?>"><img width="200" height="217" src="<?= $this->assetUrl('img/logo_clean.png') ?>" alt="Logo" /></a>
 					</div>
-					
+
 					<ul>
 						<li><a href="<?php echo (empty($_SESSION['user'])) ? $this->url('account') : $this->url('dashboard_home') ?>"><?php echo (!empty($_SESSION['user'])) ? $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] : 'Mon Compte';?></a></li>
 					</ul>
 				</nav>
 			</header>
 		</div>
-	
+
 
 		<main>
 			<?= $this->section('main_content') ?>

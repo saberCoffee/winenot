@@ -14,18 +14,6 @@ class WinemakerModel extends Model
 	protected $primaryKey = 'winemaker_id';
 
 	/**
-	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
-	 *
-	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
-	 */
-	public function latlng() {
-		$winemaker = new WinemakerModel();
-		$winemakers = $this->findAll('lat, lng');
-
-		return $winemakers;
-	}
-
-	/**
  	 * Créé un nouveau profil de producteur associé à un utilisateur
  	 *
 	 * @param  [string]  $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
@@ -73,54 +61,6 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * Teste si un numéro siren est présent en base de données
-	 *
-	 * @param [string]   $siren Le numéro à tester
-	 *
-	 * @return [boolean] Vrai si le numéro siren est déjà existant, faux sinon
-	 */
-	public function sirenExists($siren)
-	{
-		$sql = 'SELECT siren FROM ' . $this->table . ' WHERE siren = :siren LIMIT 1';
-		$dbh = ConnectionModel::getDbh();
-		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':siren', $siren);
-		if($sth->execute()){
-			$foundSiren = $sth->fetch();
-			if($foundSiren){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Vérifie si un utilisateur est bien un producteur
-	 *
-	 * @param  [string]  $token Le token de l'utilisateur, dont on se sert pour déterminer son id
-	 *
-	 * @return [boolean] Vrai si l'utilisateur est producteur, faux s'il n'est pas producteur
-	 */
-	public function isAWineMaker($token)
-	{
-		$user = new UserModel();
-
-		$winemaker_id = $user->getUserByToken($token);
-
-		$sql = 'SELECT winemaker_id FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
-		$dbh = ConnectionModel::getDbh();
-		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':winemaker_id', $winemaker_id['id']);
-		if($sth->execute()){
-			$foundWinemaker = $sth->fetch();
-			if($foundWinemaker){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Récupère, via une jointure, les informations d'utilisateur et de producteur de tous les producteurs
 	 *
 	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) de tous les producteurs
@@ -161,6 +101,66 @@ class WinemakerModel extends Model
 		$sth->execute();
 
 		return $sth->fetch();
+	}
+
+	/**
+	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
+	 *
+	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
+	 */
+	public function latlng() {
+		$winemaker = new WinemakerModel();
+		$winemakers = $this->findAll('lat, lng');
+
+		return $winemakers;
+	}
+
+	/**
+	 * Vérifie si un utilisateur est bien un producteur
+	 *
+	 * @param  [string]  $token Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 *
+	 * @return [boolean] Vrai si l'utilisateur est producteur, faux s'il n'est pas producteur
+	 */
+	public function isAWineMaker($token)
+	{
+		$user = new UserModel();
+
+		$winemaker_id = $user->getUserByToken($token);
+
+		$sql = 'SELECT winemaker_id FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':winemaker_id', $winemaker_id['id']);
+		if($sth->execute()){
+			$foundWinemaker = $sth->fetch();
+			if($foundWinemaker){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Teste si un numéro siren est présent en base de données
+	 *
+	 * @param [string]   $siren Le numéro à tester
+	 *
+	 * @return [boolean] Vrai si le numéro siren est déjà existant, faux sinon
+	 */
+	public function sirenExists($siren)
+	{
+		$sql = 'SELECT siren FROM ' . $this->table . ' WHERE siren = :siren LIMIT 1';
+		$dbh = ConnectionModel::getDbh();
+		$sth = $dbh->prepare($sql);
+		$sth->bindValue(':siren', $siren);
+		if($sth->execute()){
+			$foundSiren = $sth->fetch();
+			if($foundSiren){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
