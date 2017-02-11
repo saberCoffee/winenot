@@ -21,8 +21,7 @@
 
 		//-- Start : Pages Dashboard --//
 		['GET', '/dashboard', 'Dashboard#home', 'dashboard_home'], // Accueil de dashboard lorsqu'un utilisateur est loggué
-		['GET', '/dashboard/wishlist', 'Dashboard#wishlist', 'wishlist'], // Page des favoris que l'utilisateur ont sauvegardé
-		['GET', '/dashboard/wishlist/[a:id]', 'Dashboard#wishlist_thread', 'wishlist_thread'], // detail d'un favori
+		['GET', '/dashboard/favorites', 'Dashboard#favorites', 'favorites'], // Page des favoris que l'utilisateur ont sauvegardé
 
 		/* Produits */
 		['GET', '/dashboard/products', 'Dashboard#products', 'products'], // Tous les produits
