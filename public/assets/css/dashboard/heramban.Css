@@ -4,19 +4,22 @@
 FICHE PRODUITS
 */
 
-.container{
+.table .table-striped{
         background-color: #e7cb9b;
-        width: 40%;
+        width: 50%;
         border-radius: 4px;
 }
 
 .cadre{
         text-align: center;
-       background-color: #ffffff;
-       width: 40%;
-       border-radius: 4px;
+        background-color: #ffffff;
+        width: 50%;
+        border-radius: 4px;
 }
 
 .produitImg img{
-        width: 17%;
+        text-align: center;
+        width: 50%;
+        border-radius: 4px;
+
  }

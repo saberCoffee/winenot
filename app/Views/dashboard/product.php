@@ -17,11 +17,11 @@
 		</div>
 	</div>
 </div> -->
-
-<div class="container"> 
 <div class="produitImg">
 	<img src="<?= $this->assetUrl('img/vinBouteille.jpg') ?>">
 </div>
+<div class="container"> 
+
   <table class="table table-striped">
   
     <tbody>
