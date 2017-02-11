@@ -13,11 +13,6 @@
 
 		['GET|POST', '/latlng', 'General#latlng', 'latlng'], // Route pour donner des coordonnées latitude et longitude pour afficher les producteurs sur google map
 
-		['GET', '/mag', 'General#mag', 'mag'], // Page qui affiche des articles
-		['GET', '/mag/article', 'General#article', 'article'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
-		['GET', '/mag/article/edit', 'General#article_edit', 'article_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
-		['GET', '/mag/article/add', 'General#article_add', 'article_add'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
-
 		['GET', '/about', 'General#about', 'about'], // Page d'a propos
 		['GET|POST', '/contact', 'General#contact', 'contact'], // Page du contact le site web
 		['GET', '/sitemap', 'General#sitemap', 'sitemap'], // Page du Plan du site
@@ -46,20 +41,30 @@
 		['GET|POST', '/dashboard/cave', 'Dashboard#cave', 'cave'], // Affichage & gestion des produits d'un producteur
 		['GET|POST', '/dashboard/cave/edit/[a:id]', 'Dashboard#cave_edit', 'cave_edit'], // Affichage & gestion des produits d'un producteur
 
-		/* Gestion des membres & producteurs pour Admin */
-		['GET', '/dashboard/admin/members', 'Admin#members', 'admin_members'], // Liste des producteurs et gestions de ces producteurs par admin
-		['POST', '/dashboard/admin/members/add', 'Admin#addMember', 'admin_add_member'], // Ajouter un membre par admin
-		['GET|POST', '/dashboard/admin/members/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
-
-		['GET', '/dashboard/admin/winemakers', 'Admin#winemakers', 'admin_winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
-		['POST', '/dashboard/admin/winemakers/add/', 'Admin#addWinemaker', 'admin_add_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
-		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
-
 		/* Pages des profils des utilisateurs */
 		['GET|POST', '/dashboard/profile/user/[a:id]', 'Dashboard#userProfile', 'user_profile'], // Consulter un profil
 		['GET|POST', '/dashboard/profile/winemaker/[a:id]', 'Dashboard#winemakerProfile', 'winemaker_profile'], // Consulter un profil
 
 		//-- End : Pages Dashboard --//
+		
+		
+		//-- Start : Pages Dashboard/Admin --//	
+		
+		/* Gestion des membres & producteurs pour Admin */
+		['GET', '/dashboard/admin/members', 'Admin#members', 'admin_members'], // Liste des producteurs et gestions de ces producteurs par admin
+		['POST', '/dashboard/admin/members/add', 'Admin#addMember', 'admin_add_member'], // Ajouter un membre par admin
+		['GET|POST', '/dashboard/admin/members/[a:id]', 'Admin#editMember', 'admin_edit_member'], // Liste des producteurs et gestions de ces producteurs par admin
+		
+		['GET', '/dashboard/admin/winemakers', 'Admin#winemakers', 'admin_winemakers'], // Liste des producteurs et gestions de ces producteurs par admin
+		['POST', '/dashboard/admin/winemakers/add/', 'Admin#addWinemaker', 'admin_add_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
+		['GET|POST', '/dashboard/admin/winemakers/edit/[a:id]', 'Admin#editWinemaker', 'admin_edit_winemaker'], // Liste des producteurs et gestions de ces producteurs par admin
+			
+		['GET', '/mag', 'General#mag', 'mag'], // Page qui affiche des articles
+		['GET', '/mag/article', 'General#article', 'article'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
+		['GET', '/mag/article/edit', 'General#article_edit', 'article_edit'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
+		['GET', '/mag/article/add', 'General#article_add', 'article_add'], // Page qui affiche des articles --> Accès disponible lorsqu'on est admin
+			
+		//-- End : Pages Dashboard/Admin --//
 
 
 

@@ -35,6 +35,9 @@
 							<div class="account-popup">
 								<ul>
 									<li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
+									<?php if ($_SESSION['user']['type'] == 1): ?>
+										<li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Ma cave</a></li>
+									<?php endif; ?>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
 							</div>
@@ -43,7 +46,6 @@
                 </nav>
             </header>
         </div>
-
         <div class="row">
             <div class="col-lg-2 r-p r-m col-aside">
                 <aside>
@@ -80,7 +82,7 @@
 
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
-									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+									<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 								</li>
@@ -100,7 +102,6 @@
                     <?= $this->section('main_content') ?>
                 </main>
             </div>
-
 		</div><!-- Fin de la row bootstrap -->
 	</div><!-- Fin du container bootstrap -->
 

@@ -6,6 +6,15 @@
 	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 <?php } ?>
 
+<section>
+	<p>
+		Dans cette section, vous pouvez ajouter de nouveaux produits à votre cave ou bien les modifier. Il n'y que vous qui y avez accès.
+	</p>
+	<p>
+		<a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Consulter mon profil producteur</a>
+	</p>
+</section>
+
 <section class="section-with-panels">
 
 	<ul class="tabs">

@@ -1,7 +1,7 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Tous nos vins']) ?>
 <?php $this->start('main_content') ?>
 
-<section>
+<section id="products">
     <div class="container">
     <div class="row">
     <?php foreach ($products as $product): ?>
