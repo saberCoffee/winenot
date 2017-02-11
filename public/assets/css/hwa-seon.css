@@ -1,14 +1,43 @@
-/* About us */
+/* Article */
 
-.content_aboutus {
-	width: 75%;
-	margin: 5em auto;
-}
-.content_aboutus > p {
+	div.article h2 {
+		text-align: center;
+		padding-top: 1em;
+	}
+	.listArticle {
+
+		text-align:center;
+		
+	}
+	div.oneArticle {
+		background:#eee;
+		padding:2em;
+		border:1px solid white;
+		border-radius:5px;
+		transition: all ease 0.5s
+	}
+	div.oneArticle:hover{
+		background: #ccc;
+	}
+	a.articleTitle {
+		font-size: 1.8rem;
+		color:black;
+	}
+	a.articleTitle:hover {
+		text-decoration:none;
+		color:black;
+	}
 	
-	padding-bottom: 2em;
-	font-size: 1.8rem;
-}
+/* About us */
+	.content_aboutus {
+		width: 75%;
+		margin: 5em auto;
+	}
+	.content_aboutus > p {
+		
+		padding-bottom: 2em;
+		font-size: 1.8rem;
+	}
 
 /* Google Map Api */  
 

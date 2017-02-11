@@ -82,7 +82,7 @@
 
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
-									<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+									<a href="<?= $this->url('add_article') ?>"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 								</li>

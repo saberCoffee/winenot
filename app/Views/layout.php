@@ -63,7 +63,6 @@
 						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li>
 						<li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du moi</a></li>
 						<li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li>
-						<li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 					</ul>
 				</div>
 
@@ -82,7 +81,10 @@
 				<div class="col-md-4 col-xs-12">
 					<h3>Contactez nous</h3>
 					<ul class="contact">
-						<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li>
+						<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li><br>
+						<li>Nos Coordonées</li>
+						<li>82 avenue Denfert Rochereau 75014 Paris</li>
+						<li>01 23 45 67 89</li>
 				</div>
 			</div>
 

@@ -21,7 +21,7 @@ class AdminController extends Controller
 	 */
 	public function __construct()
 	{
-		$this->allowTo(array('user','admin'));
+		$this->allowTo(array('admin'));
 	}
 
     /**
