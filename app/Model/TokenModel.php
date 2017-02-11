@@ -9,39 +9,36 @@ class TokenModel extends Model
 {
 	protected $primaryKey = 'token';
 
-	public function getIdbyToken($token)
-	{
-		return $this->getUserByToken($token);
-	}
-
-	public function getTokenById($id)
-	{
-		return $this->getUserById($id);
-	}
-
 	public function generateToken($idUser, $type = "Authentification")
 	{
 		$userModel = new UserModel();
 
-		$token = md5(uniqid(rand(), true));		
+		$token = md5(uniqid(rand(), true));
 		while ($userModel->tokenExists($token)) {
 			$token = md5(uniqid(rand(), true));
 		}
 
-		/*
-			DevNote : Si le token existe déjà, le supprimer et en générer un autre
-		*/
-		/*if ($this->tokenExists($idUser)) {
-			echo "DELETER";
-		}*/
+		if ($userModel->getTokenById($idUser)) {  // Si l'utilisateur a déjà un token, on le met à jour
+			$data = array(
+				'token' => $token,
+			);
 
-		$data = array(
-			'token'   => $token,
-			'user_id' => $idUser,
-			'type'    => $type
-		);
+			$sql = 'UPDATE ' . $this->table . ' SET token = :token WHERE user_id = :id';
+			$sth->bindValue(':id', $idUser);
+			$sth->bindValue(':token', $token);
 
-		$this->insert($data);
+			if(!$sth->execute()){
+				return false;
+			}
+		} else { // Sinon, si l'utilisateur n'a pas encore de token
+			$data = array(
+				'token'   => $token,
+				'user_id' => $idUser,
+				'type'    => $type
+			);
+
+			$this->insert($data);
+		}
 
 		return $token;
 	}

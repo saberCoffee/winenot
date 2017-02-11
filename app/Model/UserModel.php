@@ -204,7 +204,6 @@ class UserModel extends UsersModel
 		$auth  = new AuthentificationModel();
 		$token = new TokenModel();
 
-		$token->delete($_SESSION['user']['id']); // On supprime le token créé par la session en cours
 		$auth->logUserOut(); // Puis on déconnecte l'utilisateur
 	}
 
