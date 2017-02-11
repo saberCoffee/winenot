@@ -20,7 +20,7 @@
 	<div id="map"></div>
 	<div id="infoProd"></div>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
  	function initMap() {
 
@@ -54,15 +54,16 @@
 		];
 
 		var image = 'assets/img/grape2.png';
-
+		var image2 = 'assets/img/map-marker3.png';
+		
 		var mapOptions = {
 			zoom: 5,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
 			styles: styleArray,
 			scrollwheel: false,
-			types: ['(cities)'],
-			componentRestrictions: {country: "fr"},
-            types: ["(regions)"]
+			// types: ['(cities)'],
+			// componentRestrictions: {country: "fr"},
+            // types: ["(regions)"]
 		};
 
 		var map = new google.maps.Map(document.getElementById('map'),
@@ -124,8 +125,7 @@
 						   
 						  });	
 					 markers.push(marker);
-					
-				 
+								 
 				}
 			 
 				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
@@ -147,7 +147,7 @@
 			
 			var marker = new google.maps.Marker({
 			    map: map,
-			    icon: image,
+			    icon: image2,
 			    anchorPoint: new google.maps.Point(0, -29)
 			  });
 			  
@@ -186,7 +186,6 @@
 
 			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
 			infowindow.open(map, marker);
-
 
 		});
 

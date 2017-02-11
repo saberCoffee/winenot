@@ -46,7 +46,6 @@
                 </nav>
             </header>
         </div>
-
         <div class="row">
             <div class="col-lg-2 r-p r-m col-aside">
                 <aside>
@@ -83,7 +82,7 @@
 
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li>
-									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+									<a href="<?= $this->url('mag') ?>"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
 								</li>
@@ -103,7 +102,6 @@
                     <?= $this->section('main_content') ?>
                 </main>
             </div>
-
 		</div><!-- Fin de la row bootstrap -->
 	</div><!-- Fin du container bootstrap -->
 
