@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
 	public function products()
 	{
-		$userModel       = new UserModel();
+		$userModel      = new UserModel();
 		$winemakerModel = new WinemakerModel();
 		$productModel   = new ProductModel();
 
@@ -60,9 +60,15 @@ class DashboardController extends Controller
 
 	public function product($name, $id)
 	{
-		$productModel = new ProductModel();
+		$userModel      = new UserModel();
+		$winemakerModel = new WinemakerModel();
+		$productModel   = new ProductModel();
 
 		$product = $productModel->find($id);
+
+		$token = $userModel->getTokenByUserId($product['winemaker_id']);
+
+		$product['winemaker'] = $winemakerModel->getWinemakerFullDetails($token);
 
 		$this->show('dashboard/product', array(
 			'product' => $product
