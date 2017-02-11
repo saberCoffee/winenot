@@ -7,6 +7,7 @@
 <div class="row">
 	<section id="AboutUs">
 			<h2>À propos</h2>
+			<div class="content_aboutus">
 			<p>
 				Bienvenue sur WineNot, la première plateforme entièrement gratuite qui met en relation <strong>producteurs</strong> et <strong>consommateurs</strong> de vin.
 			</p>
@@ -16,6 +17,7 @@
 			<p>
 				<a href="<?= $this->url('account') ;?>" class="link-register">S'inscrire</a>
 			</p>
+			</div>
 	</section>
 </div>
 

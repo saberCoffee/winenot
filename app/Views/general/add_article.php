@@ -1,30 +1,26 @@
-<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => 'Rédiger un  article']) ?>
 
 <?php $this->start('main_content') ?>
 
 
   <link rel="apple-touch-icon" href="//mindmup.s3.amazonaws.com/lib/img/apple-touch-icon.png" />
-    <link rel="shortcut icon" href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico" >
-    <link href="external/google-code-prettify/prettify.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<script src="external/jquery.hotkeys.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    <script src="external/google-code-prettify/prettify.js"></script>
-		<link href="index.css" rel="stylesheet">
-    <script src="bootstrap-wysiwyg.js"></script>
+  <link rel="shortcut icon" href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico" >
+  <link href="external/google-code-prettify/prettify.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="external/jquery.hotkeys.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="external/google-code-prettify/prettify.js"></script>
+	<link href="index.css" rel="stylesheet">
+  <script src="bootstrap-wysiwyg.js"></script>
 
 
-
-
-<div class="container">
-
-
+<div class="container article">
+	<h2>Ajouter un article</h2>
   <div class="hero-unit">
-	
-<div class="input-group input-group-lg">
+    <div class="input-group input-group-lg">
   <span class="input-group-addon" id="sizing-addon1">Titre</span>
   <input type="text" class="form-control" placeholder="Titre de l'article" aria-describedby="sizing-addon1">
 </div>
@@ -84,11 +80,8 @@
       <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
     </div>
 
-    <div id="editor" >
-      
-    </div>
-
-    
+	<!-- Partie text -->
+    <div id="editor"></div>
 
     <!-- image upload button -->
     <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -99,9 +92,18 @@
     </div>
 
     <!-- post button -->
-    <button type="button" class="btn btn-success">Poster</button>
+    <button type="submit" class="btn btn-success">Poster</button>
   </div>
-    
+  
+  <div class="list_article">
+    <h2>Liste de nos articles</h2>
+		<div class="row listArticle">
+		<?php foreach ($articles as $article) { ?>
+			<div class="col-md-4 oneArticle"><a href="#" class="articleTitle"><?= $article['titre'];?><br></a><?= $article['date'];?></div>
+	<?php }?>
+	
+		</div>
+	</div>
 </div>
 
 
@@ -148,10 +150,6 @@
   });
 
 </script>
-
-
-
-
 
 
 <?php $this->stop('main_content') ?>

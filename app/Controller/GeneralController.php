@@ -7,6 +7,7 @@ use \W\Security\AuthentificationModel;
 use \Model\UserModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
+use \Model\MagModel;
 
 class GeneralController extends Controller
 {
@@ -174,9 +175,6 @@ class GeneralController extends Controller
 	{
 		$this->show('general/mag');
 	}
-	/**
-	 * Page d'un article du magazine
-	 */
 	public function article()
 	{
 		$this->show('general/article');
@@ -185,9 +183,15 @@ class GeneralController extends Controller
 	/**
 	 * Page du magazine
 	 */
-	public function article_add()
+	public function add_article()
 	{
-		$this->show('general/add_article');
+		
+		$magModel = new MagModel;
+		$articles = $magModel->allArticles();
+		
+		$this->allowTo(array('admin'), 'home');
+		
+		$this->show('general/add_article', ['articles' => $articles]);
 	}
 
 
