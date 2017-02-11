@@ -21,6 +21,24 @@ dt, dd {
     width: 48%;
 }
 
+a.link-contact {
+    padding: 0 5px;
+    border-radius: 5px;
+
+    color: #d09038;
+
+    transition: all 0.2s ease-out;
+}
+
+a.link-contact:hover {
+    padding: 5px;
+
+    background-color: #d09038;
+    border-radius: 5px;
+
+    color: #fff;
+}
+
 section {
     width: 100%;
     max-width: 942px;
@@ -32,6 +50,10 @@ section {
 section section {
     margin: 0;
     padding: 0;
+}
+
+section.contact-user p {
+    text-align: center;
 }
 
 section#products {
@@ -92,19 +114,13 @@ section#thread form {
 section#thread form textarea {
     width: 100%;
     height: 10rem;
-
-    background: transparent;
-    border: 2px solid #a4300c;
 }
 
 section#thread input[type="submit"] {
-    float: right;
-
     width: auto;
 
     margin: 1rem 2rem;
 
-    background: none;
     border: 0;
 
     color: #000;
@@ -130,7 +146,8 @@ section#thread .col-message {
     width: 80%;
 }
 
-section#thread p {
+section#thread p.row1,
+section#thread p.row2 {
     position: relative;
 
     min-height: 10rem;
@@ -146,6 +163,16 @@ section#thread p.row1 {
 }
 section#thread p.row2 {
     background: #fff4e8;
+}
+
+ul.fil-arianne li {
+    display: inline-block;
+}
+ul.fil-arianne li:after {
+    content: ' » ';
+}
+ul.fil-arianne li:last-of-type:after {
+    content: '';
 }
 
 body.jsActive .city-input {
@@ -164,6 +191,10 @@ body.jsActive .city-input {
     border-color: #d09038;
 
     color: #cc830a;
+}
+
+.alert > p, .alert > ul {
+    margin-bottom: 2rem;
 }
 
 /* entire container, keeps perspective */

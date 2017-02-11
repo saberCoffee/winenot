@@ -3,6 +3,10 @@
 
 <section>
 
+	<ul class="fil-arianne">
+		<li><a href="<?= $this->url('products') ?>">Retourner à nos vins</a></li>
+	</ul>
+
 <!-- <div class="container">
 	<div class="row">
 		<div class="cadre">
@@ -20,17 +24,17 @@
 <div class="produitImg">
 	<img src="<?= $this->assetUrl('img/vinBouteille.jpg') ?>">
 </div>
-<div class="container"> 
+<div class="container">
 
   <table class="table table-striped">
-  
+
     <tbody>
       <tr>
          <td><strong>Nom :</strong></td>
 	      <td><?= $product['name'] ?></td>
       </tr>
-  
-  
+
+
       <tr>
         <td><strong>Cépage :</strong></td>
 	      <td><?= $product['cepage'] ?></td>
@@ -59,7 +63,7 @@
         <td><strong>Reviews :</strong></td>
 	      <td><?= $product['reviews_id'] ?></td>
       </tr>
-      
+
     </tbody>
   </table>
 </div>

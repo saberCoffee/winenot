@@ -14,7 +14,7 @@
 				Tous les mois, notre équipe met en avant les meilleurs produits et producteurs de WineNot. Amateur de vin, professionnel du milieu ou simple curieux, n'attendez-plus : rejoignez-nous pour découvrir ce que nous avons à offrir !
 			</p>
 			<p>
-				<a href="<?= $this->url('account') ;?>" class="register">S'inscrire</a>
+				<a href="<?= $this->url('account') ;?>" class="link-register">S'inscrire</a>
 			</p>
 	</section>
 </div>
