@@ -35,6 +35,9 @@
 							<div class="account-popup">
 								<ul>
 									<li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
+									<?php if ($_SESSION['user']['type'] == 1): ?>
+										<li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Ma cave</a></li>
+									<?php endif; ?>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
 							</div>

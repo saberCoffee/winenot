@@ -2,6 +2,14 @@
 <?php $this->start('main_content') ?>
 
 <div class="container-fluid">
+	<?php if (!$is_owner): ?>
+		<section class="contact-user">
+			<div class="alert alert-info">
+				Vous souhaitez acheter un produit ou discuter avec <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?> ?
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<section id="profile" class="section-with-panels">
 
 		<ul class="tabs">
@@ -157,30 +165,6 @@
 			</form>
 		</section>
 	</section>
-
-	<?php if (!$is_owner): ?>
-		<section class="contact-user">
-			<h2>Un produit vous intéresse ? Faites le savoir à <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?> !</h2>
-			<form action="" method="post" class="form">
-
-				<div class="form-group <?php if (isset($error['subject'])) { echo 'has-error'; } ?>">
-					<label for="subject">Objet : </label>
-					<input type="text" name="subject" value="<?= $subject ?>" class="form-control" />
-					<span class="help-block" <?php if (empty($error['subject'])) { echo 'style="display: none"'; } ?>><?= $error['subject']; ?></span>
-				</div>
-
-				<div class="form-group <?php if (isset($error['contact_msg'])) { echo 'has-error'; } ?>">
-					<label for="content">Votre message</label>
-					<textarea name="content" id="content" class="form-control" required="required" data-min="10" data-max="1500" autocomplete="off" value=<?= htmlentities($message); ?> ></textarea>
-
-					<span class="help-block" <?php if (empty($error['contact_msg'])) { echo 'style="display: none"'; } ?>><?= $error['contact_mg']; ?></span>
-				</div>
-
-
-				<input type="submit" value="Envoyer" class="btn btn-primary" />
-			</form>
-		</section>
-	<?php endif; ?>
 
     <section class="view-cave">
         <table border="1" class="table table-striped">
