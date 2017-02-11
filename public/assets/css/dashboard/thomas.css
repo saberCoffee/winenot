@@ -1,14 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css?family=Pacifico'); */
-p.user-infos {
-    text-align: center;
-}
-
-p.user-infos span {
-    font-weight: bold;
-}
-
-p.user-infos span:last-of-type {
-    font-size: 0.8em;
+.vcenter { /* Class custom pour aligner verticalement des colonnes bootstrap */
+    display: flex;
+    align-items: center;
 }
 
 h2 {
@@ -29,7 +22,16 @@ dt, dd {
 }
 
 section {
-    padding: 1rem;
+    width: 100%;
+    max-width: 942px;
+
+    margin: 0 auto;
+    padding: 0;
+}
+
+section section {
+    margin: 0;
+    padding: 0;
 }
 
 section#profile > section {
@@ -46,16 +48,30 @@ section#profile section section {
     vertical-align: middle;
 }
 
-section#profile aside {
+section#profile aside.user-infos-left {
+    padding-right: 3rem;
     border-right: 5px solid #d09038;
+    text-align: center;
 }
 
-section#profile aside img {
+section#profile aside.user-infos-left span {
+    font-weight: bold;
+}
+
+section#profile aside.user-infos-left span:last-of-type {
+    font-size: 0.8em;
+}
+
+section#profile aside.user-infos-left img {
     display: block;
 
     margin: 0 auto;
 
     border-radius: 50%;
+}
+
+section#profile section.user-infos-right {
+    padding-top: 1rem;
 }
 
 section#thread form {

@@ -75,8 +75,8 @@ class UsersModel extends Model
 	}
 
 	/**
-	 * Teste si un email est présent en base de données
-	 * @param string $email L'email à tester
+	 * Teste si un token est présent en base de données
+	 * @param string $token Le token à tester
 	 * @return boolean true si présent en base de données, false sinon
 	 */
 	public function tokenExists($id)
@@ -105,16 +105,17 @@ class UsersModel extends Model
 	 *
 	 * @return boolean true si présent en base de données, false sinon
 	 */
-	public function getUserByToken($token)
+	public function getUserByToken($token, $type = 'Authentification')
 	{
 
 		$app = getApp();
 
-		$sql = 'SELECT users.* FROM users, tokens WHERE user_id = id AND token = :token LIMIT 1';
+		$sql = 'SELECT users.* FROM users, tokens WHERE user_id = id AND token = :token AND tokens.type = :type LIMIT 1';
 
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
 		$sth->bindValue(':token', $token);
+		$sth->bindValue(':type', $type);
 		if($sth->execute()){
 			$foundUser = $sth->fetch();
 			if($foundUser){
@@ -131,16 +132,16 @@ class UsersModel extends Model
 	 *
 	 * @return boolean true si présent en base de données, false sinon
 	 */
-	public function getTokenByUserId($id)
+	public function getTokenByUserId($id, $type = 'Authentification')
 	{
-
 		$app = getApp();
 
-		$sql = 'SELECT `token` FROM `tokens` WHERE `user_id` = :id LIMIT 1';
+		$sql = 'SELECT `token` FROM `tokens` WHERE `user_id` = :id AND type = :type LIMIT 1';
 
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
 		$sth->bindValue(':id', $id);
+		$sth->bindValue(':type', $type);
 		if($sth->execute()){
 			$foundUser = $sth->fetch();
 			if($foundUser){

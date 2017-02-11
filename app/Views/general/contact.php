@@ -12,8 +12,8 @@
                         <option value="Recrutement">Recrutement</option>
                         <option value="Devenir Producteur">Devenir Producteur</option>
                         <option value="Proposition">Proposition</option>
-                        <option value="Dire Bonjour">Dire Bonjour</option>
-                        <option value="Autres">Autres</option>
+                        <option value="Dire bonjour">Dire bonjour</option>
+                        <option value="Autre">Autre</option>
 
                     </select>
 

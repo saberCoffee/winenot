@@ -299,8 +299,19 @@ HOMEPAGE
 
     #AboutUs p {
 		margin: 1rem auto;
-		text-align: left;
     }
+
+	#AboutUs a.register {
+		display: inline-block;
+
+		margin-top: 1rem;
+		padding: 2rem 5rem;
+
+		background: #fff;
+		border-radius: 5px;
+
+		text-transform: uppercase;
+	}
 
 
     #WineMonth {

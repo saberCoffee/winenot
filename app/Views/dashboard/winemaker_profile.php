@@ -11,9 +11,9 @@
 
 		<section class="view-profile <?php if (empty($error)) { echo 'active'; } ?>">
 			<div class="row">
-				<div class="col-md-3">
-					<aside>
-						<p class="user-infos">
+				<div class="col-md-3 vcenter">
+					<aside class="user-infos-left">
+						<p>
 							<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar">
 							<br />
 							<span><?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?></span>
@@ -23,8 +23,8 @@
 					</aside>
 				</div>
 
-				<div class="col-md-9">
-					<section>
+				<div class="col-md-9 vcenter">
+					<section class="user-infos-right">
 						<dl>
 							<dt>Adresse e-mail</dt><dd><?= $winemaker['email'] ?></dd>
 							<dt>Adresse</dt><dd><?= $winemaker['address'] ?></dd>
@@ -158,39 +158,59 @@
 		</section>
 	</section>
 
-    <div class="container">
-        <div class="row">
-            <section>
-                <table border="1" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Produits</th>
-                            <th>Couleurs</th>
-                            <th>Millesimes</th>
-                            <th>Vins bio</th>
-                            <th>Prix</th>
-                            <th>Cépage</th>
-                            <th>Stocks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+	<?php if (!$is_owner): ?>
+		<section class="contact-user">
+			<h2>Un produit vous intéresse ? Faites le savoir à <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?> !</h2>
+			<form action="" method="post" class="form">
 
-                        <?php foreach ($products as $product) : ?>
-                        <tr>
-                            <td><a href="<?= $this->url('dashboard_product', ['name' => $product['clean_name'], 'id' => $product['id']]) ?>"><?= $product['name'];?></a></td>
-                            <td><?= $product['couleur'];?></td>
-                            <td><?= $product['millesime']?></td>
-                            <td><?= $product['is_bio']?></td>
-                            <td><?= $product['price']?></td>
-                            <td><?= $product['cepage']?></td>
-                            <td><?= $product['stock']?></td>
-                        </tr>
-                        <?php endforeach;?>
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    </div>
+				<div class="form-group <?php if (isset($error['subject'])) { echo 'has-error'; } ?>">
+					<label for="subject">Objet : </label>
+					<input type="text" name="subject" value="<?= $subject ?>" class="form-control" />
+					<span class="help-block" <?php if (empty($error['subject'])) { echo 'style="display: none"'; } ?>><?= $error['subject']; ?></span>
+				</div>
+
+				<div class="form-group <?php if (isset($error['contact_msg'])) { echo 'has-error'; } ?>">
+					<label for="content">Votre message</label>
+					<textarea name="content" id="content" class="form-control" required="required" data-min="10" data-max="1500" autocomplete="off" value=<?= htmlentities($message); ?> ></textarea>
+
+					<span class="help-block" <?php if (empty($error['contact_msg'])) { echo 'style="display: none"'; } ?>><?= $error['contact_mg']; ?></span>
+				</div>
+
+
+				<input type="submit" value="Envoyer" class="btn btn-primary" />
+			</form>
+		</section>
+	<?php endif; ?>
+
+    <section class="view-cave">
+        <table border="1" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Produits</th>
+                    <th>Couleurs</th>
+                    <th>Millesimes</th>
+                    <th>Vins bio</th>
+                    <th>Prix</th>
+                    <th>Cépage</th>
+                    <th>Stocks</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php foreach ($products as $product) : ?>
+                <tr>
+                    <td><a href="<?= $this->url('dashboard_product', ['name' => $product['clean_name'], 'id' => $product['id']]) ?>"><?= $product['name'];?></a></td>
+                    <td><?= $product['couleur'];?></td>
+                    <td><?= $product['millesime']?></td>
+                    <td><?= $product['is_bio']?></td>
+                    <td><?= $product['price']?></td>
+                    <td><?= $product['cepage']?></td>
+                    <td><?= $product['stock']?></td>
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+    </section>
 </div>
 <?php $this->stop('main_content') ?>
 

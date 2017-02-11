@@ -71,10 +71,23 @@ class DashboardController extends Controller
 
 	public function winemakers()
 	{
-		$winemakers = new WinemakerModel();
-		$winemakers = $winemakers->getWinemakersFullDetails();
-		
-		$this->show('dashboard/winemakers', ['winemakers' => $winemakers]);
+		$winemakerModel = new WinemakerModel();
+		$userModel      = new UserModel();
+
+		$winemakers = $winemakerModel->getWinemakersFullDetails();
+
+		$i = 0;
+		foreach ($winemakers as $winemaker) {
+			$token = $userModel->getTokenByUserId($winemaker['winemaker_id']);
+
+			$winemakers[$i]['winemaker_id'] = $token;
+
+			++$i;
+		}
+
+		$this->show('dashboard/winemakers', array(
+			'winemakers' => $winemakers,
+		));
 	}
 
 	public function wishlist()
@@ -418,7 +431,6 @@ class DashboardController extends Controller
 
 	public function userProfile($token)
 	{
-		// Pour Hwa-Seon
 		$user = new UserModel();
 
 		$user = $user->getUserByToken($token);
@@ -525,21 +537,29 @@ class DashboardController extends Controller
 
 	public function winemakerProfile($token)
 	{
+		$winemakerModel = new WinemakerModel();
+		$productModel   = new ProductModel();
+
+		$winemaker      = $winemakerModel->getWinemakerFullDetails($token);
+
+		if (empty($winemaker)) {
+			$errorMessage['dashboard'] = 'Il semblerait que ce producteur n\'existe pas.';
+
+			$this->show('w_errors/404', array(
+				'layout' => 'layout_dashboard',
+				'errorMessage' => $errorMessage
+			));
+		}
+
 		if (!empty($_POST)) {
 
 		}
 
-		$winemakerModel = new WinemakerModel();
-		$productModel   = new ProductModel();
-
-		$winemaker       = $winemakerModel->getWinemakerFullDetails($token);
-		$products        = $productModel->findProductsFrom($winemaker['id']);
+		$products = $productModel->findProductsFrom($winemaker['id']);
 		$winemaker['id'] = $token; // On remplace l'id du winemaker par son token
 
 		$i = 0;
 		foreach ($products as $product) {
-			$products[$i]['winemaker'] = $winemakerModel->getWinemakerFullDetails($winemaker['id']);
-
 			// Pour créer un lien avec le nom du produit dans l'url, on doit créer une version clean du nom du produit
 			$products[$i]['clean_name'] = StringUtils::clean_url($products[$i]['name']);
 

@@ -9,14 +9,14 @@
 
 	<form action="<?= $this->url('register_winemaker') ?>" method="post">
 		<div class="form-group">
-			<label for="siren">Numéro de SIREN (9 chiffres)</label>
+			<label for="siren">Numéro de SIREN (9 chiffres)*</label>
 			<input type="text" name="siren" id="siren" class="form-control" data-min="9" maxlength="9" required="required" autocomplete="off" />
 			<span class="help-block" <?php if (empty($error['siren'])) { echo 'style="display: none"'; } ?>>
 				<?php if (isset($error['siren'])) { echo $error['siren']; } ?>
 			</span>
 		</div>
 		<div class="form-group">
-			<label for="area">Région</label>
+			<label for="area">Région*</label>
 			<select name="area" id="area" class="form-control" required="required">
 				<option value="" class="test">-- Selectionnez votre région --</option>
 				<option value="Alsace">Alsace</option>
@@ -41,7 +41,7 @@
 			</span>
 		</div>
 		<div class="form-group">
-			<label for="adress">Adresse</label>
+			<label for="adress">Adresse*</label>
 			<input type="text" name="address" id="address" data-max="45" required="required" maxlength="45" class="form-control" autocomplete="off" />
 			<span class="help-block" <?php if (empty($error['address'])) { echo 'style="display: none"'; } ?>>
 				<?php if (isset($error['address'])) { echo $error['address']; } ?>
@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="form-group">
-					<label for="postcode">Code postal</label>
+					<label for="postcode">Code Postal*</label>
 					<input type="text" name="postcode" id="postcode" class="form-control" maxlength="5" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['postcode'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['postcode'])) { echo $error['postcode']; } ?>
@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="form-group city-input">
-					<label for="city">Ville</label>
+					<label for="city">Ville*</label>
 					<input type="text" name="city" id="city" required="required" class="form-control" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['city'])) { echo $error['city']; } ?>
