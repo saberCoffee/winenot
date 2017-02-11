@@ -37,10 +37,10 @@ class WinemakerModel extends Model
 
 		$user = new UserModel();
 
-		$winemaker_id = $user->getUserByToken($token);
+		$winemaker = $user->getUserByToken($token);
 
 		$data = array(
-			'winemaker_id' => $winemaker_id['id'],
+			'winemaker_id' => $winemaker['id'],
 			'siren'        => $siren,
 			'region'       => $region,
 			'address'      => $address,
@@ -53,7 +53,7 @@ class WinemakerModel extends Model
 		$this->insert($data);
 
 		// On met à jour le champ 'type' de l'utilisateur
-		$user->update(array('type' => 1), $winemaker_id['id']);
+		$user->update(array('type' => 1), $winemaker['id']);
 
 		// Puis on refresh sa sessipn
 		$auth = new AuthentificationModel();

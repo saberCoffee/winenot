@@ -23,9 +23,10 @@
 
 	<div class="row">
 		<div class="col-md-4">
-				<div class="produitImg">
+			<div class="produitImg">
 				<img src="<?= $this->assetUrl('img/vinBouteille.jpg') ?>">
-			</div>
+			</div>			
+			<img src="<?= $this->assetUrl('img/dashboard/favorite.png') ?>" class="img-favorite">
 		</div>
 		<div class="col-md-8">
 			<div class="tableau">
