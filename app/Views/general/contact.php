@@ -3,6 +3,8 @@
 <?php $this->start('main_content') ?>
 
     <section class="container contact-form">
+        <div class="row">
+            
             <h2 id="titre-contact">Envoyez vos questions!</h2>
             <form action="<?= $this->url('contact') ?>" method="post" class="form" id="contact-form">
 
@@ -36,6 +38,7 @@
 
                 <input type="submit" value="Envoyer" class="btn btn-primary" />
             </form>
+        </div>
 
     </section>
 

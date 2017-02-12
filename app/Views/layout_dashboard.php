@@ -82,7 +82,7 @@
 							<?php endif; ?>
 
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
-	                            <li>
+	                            <li class=" hidden-xs hidden-sm hidden-md">
 									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
@@ -94,8 +94,11 @@
 							<li>--------------</li>
 							<li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li><!--
                         	--><li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li><!--
-							--><li <?php echo ($w_current_route == 'user_profile') ? 'class="current"' : '' ?>><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
-
+							--><li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
+									<?php if ($_SESSION['user']['type'] == 1): ?>
+										<li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Ma cave</a></li>
+									<?php endif; ?>
+									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 						</ul>
 					</li>
 				</ul>

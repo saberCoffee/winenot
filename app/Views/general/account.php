@@ -2,10 +2,11 @@
 
 <?php $this->start('main_content') ?>
 <section id="MyAccount">
+
     <div class="row">
 
         <!-- Champs de Connexion -->
-        <div class="col-xs-12 col-lg-6">
+        <div class="col-xs-12 col-lg-6 r-p r-m">
             <h2>Déjà inscrit ?</h2>
 
             <form action="<?= $this->url('login') ?>" method="post" class="form" id="login-form">
@@ -33,7 +34,7 @@
         </div>
 
         <!-- Champs d'inscription -->
-        <div class="col-xs-12 col-lg-6">
+        <div class="col-xs-12 col-lg-6 r-p r-m">
             <h2>Créer mon compte</h2>
 
             <form action="<?= $this->url('register') ?>" method="post" class="form" id="register-form">

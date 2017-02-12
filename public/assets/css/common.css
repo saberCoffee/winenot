@@ -303,9 +303,9 @@ HOMEPAGE
         background-color: #d09038;
 
 		color: #ffffff;
-        text-align: center;
+        /*text-align: center;*/
 
-        margin-top:15em;
+        margin-top:5em;
     }
 
     #AboutUs h2{
@@ -496,7 +496,8 @@ PAGE MON COMPTE
 
     section#MyAccount h2 {
         padding: 1.5rem;
-
+		margin: 0 2rem;
+		
         background-color: #a4300c;
         border-bottom: 2px solid #a4300c;
 
@@ -505,7 +506,8 @@ PAGE MON COMPTE
 
     form {
         padding: 2rem 3.5rem;
-
+		margin: 0 2rem;
+	
         background-color: #eddcc0;
     }
 
@@ -549,27 +551,98 @@ Contact Form
 		margin: 3rem auto;
 	}
 
-/*
-Contact Form
-*/
-
 	section.contact-form {
 		padding: 0;
 		padding-bottom:2rem;
 	}
 	section #contact-form {
 		width: 50%;
-		margin: 4rem auto;
+		margin: 0rem auto;
 	}
 
 	section h2#titre-contact {
 		width:50%;
+		margin: 2em auto 0;
 		padding:1.5rem;
 		background-color:#a4300c;
 		border-radius: 0;
 		color:white;
 	}
 
+@media screen and (max-width: 1600px) {
+	    section #contact-form {
+        width: 50%;
+        margin: 0rem auto;
+    }
+   
+    section h2#titre-contact {
+        width:50%;
+        margin: 0 auto;
+
+    }
+}
+
+@media screen and (max-width: 1280px) {
+	    section #contact-form {
+        width: 50%;
+        margin: 3rem auto;
+    }
+
+    section h2#titre-contact {
+        width:50%;
+        margin: 0 auto;
+	}
+    
+}
+
+
+@media screen and (max-width: 768px) {
+	    section #contact-form {
+        width: 100%;
+        margin: 3rem auto;
+    }
+
+
+    section h2#titre-contact {
+        width:100%;
+        margin: 2em auto 0;
+
+    }
+	
+}
+
+
+@media screen and (max-width: 520px) {
+	section #contact-form {
+        width: 100%;
+
+    }
+
+    section.contact-form {
+        padding: 0;
+        padding-bottom:2rem;
+    }
+    section #contact-form {
+        width: 100%;
+        margin: 0rem auto;
+    }
+
+    section h2#titre-contact {
+        width:100%;
+        padding:1.5rem;
+        margin-top: 2em;
+
+    }
+
+    section#MyAccount h2 {
+		margin: 0 0rem;  
+    }
+
+    form {
+ 		margin: 0 0rem;     
+    }
+
+}
 
     /*    CODES COULEURS
 
@@ -629,7 +702,10 @@ FOOTER
 /*
 Media Query
 */
+	@media (max-width: 768px) {
 
+	
+	}	
 	@media (max-width: 768px) {
 
 		footer ul.contact::after{
@@ -651,3 +727,16 @@ Media Query
 		}
 
 	}
+	@media (max-width: 520px) {
+	    section#MyAccount {
+        width: 100%;
+        max-width: 1170px;
+
+        margin: 0 auto;
+        padding: 3rem 0rem;
+    	}
+
+    	#login-form{
+    		margin-bottom: 3rem;
+    	}
+    }
