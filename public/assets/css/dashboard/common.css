@@ -207,6 +207,11 @@ Menu de navigation latéral
         background: #d09038;
     }
 
+    aside nav ul li:hover:nth-of-type(1) a {
+
+        background: none;
+    }
+
 
     aside ul li:last-of-type {
         border-radius: 0 0 0 4px;
