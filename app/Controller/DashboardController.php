@@ -97,9 +97,9 @@ class DashboardController extends Controller
 		));
 	}
 
-	public function wishlist()
+	public function favorites()
 	{
-		$this->show('dashboard/wishlist');
+		$this->show('dashboard/favorites');
 	}
 
 	/**
