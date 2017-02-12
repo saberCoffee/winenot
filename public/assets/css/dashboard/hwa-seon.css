@@ -248,7 +248,47 @@
 		opacity:1;
 	}
 	
+/*
+Media Query
+*/
 
+	@media (max-width: 768px) {
+
+		/* Page Google Map dans Dashboard*/
+			section#GoogleMap {
+				padding:1em 0;
+			}
+			#dashboard_winmakerSearch {
+				text-align: center;
+			}
+
+			section#GoogleMap form {
+				padding:1em;
+			}
+
+		 /* Onglet */
+		 	.tabs {
+		 		width:100%;
+		 	}
+		 	.tabs li {
+		 		text-align:center;
+		 	}
+
+			#addProduct, #stock, #addUser, #addProducer, #member-list {
+				width:50%;
+			}
+
+			section.member-list, section.stock {
+				padding:0;
+				margin:0;
+			}
+
+
+		/* Data de Table */
+
+
+
+	}
 
 
 
