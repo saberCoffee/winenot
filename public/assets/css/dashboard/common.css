@@ -178,6 +178,8 @@ Menu de navigation latéral
             padding 0.2s ease-out;
     }
 
+    
+
     aside nav ul:last-of-type li:last-of-type a {
         border-bottom: 0;
     }
@@ -187,7 +189,11 @@ Menu de navigation latéral
         padding-left: 4.5rem;
     }
 
-    aside nav ul li {
+    aside nav ul li:nth-of-type(1) a:hover{
+        padding-left: 2rem;
+    }
+
+    aside nav ul li: {
         border-left: 5px solid #d09038;
     }
 
@@ -198,6 +204,10 @@ Menu de navigation latéral
     aside nav ul li:hover a {
         color: #000;
         background: #d09038;
+    }
+
+    aside nav ul li:hover:nth-of-type(1) a {
+        background: none;
     }
 
     aside ul li:last-of-type {
