@@ -18,7 +18,11 @@
 				<div class="col-md-3 vcenter">
 					<aside class="user-infos-left">
 						<p>
-							<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar">
+							<?php if (empty($user['photo'])): ?>
+								<img src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar" width="150" />
+							<?php else: ?>
+								<img src="<?= $this->assetUrl('content/photos/users/' . $user['photo']) ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar" width="150" />
+							<?php endif; ?>
 							<br />
 							<span><?= $user['firstname'] . ' ' . $user['lastname'] ?></span>
 							<br />
@@ -174,6 +178,9 @@
 							</span>
 
 							<input type="file" id="photo" name="photo" accept="image/*" />
+							<?php if (!empty($user['photo'])): ?>
+								<input type="hidden" name="currentPhoto" value="<?= $user['photo'] ?>" />
+							<?php endif; ?>
 
 							<input type="hidden" id="resizeW" name="resizeW" />
 							<input type="hidden" id="resizeH" name="resizeH" />
