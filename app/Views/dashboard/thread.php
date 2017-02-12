@@ -37,6 +37,8 @@
             <input type="submit" value="Envoyer un message" />
         </form>
 
+        <?php debug($messages); ?>
+
         <?php
         foreach ($messages as $message):
         ?>

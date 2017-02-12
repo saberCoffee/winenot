@@ -16,7 +16,7 @@ class PrivateMessageModel extends Model {
 		$this->setTable('private_messages');
 
 		$sql = "SELECT
-					mp1.*, users.firstname, users.lastname, tokens.token as mp_token
+					mp1.*, users.firstname, users.lastname, users.photo, tokens.token as mp_token
 				FROM
 					$this->table mp1
                 INNER JOIN
@@ -47,7 +47,7 @@ class PrivateMessageModel extends Model {
 	public function getMessagesFromThread($user1, $user2) {
 		$this->setTable('private_messages');
 
-		$sql = "SELECT private_messages.*, users.firstname, users.lastname
+		$sql = "SELECT private_messages.*, users.firstname, users.lastname, users.photo
 			FROM
 				private_messages
 			INNER JOIN

@@ -49,7 +49,7 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img width="200" src="assets/img/tomtomSmile.gif" alt="romain" overflow="hidden">
+				            	<img width="200" src="assets/img/imgBottles/source_web_test/vin_verre_raisin.jpg" alt="romain" overflow="hidden">
 				            	<div class="nameWineBottle">
 									<p>Vin Rouge<br />Cabernet Sauvignon 2015</p>
 								</div>
@@ -67,7 +67,7 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img width="200" src="assets/img/imgBottles/source_web_test/02.jpg" alt="romain" overflow="hidden">
+				            	<img width="200" src="assets/img/imgBottles/rouge/vinBouteille.jpg" alt="romain" overflow="hidden">
 				            	<div class="nameWineBottle">
 									<p>Vin Blanc<br />Cabernet Sauvignon 2015</p>
 								</div>
