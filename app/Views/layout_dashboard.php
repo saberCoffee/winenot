@@ -13,18 +13,17 @@
 	<!-- Propre Style Sheet -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/dashboard/style.css') ?>" />
 
+	<?= $this->section('css') ?>
+
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<!-- <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
 
 </head>
 
 <body class="dashboard">
-	<div class="logoDashboard">
-		<a href="<?= $this->url('home') ?>"><img src="<?= $this->assetUrl('img/logo_clean.png'); ?>"></a>
-	</div>
 
     <div class="container-fluid" id="top">
-        <div class="row">
+        <div class="row hidden-sm hidden-xs">
             <header>
                 <nav>
                     <ul>
@@ -46,13 +45,74 @@
                 </nav>
             </header>
         </div>
+	
+
+<!-- Responsive -->
+
+	<div class="row visible-sm visible-xs">
+	  	<div class="responsive-menu ">
+	      	<div class="dropdown">
+				<ul id="winenot-menu">
+					<li><span><a href="<?= $this->url('home') ?>"><img width="64" src="<?= $this->assetUrl('img/logo_mini_clean.png'); ?>"></a>Winenot menu</span>
+						<ul>
+							<li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
+							</li>
+                            <li>
+								<a href="<?= $this->url('mag') ?>#lemag"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
+							</li>
+                            <li <?php echo ($w_current_route == 'products') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>">Tous nos vins</a>
+							</li>
+                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
+							</li>
+                            <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
+							</li>
+
+							<?php if ($_SESSION['user']['type'] == 0): ?>
+	                            <li <?php echo ($w_current_route == 'register_winemaker') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('register_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
+								</li>
+							<?php else: ?>
+	                            <li <?php echo ($w_current_route == 'cave' OR $w_current_route == 'cave_edit') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Gérer ma cave</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
+	                            <li>
+									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
+								</li>
+	                            <li <?php echo ($w_current_route == 'admin_winemakers') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('admin_winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
+								</li>
+							<?php endif; ?>
+							<li>--------------</li>
+							<li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li><!--
+                        	--><li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li><!--
+							--><li <?php echo ($w_current_route == 'user_profile') ? 'class="current"' : '' ?>><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
+				
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>		
+
+<!-- No Responsive -->
         <div class="row">
             <div class="col-lg-2 r-p r-m col-aside">
-                <aside>
+                <aside class="hidden-sm hidden-xs">
                     <nav>
                         <ul>
                         	<li>
-
+							<div class="logoDashboard">
+							<a href="<?= $this->url('home') ?>"><img src="<?= $this->assetUrl('img/logo_clean.png'); ?>"></a>
+							</div>
                         	</li>
                             <li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>

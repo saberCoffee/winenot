@@ -1,5 +1,5 @@
 <section class="row" id="ProductMonth">
-	<h2>Producteurs du mois</h2>
+	<h2 id="ProductMonthTitle">Producteurs du mois</h2>
 
 	<div class="container">
 	    <div id="main_area">

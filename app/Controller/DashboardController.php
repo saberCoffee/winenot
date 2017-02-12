@@ -7,6 +7,7 @@ use \W\Security\StringUtils;
 use \W\Security\AuthentificationModel;
 use \W\Model\Model;
 use \W\WineNotClasses\Form;
+use \W\WineNotClasses\Photo;
 
 use \Model\UserModel;
 use \Model\ProductModel;
@@ -213,8 +214,11 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
+				$photo    = new Photo();
+				$filename = $photo->createPhoto($_FILES['photo'], $name, $_POST, 'products');
+
 				$token = $_SESSION['user']['id'];
-				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio);
+				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio, $filename);
 
 				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
 				setcookie("successMsg", $msg, time() + 1, '/');
@@ -488,14 +492,22 @@ class DashboardController extends Controller
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
 
-			$user = new UserModel;
-
-			$user->updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $error);
-
 			if (empty($error)) {
-				$this->redirectToRoute('user_profile', ['id' => $token]);
-				echo 'aucune erreur';
+				if (!empty($_FILES['photo'])) {
+					$photo    = new Photo();
+					$filename = $photo->createPhoto($_FILES['photo'], $firstname . '_' . $lastname, $_POST, 'users');
+				}
+
+				$user = new UserModel;
+
+				$user->updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $filename, $error);
+
+				if (empty($error)) {
+					$this->redirectToRoute('user_profile', ['id' => $token]);
+					echo 'aucune erreur';
+				}
 			}
+
 		}
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
@@ -618,6 +630,45 @@ class DashboardController extends Controller
 			// Textes changeants selon le contexte
 			'lang'               => $lang
 		));
+	}
+
+	public function imageCrop()
+	{
+		$debug = 0; // à changer en true pour activer des informations utiles
+
+		if ($debug) {
+			debug($_FILES['photo']);
+		}
+
+		if (!empty($_FILES['photo'] && $_FILES['photo'] > 0)) {
+			$dir = 'assets/content/photos/temp/';
+
+			if ($debug) {
+				echo $dir . '<br />';
+			}
+
+			if (file_exists($dir) && is_dir($dir)) {
+				if ($debug) {
+					echo 'Le dossier existe bien.<br />';
+				}
+
+				$clean_name = StringUtils::clean_url($_FILES['photo']['name']);
+				$filename   = $clean_name . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+
+				if(move_uploaded_file($_FILES['photo']['tmp_name'], $dir . $filename)) {
+					if ($debug) {
+						echo 'L\'image a bien été téléchargée.<br />';
+					}
+				} else {
+					echo 'L\'image dépasse le poids autorisé (2mo) et n\'a pas pu être téléchargée.<br />';
+				}
+			} elseif ($debug) {
+				echo 'Le dossier n\'existe pas.<br />';
+			}
+		}
+
+		echo '<img id="uploaded-photo" src="' . self::rootPath() . '/' . $dir . $filename . '" alt="Votre photo" class="img-responsive" />';
+		echo '<button>Valider</button>';
 	}
 
 }

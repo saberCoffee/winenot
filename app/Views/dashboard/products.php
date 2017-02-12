@@ -9,9 +9,9 @@
             <div class="flip-container">
                 <div class="flipper">
                     <div class="front">
-                        <img width="200" src="<?= $this->assetUrl('/img/imgBottles/source_web_test/01.jpg') ?>" alt="<?= $product['name'] ?>">
+                        <img width="200" src="<?= $this->assetUrl('content/photos/products/' . $product['photo']) ?>" alt="<?= $product['name'] ?>">
                         <div class="nameWineBottle">
-                            <p>Vin <?= $product['couleur'] ?><br /><?= $product['name'] ?></p>
+                            <p><?= $product['name'] ?><br />Vin <?= $product['couleur'] ?></p>
                         </div>
                     </div>
 

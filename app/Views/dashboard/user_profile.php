@@ -1,6 +1,10 @@
 <?php $this->layout('layout_dashboard', ['title' => $lang['profile']]) ?>
 <?php $this->start('main_content') ?>
 
+<div id="imageCrop-mask">
+	<div></div>
+</div>
+
 <div class="container-fluid">
 	<section id="profile" class="section-with-panels">
 
@@ -14,7 +18,11 @@
 				<div class="col-md-3 vcenter">
 					<aside class="user-infos-left">
 						<p>
-							<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar">
+							<?php if (empty($user['photo'])): ?>
+								<img src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar" width="150" />
+							<?php else: ?>
+								<img src="<?= $this->assetUrl('content/photos/users/' . $user['photo']) ?>" alt="Avatar_<?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="avatar" width="150" />
+							<?php endif; ?>
 							<br />
 							<span><?= $user['firstname'] . ' ' . $user['lastname'] ?></span>
 							<br />
@@ -58,7 +66,7 @@
 		</section>
 
 		<section class="edit-profile <?php if (!empty($error)) { echo 'active'; } ?>">
-			<form action="<?= $this->url('user_profile', ['id' => $user['id']]) ?>" method="post">
+			<form action="<?= $this->url('user_profile', ['id' => $user['id']]) ?>" method="post" enctype="multipart/form-data">
 				<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 					<div class="row">
 						<div class="col-md-4">
@@ -161,10 +169,33 @@
 				</div>
 
 				<div class="row">
-					 <div class="productPics">
-						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-						<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
+
+					<div class="col-md-4">
+						<div class="form-group <?php if (isset($error['photo'])) { echo 'has-error'; } ?>">
+							<label for="photo">Photo</label>
+							<span class="help-block" <?php if (empty($error['photo'])) { echo 'style="display: none"'; } ?>>
+							<?php if (isset($error['photo'])) { echo $error['photo']; } ?>
+							</span>
+
+							<input type="file" id="photo" name="photo" accept="image/*" />
+							<?php if (!empty($user['photo'])): ?>
+								<input type="hidden" name="currentPhoto" value="<?= $user['photo'] ?>" />
+							<?php endif; ?>
+
+							<input type="hidden" id="resizeW" name="resizeW" />
+							<input type="hidden" id="resizeH" name="resizeH" />
+							<input type="hidden" id="x" name="x" />
+							<input type="hidden" id="y" name="y" />
+							<input type="hidden" id="w" name="w" />
+							<input type="hidden" id="h" name="h" />
+						</div>
+						<!--
+						 <div class="productPics">
+							<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
+							<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
+						</div>-->
 					</div>
+
 				</div>
 
 				<div class="row">
@@ -184,4 +215,11 @@
 <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->assetUrl('js/geolocalisation.js') ?>" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&callback=initGeolocalisation" async defer></script>
+<script src="<?= $this->assetUrl('js/jquery.Jcrop.min.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.color.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/imageCrop.js') ?>" type="text/javascript"></script>
 <?php $this->stop('js') ?>
+
+<?php $this->start('css') ?>
+<link rel="stylesheet" href="<?= $this->assetUrl('css/jquery.Jcrop.css') ?>" type="text/css">
+<?php $this->stop('css') ?>

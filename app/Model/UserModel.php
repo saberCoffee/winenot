@@ -43,10 +43,10 @@ class UserModel extends UsersModel
 
 		$this->insert($data);
 
-		$classToken = new TokenModel();
+		$tokenModel = new TokenModel();
 
-		$auth_token = $classToken->generateToken($id);
-		$mp_token   = $classToken->generateToken($id, 'MP');
+		$auth_token = $tokenModel->generateToken($id);
+		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
 
@@ -93,9 +93,10 @@ class UserModel extends UsersModel
 
 		$this->insert($data);
 
-		$classToken = new TokenModel();
+		$tokenModel = new TokenModel();
 
-		$mp_token   = $classToken->generateToken($id, 'MP');
+		$auth_token = $tokenModel->generateToken($id);
+		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
 	}
@@ -114,7 +115,7 @@ class UserModel extends UsersModel
 	 *
 	 * @return [type]            [description]
 	 */
-	public function updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $error)
+	public function updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $photo, $error)
 	{
 		$user = $this->getUserByToken($token);
 
@@ -133,8 +134,23 @@ class UserModel extends UsersModel
 			'email'    => $email,
 			'address'  => $address,
 			'city'     => $city,
-			'postcode' => $postcode
+			'postcode' => $postcode,
 		);
+
+		if (!empty($photo)) { // Si l'utilisateur upload une nouvelle photo, on change l'ancienne et on la supprime
+			$data['photo'] = $photo;
+
+			$sql = "SELECT photo FROM " . $this->table . " WHERE id = " . $user['id'];
+
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+
+			$oldPhoto = $sth->fetch();
+
+			$filepath = 'assets/content/users/' . $oldPhoto['photo'];
+
+	        unlink($filepath);
+		}
 
 		if (!empty($password)) {
 			$hashedPassword = $auth->hashPassword($password);
