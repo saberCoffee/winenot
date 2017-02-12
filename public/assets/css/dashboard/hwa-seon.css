@@ -254,6 +254,14 @@ Media Query
 
 	@media (max-width: 768px) {
 
+		/* Main page */
+			.col-aside, .col-main {
+				margin-top:0;
+			}
+			#winenot-menu {
+				margin-bottom:0;
+			}
+
 		/* Page Google Map dans Dashboard*/
 			section#GoogleMap {
 				padding:1em 0;
