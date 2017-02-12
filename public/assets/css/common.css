@@ -84,7 +84,7 @@ HEADER
 	}
 
 	header {
-		margin: 10rem auto 25rem auto;
+		margin: 10rem auto 10rem auto;
 	}
 
 	nav {
@@ -292,6 +292,8 @@ HOMEPAGE
 
 		color: #ffffff;
         text-align: center;
+
+        margin-top:15em;
     }
 
     #AboutUs h2{
@@ -616,8 +618,9 @@ FOOTER
 		font-weight: bold;
 	}
 	footer p.copyright {
+		width:100%;
 		padding: 1rem;
-		font-size: 1rem;
+		font-size: 15px;
 	}
 
 
@@ -632,6 +635,12 @@ Media Query
 		footer ul.contact::after{
 			content: '--------';
 			border-bottom: 1px black;
+		}
+
+		footer p.copyright {
+			width:100%;
+			padding: 1rem;
+			font-size: 12px;
 		}
 
 		.fa-3x {
