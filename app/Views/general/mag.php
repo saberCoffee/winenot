@@ -1,6 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Le Mag']) ?>
 
 <?php $this->start('main_content') ?>
+<a href="#top" class="goto hidden-xs anchor" id="goto-top"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></a>
 
 <div class="row">
     <section id="lemag">
@@ -24,6 +25,7 @@
                         </div>
                          <div class="col-md-6">
                             <div class="magazine-blog">
+                                <div id="WineMonth" style="display: none;"></div>
                                 <div class="title">
                                     <span class="posted-on">30 Mar 2017</span>
                                     <h3><a href="#">Du bon vin dans mes petits plats</a></h3>
