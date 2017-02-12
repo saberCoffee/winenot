@@ -1,5 +1,5 @@
 $(function() {
-    var rootPath = 'http://localhost/projets/WineNot/prod/';
+    var rootPath = 'http://winenot.alwaysdata.net/';
     var debug    = false; // à changer en true pour activer les console.log utiles
 
     /**
@@ -39,7 +39,7 @@ $(function() {
         $('#imageCrop-mask').show(); // On affiche un masque dans lequel on mettra une preview de la photo
 
         $.ajax ({ // A-J-A-X !!!!!!!!!!!!
-            url: rootPath + "public/imagecrop", // Réécrire une URL dynamique
+            url: rootPath + "imagecrop", // Réécrire une URL dynamique
             type: "POST",
             data: new FormData($form),
             processData: false,

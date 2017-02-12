@@ -9,7 +9,13 @@
     	<table class="table table-bordered">
         <?php foreach ($messages as $message): ?>
             <tr>
-                <td>Photo</td>
+                <td>
+                    <?php if (empty($message['photo'])): ?>
+        				<img src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $message['firstname'] . ' ' . $message['lastname'] ?>" class="avatar" width="100" />
+        			<?php else: ?>
+        				<img src="<?= $this->assetUrl('content/photos/users/' . $message['photo']) ?>" alt="Avatar_<?= $message['firstname'] . ' ' . $message['lastname'] ?>" class="avatar" width="100" />
+        			<?php endif; ?>
+                </td>
                 <td>
                     <a href="<?= $this->url('inbox_thread', ['id' => $message['mp_token']]) ?>">
                     <?php if (!empty($message['firstname'])): ?>

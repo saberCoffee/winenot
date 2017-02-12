@@ -21,7 +21,11 @@
 			<div class="col-md-3 vcenter">
 				<aside class="user-infos-left">
 					<p>
-						<img src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar">
+                        <?php if (empty($winemaker['photo'])): ?>
+                            <img src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar" width="150" />
+                        <?php else: ?>
+                            <img src="<?= $this->assetUrl('content/photos/users/' . $winemaker['photo']) ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar" width="150" />
+                        <?php endif; ?>
 						<br />
 						<span><?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?></span>
 						<br />
@@ -153,13 +157,6 @@
 							<?php if (isset($error['city'])) { echo $error['city']; } ?>
 						</span>
 					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				 <div class="productPics">
-					<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-					<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
 				</div>
 			</div>
 
