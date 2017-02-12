@@ -126,12 +126,9 @@
 						   
 						  });	
 					 markers.push(marker);
-								 
+						 
 				}
 			 
-				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
-				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
-				 
 			}
 		});	
 
@@ -142,14 +139,14 @@
 		        e.preventDefault(); 
 		    }
 		  }); 
-		 
+
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
 				   google.maps.event.trigger(map, "resize");
 				   map.setCenter(center); 
 				});
-			
+		
 
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
