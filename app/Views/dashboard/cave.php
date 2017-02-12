@@ -9,7 +9,7 @@
 	<div></div>
 </div>
 
-<section>
+<section class="caveDescription">
 	<p>
 		Dans cette section, vous pouvez ajouter de nouveaux produits à votre cave ou bien les modifier. Il n'y que vous qui y avez accès.
 	</p>
@@ -145,9 +145,8 @@
 	</section>
 
 	<section class="stock">
-		<table border="1" class="table table-striped">
+		<table border="1" class="table table-striped" id="cave">
 			<thead>
-				<tr class="col-sm-6">
 					<th class="col-sm-6">Produits</th>
 					<th class="col-sm-6">Couleurs</th>
 					<th class="col-sm-6">Millesimes</th>
@@ -182,10 +181,29 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
+<script>
+	
+	var headertext = [],
+	headers = document.querySelectorAll("#cave th"),
+	tablerows = document.querySelectorAll("#cave th"),
+	tablebody = document.querySelector("#cave tbody");
+
+	for(var i = 0; i < headers.length; i++) {
+	  var current = headers[i];
+	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+	} 
+	for (var i = 0, row; row = tablebody.rows[i]; i++) {
+	  for (var j = 0, col; col = row.cells[j]; j++) {
+	    col.setAttribute("data-th", headertext[j]);
+	  } 
+	}
+
+</script>
 <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->assetUrl('js/jquery.Jcrop.min.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->assetUrl('js/jquery.color.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->assetUrl('js/imageCrop.js') ?>" type="text/javascript"></script>
+
 <?php $this->stop('js') ?>
 
 <?php $this->start('css') ?>

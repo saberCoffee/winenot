@@ -109,7 +109,8 @@
 	</section>
 
 	<section class="member-list">
-		<table border="1" class="table table-striped">
+		<table border="1" class="table table-striped" id="member">
+			<thead>
 			<tr>
 				<th>Prénom</th>
 				<th>Nom</th>
@@ -121,6 +122,8 @@
 				<th>Type</th>
 				<th></th>
 			</tr>
+			</thead>
+			<tbody>
 		<?php foreach ($members as $member) : ?>
 			<tr>
 				<td><?= $member['firstname'];?></td>
@@ -137,7 +140,7 @@
 				--></td>
 			</tr>
 				<?php endforeach;?>
-
+			</tbody>
 		</table>
 	</section>
 </section>
@@ -147,4 +150,22 @@
 
 <?php $this->start('js') ?>
     <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
+    <script>
+	
+	var headertext = [],
+	headers = document.querySelectorAll("#member th"),
+	tablerows = document.querySelectorAll("#member th"),
+	tablebody = document.querySelector("#member tbody");
+
+	for(var i = 0; i < headers.length; i++) {
+	  var current = headers[i];
+	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+	} 
+	for (var i = 0, row; row = tablebody.rows[i]; i++) {
+	  for (var j = 0, col; col = row.cells[j]; j++) {
+	    col.setAttribute("data-th", headertext[j]);
+	  } 
+	}
+
+	</script>
 <?php $this->stop('js') ?>
