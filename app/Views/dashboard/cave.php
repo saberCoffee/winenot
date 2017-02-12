@@ -147,15 +147,15 @@
 	<section class="stock">
 		<table border="1" class="table table-striped">
 			<thead>
-				<tr>
-					<th>Produits</th>
-					<th>Couleurs</th>
-					<th>Millesimes</th>
-					<th>Vins bio</th>
-					<th>Prix</th>
-					<th>Cépage</th>
-					<th>Stocks</th>
-					<th></th>
+				<tr class="col-sm-6">
+					<th class="col-sm-6">Produits</th>
+					<th class="col-sm-6">Couleurs</th>
+					<th class="col-sm-6">Millesimes</th>
+					<th class="col-sm-6">Vins bio</th>
+					<th class="col-sm-6">Prix</th>
+					<th class="col-sm-6">Cépage</th>
+					<th class="col-sm-6">Stocks</th>
+					<th class="col-sm-6"></th>
 				</tr>
 			</thead>
 			<tbody>
