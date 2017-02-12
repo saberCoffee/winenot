@@ -67,8 +67,8 @@
                             <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
 							</li>
-                            <li <?php echo ($w_current_route == 'wishlist') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('wishlist') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
+                            <li <?php echo ($w_current_route == 'favorites') ? 'class="current"' : '' ?>>
+								<a href="<?= $this->url('favorites') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
 							</li>
 
 							<?php if ($_SESSION['user']['type'] == 0): ?>
