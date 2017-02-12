@@ -17,6 +17,19 @@ class Controller
 	const PATH_VIEWS = '../app/Views';
 
 	/**
+	 * Renvoie le chemin vers la racine
+	 *
+	 * @return string $rootPath Le chemin de la racine
+	 */
+	public static function rootPath()
+	{
+		$app      = getApp();
+		$rootPath = $app->getBasePath();
+
+		return $rootPath;
+	}
+
+	/**
 	 * Génère l'URL correspondant à une route nommée
 	 * @param  string $routeName Le nom de route
 	 * @param  mixed  $params    Tableau de paramètres optionnel de cette route

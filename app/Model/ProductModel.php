@@ -21,7 +21,7 @@ class ProductModel extends Model
 	 *
 	 * @return void
 	 */
-	public function addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio)
+	public function addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio, $photo)
 	{
 		$user = new UserModel();
 
@@ -37,6 +37,7 @@ class ProductModel extends Model
 			'cepage' 	   => $cepage,
 			'stock' 	   => $stock,
 			'is_bio' 	   => $bio,
+			'photo'        => $photo,
 			'winemaker_id' => $winemaker_id['id']
 		);
 

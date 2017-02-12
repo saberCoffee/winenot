@@ -24,9 +24,9 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="produitImg">
-				<img src="<?= $this->assetUrl('img/vinBouteille.jpg') ?>">
-			</div>			
-			<img src="<?= $this->assetUrl('img/dashboard/favorite.png') ?>" class="img-favorite">
+				<img src="<?= $this->assetUrl('content/photos/products/' . $product['photo']) ?>" alt="<?= $product['name'] ?>" />
+			</div>
+			<!--<img src="<?= $this->assetUrl('img/dashboard/favorite.png') ?>" class="img-favorite">-->
 		</div>
 		<div class="col-md-8">
 			<div class="tableau">

@@ -14,17 +14,24 @@
 	</ul>
 
 	<section class="addProduct active">
-		<dl>
-			<dt>Nom</dt><dd><?= $product['name'] ?></dd>
-			<dt>Couleur</dt><dd><?= $product['couleur'] ?></dd>
-			<dt>Prix</dt><dd><?= $product['price'] ?></dd>
-			<dt>Millésime</dt><dd><?= $product['millesime'] ?></dd>
-			<dt>Cépage</dt><dd><?= $product['cepage'] ?></dd>
-		</dl>
+		<div class="row">
+			<div class="col-md-3">
+				<img src="<?= $this->assetUrl('content/photos/products/' . $product['photo']) ?>" alt="<?= $product['name'] ?>" width="150" />
+			</div>
+			<div class="col-md-9">
+				<dl>
+					<dt>Nom</dt><dd><?= $product['name'] ?></dd>
+					<dt>Couleur</dt><dd><?= $product['couleur'] ?></dd>
+					<dt>Prix</dt><dd><?= $product['price'] ?></dd>
+					<dt>Millésime</dt><dd><?= $product['millesime'] ?></dd>
+					<dt>Cépage</dt><dd><?= $product['cepage'] ?></dd>
+				</dl>
+			</div>
+		</div>
 
 		<form method="post" action="<?= $this->url('cave_edit', ['id' => $product['id']]) ?>">
 			<div class="row">
-				<div class="col-md-4 ">
+				<div class="col-md-4">
 					<div class="form-group <?php if (isset($error['price'])) { echo 'has-error'; } ?>">
 						<label for="price">Prix (en euro)*</label>
 						<input type="text" name="price" id="price" class="form-control" value="<?= $price; ?>" required="required">
@@ -46,7 +53,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-lg-12">
 					<div class="descriptionProduct">
 						<div class="form-group <?php if (isset($error['description'])) { echo 'has-error'; } ?>">
 							<label for="description">Description de votre produit*</label>
@@ -55,13 +62,6 @@
 	                        <?php if (isset($error['description'])) { echo $error['description']; } ?>
 	                   		</span>
 						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					 <div class="productPics">
-						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-						<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
 					</div>
 				</div>
 			</div>
