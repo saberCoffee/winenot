@@ -5,9 +5,9 @@ use \W\Security\StringUtils;
 
 class Photo
 {
-    public function createPhoto($photo, $form, $type)
+    public function createPhoto($photo, $photoName, $form, $type)
     {
-        $name = $form['name'];
+        $photoName = StringUtils::clean_url($photoName);
 
         $filename = $photo['name']  . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
         $fileext  = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
@@ -38,12 +38,12 @@ class Photo
 
         unlink($filepath);
 
-        $filename = StringUtils::clean_url($name)  . time() . '.' . $fileext;
+        $filename = StringUtils::clean_url($photoName)  . time() . '.' . $fileext;
         $filepath = 'assets/content/photos/' . $type . '/' . $filename;
 
         imagejpeg($dst_r,$filepath,$jpeg_quality);
         imagecreatefromjpeg($filepath);
-
+        
         return $filename;
     }
 }
