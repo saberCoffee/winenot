@@ -5,9 +5,7 @@
     <section>
 
         <h2>Bienvenue sur votre messagerie. <span>Vous avez (<strong><?= $count_unread_messages ?></strong>) fils de discussion en cours.</span></h2>
-
-
-        <?php debug($messages); ?>        
+       
     	<table class="table table-bordered">
         <?php foreach ($messages as $message): ?>
             <tr>
