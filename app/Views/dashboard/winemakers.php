@@ -56,7 +56,7 @@
 
 		var image = '../assets/img/grape2.png';
 		var image2 = '../assets/img/map-marker3.png';
-		
+
 		var mapOptions = {
 			zoom: 5,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
@@ -71,7 +71,7 @@
 		mapOptions);
 
 		var markers = [];
-		
+
 		var input = /** @type {!HTMLInputElement} */(
 		document.getElementById('pac-input'));
 
@@ -82,7 +82,7 @@
 		var infowindow = new google.maps.InfoWindow();
 
 		/* Style des marqueurs cluster */
-		
+
 		  var clusterStyles = [{
 		    url:'../assets/img/grape3.png',
 		    height:64,
@@ -91,23 +91,23 @@
 			textSize: 20
 		  }
 		  ]
-		  
+
 		  var mcOption = {
 		    styles: clusterStyles
 		  }
 
-		  
+
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
-		
+
 			$.ajax ({
-			url: "http://localhost/winenot/public/latlng",
+			url: "http://winenot.alwaysdata.net/latlng",
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
-			  
+
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-					  
+
 					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
 
 					var marker = new google.maps.Marker({
@@ -118,45 +118,46 @@
 					 });
 
 					 marker.addListener('click', function() {
-							
+
 						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + this.position + '</div>');
 
 						    infowindow.open(map, this);
 						    // $('#hook').parent().parent().parent().parent().css({ "background-color": "yellow", "border-radius": "10px" });
-						   
-						  });	
-					 markers.push(marker);
-						 
-				}
-			 
-			}
-		});	
 
-		// Autocompletion possible avec aussi le bouton de recherche 
+						  });
+					 markers.push(marker);
+
+				}
+				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
+				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
+			}
+		});
+
+		// Autocompletion possible avec aussi le bouton de recherche
 		 var input = document.getElementById('pac-input');
-		 google.maps.event.addDomListener(input, 'keydown', function(e) { 
-		    if (e.keyCode == 13) { 
-		        e.preventDefault(); 
+		 google.maps.event.addDomListener(input, 'keydown', function(e) {
+		    if (e.keyCode == 13) {
+		        e.preventDefault();
 		    }
-		  }); 
+		  });
 
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
 				   google.maps.event.trigger(map, "resize");
-				   map.setCenter(center); 
+				   map.setCenter(center);
 				});
-		
+
 
 		autocomplete.addListener('place_changed', function() {
 			infowindow.close();
-			
+
 			var marker = new google.maps.Marker({
 			    map: map,
 			    icon: image2,
 			    anchorPoint: new google.maps.Point(0, -29)
 			  });
-			  
+
 			marker.setVisible(false);
 			var place = autocomplete.getPlace();
 			if (!place.geometry) {
@@ -171,6 +172,7 @@
 				map.setCenter(place.geometry.location);
 				map.setZoom(17);  // Why 17? Because it looks good.
 			}
+
 			marker.setIcon(/** @type {google.maps.Icon} */({
 				// url: place.icon,
 				size: new google.maps.Size(71, 71),
@@ -178,6 +180,7 @@
 				anchor: new google.maps.Point(17, 34),
 				scaledSize: new google.maps.Size(35, 35),
 			}));
+
 			marker.setPosition(place.geometry.location);
 			marker.setVisible(true);
 
@@ -204,7 +207,13 @@
 	<h2>Tous nos producteurs</h2>
 	<div class="row">
 	<?php foreach ($winemakers as $winemaker) { ?>
-		<div class="col-md-3"><a href="<?= $this->url('winemaker_profile', ['id' => $winemaker['winemaker_id']]) ?>"><img class="photoProfil" src="<?= $this->assetUrl('img/prod-placeholders/row1.jpg') ?>" alt="photo profil" /><br><?= $winemaker['firstname'];?> <?=$winemaker['lastname'];?></a></div>
+		<div class="col-md-3"><a href="<?= $this->url('winemaker_profile', ['id' => $winemaker['winemaker_id']]) ?>">
+			<?php if (empty($winemaker['photo'])): ?>
+				<img class="photoProfil" src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar" width="150" />
+			<?php else: ?>
+				<img class="photoProfil" src="<?= $this->assetUrl('content/photos/users/' . $winemaker['photo']) ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar" width="150" />
+			<?php endif; ?>
+			<br><?= $winemaker['firstname'];?> <?=$winemaker['lastname'];?></a></div>
 <?php }?>
 
 	</div>

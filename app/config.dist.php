@@ -2,10 +2,10 @@
 
 $w_config = [
 	//information de connexion à la bdd
-	'db_host' => 'localhost',						//hôte (ip, domaine) de la bdd
-	'db_user' => 'root',							//nom d'utilisateur pour la bdd
-	'db_pass' => '',								//mot de passe de la bdd
-	'db_name' => '',								//nom de la bdd
+	'db_host' => 'mysql-winenot.alwaysdata.net',    //hôte (ip, domaine) de la bdd
+	'db_user' => 'winenot',							//nom d'utilisateur pour la bdd
+	'db_pass' => '^w1n0te',								//mot de passe de la bdd
+	'db_name' => 'winenot_project',								//nom de la bdd
 	'db_table_prefix' => '',						//préfixe ajouté aux noms de table
 
 	//authentification, autorisation
@@ -19,7 +19,7 @@ $w_config = [
 	'security_login_route_name' => 'login',			//nom de la route affichant le formulaire de connexion
 
 	// configuration globale
-	'site_name'	=> '', 								// contiendra le nom du site
+	'site_name'	=> 'WineNot', 								// contiendra le nom du site
 ];
 
 require('routes.php');
