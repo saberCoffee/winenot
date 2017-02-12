@@ -1,5 +1,6 @@
 $(function() {
-    var debug = false; // à changer en true pour activer les console.log utiles
+    var rootPath = 'http://localhost/projets/WineNot/prod/';
+    var debug    = false; // à changer en true pour activer les console.log utiles
 
     /**
      * Cette fonction permet de déterminer les coordnnées de l'image après le crop :
@@ -29,12 +30,16 @@ $(function() {
 
     // Lorqu'on remplit l'input file pour mettre une photo
     $('input#photo').on('change', function(event) {
-        $form = $('form#main-form')[0]; // On récupère les données du formulaires qu'on en verra par ajax
+        $form = $('form')[0]; // On récupère les données du formulaires qu'on en verra par ajax
+
+        if (debug) {
+            console.log($form);
+        }
 
         $('#imageCrop-mask').show(); // On affiche un masque dans lequel on mettra une preview de la photo
 
         $.ajax ({ // A-J-A-X !!!!!!!!!!!!
-            url: "http://localhost/projets/WineNot/prod/public/imagecrop", // Réécrire une URL dynamique
+            url: rootPath + "public/imagecrop", // Réécrire une URL dynamique
             type: "POST",
             data: new FormData($form),
             processData: false,
