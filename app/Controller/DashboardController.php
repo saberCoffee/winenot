@@ -213,6 +213,43 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
+				//-- Start : Gestion de la photo
+				$photo    = $_FILES['photo'];
+				$filename = $photo['name']  . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+				// Réécrire une URL dynamique
+				$filepath = 'assets/content/photos/temp/' . StringUtils::clean_url($filename);
+
+				$x        = $_POST['x'];
+				$y        = $_POST['y'];
+				$w        = $_POST['w'];
+				$h        = $_POST['h'];
+				$resizeW  = $_POST['resizeW'];
+				$resizeH  = $_POST['resizeH'];
+				$realSize = getimagesize($filepath);
+
+				$targ_w = 300;
+				$targ_h = 300;
+
+				$jpeg_quality = 100;
+
+				$src = $filepath;
+
+				$img_r = imagecreatefromjpeg($src);
+				$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+				imagecopyresized($img_r, $img_r, 0, 0, 0, 0, $resizeW, $resizeH, $realSize[0], $realSize[1]);
+				imagecopyresampled($dst_r,$img_r,0,0,$x,$y,
+				$targ_w,$targ_h,$w,$h);
+
+				unlink($filepath);
+
+				$filename = StringUtils::clean_url($name)  . . '_' . time() . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+				$filepath = 'assets/content/photos/products/' . $filename;
+
+				imagejpeg($dst_r,$filepath,$jpeg_quality);
+				imagecreatefromjpeg($filepath);
+				//-- End : Gestion de la photo
+
 				$token = $_SESSION['user']['id'];
 				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio);
 
@@ -618,6 +655,44 @@ class DashboardController extends Controller
 			// Textes changeants selon le contexte
 			'lang'               => $lang
 		));
+	}
+
+	public function imageCrop()
+	{
+		$debug = false; // à changer en true pour activer des informations utiles
+
+		if ($debug) {
+			debug($_FILES['photo']);
+		}
+
+		if (!empty($_FILES['photo'] && $_FILES['photo'] > 0)) {
+			// Réécrire une URL dynamique
+			$dir = 'assets/content/photos/temp/';
+
+			if (file_exists($dir) && is_dir($dir)) {
+				if ($debug) {
+					echo 'Le dossier existe bien.<br />';
+				}
+
+				$clean_name = StringUtils::clean_url($_FILES['photo']['name']);
+				$filename   = $clean_name . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+
+				if(move_uploaded_file($_FILES['photo']['tmp_name'], $dir . $filename)) {
+					if ($debug) {
+						echo 'L\'image a bien été téléchargée.<br />';
+					}
+				} else {
+					echo 'L\'image dépasse le poids autorisé (2mo) et n\'a pas pu être téléchargée.<br />';
+				}
+			}
+		} elseif ($debug) {
+			echo 'Le dossier n\'existe pas.<br />';
+		}
+
+		// Réécrire une URL dynamique
+		echo '<img id="uploaded-photo" src="/projets/WineNot/prod/public/' . $dir . $filename . '" alt="Photo de votre vin" class="img-responsive" />';
+
+		echo '<button>Valider</button>';
 	}
 
 }
