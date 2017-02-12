@@ -45,7 +45,7 @@
                 </nav>
             </header>
         </div>
-	
+
 
 <!-- Responsive -->
 
@@ -95,13 +95,13 @@
 							<li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li><!--
                         	--><li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li><!--
 							--><li <?php echo ($w_current_route == 'user_profile') ? 'class="current"' : '' ?>><a href="#" class="open-account-popup"><i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?></a>
-				
+
 						</ul>
 					</li>
 				</ul>
 			</div>
 		</div>
-	</div>		
+	</div>
 
 <!-- No Responsive -->
         <div class="row">
