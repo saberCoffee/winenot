@@ -34,11 +34,11 @@
 					        <div class="front">
 				            	<img width="200" src="assets/img/imgBottles/source_web_test/01.jpg" alt="romain" overflow="hidden">
 				            	<div class="nameWineBottle">
-						            <p>Vin Rouge<br />Cabernet Sauvignon 2015</p>
+						            <p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
 								</div>
 					        </div>
 
-							<div class="back">
+							<a href="#"><div class="back">
 								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
 					        </div>
 					    </div>
@@ -51,7 +51,7 @@
 					        <div class="front">
 				            	<img width="200" src="assets/img/imgBottles/source_web_test/vin_verre_raisin.jpg" alt="romain" overflow="hidden">
 				            	<div class="nameWineBottle">
-									<p>Vin Rouge<br />Cabernet Sauvignon 2015</p>
+									<p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
 								</div>
 					        </div>
 
@@ -69,7 +69,7 @@
 					        <div class="front">
 				            	<img width="200" src="assets/img/imgBottles/rouge/vinBouteille.jpg" alt="romain" overflow="hidden">
 				            	<div class="nameWineBottle">
-									<p>Vin Blanc<br />Cabernet Sauvignon 2015</p>
+									<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
 								</div>
 					        </div>
 
@@ -89,7 +89,7 @@
 						           <div class="cercle">
 						            	<img width="200" src="assets/img/imgBottles/source_web_test/03.jpg" alt="romain" overflow="hidden">
 						            	<div class="nameWineBottle">
-											<p>Vin Blanc<br />Cabernet Sauvignon 2015</p>
+											<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
 										</div>
 						            </div>
 						        </div>
@@ -109,7 +109,7 @@
 					           <div class="cercle">
 					            	<img width="200" src="assets/img/imgBottles/source_web_test/04.jpg" alt="romain" overflow="hidden">
 					            	<div class="nameWineBottle">
-										<p>Vin Rosé<br />Merlot rosé 2015</p>
+										<p>Merlot rosé 2015 <br>Vin Rosé</p>
 									</div>
 					            </div>
 					        </div>
@@ -128,7 +128,7 @@
 					           <div class="cercle">
 					            	<img width="200" src="assets/img/imgBottles/source_web_test/05.jpg" alt="romain" overflow="hidden">
 					            	<div class="nameWineBottle">
-										<p>Vin Rosé<br />Merlot rosé 2015</p>
+										<p>Merlot rosé 2015 <br>Vin Rosé</p>
 									</div>
 					            </div>
 					        </div>
