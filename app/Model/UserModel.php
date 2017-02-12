@@ -43,10 +43,10 @@ class UserModel extends UsersModel
 
 		$this->insert($data);
 
-		$classToken = new TokenModel();
+		$tokenModel = new TokenModel();
 
-		$auth_token = $classToken->generateToken($id);
-		$mp_token   = $classToken->generateToken($id, 'MP');
+		$auth_token = $tokenModel->generateToken($id);
+		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
 
@@ -93,9 +93,10 @@ class UserModel extends UsersModel
 
 		$this->insert($data);
 
-		$classToken = new TokenModel();
+		$tokenModel = new TokenModel();
 
-		$mp_token   = $classToken->generateToken($id, 'MP');
+		$auth_token = $tokenModel->generateToken($id);
+		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
 	}
@@ -204,7 +205,6 @@ class UserModel extends UsersModel
 		$auth  = new AuthentificationModel();
 		$token = new TokenModel();
 
-		$token->delete($_SESSION['user']['id']); // On supprime le token créé par la session en cours
 		$auth->logUserOut(); // Puis on déconnecte l'utilisateur
 	}
 

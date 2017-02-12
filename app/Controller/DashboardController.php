@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
 	public function products()
 	{
-		$userModel       = new UserModel();
+		$userModel      = new UserModel();
 		$winemakerModel = new WinemakerModel();
 		$productModel   = new ProductModel();
 
@@ -60,9 +60,15 @@ class DashboardController extends Controller
 
 	public function product($name, $id)
 	{
-		$productModel = new ProductModel();
+		$userModel      = new UserModel();
+		$winemakerModel = new WinemakerModel();
+		$productModel   = new ProductModel();
 
 		$product = $productModel->find($id);
+
+		$token = $userModel->getTokenByUserId($product['winemaker_id']);
+
+		$product['winemaker'] = $winemakerModel->getWinemakerFullDetails($token);
 
 		$this->show('dashboard/product', array(
 			'product' => $product
@@ -207,6 +213,44 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
+				//-- Start : Gestion de la photo
+				$photo    = $_FILES['photo'];
+				$filename = $photo['name']  . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+				$fileext  = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+				// Réécrire une URL dynamique
+				$filepath = 'assets/content/photos/temp/' . StringUtils::clean_url($filename);
+
+				$x        = $_POST['x'];
+				$y        = $_POST['y'];
+				$w        = $_POST['w'];
+				$h        = $_POST['h'];
+				$resizeW  = $_POST['resizeW'];
+				$resizeH  = $_POST['resizeH'];
+				$realSize = getimagesize($filepath);
+
+				$targ_w = 300;
+				$targ_h = 300;
+
+				$jpeg_quality = 100;
+
+				$src = $filepath;
+
+				$img_r = imagecreatefromjpeg($src);
+				$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+				imagecopyresized($img_r, $img_r, 0, 0, 0, 0, $resizeW, $resizeH, $realSize[0], $realSize[1]);
+				imagecopyresampled($dst_r,$img_r,0,0,$x,$y,
+				$targ_w,$targ_h,$w,$h);
+
+				unlink($filepath);
+
+				$filename = StringUtils::clean_url($name)  . time() . '.' . $fileext;
+				$filepath = 'assets/content/photos/products/' . $filename;
+
+				imagejpeg($dst_r,$filepath,$jpeg_quality);
+				imagecreatefromjpeg($filepath);
+				//-- End : Gestion de la photo
+
 				$token = $_SESSION['user']['id'];
 				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio);
 
@@ -333,16 +377,15 @@ class DashboardController extends Controller
 	 */
 	public function inboxThread($token)
 	{
-		$user     = new UserModel();
-		$messages = new PrivateMessageModel();
+		$userModel    = new UserModel();
+		$messageModel = new PrivateMessageModel();
 
-		$user1 = $user->getUserByToken($_SESSION['user']['id']);
-		$user1 = $user1['id']; // Correspond à mon ID d'utilisateur
+		$users['self']             = $userModel->getUserByToken($_SESSION['user']['id']); // Correspond à mon ID d'utilisateur
+		$users['self']['token']    = $userModel->getTokenByUserId($users['self']['id']);
+		$users['contact']          = $userModel->getUserByToken($token, 'MP'); // Correspond à l'ID de l'utilisateur avec qui j'ai un fil de discussion
+		$users['contact']['token'] = $userModel->getTokenByUserId($users['contact']['id']);
 
-		$user2 = $user->getUserByToken($token);
-		$user2 = $user2['id']; // Correspond à l'ID de l'utilisateur avec qui j'ai un fil de discussion
-
-		$messages = $messages->getMessagesFromThread($user1, $user2);
+		$messages = $messageModel->getMessagesFromThread($users['self']['id'], $users['contact']['id']);
 
 		/*
 			Ce bout de code sert à attribuer une classe row à chaque auteur
@@ -370,10 +413,17 @@ class DashboardController extends Controller
 		}
 		$messages = array_reverse($messages);
 
+		$nb_messages = $i;
+
 		$this->show ('dashboard/thread', array(
-			'messages' => $messages,
-			'subject'  => $subject,
-			'token'    => $token
+			// Données de l'utilisateur avec qui la discussion est ouverte
+			'token'       => $token,
+			'users'       => $users,
+
+			// Données du fil de discussion
+			'subject'     => (!empty($subject)) ? $subject : '',
+			'messages'    => $messages,
+			'nb_messages' => $nb_messages
 		));
 	}
 
@@ -384,16 +434,13 @@ class DashboardController extends Controller
 	 */
 	public function inboxPosting($token)
 	{
-		$user    = new UserModel();
-		$message = new PrivateMessageModel();
+		$userModel           = new UserModel();
+		$privateMessageModel = new PrivateMessageModel();
 
-		$receiver_id = $user->getUserByToken($token);
-		$receiver_id = $receiver_id['id'];
+		$receiver = $userModel->getUserByToken($token, 'MP');
+		$author   = $userModel->getUserByToken($_SESSION['user']['id']);
 
-		$author_id = $user->getUserByToken($_SESSION['user']['id']);
-		$author_id = $author_id['id']; // Correspond à mon ID d'utilisateur
-
-		$message->sendMessage($receiver_id, $author_id, $_POST['subject'], $_POST['content']);
+		$privateMessageModel->sendMessage($receiver['id'], $author['id'], $_POST['subject'], $_POST['content']);
 
 		$this->redirectToRoute('inbox_thread', ['id' => $token]);
 	}
@@ -539,8 +586,9 @@ class DashboardController extends Controller
 	{
 		$winemakerModel = new WinemakerModel();
 		$productModel   = new ProductModel();
+		$userModel      = new UserModel();
 
-		$winemaker      = $winemakerModel->getWinemakerFullDetails($token);
+		$winemaker = $winemakerModel->getWinemakerFullDetails($token);
 
 		if (empty($winemaker)) {
 			$errorMessage['dashboard'] = 'Il semblerait que ce producteur n\'existe pas.';
@@ -550,6 +598,8 @@ class DashboardController extends Controller
 				'errorMessage' => $errorMessage
 			));
 		}
+
+		$winemaker['mp_token'] = $userModel->getTokenByUserId($winemaker['winemaker_id'], 'MP');
 
 		if (!empty($_POST)) {
 
@@ -606,6 +656,44 @@ class DashboardController extends Controller
 			// Textes changeants selon le contexte
 			'lang'               => $lang
 		));
+	}
+
+	public function imageCrop()
+	{
+		$debug = false; // à changer en true pour activer des informations utiles
+
+		if ($debug) {
+			debug($_FILES['photo']);
+		}
+
+		if (!empty($_FILES['photo'] && $_FILES['photo'] > 0)) {
+			// Réécrire une URL dynamique
+			$dir = 'assets/content/photos/temp/';
+
+			if (file_exists($dir) && is_dir($dir)) {
+				if ($debug) {
+					echo 'Le dossier existe bien.<br />';
+				}
+
+				$clean_name = StringUtils::clean_url($_FILES['photo']['name']);
+				$filename   = $clean_name . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+
+				if(move_uploaded_file($_FILES['photo']['tmp_name'], $dir . $filename)) {
+					if ($debug) {
+						echo 'L\'image a bien été téléchargée.<br />';
+					}
+				} else {
+					echo 'L\'image dépasse le poids autorisé (2mo) et n\'a pas pu être téléchargée.<br />';
+				}
+			}
+		} elseif ($debug) {
+			echo 'Le dossier n\'existe pas.<br />';
+		}
+
+		// Réécrire une URL dynamique
+		echo '<img id="uploaded-photo" src="/projets/WineNot/prod/public/' . $dir . $filename . '" alt="Photo de votre vin" class="img-responsive" />';
+
+		echo '<button>Valider</button>';
 	}
 
 }

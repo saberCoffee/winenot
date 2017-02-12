@@ -16,7 +16,7 @@
                                     <h3><a href="#">LE VIN AUX USA : PRÉDICTIONS 2017</a></h3>
                                     <span class="category">Article</span>
                                 </div>
-                                <a href="#"><img src="assets/img/mag/blog-3.jpg" alt=""></a>
+                                <a href="<?= $this->url('article') ?>"><img src="assets/img/mag/blog-3.jpg" alt=""></a>
                                 <div class="blog-text">
                                     <p>Le marché du vin aux états unis se porte bien, voir très bien avec sa hausse de 2,8% en volume et 4% en valeur affichant plus de 383 millions de caisses de 9L vendues en 2016. C’est d’ailleurs la première année où le prix moyen d’une bouteille achetée dépasse les $10. Les américains, eux aussi, se mettent à payer plus pour espérer une meilleure qualité.</p>
                                 </div>

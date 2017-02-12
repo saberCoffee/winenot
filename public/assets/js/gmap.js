@@ -29,38 +29,37 @@ function initMap() {
 			}
 		];
 
-		var image = '../assets/img/grape2.png';
-		var image2 = '../assets/img/map-marker3.png';
-
+		var image = 'assets/img/grape2.png';
+		var image2 = 'assets/img/map-marker3.png';
+		
 		var mapOptions = {
 			zoom: 5,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
 			styles: styleArray,
 			scrollwheel: false,
-			types: ['(cities)'],
-			componentRestrictions: {country: "fr"},
-            types: ["(regions)"]
+			// types: ['(cities)'],
+			// componentRestrictions: {country: "fr"},
+            // types: ["(regions)"]
 		};
 
 		var map = new google.maps.Map(document.getElementById('dashboard_map'),
 		mapOptions);
 
 		var markers = [];
-
+		
 		var input = /** @type {!HTMLInputElement} */(
 		document.getElementById('pac-input'));
 
 		var autocomplete = new google.maps.places.Autocomplete(input, mapOptions);
 		autocomplete.bindTo('bounds', map);
 
-		var infowindow = new google.maps.InfoWindow({
-			position: new google.maps.LatLng()
-			});
+
+		var infowindow = new google.maps.InfoWindow();
 
 		/* Style des marqueurs cluster */
 		
 		  var clusterStyles = [{
-		    url:'../assets/img/grape3.png',
+		    url:'assets/img/grape3.png',
 		    height:64,
 		    width:64,
 		    textColor: 'white',
@@ -71,8 +70,8 @@ function initMap() {
 		  var mcOption = {
 		    styles: clusterStyles
 		  }
-		
 
+		  
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
 		
 			$.ajax ({
@@ -80,63 +79,56 @@ function initMap() {
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
-
+			  
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-
+					  
 					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
-					
-					 var marker = new google.maps.Marker({
+
+					var marker = new google.maps.Marker({
 						 	position : latLng,
 						    map: map,
 						  	icon: image,
-						  	titre: 'notre producteur: '
+							titre: 'notre producteur: '
 					 });
-					 					
+
 					 marker.addListener('click', function() {
-		
-						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + '<div><p>' + this.position + '</p></div>');
+							
+						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + this.position + '</div>');
+
 						    infowindow.open(map, this);
+						    // $('#hook').parent().parent().parent().parent().css({ "background-color": "yellow", "border-radius": "10px" });
 						   
 						  });	
-
-					 
 					 markers.push(marker);
-						
+								 
 				}
-
+			 
 				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
 				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
-
+				 
 			}
+		});	
 
-		});
-		  
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
 				   google.maps.event.trigger(map, "resize");
 				   map.setCenter(center); 
 				});
-		
-		
-		
+			
 
-		
-		// Autocomplete 
 		autocomplete.addListener('place_changed', function() {
+			infowindow.close();
 			
-			
-			
-			// infowindow.close();
-			 var marker = new google.maps.Marker({
+			var marker = new google.maps.Marker({
 			    map: map,
 			    icon: image2,
 			    anchorPoint: new google.maps.Point(0, -29)
 			  });
+			  
 			marker.setVisible(false);
 			var place = autocomplete.getPlace();
-	
 			if (!place.geometry) {
 				window.alert("Autocomplete's returned place contains no geometry");
 				return;
@@ -167,9 +159,10 @@ function initMap() {
 				(place.address_components[2] && place.address_components[2].short_name || '')
 				].join(' ');
 			}
-// 			Fenetre d'info qui affiche le nom de la ville mais nous n'avons pas besoin d'afficher alors je commente
-//			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-//			infowindow.open(map, marker);
-		});		
-		
-}
+
+			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+			infowindow.open(map, marker);
+
+		});
+
+	}

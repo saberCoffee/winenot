@@ -81,7 +81,6 @@ class UsersModel extends Model
 	 */
 	public function tokenExists($id)
 	{
-
 		$app = getApp();
 
 		$sql = 'SELECT * FROM tokens WHERE user_id = :id AND type LIKE "Authentification" LIMIT 1';
@@ -134,7 +133,6 @@ class UsersModel extends Model
 	 */
 	public function getTokenByUserId($id, $type = 'Authentification')
 	{
-
 		$app = getApp();
 
 		$sql = 'SELECT `token` FROM `tokens` WHERE `user_id` = :id AND type = :type LIMIT 1';
