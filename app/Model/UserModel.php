@@ -43,10 +43,10 @@ class UserModel extends UsersModel
 
 		$this->insert($data);
 
-		$classToken = new TokenModel();
+		$tokenModel = new TokenModel();
 
-		$auth_token = $classToken->generateToken($id);
-		$mp_token   = $classToken->generateToken($id, 'MP');
+		$auth_token = $tokenModel->generateToken($id);
+		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
 
@@ -93,9 +93,10 @@ class UserModel extends UsersModel
 
 		$this->insert($data);
 
-		$classToken = new TokenModel();
+		$tokenModel = new TokenModel();
 
-		$mp_token   = $classToken->generateToken($id, 'MP');
+		$auth_token = $tokenModel->generateToken($id);
+		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
 	}

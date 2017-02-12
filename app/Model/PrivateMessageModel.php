@@ -16,7 +16,7 @@ class PrivateMessageModel extends Model {
 		$this->setTable('private_messages');
 
 		$sql = "SELECT
-					mp1.*, users.firstname, users.lastname, tokens.token
+					mp1.*, users.firstname, users.lastname, tokens.token as mp_token
 				FROM
 					$this->table mp1
                 INNER JOIN

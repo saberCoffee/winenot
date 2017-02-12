@@ -1,10 +1,13 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Gérer ma cave']) ?>
 
 <?php $this->start('main_content') ?>
-
 <?php if (!empty($_COOKIE['successMsg'])) { ?>
 	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
 <?php } ?>
+
+<div id="imageCrop-mask">
+	<div></div>
+</div>
 
 <section>
 	<p>
@@ -19,12 +22,12 @@
 
 	<ul class="tabs">
 		<li id="addProduct" class="active">Ajout de produit</li>
-		<li id="stock">Mes stocks</li>
+		<li id="stock">Mes vins</li>
 	</ul>
 
 	<section class="addProduct active">
-		<form method="post" action="<?= $this->url('cave') ?>">
-			<div class="form-group  ?>">
+		<form id="main-form" method="post" action="<?= $this->url('cave') ?>" enctype="multipart/form-data">
+			<div class="form-group <?php if (isset($error['name'])) { echo 'has-error'; } ?>">
 				<label for="product">Nom du produit*</label>
 				<input type="text" name="name" id="name" class="form-control" value="<?= $name; ?>" data-min="3" data-max="50" required="required">
 				<span class="help-block" <?php if (empty($error['name'])) { echo 'style="display: none"'; } ?>>
@@ -110,15 +113,32 @@
 				</div>
 
 				<div class="col-md-4">
+					<div class="form-group <?php if (isset($error['photo'])) { echo 'has-error'; } ?>">
+						<label for="photo">Photo de votre produit*</label>
+						<span class="help-block" <?php if (empty($error['photo'])) { echo 'style="display: none"'; } ?>>
+						<?php if (isset($error['photo'])) { echo $error['photo']; } ?>
+						</span>
+
+						<input type="file" id="photo" name="photo" accept="image/*" />
+
+						<input type="hidden" id="resizeW" name="resizeW" />
+						<input type="hidden" id="resizeH" name="resizeH" />
+						<input type="hidden" id="x" name="x" />
+						<input type="hidden" id="y" name="y" />
+						<input type="hidden" id="w" name="w" />
+						<input type="hidden" id="h" name="h" />
+					</div>
+					<!--
 					 <div class="productPics">
 						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
     					<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
-    				</div>
+    				</div>-->
 				</div>
+
 			</div>
 
 			<div>
-				<input type="submit" class="btn btn-default" value="Ajouter">
+				<input type="submit" class="btn btn-default" value="Ajouter à votre cave" />
 			</div>
 
 		</form>
@@ -159,9 +179,15 @@
 		</table>
 	</section>
 </section>
-
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-    <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.Jcrop.min.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.color.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/imageCrop.js') ?>" type="text/javascript"></script>
 <?php $this->stop('js') ?>
+
+<?php $this->start('css') ?>
+<link rel="stylesheet" href="<?= $this->assetUrl('css/jquery.Jcrop.css') ?>" type="text/css">
+<?php $this->stop('css') ?>

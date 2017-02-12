@@ -59,6 +59,18 @@ RESET
 		text-decoration: none;
 	}
 
+	a.link-register {
+		display: inline-block;
+
+		margin-top: 1rem;
+		padding: 2rem 5rem;
+
+		background: #fff;
+		border-radius: 5px;
+
+		text-transform: uppercase;
+	}
+
 	#goto-top {
 		display: none;
 
@@ -303,18 +315,6 @@ HOMEPAGE
     #AboutUs p {
 		margin: 1rem auto;
     }
-
-	#AboutUs a.register {
-		display: inline-block;
-
-		margin-top: 1rem;
-		padding: 2rem 5rem;
-
-		background: #fff;
-		border-radius: 5px;
-
-		text-transform: uppercase;
-	}
 
 
     #WineMonth {

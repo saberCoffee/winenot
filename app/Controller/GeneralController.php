@@ -24,6 +24,10 @@ class GeneralController extends Controller
 	 * Page mon compte
 	 */
 	public function account() {
+		if (!empty($_SESSION['user'])) {
+			$this->redirectToRoute('dashboard_home');
+		}
+
 		$this->show('general/account', array(
 			'error' => '',
 			'email' =>  '',
@@ -43,8 +47,8 @@ class GeneralController extends Controller
 			$email          = htmlentities($_POST['register_email']);
 			$password       = htmlentities($_POST['register_password']);
 			$password_verif = htmlentities($_POST['register_password_verif']);
-			$firstname      = htmlentities($_POST['firstname']);
-			$lastname       = htmlentities($_POST['lastname']);
+			$firstname      = ucfirst(htmlentities($_POST['firstname']));
+			$lastname       = ucfirst(htmlentities($_POST['lastname']));
 
 			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 				$error['register_email'] = 'Cette adresse email est invalide.';
@@ -185,12 +189,12 @@ class GeneralController extends Controller
 	 */
 	public function add_article()
 	{
-		
+
 		$magModel = new MagModel;
 		$articles = $magModel->allArticles();
-		
+
 		$this->allowTo(array('admin'), 'home');
-		
+
 		$this->show('general/add_article', ['articles' => $articles]);
 	}
 
@@ -208,5 +212,5 @@ class GeneralController extends Controller
 
 		echo json_encode($latlng);
 	}
-	
+
 }
