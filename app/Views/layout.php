@@ -31,9 +31,9 @@
 			<header>
 				<nav>
 					<ul>
-						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li><!--
-						--><li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li><!--
-						--><li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li><!--
+						<li><a href="<?= $this->url('home') ?>#AboutUsTitle" class="anchor">À propos</a></li><!--
+						--><li><a href="<?= $this->url('home') ?>#WineMonthTitle" class="anchor">Vins du mois</a></li><!--
+						--><li><a href="<?= $this->url('home') ?>#ProductMonthTitle" class="anchor">Producteurs du mois</a></li><!--
 						--><li><a href="<?= $this->url('mag') ?>#lemag">Le Mag</a></li>
 					</ul>
 

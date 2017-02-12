@@ -6,7 +6,7 @@
 
 <div class="row">
 	<section id="AboutUs">
-			<h2>À propos</h2>
+			<h2 id="AboutUsTitle">À propos</h2>
 			<div class="content_aboutus">
 			<p>
 				Bienvenue sur WineNot, la première plateforme entièrement gratuite qui met en relation <strong>producteurs</strong> et <strong>consommateurs</strong> de vin.
@@ -23,7 +23,7 @@
 
 <div class="row">
 	<section id="WineMonth">
-		<h2>Vins du mois</h2>
+		<h2 id="WineMonthTitle">Vins du mois</h2>
 
 		<div class="container-fluid">
 			<div class="row">
