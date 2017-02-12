@@ -135,6 +135,14 @@
 			}
 		});	
 
+		// Autocompletion possible avec aussi le bouton de recherche 
+		 var input = document.getElementById('pac-input');
+		 google.maps.event.addDomListener(input, 'keydown', function(e) { 
+		    if (e.keyCode == 13) { 
+		        e.preventDefault(); 
+		    }
+		  }); 
+		 
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();

@@ -95,7 +95,7 @@
 		    styles: clusterStyles
 		  }
 
-		  
+
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
 		
 			$.ajax ({
@@ -106,7 +106,7 @@
 			  
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-					  
+					
 					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
 
 					var marker = new google.maps.Marker({
@@ -134,6 +134,14 @@
 			}
 		});	
 
+		// Autocompletion possible avec aussi le bouton de recherche 
+		 var input = document.getElementById('pac-input');
+		 google.maps.event.addDomListener(input, 'keydown', function(e) { 
+		    if (e.keyCode == 13) { 
+		        e.preventDefault(); 
+		    }
+		  }); 
+
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
@@ -143,8 +151,9 @@
 			
 
 		autocomplete.addListener('place_changed', function() {
-			infowindow.close();
 			
+			infowindow.close();
+
 			var marker = new google.maps.Marker({
 			    map: map,
 			    icon: image2,
