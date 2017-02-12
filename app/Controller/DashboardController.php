@@ -216,6 +216,7 @@ class DashboardController extends Controller
 				//-- Start : Gestion de la photo
 				$photo    = $_FILES['photo'];
 				$filename = $photo['name']  . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+				$fileext  = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
 				// Réécrire une URL dynamique
 				$filepath = 'assets/content/photos/temp/' . StringUtils::clean_url($filename);
 
@@ -243,7 +244,7 @@ class DashboardController extends Controller
 
 				unlink($filepath);
 
-				$filename = StringUtils::clean_url($name)  . . '_' . time() . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+				$filename = StringUtils::clean_url($name)  . time() . '.' . $fileext;
 				$filepath = 'assets/content/photos/products/' . $filename;
 
 				imagejpeg($dst_r,$filepath,$jpeg_quality);
