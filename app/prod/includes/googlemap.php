@@ -55,7 +55,7 @@
 
 		var image = 'assets/img/grape2.png';
 		var image2 = 'assets/img/map-marker3.png';
-		
+
 		var mapOptions = {
 			zoom: 5,
 			center: new google.maps.LatLng(47.081012, 2.398781999999983),
@@ -70,7 +70,7 @@
 		mapOptions);
 
 		var markers = [];
-		
+
 		var input = /** @type {!HTMLInputElement} */(
 		document.getElementById('pac-input'));
 
@@ -81,7 +81,7 @@
 		var infowindow = new google.maps.InfoWindow();
 
 		/* Style des marqueurs cluster */
-		
+
 		  var clusterStyles = [{
 		    url:'assets/img/grape3.png',
 		    height:64,
@@ -90,23 +90,23 @@
 			textSize: 20
 		  }
 		  ]
-		  
+
 		  var mcOption = {
 		    styles: clusterStyles
 		  }
 
 
 		/* Requete Ajax qui récupère des données de latitude et longitude en json pour faire afficher des producteurs en marqueur */
-		
+
 			$.ajax ({
-			url: "http://localhost/winenot/public/latlng",
+			url: "http://winenot.alwaysdata.net/latlng",
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
-			  
+
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-					
+
 					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
 
 					var marker = new google.maps.Marker({
@@ -117,41 +117,41 @@
 					 });
 
 					 marker.addListener('click', function() {
-							
+
 						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + this.position + '</div>');
 
 						    infowindow.open(map, this);
 						    // $('#hook').parent().parent().parent().parent().css({ "background-color": "yellow", "border-radius": "10px" });
-						   
-						  });	
+
+						  });
 					 markers.push(marker);
-								 
+
 				}
-			 
+
 				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
 				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
-				 
-			}
-		});	
 
-		// Autocompletion possible avec aussi le bouton de recherche 
+			}
+		});
+
+		// Autocompletion possible avec aussi le bouton de recherche
 		 var input = document.getElementById('pac-input');
-		 google.maps.event.addDomListener(input, 'keydown', function(e) { 
-		    if (e.keyCode == 13) { 
-		        e.preventDefault(); 
+		 google.maps.event.addDomListener(input, 'keydown', function(e) {
+		    if (e.keyCode == 13) {
+		        e.preventDefault();
 		    }
-		  }); 
+		  });
 
 		// Réponsive du plan
 		google.maps.event.addDomListener(window, "resize", function() {
 				   var center = map.getCenter();
 				   google.maps.event.trigger(map, "resize");
-				   map.setCenter(center); 
+				   map.setCenter(center);
 				});
-			
+
 
 		autocomplete.addListener('place_changed', function() {
-			
+
 			infowindow.close();
 
 			var marker = new google.maps.Marker({
@@ -159,7 +159,7 @@
 			    icon: image2,
 			    anchorPoint: new google.maps.Point(0, -29)
 			  });
-			  
+
 			marker.setVisible(false);
 			var place = autocomplete.getPlace();
 			if (!place.geometry) {
@@ -200,8 +200,8 @@
 
 	}
 
- 	
- 	
+
+
 	 </script>
 	 	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&libraries=places&callback=initMap" async defer></script>

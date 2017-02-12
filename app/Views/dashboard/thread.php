@@ -42,7 +42,11 @@
         ?>
             <div class="row">
                 <div class="col-avatar">
-                    <img src="<?= $this->assetUrl('img/prod-placeholders/' . $message['classe'] . '.jpg') ?>" alt="Avatar_<?= $message['firstname'] . ' ' . $message['lastname'] ?>" class="avatar">
+                    <?php if (empty($message['photo'])): ?>
+        				<img src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $message['firstname'] . ' ' . $message['lastname'] ?>" class="avatar" width="100" />
+        			<?php else: ?>
+        				<img src="<?= $this->assetUrl('content/photos/users/' . $message['photo']) ?>" alt="Avatar_<?= $message['firstname'] . ' ' . $message['lastname'] ?>" class="avatar" width="100" />
+        			<?php endif; ?>
                 </div>
 
                 <div class="col-message">
