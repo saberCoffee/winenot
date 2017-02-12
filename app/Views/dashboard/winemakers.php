@@ -128,6 +128,8 @@
 					 markers.push(marker);
 						 
 				}
+				  // Ajouter une marqueur clusterer pour gérer les marqueurs.
+				  var markerCluster = new MarkerClusterer(map, markers, mcOption);
 			 
 			}
 		});	
