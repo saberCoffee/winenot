@@ -39,6 +39,11 @@ Reset & propriétés de base
     a:hover {
         color: #a7dadc;
     }
+
+    form label {
+        color: #d09038;
+        text-transform: uppercase;
+    }
 /*
 Menu de navigation horizontal
 */
@@ -154,7 +159,7 @@ Menu de navigation latéral
     aside nav ul{
         margin: 0;
         list-style: none;
-       
+
     }
 
     aside nav ul li {
@@ -179,7 +184,7 @@ Menu de navigation latéral
             padding 0.2s ease-out;
     }
 
-    
+
 
     aside nav ul:last-of-type li:last-of-type a {
         border-bottom: 0;

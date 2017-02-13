@@ -1,5 +1,12 @@
 <?php $this->layout('layout_dashboard', ['title' => $lang['profile']]) ?>
 <?php $this->start('main_content') ?>
+<?php if (!empty($_COOKIE['successMsg'])) { ?>
+<section>
+
+	<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+	
+</section>
+<?php } ?>
 
 <div id="imageCrop-mask">
 	<div></div>
@@ -192,12 +199,9 @@
 						</div>
 				</div>
 				<div class="row">
-                   <input type="submit" value="Mettre à jour"  class="btn btn-default"/>
-                </div>
-			
-				<?php if (!empty($_COOKIE['successMsg'])) { ?>
-				<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
-				<?php } ?>
+					<input type="submit" value="Mettre à jour"  class="btn btn-default"/>
+				</div>
+
 			</form>
 		</section>
 	</section>
