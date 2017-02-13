@@ -163,7 +163,7 @@ class DashboardController extends Controller
 					$msg = 'Votre profil de producteur a bien été enregistré.';
 					setcookie("successMsg", $msg, time() + 1, '/');
 
-					$this->redirectToRoute('dashboard_home');
+					$this->redirectToRoute('cave');
 				}
 			}
 		}

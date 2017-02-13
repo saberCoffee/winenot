@@ -4,10 +4,12 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
+use \W\WineNotClasses\Form;
+
+use \Model\MagModel;
 use \Model\UserModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
-use \Model\MagModel;
 
 class GeneralController extends Controller
 {
@@ -43,6 +45,7 @@ class GeneralController extends Controller
 	{
 		if (!empty($_POST)) {
 			$error = array();
+			$form  = new Form();
 
 			$email          = htmlentities($_POST['register_email']);
 			$password       = htmlentities($_POST['register_password']);
@@ -54,47 +57,33 @@ class GeneralController extends Controller
 				$error['register_email'] = 'Cette adresse email est invalide.';
 			}
 
-			if (empty($password)) {
-				$error['register_password'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($password) < 6) {
-				$error['register_password'] = 'Vous devez utiliser au moins <strong>6</strong> caractères.';
-			} elseif (strlen($password) > 16) {
-				$error['register_password'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
-			} elseif ($password != $password_verif) {
+			$error['password']    = $form->isValid($password, 6, 16);
+			if ($password != $password_verif) {
 				$error['register_password'] = 'Les mots de passe ne sont pas identiques.';
 			}
 
-			if (empty($firstname)) {
-				$error['firstname'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($firstname) < 2) {
-				$error['firstname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
-			} elseif (strlen($firstname) > 16) {
-				$error['firstname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
-			}
-
-			if (empty($lastname)) {
-				$error['lastname'] = 'Vous devez remplir ce champ.';
-			} elseif (strlen($lastname) < 2) {
-				$error['lastname'] = 'Vous devez utiliser au moins <strong>2</strong> caractères.';
-			} elseif (strlen($lastname) > 16) {
-				$error['lastname'] = 'Vous ne pouvez pas utiliser plus de <strong>16</strong> caractères.';
-			}
-
-			$user = new UserModel;
-
-			$user->register($email, $password, $firstname, $lastname, $error);
+			$error['firstname'] = $form->isValid($firstname, 2, 16);
+			$error['lastname']  = $form->isValid($lastname, 2, 16);
 
 			if (empty($error)) {
-				$this->redirectToRoute('dashboard_home');
+				$userModel = new UserModel;
+
+				$userModel->register($email, $password, $firstname, $lastname, $error);
+
+				if (empty($error)) {
+					$this->redirectToRoute('dashboard_home');
+				}
 			}
 		}
 
 		$this->show('general/account', array(
-			'error' => (isset($error)) ? $error : '',
-
+			// Données du formulaire
 			'email'     => (!empty($email)) ? $email : '',
 			'firstname' => (!empty($firstname)) ? $firstname : '',
 			'lastname'  => (!empty($lastname)) ? $lastname : '',
+
+			// Erreurs du formulaire
+			'error' => (isset($error)) ? $error : ''
 		));
 	}
 
@@ -103,43 +92,38 @@ class GeneralController extends Controller
 	 */
 	public function login() {
 		if (!empty($_POST)) {
-
-			$email = $_POST['login_email'];
+			$email    = $_POST['login_email'];
 			$password = $_POST['login_password'];
 
-			if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				$error['login_email'] = "L'email n'est pas correct.";
-			} elseif (strlen($password)<6) {
-				$error['login_password'] = "Votre mot de passe est trop court.";
-			} elseif (strlen($password)>16) {
-				$error['login_password'] = "Votre mot de passe est trop long.";
-			}
-		}
+			if(empty($error)){
+				$userModel = new UserModel;
 
-		if(empty($error)){
-			$user = new UserModel;
-			$user->login($email, $password, $error);
+				$userModel->login($email, $password, $error);
 
-			if (empty($error)) {
-				$this->redirectToRoute('dashboard_home');
+				if (empty($error)) {
+					$this->redirectToRoute('dashboard_home');
+				}
 			}
 		}
 
 		$this->show('general/account', array(
-			'error'    => (isset($error)) ? $error : '',
-
-			'email'    => (!empty($_POST['email'])) ? $_POST['email'] : '',
+			// Données du formulaire
+			'email'     => (!empty($_POST['email'])) ? $_POST['email'] : '',
 			'firstname' => (!empty($firstname)) ? $firstname : '',
-			'lastname'  => (!empty($lastname)) ? $lastname : ''
+			'lastname'  => (!empty($lastname)) ? $lastname : '',
+
+			// Erreurs du formulaire
+			'error' => (isset($error)) ? $error : ''
 		));
 	}
 
 	/**
-	 * Traitement de la déconnexion
+	 * Page mon compte, Traitement de la déconnexion
 	 */
 	public function logout() {
-		$user = new UserModel;
-		$user->logout();
+		$UserModel = new UserModel;
+
+		$UserModel->logout();
 
 		$this->redirectToRoute('home');
 	}
@@ -165,37 +149,46 @@ class GeneralController extends Controller
 		}
 
 		$this->show('general/contact', array(
+			// Données du formulaire
 			'objet'	  => (!empty($_POST['contact_objet'])) ? $_POST['contact_objet'] : '',
 			'email'   => (!empty($_POST['contact_email'])) ? $_POST['contact_email'] : '',
 			'message' => (!empty($_POST['contact_msg'])) ? $_POST['contact_msg'] : '',
+
+			// Erreurs du formulaire
 			'error'   => (isset($error) && !empty($error)) ? $error : ''
 		));
 	}
 
 	/**
-	 * Page du magazine
+	 * Page d'accueil du magazine
 	 */
 	public function mag()
 	{
 		$this->show('general/mag');
 	}
+
+	/**
+	 * Page d'un article du magazine
+	 */
 	public function article()
 	{
 		$this->show('general/article');
 	}
 
 	/**
-	 * Page du magazine
+	 * Page ajouter un article au magazine
 	 */
 	public function add_article()
 	{
-
-		$magModel = new MagModel;
-		$articles = $magModel->allArticles();
-
 		$this->allowTo(array('admin'), 'home');
 
-		$this->show('general/add_article', ['articles' => $articles]);
+		$magModel = new MagModel;
+
+		$articles = $magModel->allArticles();
+
+		$this->show('general/add_article', array(
+			'articles' => $article
+		));
 	}
 
 
@@ -204,11 +197,9 @@ class GeneralController extends Controller
 	 */
 	public function latlng()
 	{
-		//	if (isset($_POST)) {
+		$winemakerModel = new WinemakerModel();
 
-		$latlng = new WinemakerModel();
-
-		$latlng = $latlng->latlng();
+		$latlng = $winemakerModel->latlng();
 
 		echo json_encode($latlng);
 	}
