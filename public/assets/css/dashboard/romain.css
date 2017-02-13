@@ -327,7 +327,7 @@ menu deroulant
         margin: auto
     }
     
-    
+
     #winenot-menu ul{
         
         z-index: 1000;
@@ -375,6 +375,11 @@ menu deroulant
     #winenot-menu span{
     
         font-size: 1.6em;
+    }
+
+    #winenot-menu li:first-child{
+        display: block;
+        cursor: pointer;
     }
 
     #winenot-menu ul li a{
