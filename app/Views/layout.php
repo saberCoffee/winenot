@@ -61,7 +61,7 @@
 					<h3>Plan du Site</h3>
 					<ul class="sitemap">
 						<li><a href="<?= $this->url('home') ?>#AboutUs" class="anchor">À propos</a></li>
-						<li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du moi</a></li>
+						<li><a href="<?= $this->url('home') ?>#WineMonth" class="anchor">Vins du mois</a></li>
 						<li><a href="<?= $this->url('home') ?>#ProductMonth" class="anchor">Producteurs du mois</a></li>
 					</ul>
 				</div>
@@ -82,9 +82,9 @@
 					<h3>Contactez nous</h3>
 					<ul class="contact">
 						<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li><br>
-						<li>Nos Coordonées</li>
-						<li>82 avenue Denfert Rochereau 75014 Paris</li>
-						<li>01 23 45 67 89</li>
+						<li><strong>Nos Coordonnées</strong></li>
+						<li><i class="fa fa-home" aria-hidden="true"></i> 82 avenue Denfert Rochereau 75014 Paris</li>
+						<li><i class="fa fa-phone" aria-hidden="true"></i> 01 23 45 67 89</li>
 				</div>
 			</div>
 
