@@ -99,7 +99,7 @@
     <h2>Liste de nos articles</h2>
 		<div class="row listArticle">
 		<?php foreach ($articles as $article) { ?>
-			<div class="col-md-4 oneArticle"><a href="#" class="articleTitle"><?= $article['titre'];?><br></a><?= $article['date'];?></div>
+			<div class="col-md-4 oneArticle"><a href="#" class="articleTitle"><?= $article['title'];?><br></a><?= $article['date'];?></div>
 	<?php }?>
 	
 		</div>
