@@ -88,6 +88,7 @@
         padding: 0em 0em 0em;
         background-color: #eddcc0;
         color: #d09038;
+        border-radius: 0 5px 5px 5px;
 
     }
 
@@ -246,7 +247,7 @@
         transform: translate(0%, 0%);
         margin-bottom: 10em;
         z-index: -1;
-        border-radius: 0 4px 4px 4px;
+        border-radius: 0 5px 5px 5px;
     }
 
    .stock {

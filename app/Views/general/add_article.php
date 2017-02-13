@@ -85,7 +85,7 @@
 
     <!-- image upload button -->
     <div class="fileupload fileupload-new" data-provides="fileupload">
-      <span class="btn btn-primary btn-file"><span class="fileupload-new">importer une image</span>
+      <span class="btn btn-primary btn-file"><span class="fileupload-new">Importer une image</span>
       <span class="fileupload-exists">modifier</span> <input type="file" /></span>
       <span class="fileupload-preview"></span>
       <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
