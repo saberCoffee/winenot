@@ -27,7 +27,7 @@
                             <div class="magazine-blog">
                                 <div id="WineMonth" style="display: none;"></div>
                                 <div class="title">
-                                    <span class="posted-on">30 Mar 2017</span>
+                                    <span class="posted-on">15 Fev 2017</span>
                                     <h3><a href="#">Du bon vin dans mes petits plats</a></h3>
                                     <span class="category">Article</span>
                                 </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-6">
                             <div class="magazine-blog">
                                 <div class="title">
-                                    <span class="posted-on">15 Fev 2017</span>
+                                    <span class="posted-on">30 Fev 2017</span>
                                     <h3><a href="#">Terroir : lieu de naissance du vin</a></h3>
                                     <span class="category">Article</span>
                                 </div>
@@ -53,7 +53,7 @@
                         <div class="col-md-6">
                             <div class="magazine-blog">
                                 <div class="title">
-                                    <span class="posted-on">01 Mar 2017</span>
+                                    <span class="posted-on">18 Mar 2017</span>
                                     <h3><a href="#">Les meilleurs vins d’Alsace</a></h3>
                                     <span class="category">Article</span>
                                 </div>
@@ -66,7 +66,7 @@
                         <div class="col-md-6">
                             <div class="magazine-blog">
                                 <div class="title">
-                                    <span class="posted-on">18 Mar 2017</span>
+                                    <span class="posted-on">30 Mar 2017</span>
                                     <h3><a href="#">Tout savoir sur la viticulture</a></h3>
                                     <span class="category">Article</span>
                                 </div>
