@@ -157,10 +157,12 @@ class DashboardController extends Controller
 			if (empty($error)) {
 				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
 
-				$msg = 'Votre profil de producteur a bien été enregistré.';
-				setcookie("successMsg", $msg, time() + 1, '/');
+				if (empty($error)) {
+					$msg = 'Votre profil de producteur a bien été enregistré.';
+					setcookie("successMsg", $msg, time() + 1, '/');
 
-				$this->redirectToRoute('dashboard_home');
+					$this->redirectToRoute('dashboard_home');
+				}
 			}
 		}
 
@@ -444,9 +446,9 @@ class DashboardController extends Controller
 
 	public function userProfile($token)
 	{
-		$user = new UserModel();
+		$userModel = new UserModel();
 
-		$user = $user->getUserByToken($token);
+		$user = $userModel->getUserByToken($token);
 		if (empty($user)) {
 			$errorMessage['dashboard'] = 'Il semblerait que cet utilisateur n\'existe pas.';
 
@@ -498,16 +500,15 @@ class DashboardController extends Controller
 					$filename = $photo->createPhoto($_FILES['photo'], $firstname . '_' . $lastname, $_POST, 'users');
 				}
 
-				$user = new UserModel;
-
-				$user->updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $filename, $error);
+				$userModel->updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $filename, $error);
 
 				if (empty($error)) {
+					$msg = 'Votre profil a bien été mis à jour.';
+					setcookie("successMsg", $msg, time() + 1, '/');
+
 					$this->redirectToRoute('user_profile', ['id' => $token]);
-					echo 'aucune erreur';
 				}
 			}
-
 		}
 
 		/* Récupérer juste l'année et le mois de la date d'enregistrement depuis la BDD et transformer en français */
@@ -563,7 +564,6 @@ class DashboardController extends Controller
 		$userModel      = new UserModel();
 
 		$winemaker = $winemakerModel->getWinemakerFullDetails($token);
-
 		if (empty($winemaker)) {
 			$errorMessage['dashboard'] = 'Il semblerait que ce producteur n\'existe pas.';
 
@@ -576,7 +576,34 @@ class DashboardController extends Controller
 		$winemaker['mp_token'] = $userModel->getTokenByUserId($winemaker['winemaker_id'], 'MP');
 
 		if (!empty($_POST)) {
+			$error = array();
+			$form  = new Form();
 
+			debug($_POST);
+
+			$region         = $_POST['region'];
+			$address        = $_POST['address'];
+			$postcode       = $_POST['postcode'];
+			$city           = $_POST['city'];
+
+			$error['region']   = $form->isValid($region);
+			$error['address']  = $form->isValid($address);
+			$error['postcode'] = $form->isValid($postcode, 5, 5, true);
+			$error['city']     = $form->isValid($city);
+
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+
+			if (empty($error)) {
+				$winemakerModel->updateProfile($token, $region, $address, $city, $postcode, $error);
+
+				if (empty($error)) {
+					$msg = 'Votre profil de producteur a bien été mis à jour.';
+					setcookie("successMsg", $msg, time() + 1, '/');
+
+					$this->redirectToRoute('winemaker_profile', ['id' => $token]);
+				}
+			}
 		}
 
 		$products = $productModel->findProductsFrom($winemaker['id']);
@@ -619,7 +646,7 @@ class DashboardController extends Controller
 			'register_date'      => $newDate,
 
 			// Données du formulaire
-			'email'	             => (!empty($_POST['email'])) ? $_POST['email'] : $winemaker['email'],
+			'region'	         => (!empty($_POST['region'])) ? $_POST['region'] : $winemaker['region'],
 			'address'            => (!empty($_POST['address'])) ? $_POST['address'] : $winemaker['address'],
 			'postcode'	         => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $winemaker['postcode'],
 			'city'	             => (!empty($_POST['city'])) ? $_POST['city'] : $winemaker['city'],

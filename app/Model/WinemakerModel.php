@@ -61,6 +61,39 @@ class WinemakerModel extends Model
 	}
 
 	/**
+	 * [updateProfile description]
+	 * @param  [type] $email     [description]
+	 * @param  [type] $password  [description]
+	 * @param  [type] $firstname [description]
+	 * @param  [type] $lastname  [description]
+	 * @param  [type] $address   [description]
+	 * @param  [type] $city      [description]
+	 * @param  [type] $postcode  [description]
+	 * @param  [type] $role      [description]
+	 * @param  [type] $error     [description]
+	 *
+	 * @return [type]            [description]
+	 */
+	public function updateProfile($token, $region, $address, $city, $postcode, &$error)
+	{
+		$userModel = new UserModel();
+
+		$user = $userModel->getUserByToken($token);
+
+		$auth = new AuthentificationModel;
+
+		$data = array(
+			'region'   => $region,
+			'address'  => $address,
+			'city'     => $city,
+			'postcode' => $postcode
+		);
+
+		$this->update($data, $user['id']);
+		$auth->refreshUser();
+	}
+
+	/**
 	 * Récupère, via une jointure, les informations d'utilisateur et de producteur de tous les producteurs
 	 *
 	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) de tous les producteurs
