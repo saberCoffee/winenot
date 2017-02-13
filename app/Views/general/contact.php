@@ -9,8 +9,8 @@
             <form action="<?= $this->url('contact') ?>" method="post" class="form" id="contact-form">
 
                 <div class="form-group <?php if (isset($error['contact_objet'])) { echo 'has-error'; } ?>">
-                    <label for="">Objet : </label>
-                    <select name="contact_objet" id="">
+                    <label for="contact_objet">Objet : </label>
+                    <select name="contact_objet" id="contact_objet">
                         <option value="Recrutement">Recrutement</option>
                         <option value="Devenir Producteur">Devenir Producteur</option>
                         <option value="Proposition">Proposition</option>

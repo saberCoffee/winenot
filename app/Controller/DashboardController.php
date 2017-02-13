@@ -70,6 +70,8 @@ class DashboardController extends Controller
 		$token = $userModel->getTokenByUserId($product['winemaker_id']);
 
 		$product['winemaker'] = $winemakerModel->getWinemakerFullDetails($token);
+		$product['winemaker']['id']           = $token;
+		$product['winemaker']['winemaker_id'] = $token;
 
 		$this->show('dashboard/product', array(
 			'product' => $product
@@ -161,7 +163,7 @@ class DashboardController extends Controller
 					$msg = 'Votre profil de producteur a bien été enregistré.';
 					setcookie("successMsg", $msg, time() + 1, '/');
 
-					$this->redirectToRoute('dashboard_home');
+					$this->redirectToRoute('cave');
 				}
 			}
 		}

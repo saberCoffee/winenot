@@ -327,7 +327,7 @@ menu deroulant
         margin: auto
     }
     
-    
+
     #winenot-menu ul{
         
         z-index: 1000;
@@ -340,7 +340,7 @@ menu deroulant
         transition: .3s all .2s;
     }
     
-    #winenot-menu li:first-child{
+    #winenot-menu > li {
         background: #272727;
         color: #fff;
         /*line-height: 6rem;*/
@@ -349,7 +349,14 @@ menu deroulant
         padding 0.2s ease-out;
         text-align: center;
     }
-    
+
+    #winenot-menu li ul {
+        text-align: left;
+    }
+
+    #winenot-menu li ul li{
+        padding-left: 2em;
+    }
     #winenot-menu ul:last-child li{
         background: #272727;
         color: #fff;
@@ -360,13 +367,19 @@ menu deroulant
         border-top: 1px solid;
     }
     
-    #winenot-menu li:hover ul{
+    #winenot-menu li ul{
+        display: none;
         max-height:1000em;
     }
     
     #winenot-menu span{
     
         font-size: 1.6em;
+    }
+
+    #winenot-menu li:first-child{
+        display: block;
+        cursor: pointer;
     }
 
     #winenot-menu ul li a{
@@ -377,6 +390,16 @@ menu deroulant
     
     #winenot-menu li img{
         margin-right: 1em;
+    }
+    
+    #winenot-menu > .fa{
+        text-align: right;
+        margin-right: 1px;
+    }
+    
+    .fa-2x{
+        position: absolute;
+        left: 80%;
     }
     
 /*

@@ -81,10 +81,11 @@
 				<div class="col-md-4 col-xs-12">
 					<h3>Contactez nous</h3>
 					<ul class="contact">
-						<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li><br>
+						<li><a href="<?= $this->url('contact') ?>">Contactez-nous</a></li>
 						<li><strong>Nos Coordonnées</strong></li>
 						<li><i class="fa fa-home" aria-hidden="true"></i> 82 avenue Denfert Rochereau 75014 Paris</li>
 						<li><i class="fa fa-phone" aria-hidden="true"></i> 01 23 45 67 89</li>
+					</ul>
 				</div>
 			</div>
 
