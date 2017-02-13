@@ -167,7 +167,7 @@
 		list-style:none;
 	}
 
-	
+
 /* Trouver les producteurs */
 	input.pac-input {
 		border:0
@@ -195,7 +195,7 @@
 		margin-top: 2em;
 		border-radius: 5px;
 	}
-	
+
 	#dashboard_winmakerSearch > p {
 		color: #d09038;
 	}
@@ -222,40 +222,43 @@
 	}
 
 	div.winemakerInfo .col-md-3 {
-		margin: 1.5em auto;		
+		margin: 1.5em auto;
 	}
 
-	
+
 	div.winemakerInfo a {
 		color:#d09038;
 	}
-	
+
 	div.winemakerInfo a:hover {
 		color:#d09038;
 		font-weight: bold;
 	}
-	
+
 	img.photoProfil {
 		opacity:0.6;
 		width: 60%;
 		border-radius: 50%;
 	}
-	
+
 	img.photoProfil:hover {
 		opacity:1;
 	}
-	
+
 /*
 Media Query
 */
 
 	@media screen and (max-width: 991px) {
-
 		/* Bouton Input */
-			div.row input[type="submit"] {
-				margin: 0 auto 0em;
-				margin-top: 0rem;
-			}
+		div.row input[type="submit"] {
+			margin: 0 auto 0em;
+			margin-top: 0rem;
+		}
+		/* Winenot Menu Dashboard */
+		#winenot-menu > li:first-child{
+			padding:1em 0;
+		}
 
 		/* Main page */
 			.col-aside, .col-main {
@@ -301,20 +304,20 @@ Media Query
 
 		/* Data de Table */
 		  table#cave thead { display: none; }
-		  table#cave tbody td { 
-		  	font-size: 1.3rem; 
+		  table#cave tbody td {
+		  	font-size: 1.3rem;
 		  	text-align:left;
-		    display: block; 
+		    display: block;
 		    padding: .6rem;
 		  }
-		  table#cave tbody tr td:first-child { 
-		    	background: #e8cb9a; color: #fff; 
+		  table#cave tbody tr td:first-child {
+		    	background: #e8cb9a; color: #fff;
 		  }
-		  table#cave tbody td:before { 
-		    content: attr(data-th); 
+		  table#cave tbody td:before {
+		    content: attr(data-th);
 		    font-weight: bold;
 		    display: inline-block;
-		    width: 10rem;  
+		    width: 10rem;
 		  }
 		  table#cave tbody td a img {
 		  	width:15px;
@@ -322,23 +325,23 @@ Media Query
 		  }
 
 
-		  table#member thead { 
-		  	display: none; 
+		  table#member thead {
+		  	display: none;
 		  }
-		  table#member tbody td { 
-		  	font-size: 1.3rem; 
+		  table#member tbody td {
+		  	font-size: 1.3rem;
 		  	text-align:left;
-		    display: block; 
+		    display: block;
 		    padding: .6rem;
 		  }
-		  table#member tbody tr td:first-child { 
-		    	background: #e8cb9a; color: #fff; 
+		  table#member tbody tr td:first-child {
+		    	background: #e8cb9a; color: #fff;
 		  }
-		  table#member tbody td:before { 
-		    content: attr(data-th); 
+		  table#member tbody td:before {
+		    content: attr(data-th);
 		    font-weight: bold;
 		    display: inline-block;
-		    width: 10rem;  
+		    width: 10rem;
 		  }
 		  table#member tbody td a img {
 		  	width:15px;
@@ -346,46 +349,46 @@ Media Query
 		  }
 
 
-		  table#winemakerList thead { 
-		  	display: none; 
+		  table#winemakerList thead {
+		  	display: none;
 		  }
 		  table#winemakerList tbody td {
-		  	font-size: 1.3rem; 
+		  	font-size: 1.3rem;
 		  	text-align:left;
-		    display: block; 
+		    display: block;
 		    padding: .6rem;
 		  }
-		  table#winemakerList tbody tr td:first-child { 
-		    	background: #e8cb9a; color: #fff; 
+		  table#winemakerList tbody tr td:first-child {
+		    	background: #e8cb9a; color: #fff;
 		  }
-		  table#winemakerList tbody td:before { 
-		    content: attr(data-th); 
+		  table#winemakerList tbody td:before {
+		    content: attr(data-th);
 		    font-weight: bold;
 		    display: inline-block;
-		    width: 9rem;  
+		    width: 9rem;
 		  }
 		  table#winemakerList tbody td a img {
 		  	width:15px;
 		  	vertical-align: top;
 		  }
 
-		  table#profileCave thead { 
-		  	display: none; 
+		  table#profileCave thead {
+		  	display: none;
 		  }
 		  table#profileCave tbody td {
-		  	font-size: 1.3rem; 
+		  	font-size: 1.3rem;
 		  	text-align:left;
-		    display: block; 
+		    display: block;
 		    padding: .6rem;
 		  }
-		  table#profileCave tbody tr td:first-child { 
-		    	background: #e8cb9a; color: #fff; 
+		  table#profileCave tbody tr td:first-child {
+		    	background: #e8cb9a; color: #fff;
 		  }
-		  table#profileCave tbody td:before { 
-		    content: attr(data-th); 
+		  table#profileCave tbody td:before {
+		    content: attr(data-th);
 		    font-weight: bold;
 		    display: inline-block;
-		    width: 9rem;  
+		    width: 9rem;
 		  }
 		  table#profileCave tbody td a {
 		  	color: black;
@@ -455,28 +458,8 @@ Media Query
 				text-align: center;
 			}
 
-		/* Winenot Menu Dashboard */
-			 #winenot-menu > li:first-child{
-				padding:1em 0;
-			}
+
 			 #winenot-menu li:hover ul {
 				margin-top:1em;
 			}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		}

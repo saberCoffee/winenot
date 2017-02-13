@@ -51,10 +51,14 @@
 
 	<div class="row visible-sm visible-xs">
 	  	<div class="responsive-menu ">
-	      	<div class="dropdown">
+	      	<div class="dropfdsgdfgdown">
 				<ul id="winenot-menu">
-					<li><span><a href="<?= $this->url('home') ?>"><img width="64" src="<?= $this->assetUrl('img/logo_mini_clean.png'); ?>"></a>Winenot menu</span>
+					<li><span>Winenot menu</span>
+					<i class="fa fa-bars fa-2x" aria-hidden="true"></i>
 						<ul>
+							<li 
+								<a href="<?= $this->url('home') ?>"><img width="64" src="<?= $this->assetUrl('img/logo_mini_clean.png'); ?>"></a>
+							</li>
 							<li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
 							</li>
@@ -169,6 +173,7 @@
 	</div><!-- Fin du container bootstrap -->
 
     <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+    <script src="<?= $this->assetUrl('js/winenotMenu.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/dashboard.js') ?>" type="text/javascript"></script>
 	<?= $this->section('js') ?>
 </body>
