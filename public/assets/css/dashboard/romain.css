@@ -15,6 +15,18 @@
         text-transform: uppercase;
     }
 
+       .label {
+        width: 60%;
+        height: 60%;
+        margin: auto;
+        margin: 5em auto;
+        padding: 3em 3em 0;
+        background-color: #eddcc0;
+        color: #d09038;
+        border-radius: 5px;
+
+    }
+
     .registerNewWineMaker .form-control{
         display: block;
         width: 100%;
@@ -396,6 +408,10 @@ menu deroulant
 
     .col-main{
         margin-left: 0%;
+    }
+
+    .addProduct input[type=radio] {
+        margin: 1em 1em 0em 1em;   
     }
        
 }

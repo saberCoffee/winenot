@@ -416,10 +416,10 @@ class DashboardController extends Controller
 	/**
 	 * Autorise l'accès aux producteurs (par défaut) ou, inversement, aux NON-producteurs
 	 *
-	 * @param [string]  $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
-	 * @param [boolean] $noWinemaker Si réglé sur false, on autorise l'accès aux producteurs. Sinon, on autorise l'accès aux non-producteurS.
+	 * @param string  $redirectRoute Une route où rediriger l'utilisateur. Si vide, montrer la page Forbidden.
+	 * @param boolean $noWinemaker Si réglé sur false, on autorise l'accès aux producteurs. Sinon, on autorise l'accès aux non-producteurS.
 	 *
-	 * @return [mixed] Un boolean true si le passage est autorisé | void sinon
+	 * @return mixed Un boolean true si le passage est autorisé | void sinon
 	 */
 	public function allowToWinemakers($redirectRoute = '', $noWinemaker = false)
 	{
@@ -433,8 +433,7 @@ class DashboardController extends Controller
 			}
 		} else {
 			if (!$winemaker->isAWineMaker($token)) {
-				return true;
-			}
+				return true;			}
 		}
 
 		if (!empty($redirectRoute)) {

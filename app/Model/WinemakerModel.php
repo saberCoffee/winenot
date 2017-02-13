@@ -167,6 +167,7 @@ class WinemakerModel extends Model
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
 		$sth->bindValue(':winemaker_id', $user['id']);
+		
 		if($sth->execute()){
 			$foundWinemaker = $sth->fetch();
 			if($foundWinemaker){

@@ -114,26 +114,28 @@
 
 				<div class="col-md-4">
 					<div class="form-group <?php if (isset($error['photo'])) { echo 'has-error'; } ?>">
-						<label for="photo">Photo de votre produit*</label>
-						<span class="help-block" <?php if (empty($error['photo'])) { echo 'style="display: none"'; } ?>>
-						<?php if (isset($error['photo'])) { echo $error['photo']; } ?>
-						</span>
+						<div class="productPics" id="productPics">
+							<label for="photo">Photo de votre produit*</label>
+							<span class="help-block" <?php if (empty($error['photo'])) { echo 'style="display: none"'; } ?>>
+							<?php if (isset($error['photo'])) { echo $error['photo']; } ?>
+							</span>
 
-						<input type="file" id="photo" name="photo" accept="image/*" />
+							<span class="btn btn-default btn-file">Parcourir
+								<input type="file" id="photo" name="photo" accept="image/*" />
+							</span>
 
-						<input type="hidden" id="resizeW" name="resizeW" />
-						<input type="hidden" id="resizeH" name="resizeH" />
-						<input type="hidden" id="x" name="x" />
-						<input type="hidden" id="y" name="y" />
-						<input type="hidden" id="w" name="w" />
-						<input type="hidden" id="h" name="h" />
+							<input type="hidden" id="resizeW" name="resizeW" />
+							<input type="hidden" id="resizeH" name="resizeH" />
+							<input type="hidden" id="x" name="x" />
+							<input type="hidden" id="y" name="y" />
+							<input type="hidden" id="w" name="w" />
+							<input type="hidden" id="h" name="h" />
+						</div>
 					</div>
-					<!--
-					 <div class="productPics">
-						<img src="<?= $this->assetUrl('img/dashboard/pic.png'); ?>" alt="photo du produit">
-    					<span class="btn btn-default btn-file">Parcourir<input type="file"></span>
-    				</div>-->
+				
 				</div>
+						
+								
 
 			</div>
 

@@ -1,6 +1,8 @@
 $(function() {
     var rootPath = 'http://winenot.alwaysdata.net/'; // Coordonnées du site en ligne
-    //var rootPath = 'http://localhost/projets/WineNot/prod/public/'; // Coordonnées du site en local
+    //var rootPath = 'http://localhost/projets/WineNot/prod/public/'; // Coordonnées du site en local Thomas
+    //var rootPath = 'http://localhost/PROJET/WineNot/public/'; // Coordonnées du site en local Romain
+
     var debug    = false; // à changer en true pour activer les console.log utiles
 
     /**
