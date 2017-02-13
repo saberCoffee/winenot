@@ -243,8 +243,8 @@ body.jsActive .city-input {
     }
 
     .addProduct input[type=radio] {
-    margin: 1em 1em 0em 6em;
-       
+        margin: 1em 1em 0em 6em;
+    }
 }
 
 /* Modifications des classes bootstrap */
