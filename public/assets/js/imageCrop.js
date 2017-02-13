@@ -1,5 +1,6 @@
 $(function() {
-    var rootPath = 'http://winenot.alwaysdata.net/';
+    var rootPath = 'http://winenot.alwaysdata.net/'; // Coordonnées du site en ligne
+    //var rootPath = 'http://localhost/projets/WineNot/prod/public/'; // Coordonnées du site en local
     var debug    = false; // à changer en true pour activer les console.log utiles
 
     /**
@@ -70,9 +71,12 @@ $(function() {
     });
 
     $('#imageCrop-mask').on('click', function(event) {
-        //$(this).fadeOut();
+        if (event.target.id === 'imageCrop-mask') {
+            $(this).hide();
+        }
     });
 
-    $('#imageCrop-mask > div').on('click', function(event) {
+    $('#imageCrop-mask div').on('click', function(event) {
+        e.stopPropagation();
     });
 });

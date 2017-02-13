@@ -579,12 +579,22 @@ class DashboardController extends Controller
 			$error = array();
 			$form  = new Form();
 
-			debug($_POST);
-
 			$region         = $_POST['region'];
 			$address        = $_POST['address'];
 			$postcode       = $_POST['postcode'];
 			$city           = $_POST['city'];
+
+			//-- Start : Géolocalisation de la latitude et la longitude à partir du code postal //--
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $postcode;
+			$result_string = file_get_contents($url);
+			$result = json_decode($result_string, true);
+			$result1[] = $result['results'][0];
+			$result2[] = $result1[0]['geometry'];
+			$result3[] = $result2[0]['location'];
+
+			$lng = $result3[0]['lng'];
+			$lat = $result3[0]['lat'];
+			//-- End : Géolocalisation de la latitude et la longitude à partir du code postal //--
 
 			$error['region']   = $form->isValid($region);
 			$error['address']  = $form->isValid($address);
@@ -595,7 +605,7 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$winemakerModel->updateProfile($token, $region, $address, $city, $postcode, $error);
+				$winemakerModel->updateProfile($token, $region, $address, $city, $postcode, $lng, $lat, $error);
 
 				if (empty($error)) {
 					$msg = 'Votre profil de producteur a bien été mis à jour.';
@@ -659,9 +669,14 @@ class DashboardController extends Controller
 		));
 	}
 
+	/**
+	 * Cette fonction découpe une image à partir de coordonnées récupèrées en JS grâce au plugin jCrop
+	 *
+	 * @return void
+	 */
 	public function imageCrop()
 	{
-		$debug = 0; // à changer en true pour activer des informations utiles
+		$debug = false; // à changer en true pour activer des informations utiles
 
 		if ($debug) {
 			debug($_FILES['photo']);
@@ -688,6 +703,7 @@ class DashboardController extends Controller
 					}
 				} else {
 					echo 'L\'image dépasse le poids autorisé (2mo) et n\'a pas pu être téléchargée.<br />';
+					return;
 				}
 			} elseif ($debug) {
 				echo 'Le dossier n\'existe pas.<br />';

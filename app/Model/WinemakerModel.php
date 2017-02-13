@@ -16,15 +16,15 @@ class WinemakerModel extends Model
 	/**
  	 * Créé un nouveau profil de producteur associé à un utilisateur
  	 *
-	 * @param  [string]  $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
-	 * @param  [int]     $siren        Le numéro siren du producteur
-	 * @param  [string]  $region       La région du producteur, qui détermine aussi la région de tous ses futurs produits
-	 * @param  [string]  $address      L'adresse du lieu de travail du producteur
-	 * @param  [int]     $postcode     Le code postal du lieu de travail du producteur
-	 * @param  [string]  $city         La ville du lieu de travail du producteur
-	 * @param  [decimal] $lng          La longitude du lieu de travail du producteur
-	 * @param  [decimal] $lat          La latitude du lieu de travail du producteur
-	 * @param  [array]   $error        Un tableau contenant les erreurs potentielles rencontrées à la validation du formulaire
+	 * @param  string  $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 * @param  int     $siren        Le numéro siren du producteur
+	 * @param  string  $region       La région du producteur, qui détermine aussi la région de tous ses futurs produits
+	 * @param  string  $address      L'adresse du lieu de travail du producteur
+	 * @param  int     $postcode     Le code postal du lieu de travail du producteur
+	 * @param  string  $city         La ville du lieu de travail du producteur
+	 * @param  decimal $lng          La longitude du lieu de travail du producteur
+	 * @param  decimal $lat          La latitude du lieu de travail du producteur
+	 * @param  array   $error        Un tableau contenant les erreurs potentielles rencontrées à la validation du formulaire
 	 *
 	 * @return void
 	 */
@@ -47,7 +47,7 @@ class WinemakerModel extends Model
 			'postcode'     => $postcode,
 			'city'         => $city,
 			'lng'          => $lng,
-			'lat'          => $lat,
+			'lat'          => $lat
 		);
 
 		$this->insert($data);
@@ -61,32 +61,33 @@ class WinemakerModel extends Model
 	}
 
 	/**
-	 * [updateProfile description]
-	 * @param  [type] $email     [description]
-	 * @param  [type] $password  [description]
-	 * @param  [type] $firstname [description]
-	 * @param  [type] $lastname  [description]
-	 * @param  [type] $address   [description]
-	 * @param  [type] $city      [description]
-	 * @param  [type] $postcode  [description]
-	 * @param  [type] $role      [description]
-	 * @param  [type] $error     [description]
+	 * Modifie un profil producteur
 	 *
-	 * @return [type]            [description]
+	 * @param  string  $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 * @param  string  $region       La région du producteur, qui détermine aussi la région de tous ses futurs produits
+	 * @param  string  $address      L'adresse du lieu de travail du producteur
+	 * @param  int     $postcode     Le code postal du lieu de travail du producteur
+	 * @param  string  $city         La ville du lieu de travail du producteur
+	 * @param  decimal $lng          La longitude du lieu de travail du producteur
+	 * @param  decimal $lat          La latitude du lieu de travail du producteur
+	 * @param  array   $error        Un tableau contenant les erreurs potentielles rencontrées à la validation du formulaire
+	 *
+	 * @return void
 	 */
-	public function updateProfile($token, $region, $address, $city, $postcode, &$error)
+	public function updateProfile($token, $region, $address, $postcode, $city, $lng, $lat, &$error)
 	{
 		$userModel = new UserModel();
+		$auth      = new AuthentificationModel;
 
 		$user = $userModel->getUserByToken($token);
-
-		$auth = new AuthentificationModel;
 
 		$data = array(
 			'region'   => $region,
 			'address'  => $address,
+			'postcode' => $postcode,
 			'city'     => $city,
-			'postcode' => $postcode
+			'lng'      => $lng,
+			'lat'      => $lat
 		);
 
 		$this->update($data, $user['id']);
@@ -96,7 +97,7 @@ class WinemakerModel extends Model
 	/**
 	 * Récupère, via une jointure, les informations d'utilisateur et de producteur de tous les producteurs
 	 *
-	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) de tous les producteurs
+	 * @return [array]   Un array contenant les informations complètes (d'utilisateur et de producteur) de tous les producteurs
 	 */
 	public function getWinemakersFullDetails()
 	{
@@ -115,7 +116,7 @@ class WinemakerModel extends Model
 	 *
 	 * @param  [string] $token    Le token de l'utilisateur, dont on se sert pour déterminer son id
 	 *
-	 * @return [array]            Un array contenant les informations (d'utilisateur et de producteur) du producteur recherché
+	 * @return [array]            Un array contenant les informations complètes (d'utilisateur et de producteur) du producteur recherché
 	 */
 	public function getWinemakerFullDetails($token)
 	{
@@ -139,11 +140,12 @@ class WinemakerModel extends Model
 	/**
 	 * Récupère la latitude et la longitude d'un producteur afin de pouvoir l'afficher sur la googlemap
 	 *
-	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude
+	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude du producteur
 	 */
 	public function latlng() {
-		$winemaker = new WinemakerModel();
-		$winemakers = $this->findAll('lat, lng');
+		$winemakerModel  = new WinemakerModel();
+
+		$winemaker = $this->findAll('lat, lng');
 
 		return $winemakers;
 	}
@@ -151,20 +153,20 @@ class WinemakerModel extends Model
 	/**
 	 * Vérifie si un utilisateur est bien un producteur
 	 *
-	 * @param  [string]  $token Le token de l'utilisateur, dont on se sert pour déterminer son id
+	 * @param  string   $token        Le token de l'utilisateur, dont on se sert pour déterminer son id
 	 *
-	 * @return [boolean] Vrai si l'utilisateur est producteur, faux s'il n'est pas producteur
+	 * @return boolean                Vrai si l'utilisateur est producteur, faux s'il n'est pas producteur
 	 */
 	public function isAWineMaker($token)
 	{
-		$user = new UserModel();
+		$userModel = new UserModel();
 
-		$winemaker_id = $user->getUserByToken($token);
+		$user = $userModel->getUserByToken($token);
 
-		$sql = 'SELECT winemaker_id FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
+		$sql = 'SELECT ' . $this->primaryKey . ' FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':winemaker_id', $winemaker_id['id']);
+		$sth->bindValue(':winemaker_id', $user['id']);
 		if($sth->execute()){
 			$foundWinemaker = $sth->fetch();
 			if($foundWinemaker){

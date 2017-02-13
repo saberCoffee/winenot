@@ -12,13 +12,13 @@ class UserModel extends UsersModel
 	 * Cette fonction ajoute un utilisateur à la base de données si aucune erreur n'a été rencontrée lors du processus de validation.
 	 * Avant de conclure l'inscription, on génère un nouveau token lié à l'utilisateur.
 	 *
-	 * @param $email string L'email de l'utilisateur
-	 * @param $password string le mot de passe de l'utilisateur
-	 * @param $firstname string Le prénom de l'utilisateur
-	 * @param $firstname string Le nom de famille de l'utilisateur
-	 * @param &$error L'array contenant les potentielles erreurs rencontrées à la validation du formulaire
+	 * @param string     $email        L'email de l'utilisateur
+	 * @param string     $password     le mot de passe de l'utilisateur
+	 * @param string     $firstname    Le prénom de l'utilisateur
+	 * @param string     $firstname    Le nom de famille de l'utilisateur
+	 * @param array      $error        Un tableau contenant les erreurs potentielles rencontrées à la validation du formulaire
 	 *
-	 * return @string $token Le token créé à l'inscription
+	 * @return string $token Le token créé à l'inscription
 	 */
 	public function register($email, $password, $firstname, $lastname, &$error)
 	{
@@ -55,15 +55,14 @@ class UserModel extends UsersModel
 	}
 
 	/**
-	 * Cette fonction réservée aux administrateur permet d'ajoutera un utilisateur à la BDD
-	 * si aucune erreur n'a été rencontrée lors du processus de validation.
+	 * Cette fonction réservée aux administrateur permet d'ajoutera un utilisateur à la BDD si aucune erreur n'a été rencontrée lors du processus de validation.
 	 * Seuls le nom, le prénom, l'email, et le password sont obligatoire.
 	 *
-	 * @param $email string L'email de l'utilisateur
-	 * @param $password string le mot de passe de l'utilisateur
-	 * @param $firstname string Le prénom de l'utilisateur
-	 * @param $firstname string Le nom de famille de l'utilisateur
-	 * @param &$error L'array contenant les potentielles erreurs rencontrées à la validation du formulaire
+	 * @param string   $email         L'email de l'utilisateur
+	 * @param string   $password      le mot de passe de l'utilisateur
+	 * @param string   $firstname     Le prénom de l'utilisateur
+	 * @param string   $firstname     Le nom de famille de l'utilisateur
+	 * @param array    $error         L'array contenant les potentielles erreurs rencontrées à la validation du formulaire
 	 *
 	 */
 	public function registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, &$error)
@@ -102,18 +101,19 @@ class UserModel extends UsersModel
 	}
 
 	/**
-	 * [updateProfile description]
-	 * @param  [type] $email     [description]
-	 * @param  [type] $password  [description]
-	 * @param  [type] $firstname [description]
-	 * @param  [type] $lastname  [description]
-	 * @param  [type] $address   [description]
-	 * @param  [type] $city      [description]
-	 * @param  [type] $postcode  [description]
-	 * @param  [type] $role      [description]
-	 * @param  [type] $error     [description]
+	 * Modifie un profil utilisateur
 	 *
-	 * @return [type]            [description]
+	 * @param string     $email        L'email de l'utilisateur
+	 * @param string     $password     le mot de passe de l'utilisateur
+	 * @param string     $firstname    Le prénom de l'utilisateur
+	 * @param string     $firstname    Le nom de famille de l'utilisateur
+	 * @param string     $address      L'adresse du lieu de travail du producteur
+	 * @param int        $postcode     Le code postal du lieu de travail du producteur
+	 * @param string     $city         La ville du lieu de travail du producteur
+	 * @param string     $role         Le rôle de l'utilisateur (user ou admin)
+	 * @param array      $error        Un tableau contenant les erreurs potentielles rencontrées à la validation du formulaire
+	 *
+	 * @return void
 	 */
 	public function updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $photo, &$error)
 	{
