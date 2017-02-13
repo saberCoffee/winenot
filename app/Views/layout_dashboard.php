@@ -56,7 +56,7 @@
 					<li><span>Winenot menu</span>
 					<i class="fa fa-bars fa-2x" aria-hidden="true"></i>
 						<ul>
-							<li> 
+							<li>
 								<a href="<?= $this->url('home') ?>"><img width="50" src="<?= $this->assetUrl('img/logo_mini_clean.png'); ?>"></a>
 							</li>
 							<li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
@@ -95,7 +95,7 @@
 									<a href="<?= $this->url('admin_winemakers') ?>">Gérer les producteurs</a>
 								</li>
 							<?php endif; ?>
-							
+
 							<li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>">Messages</a></li><!--
                         	--><li><a href="#">F.A.Q</a></li><!--
 							--><li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
@@ -155,6 +155,9 @@
 								</li>
 	                            <li <?php echo ($w_current_route == 'admin_winemakers') ? 'class="current"' : '' ?>>
 									<a href="<?= $this->url('admin_winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
+								</li>
+	                            <li <?php echo ($w_current_route == 'admin_products') ? 'class="current"' : '' ?>>
+									<a href="<?= $this->url('admin_products') ?>"><img src="<?= $this->assetUrl('img/dashboard/nav-wineofthemonth.png'); ?>">Gérer les vins du mois</a>
 								</li>
 							<?php endif; ?>
                         </ul>

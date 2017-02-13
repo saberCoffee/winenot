@@ -71,6 +71,14 @@ $(function() {
         }
         //-- End : Formulaire d'inscription --
 
+        //-- Start : Formulaire des vins du mois
+        if ($(this).attr('id') == 'winesOfTheMonth-form') {
+            $('.wine_of_the_month').each(
+                //THOMAS EST GENTIL!!!
+            )
+        }
+        //-- End : Formulaire des vins du mois
+
         // Si le formulaire est invalide, alors on en empêche l'envoi
         if (!isValid) {
             event.preventDefault();

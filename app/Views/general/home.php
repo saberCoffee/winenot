@@ -27,119 +27,33 @@
 
 		<div class="container-fluid">
 			<div class="row">
+				<?php foreach ($products as $product): ?>
+			        <div class="col-md-4">
+			            <div class="flip-container">
+			                <div class="flipper">
+			                    <div class="front">
+			                        <img width="200" src="<?= $this->assetUrl('content/photos/products/' . $product['photo']) ?>" alt="<?= $product['name'] ?>">
+			                        <div class="nameWineBottle">
+			                            <p><?= $product['name'] ?><br />Vin <?= $product['couleur'] ?></p>
+			                        </div>
+			                    </div>
 
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="flip-container">
-					    <div class="flipper">
-					        <div class="front">
-				            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/01.jpg" alt="romain">
-				            	<div class="nameWineBottle">
-						            <p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
-								</div>
-					        </div>
-
-							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-					        </div>
-					    </div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="flip-container">
-					    <div class="flipper">
-					        <div class="front">
-				            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/vin_verre_raisin.jpg" alt="romain" >
-				            	<div class="nameWineBottle">
-									<p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
-								</div>
-					        </div>
-
-							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-							</div></a>
-					    </div>
-					</div>
-				</div>
-
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="flip-container">
-					    <div class="flipper">
-					        <div class="front">
-				            	<img class="homeImg" src="assets/img/imgBottles/rouge/vinBouteille.jpg" alt="romain" >
-				            	<div class="nameWineBottle">
-									<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
-								</div>
-					        </div>
-
-							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-							</div></a>
-					    </div>
-					</div>
-				</div>
-
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="">
-						<div class="flip-container">
-						    <div class="flipper">
-						        <div class="front">
-						           <div class="cercle">
-						            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/03.jpg" alt="romain">
-						            	<div class="nameWineBottle">
-											<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
-										</div>
-						            </div>
-						        </div>
-
-								<a href="#"><div class="back">
-									<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-						        </div></a>
-						    </div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="flip-container">
-					    <div class="flipper">
-					        <div class="front">
-					           <div class="cercle">
-					            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/04.jpg" alt="romain">
-					            	<div class="nameWineBottle">
-										<p>Merlot rosé 2015 <br>Vin Rosé</p>
-									</div>
-					            </div>
-					        </div>
-
-							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-					        </div></a>
-					    </div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-4 ">
-					<div class="flip-container">
-					    <div class="flipper">
-					        <div class="front">
-					           <div class="cercle">
-					            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/05.jpg" alt="romain">
-					            	<div class="nameWineBottle">
-										<p>Merlot rosé 2015 <br>Vin Rosé</p>
-									</div>
-					            </div>
-					        </div>
-
-							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
-					        </div></a>
-					    </div>
-					</div>
-				</div>
-
+			                    <a href="<?= $this->url('dashboard_product', ['name' => $product['clean_name'], 'id' => $product['id']]) ?>"><div class="back">
+			                        <p>
+			                            <?= $product['description'] ?>
+			                            <div class="nameWineBottle">
+			                                <p>
+			                                    Produit par <strong><?= $product['winemaker']['firstname'] . ' ' . $product['winemaker']['lastname'] ?></strong>
+			                                    <br />
+			                                    <?= $product['price'] ?>€
+			                                </p>
+			                            </div>
+			                        </p>
+			                    </div></a>
+			                </div>
+			            </div>
+			        </div>
+			    <?php endforeach; ?>
 			</div><!-- Fin de la row bootstrap -->
 		</div><!-- Fin du container bootstrap -->
 

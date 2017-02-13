@@ -8,8 +8,8 @@ use \W\Model\Model;
 use \W\WineNotClasses\Form;
 
 use \Model\UserModel;
-use \Model\ProductModel;
 use \Model\TokenModel;
+use \Model\ProductModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
 
@@ -146,7 +146,6 @@ class AdminController extends Controller
 	public function editMember($id)
 	{
 		if(!empty($_POST)) {
-
 			$error = array();
 			$form  = new Form();
 
@@ -184,14 +183,14 @@ class AdminController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$member = new UserModel();
-				$member->update($data, $id);
+					$member = new UserModel();
+					$member->update($data, $id);
 
-				$msg = 'Votre modification a été bien enregistré.';
+					$msg = 'Votre modification a été bien enregistré.';
 
-				setcookie("successMsg", $msg, time() + 5);
+					setcookie("successMsg", $msg, time() + 5);
 
-				$this->redirectToRoute('admin_members');
+					$this->redirectToRoute('admin_members');
 				}
 			}
 
@@ -225,6 +224,69 @@ class AdminController extends Controller
 
 		$this->show ('admin/winemakers', array(
 			'winemakers' => $winemakers,
+		));
+	}
+
+	public function products()
+	{
+		$error = '';
+
+		$productModel = new ProductModel();
+
+		$products = $productModel->findAll();
+
+		if (!empty($_POST['submit'])) {
+			$i = 0;
+			foreach ($products as $product) {
+				if (!empty($_POST['wine_of_the_month']) && in_array($product['id'], $_POST['wine_of_the_month'])) {
+					$products[$i]['checked'] = 1;
+				} else {
+					$products[$i]['checked'] = 0;
+				}
+
+				++$i;
+			}
+
+			if (!empty($_POST['wine_of_the_month'])) {
+				$selection    = $_POST['wine_of_the_month'];
+				$nbSelections = count($selection);
+
+				if ($nbSelections == 6) {
+					$productModel->setWinesOfTheMonth($selection);
+
+					$msg = 'Les vins du mois ont bien été mis à jour.';
+
+					setcookie("successMsg", $msg, time() + 5);
+
+					$this->redirectToRoute('admin_products');
+				} else {
+					$error = 'Attention, vous devez sélectionner <strong>6</strong> vins et vous avez choisi <strong>' . $nbSelections . '</strong> !';
+				}
+			} else {
+				$error = 'Attention, vous devez sélectionner <strong>6</strong> vins !';
+			}
+		} else {
+			$i = 0;
+			foreach ($products as $product) {
+				if ($product['wine_of_the_month'] == 1) {
+					$products[$i]['checked'] = 1;
+				} else {
+					$products[$i]['checked'] = 0;
+				}
+
+				++$i;
+			}
+		}
+
+		$this->show ('admin/products', array(
+			// La liste de produits du site
+			'products'  => $products,
+
+			// Données du formulaire
+			'selection' => (!empty($selection)) ? $selection : '',
+
+			// Gestion des erreurs du formulaire
+			'error'     => $error
 		));
 	}
 
