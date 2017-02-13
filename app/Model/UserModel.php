@@ -66,7 +66,7 @@ class UserModel extends UsersModel
 	 * @param &$error L'array contenant les potentielles erreurs rencontrées à la validation du formulaire
 	 *
 	 */
-	public function registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, $error)
+	public function registerFromAdmin($email, $password, $firstname, $lastname, $address, $city, $postcode, $role, &$error)
 	{
 		if ($this->emailExists($email)) {
 			$error['email'] = 'Cette adresse email est déjà enregistrée.';
@@ -115,7 +115,7 @@ class UserModel extends UsersModel
 	 *
 	 * @return [type]            [description]
 	 */
-	public function updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $photo, $error)
+	public function updateProfile($token, $email, $password, $firstname, $lastname, $address, $postcode, $city, $role, $photo, &$error)
 	{
 		$user = $this->getUserByToken($token);
 
