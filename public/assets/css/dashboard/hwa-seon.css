@@ -255,6 +255,11 @@ Media Query
 			margin-top: 0rem;
 		}
 
+	/* Winenot Menu Dashboard */
+		 #winenot-menu > li:first-child{
+			padding:1em 0;
+		}
+
 	       
 	}
 
@@ -458,10 +463,7 @@ Media Query
 				text-align: center;
 			}
 
-		/* Winenot Menu Dashboard */
-			 #winenot-menu > li:first-child{
-				padding:1em 0;
-			}
+		
 			 #winenot-menu li:hover ul {
 				margin-top:1em;
 			}
