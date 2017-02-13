@@ -12,8 +12,8 @@
             <form action="<?= $this->url('login') ?>" method="post" class="form" id="login-form">
 
                 <div class="form-group <?php if (isset($error['login_email'])) { echo 'has-error'; } ?>">
-                    <label for="">Adresse email</label>
-                    <input type="email" name="login_email" value="<?= htmlentities($email); ?>" class="form-control" required="required" data-min="2" data-max="64" maxlength="64" autocomplete="off" />
+                    <label for="login_email">Adresse email</label>
+                    <input type="email" name="login_email" id="login_email" value="<?= htmlentities($email); ?>" class="form-control" required="required" data-min="2" data-max="64" maxlength="64" autocomplete="off" />
 
                     <span class="help-block" <?php if (empty($error['login_email'])) { echo 'style="display: none"'; } ?>>
                         <?php if (isset($error['login_email'])) { echo $error['login_email']; } ?>
@@ -39,7 +39,7 @@
 
             <form action="<?= $this->url('register') ?>" method="post" class="form" id="register-form">
                 <div class="form-group <?php if (isset($error['register_email'])) { echo 'has-error'; } ?>">
-                    <label for="email">Adresse email*</label>
+                    <label for="register_email">Adresse email*</label>
 
                     <input type="email" name="register_email" id="register_email" value="<?= htmlentities($email); ?>" class="form-control" required="required" />
                     <span class="help-block" <?php if (empty($error['register_email'])) { echo 'style="display: none"'; } ?>>

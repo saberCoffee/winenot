@@ -307,3 +307,8 @@ Contenu principal
         padding: 2.5rem;
         padding-bottom: 0;
     }
+
+    img.homeImg {
+        overflow:hidden;
+        width:200px;
+    }

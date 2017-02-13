@@ -28,11 +28,11 @@
 		<div class="container-fluid">
 			<div class="row">
 
-				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
+				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img width="200" src="assets/img/imgBottles/source_web_test/01.jpg" alt="romain" overflow="hidden">
+				            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/01.jpg" alt="romain">
 				            	<div class="nameWineBottle">
 						            <p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
 								</div>
@@ -45,11 +45,11 @@
 					</div>
 				</div>
 
-				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
+				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img width="200" src="assets/img/imgBottles/source_web_test/vin_verre_raisin.jpg" alt="romain" overflow="hidden">
+				            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/vin_verre_raisin.jpg" alt="romain" >
 				            	<div class="nameWineBottle">
 									<p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
 								</div>
@@ -63,11 +63,11 @@
 				</div>
 
 
-				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
+				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img width="200" src="assets/img/imgBottles/rouge/vinBouteille.jpg" alt="romain" overflow="hidden">
+				            	<img class="homeImg" src="assets/img/imgBottles/rouge/vinBouteille.jpg" alt="romain" >
 				            	<div class="nameWineBottle">
 									<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
 								</div>
@@ -81,13 +81,13 @@
 				</div>
 
 
-				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
+				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="">
 						<div class="flip-container">
 						    <div class="flipper">
 						        <div class="front">
 						           <div class="cercle">
-						            	<img width="200" src="assets/img/imgBottles/source_web_test/03.jpg" alt="romain" overflow="hidden">
+						            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/03.jpg" alt="romain">
 						            	<div class="nameWineBottle">
 											<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
 										</div>
@@ -102,12 +102,12 @@
 					</div>
 				</div>
 
-				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4">
+				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
 					           <div class="cercle">
-					            	<img width="200" src="assets/img/imgBottles/source_web_test/04.jpg" alt="romain" overflow="hidden">
+					            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/04.jpg" alt="romain">
 					            	<div class="nameWineBottle">
 										<p>Merlot rosé 2015 <br>Vin Rosé</p>
 									</div>
@@ -121,12 +121,12 @@
 					</div>
 				</div>
 
-				<div id="adjustPaddingBootstrap" class="col-sm-12 col-md-6 col-lg-4 ">
+				<div class="col-sm-12 col-md-6 col-lg-4 ">
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
 					           <div class="cercle">
-					            	<img width="200" src="assets/img/imgBottles/source_web_test/05.jpg" alt="romain" overflow="hidden">
+					            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/05.jpg" alt="romain">
 					            	<div class="nameWineBottle">
 										<p>Merlot rosé 2015 <br>Vin Rosé</p>
 									</div>
