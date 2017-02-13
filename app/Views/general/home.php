@@ -32,14 +32,14 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/01.jpg" alt="romain">
+				            	<img class="homeImg" src="assets/img/imgBottles/vin_homePage/roche-mazet_cabernet-sauvignon_rouge2015.png" alt="romain">
 				            	<div class="nameWineBottle">
-						            <p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
+						            <p>La Roche Mazet, <br> Cabernet Sauvignon <br> 2015 </p>
 								</div>
 					        </div>
 
 							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
+								<p>Servez ce vin à 16 °, sa belle structure sera un match parfait pour les viandes froides et saucisson à l'ail, les viandes rouges, les ragoûts et les fromages de chèvre ou des fromages forts...</p>
 					        </div>
 					    </div>
 					</div>
@@ -49,14 +49,14 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/vin_verre_raisin.jpg" alt="romain" >
+				            	<img class="homeImg" src="assets/img/imgBottles/vin_homePage/pinotnoir_2014.png" alt="romain" >
 				            	<div class="nameWineBottle">
-									<p>Cabernet Sauvignon 2015 <br>Vin Rouge</p>
+									<p>Pinot Noir 2014 <br>Vin Rouge d'alsace</p>
 								</div>
 					        </div>
 
 							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
+								<p>Charnu et bien charpenté, le Pinot Noir Rouge offre sa belle robe sombre et ses tanins fermes aux viandes rouges et aux gibiers.</p>
 							</div></a>
 					    </div>
 					</div>
@@ -67,14 +67,14 @@
 					<div class="flip-container">
 					    <div class="flipper">
 					        <div class="front">
-				            	<img class="homeImg" src="assets/img/imgBottles/rouge/vinBouteille.jpg" alt="romain" >
+				            	<img class="homeImg" src="assets/img/imgBottles/vin_homePage/mouton-cadet_2011.png" alt="romain" >
 				            	<div class="nameWineBottle">
-									<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
+									<p>Mouton Cadet <br> 2011 <br>Sauvignon</p>
 								</div>
 					        </div>
 
 							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
+								<p>Le Mouton Cadet - Blanc peut très bien se marier avec des apéritifs, des entrées, des plats principaux, des fromages ou des desserts.</p>
 							</div></a>
 					    </div>
 					</div>
@@ -87,15 +87,15 @@
 						    <div class="flipper">
 						        <div class="front">
 						           <div class="cercle">
-						            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/03.jpg" alt="romain">
+						            	<img class="homeImg" src="assets/img/imgBottles/vin_homePage/tavel_rose_2012.png" alt="romain">
 						            	<div class="nameWineBottle">
-											<p>Cabernet Sauvignon 2015 <br>Vin Blanc</p>
+											<p>Tavel Rosé  <br> Provence<br>2012</p>
 										</div>
 						            </div>
 						        </div>
 
 								<a href="#"><div class="back">
-									<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
+									<p>À l’œil, sa robe est rubis intense aux reflets brillants et son nez s’ouvre sur un bouquet de cerise, de framboise, de groseilles et d’agrumes. En bouche, le cru est frais, équilibré, avec beaucoup de minéralité et un bel équilibre.</p>
 						        </div></a>
 						    </div>
 						</div>
@@ -107,15 +107,15 @@
 					    <div class="flipper">
 					        <div class="front">
 					           <div class="cercle">
-					            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/04.jpg" alt="romain">
+					            	<img class="homeImg" src="assets/img/imgBottles/vin_homePage/Sauternesfood.png" alt="romain">
 					            	<div class="nameWineBottle">
-										<p>Merlot rosé 2015 <br>Vin Rosé</p>
+										<p>Petit Guiraud 2009 <br>Vin blanc</p>
 									</div>
 					            </div>
 					        </div>
 
 							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
+								<p>Servez ce vin à 16 °. <br>A boire dès maintenant et peu se conserver 15 ans, délicieux avec du Foie gras, roquefort et tarte aux abricots</p>
 					        </div></a>
 					    </div>
 					</div>
@@ -126,15 +126,15 @@
 					    <div class="flipper">
 					        <div class="front">
 					           <div class="cercle">
-					            	<img class="homeImg" src="assets/img/imgBottles/source_web_test/05.jpg" alt="romain">
+					            	<img class="homeImg" src="assets/img/imgBottles/vin_homePage/blanc_sancerre.png" alt="romain">
 					            	<div class="nameWineBottle">
-										<p>Merlot rosé 2015 <br>Vin Rosé</p>
+										<p>Sancerre 2015 <br>Vin blanc</p>
 									</div>
 					            </div>
 					        </div>
 
 							<a href="#"><div class="back">
-								<p>Servi à 16°C, ce vin d’une belle structure sera le partenaire idéal de vos planches de charcuterie, viandes rouges, plats en sauce et fromages de chèvre ou de caractère tels que le Comté…</p>
+								<p>Ce vin livre des arômes d’une remarquable jeunesse, le citron vert se mêlant à une élégante touche de buis. Harmonieuse,la bouche réunit une attaque franche, une matière tenue par la fraîcheur et une fi nale puissante, longue, aux arômes fruités.</p>
 					        </div></a>
 					    </div>
 					</div>
