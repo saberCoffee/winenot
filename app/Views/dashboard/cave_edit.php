@@ -75,7 +75,7 @@
 
 
 	<section class="stock">
-		<table border="1" class="table table-striped">
+		<table border="1" class="table table-striped" id="profileCave">
 			<thead>
 				<tr>
 					<th>Produits</th>
@@ -114,4 +114,22 @@
 
 <?php $this->start('js') ?>
     <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+    <script type="text/javascript">
+
+		var headertext = [],
+		headers = document.querySelectorAll("#winemakerList th"),
+		tablerows = document.querySelectorAll("#winemakerList th"),
+		tablebody = document.querySelector("#winemakerList tbody");
+
+		for(var i = 0; i < headers.length; i++) {
+		  var current = headers[i];
+		  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+		}
+		for (var i = 0, row; row = tablebody.rows[i]; i++) {
+		  for (var j = 0, col; col = row.cells[j]; j++) {
+		    col.setAttribute("data-th", headertext[j]);
+		  }
+		}
+
+</script>
 <?php $this->stop('js') ?>
