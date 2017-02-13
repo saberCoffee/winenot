@@ -368,9 +368,6 @@ menu deroulant
         font-size: 1.6em;
     }
 
-
-    
-
     #winenot-menu ul li a{
         display: block;
         text-decoration: none;
@@ -381,8 +378,21 @@ menu deroulant
         margin-right: 1em;
     }
     
+/*
+    favoris
+*/
 
-
+    section.inbox, section.backgroundColor {
+       
+        width: 100%;
+        max-width: 942px;
+        /* height: 60%; */
+        margin: 5em auto 2em auto;
+        padding: 2em 2em 1em;
+        background-color: #eddcc0;
+        color: #d09038;
+        border-radius: 5px;
+    }
 
 
 @media screen and (max-width: 1280px) {
