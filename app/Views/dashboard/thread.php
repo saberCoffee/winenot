@@ -41,7 +41,7 @@
         foreach ($messages as $message):
         ?>
             <div class="row">
-                <div class="col-avatar">
+                <div class="col-avatar col-sm-4">
                     <?php if (empty($message['photo'])): ?>
         				<img src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $message['firstname'] . ' ' . $message['lastname'] ?>" class="avatar" width="100" />
         			<?php else: ?>
@@ -49,7 +49,7 @@
         			<?php endif; ?>
                 </div>
 
-                <div class="col-message">
+                <div class="col-message col-sm-8">
                     <p class="<?= $message['classe'] ?>">
                         <?= nl2br($message['content']) ?>
                     </p>

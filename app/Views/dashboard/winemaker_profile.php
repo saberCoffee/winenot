@@ -158,10 +158,59 @@
 		</form>
 	</section>
 </section>
+
+<section class="view-cave">
+    <table border="1" class="table table-striped" id="profileCave">
+        <thead>
+            <tr>
+                <th>Produits</th>
+                <th>Couleurs</th>
+                <th>Millesimes</th>
+                <th>Vins bio</th>
+                <th>Prix</th>
+                <th>Cépage</th>
+                <th>Stocks</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php foreach ($products as $product) : ?>
+            <tr>
+                <td><a href="<?= $this->url('dashboard_product', ['name' => $product['clean_name'], 'id' => $product['id']]) ?>"><?= $product['name'];?></a></td>
+                <td><?= $product['couleur'];?></td>
+                <td><?= $product['millesime']?></td>
+                <td><?= $product['is_bio']?></td>
+                <td><?= $product['price']?></td>
+                <td><?= $product['cepage']?></td>
+                <td><?= $product['stock']?></td>
+            </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+</section>
+
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
 <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->assetUrl('js/geolocalisation.js') ?>" type="text/javascript"></script>
+<script>
+
+	var headertext = [],
+	headers = document.querySelectorAll("#profileCave th"),
+	tablerows = document.querySelectorAll("#profileCave th"),
+	tablebody = document.querySelector("#profileCave tbody");
+
+	for(var i = 0; i < headers.length; i++) {
+	  var current = headers[i];
+	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+	}
+	for (var i = 0, row; row = tablebody.rows[i]; i++) {
+	  for (var j = 0, col; col = row.cells[j]; j++) {
+	    col.setAttribute("data-th", headertext[j]);
+	  }
+	}
+
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&callback=initGeolocalisation" async defer></script>
 <?php $this->stop('js') ?>

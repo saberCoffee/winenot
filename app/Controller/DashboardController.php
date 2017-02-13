@@ -527,7 +527,7 @@ class DashboardController extends Controller
 		// Certains textes vont changer selon le contexte
 		$lang = array(
 			'profile'      => ($is_owner) ? 'Mon profil' : 'Profil de ' . $user['firstname'] . ' ' . $user['lastname'],
-			'profile_edit' => ($is_owner) ? 'Éditer mes informations' : 'Éditer les informations de ' . $user['firstname'] . ' ' . $user['lastname']
+			'profile_edit' => ($is_owner) ? 'Éditer mon profil' : 'Éditer le profil de ' . $user['firstname'] . ' ' . $user['lastname']
 		);
 
 		$this->show('dashboard/user_profile', array(
@@ -642,7 +642,7 @@ class DashboardController extends Controller
 		// Certains textes vont changer selon le contexte
 		$lang = array(
 			'profile'      => ($is_owner) ? 'Ma cave' : 'Cave de ' . $winemaker['firstname'] . ' ' . $winemaker['lastname'],
-			'profile_edit' => ($is_owner) ? 'Éditer mes informations producteur' : 'Éditer les informations producteur de ' . $winemaker['firstname'] . ' ' . $winemaker['lastname']
+			'profile_edit' => ($is_owner) ? 'Éditer mon profil producteur' : 'Éditer le profil producteur de ' . $winemaker['firstname'] . ' ' . $winemaker['lastname']
 		);
 
 		$this->show('dashboard/winemaker_profile', array(
