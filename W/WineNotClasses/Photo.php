@@ -29,7 +29,12 @@ class Photo
 
         $src = $filepath;
 
-        $img_r = imagecreatefromjpeg($src);
+        if ($fileext == 'png') {
+            $img_r = imagecreatefrompng($src);
+        } else {
+            $img_r = imagecreatefromjpeg($src);            
+        }
+
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
         imagecopyresized($img_r, $img_r, 0, 0, 0, 0, $resizeW, $resizeH, $realSize[0], $realSize[1]);
@@ -43,7 +48,7 @@ class Photo
 
         imagejpeg($dst_r,$filepath,$jpeg_quality);
         imagecreatefromjpeg($filepath);
-        
+
         return $filename;
     }
 }

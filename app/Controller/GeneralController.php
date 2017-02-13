@@ -73,6 +73,9 @@ class GeneralController extends Controller
 			$error['firstname'] = $form->isValid($firstname, 2, 16);
 			$error['lastname']  = $form->isValid($lastname, 2, 16);
 
+			// On filtre le tableau pour retirer les erreurs "vides"
+			$error = array_filter($error);
+
 			if (empty($error)) {
 				$userModel = new UserModel;
 
@@ -195,7 +198,7 @@ class GeneralController extends Controller
 		$articles = $magModel->allArticles();
 
 		$this->show('general/add_article', array(
-			'articles' => $article
+			'articles' => $articles
 		));
 	}
 
