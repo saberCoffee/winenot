@@ -15,8 +15,6 @@
 	</div>
 </div> -->
 
-<?php debug($product['winemaker']) ?>
-
 <section class="ficheProduit active">
 
 	<ul class="fil-arianne">
