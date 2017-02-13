@@ -249,16 +249,13 @@
 Media Query
 */
 
-	@media screen and (max-width: 991px){
-	    div.row input[type="submit"] {
-			margin: 0 auto 0em;
-			margin-top: 0rem;
-		}
+	@media screen and (max-width: 991px) {
 
-	       
-	}
-
-	@media (max-width: 768px) {
+		/* Bouton Input */
+			div.row input[type="submit"] {
+				margin: 0 auto 0em;
+				margin-top: 0rem;
+			}
 
 		/* Main page */
 			.col-aside, .col-main {
