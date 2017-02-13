@@ -5,7 +5,7 @@
 	<div></div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid profile">
 	<section id="profile" class="section-with-panels">
 
 		<ul class="tabs">

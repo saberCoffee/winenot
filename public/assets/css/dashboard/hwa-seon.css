@@ -366,11 +366,99 @@ Media Query
 		  	vertical-align: top;
 		  }
 
+		  table#profileCave thead { 
+		  	display: none; 
+		  }
+		  table#profileCave tbody td {
+		  	font-size: 1.3rem; 
+		  	text-align:left;
+		    display: block; 
+		    padding: .6rem;
+		  }
+		  table#profileCave tbody tr td:first-child { 
+		    	background: #e8cb9a; color: #fff; 
+		  }
+		  table#profileCave tbody td:before { 
+		    content: attr(data-th); 
+		    font-weight: bold;
+		    display: inline-block;
+		    width: 9rem;  
+		  }
+		  table#profileCave tbody td a {
+		  	color: black;
+		  }
+		  table#profileCave tbody td a:hover {
+		  	color:black;
+		  }
+		  table#profileCave tbody td a img {
+		  	width:15px;
+		  	vertical-align: top;
+		  }
 
+		/* Messagerie */
+			section.inbox h2 {
+				font-size: 2rem;
+				text-align: justify;
+			}
+			section#thread .col-message {
+				width:100%;
+			}
+			section#thread p.row2 {
+				width:100%;
+				display:inline-block;
+			}
 
+			section#thread .col-avatar img  {
+				width:80px;
 
-	}
+			}
+			section#thread input[type="submit"] {
+				padding:.5em;
+				margin:0;
+				border-radius: 5px;
+			}
 
+		/* Profil User */
+			div.profile {
+				padding:0;
+			}
+			section#profile aside.user-infos-left {
+				text-align:center;
+				border-right: 0px;
+			}
+			section#profile aside.user-infos-left img.avatar {
+				text-align: center;
+			}
+
+			li#view-profile {
+				width:50%;
+				font-size: 1.3rem
+			}
+			li#edit-profile {
+				width:50%;
+				font-size: 1.3rem
+			}
+			.vcenter {
+				display:unset;
+			}
+			.vcenter p {
+				margin: 0 1.5em;
+			}
+			section.user-infos-right dl {
+				margin: 0 1.5em;
+			}
+		/* Profil Producteur */
+			ul.fil-arianne {
+				text-align: center;
+			}
+
+		/* Winenot Menu Dashboard */
+			 #winenot-menu > li:first-child{
+				padding:1em 0;
+			}
+			 #winenot-menu li:hover ul {
+				margin-top:1em;
+			}
 
 
 

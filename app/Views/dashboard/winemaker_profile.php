@@ -172,7 +172,7 @@
 </section>
 
 <section class="view-cave">
-    <table border="1" class="table table-striped">
+    <table border="1" class="table table-striped" id="profileCave">
         <thead>
             <tr>
                 <th>Produits</th>
@@ -205,5 +205,23 @@
 <?php $this->start('js') ?>
 <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->assetUrl('js/geolocalisation.js') ?>" type="text/javascript"></script>
+<script>
+	
+	var headertext = [],
+	headers = document.querySelectorAll("#profileCave th"),
+	tablerows = document.querySelectorAll("#profileCave th"),
+	tablebody = document.querySelector("#profileCave tbody");
+
+	for(var i = 0; i < headers.length; i++) {
+	  var current = headers[i];
+	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+	} 
+	for (var i = 0, row; row = tablebody.rows[i]; i++) {
+	  for (var j = 0, col; col = row.cells[j]; j++) {
+	    col.setAttribute("data-th", headertext[j]);
+	  } 
+	}
+
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&callback=initGeolocalisation" async defer></script>
 <?php $this->stop('js') ?>

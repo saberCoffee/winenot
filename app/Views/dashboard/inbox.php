@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <div class="container-fluid">
-    <section>
+    <section class="inbox">
 
         <h2>Bienvenue sur votre messagerie. <span>Vous avez (<strong><?= $count_unread_messages ?></strong>) fils de discussion en cours.</span></h2>
        
