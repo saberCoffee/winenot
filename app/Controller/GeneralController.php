@@ -3,11 +3,13 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \W\Security\StringUtils;
 use \W\Security\AuthentificationModel;
 use \W\WineNotClasses\Form;
 
 use \Model\MagModel;
 use \Model\UserModel;
+use \Model\ProductModel;
 use \Model\WinemakerModel;
 use \Model\PrivateMessageModel;
 
@@ -19,7 +21,13 @@ class GeneralController extends Controller
 	 */
 	public function home()
 	{
-		$this->show('general/home');
+		$productModel = new ProductModel();
+
+		$products = $productModel->getWinesOfTheMonth();
+
+		$this->show('general/home', array(
+			'products' => $products
+		));
 	}
 
 	/**

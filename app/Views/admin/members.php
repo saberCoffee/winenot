@@ -3,7 +3,9 @@
 <?php $this->start('main_content') ?>
 
 <?php if (!empty($_COOKIE['successMsg'])) { ?>
-<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+    <section>
+        <div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+    </section>
 <?php } ?>
 
 <section class="section-with-panels">
@@ -152,7 +154,7 @@
 
 <?php $this->start('js') ?>
     <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
-    <script>
+    <script type="text/javascript">
 
 	var headertext = [],
 	headers = document.querySelectorAll("#member th"),

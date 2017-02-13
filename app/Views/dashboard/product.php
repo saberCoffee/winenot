@@ -73,6 +73,10 @@
 	  		</div>
 			</div>
 		</div>
+
+		<p>
+			<?= $product['description'] ?>
+		</p>
 </section>
 
 <!-- <?php
