@@ -14,7 +14,7 @@
 		Dans cette section, vous pouvez ajouter de nouveaux produits à votre cave ou bien les modifier. Il n'y que vous qui y avez accès.
 	</p>
 	<p>
-		<a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Consulter mon profil producteur</a>
+		<a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Consulter ma cave telle qu'elle apparaît aux autres utilisateurs</a>
 	</p>
 </section>
 
@@ -182,7 +182,7 @@
 
 <?php $this->start('js') ?>
 <script>
-	
+
 	var headertext = [],
 	headers = document.querySelectorAll("#cave th"),
 	tablerows = document.querySelectorAll("#cave th"),
@@ -191,11 +191,11 @@
 	for(var i = 0; i < headers.length; i++) {
 	  var current = headers[i];
 	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
-	} 
+	}
 	for (var i = 0, row; row = tablebody.rows[i]; i++) {
 	  for (var j = 0, col; col = row.cells[j]; j++) {
 	    col.setAttribute("data-th", headertext[j]);
-	  } 
+	  }
 	}
 
 </script>

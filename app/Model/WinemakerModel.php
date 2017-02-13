@@ -34,7 +34,7 @@ class WinemakerModel extends Model
 			$error['siren'] = 'Ce numéro siren est déjà enregistré.';
 			return;
 		}
-		
+
 		$user = new UserModel();
 
 		$winemaker = $user->getUserByToken($token);
@@ -57,6 +57,39 @@ class WinemakerModel extends Model
 
 		// Puis on refresh sa sessipn
 		$auth = new AuthentificationModel();
+		$auth->refreshUser();
+	}
+
+	/**
+	 * [updateProfile description]
+	 * @param  [type] $email     [description]
+	 * @param  [type] $password  [description]
+	 * @param  [type] $firstname [description]
+	 * @param  [type] $lastname  [description]
+	 * @param  [type] $address   [description]
+	 * @param  [type] $city      [description]
+	 * @param  [type] $postcode  [description]
+	 * @param  [type] $role      [description]
+	 * @param  [type] $error     [description]
+	 *
+	 * @return [type]            [description]
+	 */
+	public function updateProfile($token, $region, $address, $city, $postcode, &$error)
+	{
+		$userModel = new UserModel();
+
+		$user = $userModel->getUserByToken($token);
+
+		$auth = new AuthentificationModel;
+
+		$data = array(
+			'region'   => $region,
+			'address'  => $address,
+			'city'     => $city,
+			'postcode' => $postcode
+		);
+
+		$this->update($data, $user['id']);
 		$auth->refreshUser();
 	}
 
