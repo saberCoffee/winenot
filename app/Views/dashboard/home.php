@@ -11,7 +11,7 @@
     </p>
 
     <p>
-        <a href="#">Découvrez nos producteurs</a>
+        <a href="<?= $this->url('winemakers') ?>">Découvrez nos producteurs</a>
     </p>
 </article>
 
@@ -25,7 +25,7 @@
     </p>
 
     <p>
-        <a href="#">Découvrez nos produits</a>
+        <a href="<?= $this->url('products') ?>">Découvrez nos produits</a>
     </p>
 </article>
 <?php $this->stop('main_content') ?>
