@@ -7,7 +7,7 @@
     </section>
 <?php } ?>
 
-<form class="form" id="winesOfTheMonth" action="<?= $this->url('admin_products') ?>" method="post">
+<form class="form" id="winesOfTheMonth-form" action="<?= $this->url('admin_products') ?>" method="post">
     <table border="1" class="table table-striped">
         <thead>
             <tr>
@@ -38,5 +38,5 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-    <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
 <?php $this->stop('js') ?>

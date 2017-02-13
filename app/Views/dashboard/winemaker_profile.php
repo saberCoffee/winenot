@@ -63,7 +63,7 @@
 
 
         <section class="view-cave">
-            <table border="1" class="table table-striped">
+            <table border="1" class="table table-striped" id="profileCave">
                 <thead>
                     <tr>
                         <th>Produits</th>
