@@ -208,6 +208,30 @@ abstract class Model
  	}
 
 	/**
+	 * Compte le nombre de résultats d'une requête
+	 *
+	 * @param string $where   Une condition pour la requête
+	 *
+	 * @return int $count     Le nombre de résultats
+	 */
+    public function getCount($where = '')
+	{
+ 		$sql = 'SELECT COUNT(*) as count FROM ' . $this->table;
+
+		if (!empty($where)) {
+			$sql .= ' WHERE ' . $where;
+		}
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		$count = $sth->fetch();
+
+		return $count['count'];
+	}
+
+
+	/**
 	 * Effectue une recherche
 	 * @param array $data Un tableau associatif des valeurs à rechercher
 	 * @param string $operator La direction du tri, AND ou OR

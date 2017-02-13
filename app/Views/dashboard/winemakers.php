@@ -5,7 +5,7 @@
 <div class="container">
 <section id="GoogleMap">
 	<div id="dashboard_winmakerSearch">
-        <h2>Où trouver nos 500 producteurs</h2>
+        <h2>Où trouver nos <?= $winemakers_count ?> producteurs</h2>
         <p>Trouver un producteur</p>
         <form>
             <div class="input-group stylish-input-group">

@@ -21,12 +21,14 @@ class GeneralController extends Controller
 	 */
 	public function home()
 	{
-		$productModel = new ProductModel();
+		$productModel   = new ProductModel();
+		$winemakerModel = new winemakerModel();
 
 		$products = $productModel->getWinesOfTheMonth();
 
 		$this->show('general/home', array(
-			'products' => $products
+			'products'         => $products,
+			'winemakers_count' => $winemakerModel->getCount()
 		));
 	}
 

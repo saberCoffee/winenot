@@ -126,8 +126,9 @@ class UsersModel extends Model
 	}
 
 	/**
-	 * Récuupère les informations d'un utilisateur à partir de son tokens
-	 * @param string $email L'email à tester
+	 * Récuupère le token d'un utilisateur à partir de son id
+	 * @param string $id     L'id utilisateur
+	 * @param string $type   Le type de token qu'on cherche à récupérer
 	 *
 	 * @return boolean true si présent en base de données, false sinon
 	 */

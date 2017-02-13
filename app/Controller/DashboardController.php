@@ -95,7 +95,8 @@ class DashboardController extends Controller
 		}
 
 		$this->show('dashboard/winemakers', array(
-			'winemakers' => $winemakers,
+			'winemakers'       => $winemakers,
+			'winemakers_count' => $winemakerModel->getCount()
 		));
 	}
 
