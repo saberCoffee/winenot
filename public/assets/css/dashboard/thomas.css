@@ -117,13 +117,12 @@ section#thread form textarea {
 }
 
 section#thread input[type="submit"] {
-    width: auto;
-
-    margin: 1rem 2rem;
-
-    border: 0;
-
-    color: #000;
+    width:20%;
+    margin: 0 auto 2em;
+    background-color: #d09038;
+    text-transform: uppercase;
+    color:#fff;
+    margin-top: 2rem;
 }
 
 section#thread .col-avatar,
@@ -140,6 +139,7 @@ section#thread .col-avatar {
 
 section#thread .col-avatar img {
     border-radius: 50%;
+    margin-left: 15%;
 }
 
 section#thread .col-message {
@@ -156,6 +156,7 @@ section#thread p.row2 {
     padding: 1.5rem;
 
     border-radius: 5px;
+    word-wrap: break-word;
 }
 
 section#thread p.row1 {
@@ -163,6 +164,12 @@ section#thread p.row1 {
 }
 section#thread p.row2 {
     background: #fff4e8;
+}
+
+ul.fil-arianne {
+    width: 100%;
+    max-width: 942px;
+    margin:  auto;
 }
 
 ul.fil-arianne li {
@@ -177,6 +184,67 @@ ul.fil-arianne li:last-of-type:after {
 
 body.jsActive .city-input {
     display: none;
+}
+#thread{
+
+    position: relative;
+    width: 100%;
+    max-width: 942px;
+    /* height: 60%; */
+    margin: 1em auto 2em auto;
+    padding: 1em 2em 0;
+    background-color: #eddcc0;
+    color: #d09038;
+    border-top-right-radius: 5px;
+    border-radius: 5px;
+}
+
+/*    Modif style input file d'origine   */
+    span.productPics{
+        background-color: rgba(255, 255, 255, 0);
+        text-align: center;
+    }
+
+    span.productPics>.btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    span.productPics>.btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+     span.productPics>.btn {
+        width: 60%;
+        margin: 1em auto 0;
+        font-size: 1rem;
+        margin-bottom: 10%;
+    }
+
+    #productPics{
+        margin-top: 5em;
+    }
+
+@media screen and (max-width: 991px){
+    #productPics{
+        margin-top: 0em;
+    }
+
+    .addProduct input[type=radio] {
+    margin: 1em 1em 0em 6em;
+       
 }
 
 /* Modifications des classes bootstrap */

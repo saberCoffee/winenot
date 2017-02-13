@@ -3,18 +3,19 @@
 <?php $this->start('main_content') ?>
 <div class="container">
 
-    <section id="thread">
-
         <ul class="fil-arianne">
             <li><a href="<?= $this->url('inbox') ?>">Retourner à la messagerie</a></li>
             <li><a href="<?= $this->url('user_profile', ['id' => $users['contact']['token']]) ?>"><?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?></a></li>
         </ul>
 
-        <form action="<?= $this->url('inbox_posting', ['id' => $token]) ?>" method="post">
+
+    <section id="thread">
+        <div class="backgroundColor">
+            <form action="<?= $this->url('inbox_posting', ['id' => $token]) ?>" method="post">
         <?php if ($nb_messages == 0): ?>
             <div class="form-group">
                 <p>
-                    C'est la première vous que vous prenez contact avec <?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?>. Pensez à vous présenter, et soyez poli !
+                    C'est la première fois vous que vous prenez contact avec <?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?>. Pensez à vous présenter, et soyez poli !
                 </p>
                 <label for="subject">Sujet</label>
                 <input type="text" name="subject" id="subject" class="form-control" required="required" autocomplete="off" />
@@ -34,8 +35,9 @@
                 <textarea name="content" data-min="5" data-max="1000" required="required" class="form-control"></textarea>
                 <span class="help-block" style="display: none"></span>
             </div>
-            <input type="submit" value="Envoyer un message" />
+            <input type="submit" class="btn btn-default" value="Envoyer un message" />
         </form>
+        </div>
 
         <?php
         foreach ($messages as $message):

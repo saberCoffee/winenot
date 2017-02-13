@@ -126,12 +126,12 @@ class WinemakerModel extends Model
 	{
 		$user = new UserModel();
 
-		$winemaker_id = $user->getUserByToken($token);
+		$winemaker = $user->getUserByToken($token);
 
 		$sql = 'SELECT winemaker_id FROM ' . $this->table . ' WHERE winemaker_id = :winemaker_id LIMIT 1';
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);
-		$sth->bindValue(':winemaker_id', $winemaker_id['id']);
+		$sth->bindValue(':winemaker_id', $winemaker['id']);
 		if($sth->execute()){
 			$foundWinemaker = $sth->fetch();
 			if($foundWinemaker){

@@ -1,5 +1,7 @@
 $(function() {
     var rootPath = 'http://winenot.alwaysdata.net/';
+    //var rootPath = 'http://localhost/PROJET/WineNot/public/';
+
     var debug    = false; // à changer en true pour activer les console.log utiles
 
     /**
