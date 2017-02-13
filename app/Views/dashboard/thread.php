@@ -3,45 +3,49 @@
 <?php $this->start('main_content') ?>
 <div class="container">
 
-        <ul class="fil-arianne">
-            <li><a href="<?= $this->url('inbox') ?>">Retourner à la messagerie</a></li>
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('inbox') ?>">Retourner à la messagerie</a></li>
+        <?php if ($users['contact']['firstname'] != 'Invité'): ?>
             <li><a href="<?= $this->url('user_profile', ['id' => $users['contact']['token']]) ?>"><?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?></a></li>
-        </ul>
-
+        <?php else: ?>
+            <li>Invité</li>
+        <?php endif; ?>
+    </ul>
 
     <section id="thread">
         <div class="backgroundColor">
-            <form action="<?= $this->url('inbox_posting', ['id' => $token]) ?>" method="post">
-        <?php if ($nb_messages == 0): ?>
-            <div class="form-group">
-                <p>
-                    C'est la première fois vous que vous prenez contact avec <?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?>. Pensez à vous présenter, et soyez poli !
-                </p>
-                <label for="subject">Sujet</label>
-                <input type="text" name="subject" id="subject" class="form-control" required="required" autocomplete="off" />
-                <!--<select name="subject" id="subject" class="form-control" required="required" autocomplete="off">
+            <?php if ($users['contact']['firstname'] != 'Invité'): ?>
+                <form action="<?= $this->url('inbox_posting', ['id' => $token]) ?>" method="post">
+                    <?php if ($nb_messages == 0): ?>
+                        <div class="form-group">
+                            <p>
+                                C'est la première fois vous que vous prenez contact avec <?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?>. Pensez à vous présenter, et soyez poli !
+                            </p>
+                            <label for="subject">Sujet</label>
+                            <input type="text" name="subject" id="subject" class="form-control" required="required" autocomplete="off" />
+                            <!--<select name="subject" id="subject" class="form-control" required="required" autocomplete="off">
 
-                </select>-->
-                <label for="content">Message</label>
-            </div>
-        <?php else: ?>
-            <p>
-                N'oubliez pas de respecter votre interlocuteur.
-            </p>
-            <label for="content">Message</label>
-            <input type="hidden" name="subject" value="<?= $subject ?>">
-        <?php endif; ?>
-            <div class="form-group">
-                <textarea name="content" data-min="5" data-max="1000" required="required" class="form-control"></textarea>
-                <span class="help-block" style="display: none"></span>
-            </div>
-            <input type="submit" class="btn btn-default" value="Envoyer un message" />
-        </form>
+                            </select>-->
+                            <label for="content">Message</label>
+                        </div>
+                    <?php else: ?>
+                        <p>
+                            N'oubliez pas de respecter votre interlocuteur.
+                        </p>
+                        <label for="content">Message</label>
+                        <input type="hidden" name="subject" value="<?= $subject ?>">
+                    <?php endif; ?>
+                    <div class="form-group">
+                        <textarea name="content" data-min="5" data-max="1000" required="required" class="form-control"></textarea>
+                        <span class="help-block" style="display: none"></span>
+                    </div>
+
+                    <input type="submit" class="btn btn-default" value="Envoyer un message" />
+                </form>
+            <?php endif; ?>
         </div>
 
-        <?php
-        foreach ($messages as $message):
-        ?>
+        <?php foreach ($messages as $message): ?>
             <div class="row">
                 <div class="col-avatar col-sm-4">
                     <?php if (empty($message['photo'])): ?>
@@ -53,13 +57,15 @@
 
                 <div class="col-message col-sm-8">
                     <p class="<?= $message['classe'] ?>">
+                        <?php if ($users['contact']['firstname'] == 'Invité'): ?>
+                            <strong><?= $message['subject'] ?></strong>
+                            <br />
+                        <?php endif; ?>
                         <?= nl2br($message['content']) ?>
                     </p>
                 </div>
             </div>
-        <?php
-        endforeach;
-        ?>
+        <?php endforeach; ?>
 
     </section>
 </div>

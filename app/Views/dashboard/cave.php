@@ -2,7 +2,9 @@
 
 <?php $this->start('main_content') ?>
 <?php if (!empty($_COOKIE['successMsg'])) { ?>
-	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+	<section>
+		<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+	</section>
 <?php } ?>
 
 <div id="imageCrop-mask">
@@ -132,10 +134,10 @@
 							<input type="hidden" id="h" name="h" />
 						</div>
 					</div>
-				
+
 				</div>
-						
-								
+
+
 
 			</div>
 
