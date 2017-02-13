@@ -27,7 +27,6 @@ margin-top:20px;
 /*
 GRAYSCALE
 */
-
 ul{
   list-style-type: none;
 }
@@ -90,10 +89,10 @@ section#ProductMonth .col-sm-2 {
 /*
 LE MAG
 */
-section#lemag > h2 {
+#lemag >  h2 {
     z-index: 1;
     position: absolute;
-    top: 2%;
+    top: 56px;
     left: 50%;
     display: inline-block;
     width: auto;
@@ -274,7 +273,6 @@ article.blog-text h3{
 /*
 POSTER UN ARTICLE
 */
-
 #editor {
   max-height: 250px;
   height: 250px;
@@ -320,7 +318,8 @@ nav ul li a {
 }
 
 
-/*upload et post button
+/*
+upload et post button
 */
 
 .btn-success{
@@ -353,7 +352,9 @@ nav ul li a {
   display: none;
 }
 
-/* Caption Style */
+/*
+Caption Style
+*/
 .mask figure {
   overflow: hidden;
 }
