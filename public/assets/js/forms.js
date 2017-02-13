@@ -73,14 +73,31 @@ $(function() {
 
         //-- Start : Formulaire des vins du mois
         if ($(this).attr('id') == 'winesOfTheMonth-form') {
-            $('.wine_of_the_month').each(
-                //THOMAS EST GENTIL!!!
-            )
+            var nbSelections = 0;
+            isValid          = false;
+
+            $('.wine_of_the_month').each(function() {
+                event.stopPropagation();
+
+                if ($(this).is(':checked')) {
+                    nbSelections++;
+                }
+            });
+
+            if (nbSelections != 6) {
+                var errorMessage = 'Vous devez cocher 6.';
+
+                $('.help-block').html(errorMessage).show();
+            } else {
+                isValid = true;
+            }
+
+            alert(isValid);
         }
         //-- End : Formulaire des vins du mois
 
         // Si le formulaire est invalide, alors on en empêche l'envoi
-        if (!isValid) {
+        if(isValid != true) {
             event.preventDefault();
         }
     });
