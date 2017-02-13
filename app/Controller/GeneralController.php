@@ -198,7 +198,7 @@ class GeneralController extends Controller
 		$articles = $magModel->allArticles();
 
 		$this->show('general/add_article', array(
-			'articles' => $article
+			'articles' => $articles
 		));
 	}
 

@@ -285,11 +285,11 @@ Media Query
 		 		width:100%;
 		 	}
 		 	.tabs li {
+		 		width:50%;
 		 		text-align:center;
 		 	}
 
 			#addProduct, #addUser, #addProducer, #member-list {
-				width:50%;
 				font-size: 1.3rem;
 			}
 
@@ -299,6 +299,9 @@ Media Query
 			}
 			section.caveDescription {
 				text-align:center;
+			}
+			li#stock {
+				font-size: 1.3rem;
 			}
 
 
