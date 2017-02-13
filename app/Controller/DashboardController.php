@@ -157,10 +157,12 @@ class DashboardController extends Controller
 			if (empty($error)) {
 				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
 
-				$msg = 'Votre profil de producteur a bien été enregistré.';
-				setcookie("successMsg", $msg, time() + 1, '/');
+				if (empty($error)) {
+					$msg = 'Votre profil de producteur a bien été enregistré.';
+					setcookie("successMsg", $msg, time() + 1, '/');
 
-				$this->redirectToRoute('dashboard_home');
+					$this->redirectToRoute('dashboard_home');
+				}
 			}
 		}
 

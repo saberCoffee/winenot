@@ -34,7 +34,7 @@ class WinemakerModel extends Model
 			$error['siren'] = 'Ce numéro siren est déjà enregistré.';
 			return;
 		}
-
+		
 		$user = new UserModel();
 
 		$winemaker = $user->getUserByToken($token);
