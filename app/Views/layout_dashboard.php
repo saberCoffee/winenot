@@ -56,48 +56,48 @@
 					<li><span>Winenot menu</span>
 					<i class="fa fa-bars fa-2x" aria-hidden="true"></i>
 						<ul>
-							<li 
-								<a href="<?= $this->url('home') ?>"><img width="64" src="<?= $this->assetUrl('img/logo_mini_clean.png'); ?>"></a>
+							<li> 
+								<a href="<?= $this->url('home') ?>"><img width="50" src="<?= $this->assetUrl('img/logo_mini_clean.png'); ?>"></a>
 							</li>
 							<li <?php echo ($w_current_route == 'dashboard_home') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('dashboard_home') ?>"><img src="<?= $this->assetUrl('img/dashboard/home-icon-silhouette.png'); ?>">L'accueil</a>
+								<a href="<?= $this->url('dashboard_home') ?>">L'accueil</a>
 							</li>
                             <li>
-								<a href="<?= $this->url('mag') ?>#lemag"><img src="<?= $this->assetUrl('img/dashboard/icon.png'); ?>">Le mag</a>
+								<a href="<?= $this->url('mag') ?>#lemag">Le mag</a>
 							</li>
                             <li <?php echo ($w_current_route == 'products') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>">Tous nos vins</a>
+								<a href="<?= $this->url('products') ?>">Tous nos vins</a>
 							</li>
                             <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>">Trouver un producteur</a>
+								<a href="<?= $this->url('winemakers') ?>">Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'favorites') ? 'class="current"' : '' ?>>
-								<a href="<?= $this->url('favorites') ?>"><img src="<?= $this->assetUrl('img/dashboard/favorites-folder.png'); ?>">Favoris</a>
+								<a href="<?= $this->url('favorites') ?>">Favoris</a>
 							</li>
 
 							<?php if ($_SESSION['user']['type'] == 0): ?>
 	                            <li <?php echo ($w_current_route == 'register_winemaker') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('register_winemaker') ?>"><img src="<?= $this->assetUrl('img/dashboard/team.png'); ?>">Devenir producteur</a>
+									<a href="<?= $this->url('register_winemaker') ?>">Devenir producteur</a>
 								</li>
 							<?php else: ?>
 	                            <li <?php echo ($w_current_route == 'cave' OR $w_current_route == 'cave_edit') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('cave') ?>"><img src="<?= $this->assetUrl('img/dashboard/winery.png'); ?>">Gérer ma cave</a>
+									<a href="<?= $this->url('cave') ?>">Gérer ma cave</a>
 								</li>
 							<?php endif; ?>
 
 							<?php if ($_SESSION['user']['role'] == 'admin'): ?>
 	                            <li class=" hidden-xs hidden-sm hidden-md">
-									<a href="#"><img src="<?= $this->assetUrl('img/dashboard/newspaper-report.png'); ?>">Gérer le mag</a></li>
+									<a href="#">Gérer le mag</a></li>
 	                            <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('admin_members') ?>"><img src="<?= $this->assetUrl('img/dashboard/user-groups.png'); ?>">Gérer les membres</a>
+									<a href="<?= $this->url('admin_members') ?>">Gérer les membres</a>
 								</li>
 	                            <li <?php echo ($w_current_route == 'admin_winemakers') ? 'class="current"' : '' ?>>
-									<a href="<?= $this->url('admin_winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/farmer.png'); ?>">Gérer les producteurs</a>
+									<a href="<?= $this->url('admin_winemakers') ?>">Gérer les producteurs</a>
 								</li>
 							<?php endif; ?>
-							<li>--------------</li>
-							<li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>"><i class="fa fa-comments" aria-hidden="true"></i> Messages</a></li><!--
-                        	--><li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> F.A.Q</a></li><!--
+							
+							<li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>">Messages</a></li><!--
+                        	--><li><a href="#">F.A.Q</a></li><!--
 							--><li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 									<?php if ($_SESSION['user']['type'] == 1): ?>
 										<li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Ma cave</a></li>
