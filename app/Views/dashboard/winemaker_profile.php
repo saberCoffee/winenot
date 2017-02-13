@@ -159,36 +159,6 @@
 	</section>
 </section>
 
-<section class="view-cave">
-    <table border="1" class="table table-striped" id="profileCave">
-        <thead>
-            <tr>
-                <th>Produits</th>
-                <th>Couleurs</th>
-                <th>Millesimes</th>
-                <th>Vins bio</th>
-                <th>Prix</th>
-                <th>Cépage</th>
-                <th>Stocks</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php foreach ($products as $product) : ?>
-            <tr>
-                <td><a href="<?= $this->url('dashboard_product', ['name' => $product['clean_name'], 'id' => $product['id']]) ?>"><?= $product['name'];?></a></td>
-                <td><?= $product['couleur'];?></td>
-                <td><?= $product['millesime']?></td>
-                <td><?= $product['is_bio']?></td>
-                <td><?= $product['price']?></td>
-                <td><?= $product['cepage']?></td>
-                <td><?= $product['stock']?></td>
-            </tr>
-            <?php endforeach;?>
-        </tbody>
-    </table>
-</section>
-
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>

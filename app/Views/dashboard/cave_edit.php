@@ -1,9 +1,10 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Ma cave']) ?>
 
 <?php $this->start('main_content') ?>
-
 <?php if (!empty($_COOKIE['successMsg'])) { ?>
-	<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+	<section>
+		<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+	</section>
 <?php } ?>
 
 <section class="section-with-panels">

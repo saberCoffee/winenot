@@ -56,11 +56,11 @@
 
  						<tr>
  							<td><strong>Producteur :</strong></td>
- 							<td><?= $product['winemaker']['firstname'] . ' ' . $product['winemaker']['lastname'] 	?></td>
+ 							<td><i class="fa fa-user" aria-hidden="true"></i> <a href="<?= $this->url('winemaker_profile', ['id' => $product['winemaker']['id']])?>"><?= $product['winemaker']['firstname'] . ' ' . $product['winemaker']['lastname'] ?></a></td>
  						</tr>
  						<tr>
  							<td><strong>Prix :</strong></td>
- 							<td><?= $product['price'] ?></td>
+ 							<td><?= $product['price'] ?>€</td>
  						</tr>
  						<tr>
  							<td><strong>Stock :</strong></td>

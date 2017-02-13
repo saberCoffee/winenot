@@ -124,22 +124,24 @@
 			</tr>
 			</thead>
 			<tbody>
-		<?php foreach ($members as $member) : ?>
-			<tr>
-				<td><?= $member['firstname'];?></td>
-				<td><?= $member['lastname'];?></td>
-				<td><?= $member['email'];?></td>
-				<td><?= $member['address']?></td>
-				<td><?= $member['city']?></td>
-				<td><?= $member['postcode']?></td>
-				<td><?= $member['role']?></td>
-				<td><?= $member['type']?></td>
-				<td class="action"><!--
-				--><a href="<?= $this->url('user_profile', ['id'=> $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" alt="utilisateur"></a
-				--><a href="<?= $this->url('admin_members', ['id'=> $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a><!--
-				--></td>
-			</tr>
-				<?php endforeach;?>
+			<?php foreach ($members as $member) : ?>
+				<?php if ($member['firstname'] != 'Invité'): ?>
+					<tr>
+						<td><?= $member['firstname'];?></td>
+						<td><?= $member['lastname'];?></td>
+						<td><?= $member['email'];?></td>
+						<td><?= $member['address']?></td>
+						<td><?= $member['city']?></td>
+						<td><?= $member['postcode']?></td>
+						<td><?= $member['role']?></td>
+						<td><?= $member['type']?></td>
+						<td class="action"><!--
+						--><a href="<?= $this->url('user_profile', ['id'=> $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" alt="utilisateur"></a
+						--><a href="<?= $this->url('admin_members', ['id'=> $member['id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a><!--
+						--></td>
+					</tr>
+				<?php endif; ?>
+			<?php endforeach;?>
 			</tbody>
 		</table>
 	</section>
@@ -151,7 +153,7 @@
 <?php $this->start('js') ?>
     <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
     <script>
-	
+
 	var headertext = [],
 	headers = document.querySelectorAll("#member th"),
 	tablerows = document.querySelectorAll("#member th"),
@@ -160,11 +162,11 @@
 	for(var i = 0; i < headers.length; i++) {
 	  var current = headers[i];
 	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
-	} 
+	}
 	for (var i = 0, row; row = tablebody.rows[i]; i++) {
 	  for (var j = 0, col; col = row.cells[j]; j++) {
 	    col.setAttribute("data-th", headertext[j]);
-	  } 
+	  }
 	}
 
 	</script>
