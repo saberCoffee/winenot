@@ -15,3 +15,22 @@ FICHE PRODUITS
  }
 
 
+/*
+PRODUCTEURS DU MOIS
+*/
+#winesOfTheMonth{
+	width: 100%;
+    padding: 3em 3em 2em;
+    background-color: #eddcc0;
+    color: #d09038;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+#BtnSubmit{
+	width: 100%;
+}
+
+.Wineofmonth{
+	margin: 0% 0% 1% 10%;
+}
