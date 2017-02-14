@@ -295,7 +295,7 @@ class DashboardController extends Controller
 			if (empty($error)) {
 				$filename = '';
 
-				if (!empty($_FILES['photo'])) {
+				if (!empty($_FILES['photo']) && $_FILES['photo']['size'] > 0) {
 					$photo    = new Photo();
 					$filename = $photo->createPhoto($_FILES['photo'], $product['name'], $_POST, 'products');
 				}
@@ -505,9 +505,9 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$filename = '';
+				$filename = $_POST['currentPhoto'];
 
-				if (!empty($_FILES['photo'])) {
+				if (!empty($_FILES['photo']) && $_FILES['photo']['size'] > 0) {
 					$photo    = new Photo();
 					$filename = $photo->createPhoto($_FILES['photo'], $firstname . '_' . $lastname, $_POST, 'users');
 				}

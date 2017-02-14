@@ -21,11 +21,13 @@
         <div class="row">
             <div class="col-lg-10">
                 <form class="form" id="winesOfTheMonth" action="<?= $this->url('admin_products') ?>" method="post">
-                    <table border="1" class="table table-striped">
+                    <table id="winemonth" border="1" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th>Vin du mois</th>
+                                <th>Photo</th>
+                                <th>Couleur</th>
                                 <th>Description</th>
                             </tr>
                         </thead>
@@ -36,6 +38,9 @@
                             <tr>
                                 <td><label for="<?= $product['id'] ?>"><?= $product['name'];?></label></td>
                                 <td><input type="checkbox" class="wine_of_the_month" name="wine_of_the_month[]" id="<?= $product['id'] ?>" value="<?= $product['id'] ?>" <?php if ($product['checked'] == 1) { echo 'checked="checked"'; } ?> /></td>
+                                <td><label for="<?= $product['id'] ?>"><img width="70" src="<?= $this->assetUrl('content/photos/products/' . $product['photo']) ?>"<?= $product['photo'];?></label></td>
+                                <td><label for="<?= $product['id'] ?>"><?= $product['couleur'];?></label></td>
+
                                 <td><?= $product['description'];?></td>
                             </tr>
                             <?php endforeach;?>
@@ -62,4 +67,23 @@
 
 <?php $this->start('js') ?>
 <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
+<!-- fonction pour gérer le responsive du tableau producteurs du mois(winemakerofthemonth)
+avec l'id #wineofmonth -->
+<script type="text/javascript">
+    var headertext = [],
+    headers = document.querySelectorAll("#winemonth th"),
+    tablerows = document.querySelectorAll("#winemonth th"),
+    tablebody = document.querySelector("#winemonth tbody");
+
+    for(var i = 0; i < headers.length; i++) {
+      var current = headers[i];
+      headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+    }
+    for (var i = 0, row; row = tablebody.rows[i]; i++) {
+      for (var j = 0, col; col = row.cells[j]; j++) {
+        col.setAttribute("data-th", headertext[j]);
+      }
+    }
+</script>
 <?php $this->stop('js') ?>
+
