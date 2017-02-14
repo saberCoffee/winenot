@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-lg-10">
                 <form class="form" id="winesOfTheMonth" action="<?= $this->url('admin_products') ?>" method="post">
-                    <table border="1" class="table table-striped">
+                    <table id="winemonth" border="1" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -62,4 +62,23 @@
 
 <?php $this->start('js') ?>
 <script src="<?= $this->assetUrl('js/forms.js') ?>"></script>
+<!-- fonction pour gérer le responsive du tableau producteurs du mois(winemakerofthemonth)
+avec l'id #wineofmonth -->
+<script type="text/javascript">
+    var headertext = [],
+    headers = document.querySelectorAll("#winemonth th"),
+    tablerows = document.querySelectorAll("#winemonth th"),
+    tablebody = document.querySelector("#winemonth tbody");
+
+    for(var i = 0; i < headers.length; i++) {
+      var current = headers[i];
+      headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+    }
+    for (var i = 0, row; row = tablebody.rows[i]; i++) {
+      for (var j = 0, col; col = row.cells[j]; j++) {
+        col.setAttribute("data-th", headertext[j]);
+      }
+    }
+</script>
 <?php $this->stop('js') ?>
+
