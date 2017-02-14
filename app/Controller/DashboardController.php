@@ -23,6 +23,15 @@ class DashboardController extends Controller
 	public function __construct()
 	{
 		$this->allowTo(array('user','admin'));
+
+		$userModel = new UserModel();
+
+		$user = $userModel->getUserByToken($_SESSION['user']['id']);
+
+		if (empty($user)) { // La session n'existe plus car quelqu'un d'autre s'est connecté. Au revoir, user !
+			$userModel->logout();
+			$this->redirectToRoute('account');
+		}
 	}
 
 	/**

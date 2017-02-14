@@ -120,9 +120,9 @@ class WinemakerModel extends Model
 	 */
 	public function getWinemakerFullDetails($token)
 	{
-		$user = new UserModel();
+		$userModel = new UserModel();
 
-		$winemaker = $user->getUserByToken($token);
+		$winemaker = $userModel->getUserByToken($token);
 
 		$sql = 'SELECT *
 			FROM users

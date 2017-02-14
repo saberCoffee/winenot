@@ -57,11 +57,11 @@ class GeneralController extends Controller
 			$error = array();
 			$form  = new Form();
 
-			$email          = htmlentities($_POST['register_email']);
-			$password       = htmlentities($_POST['register_password']);
-			$password_verif = htmlentities($_POST['register_password_verif']);
-			$firstname      = ucfirst(htmlentities($_POST['firstname']));
-			$lastname       = ucfirst(htmlentities($_POST['lastname']));
+			$email          = $_POST['register_email'];
+			$password       = $_POST['register_password'];
+			$password_verif = $_POST['register_password_verif'];
+			$firstname      = ucfirst($_POST['firstname']);
+			$lastname       = ucfirst($_POST['lastname']);
 
 			if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 				$error['register_email'] = 'Cette adresse email est invalide.';
