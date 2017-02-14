@@ -24,11 +24,11 @@
                     <table id="winemonth" border="1" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Vin du mois</th>
-                                <th>Photo</th>
-                                <th>Couleur</th>
-                                <th>Description</th>
+                                <th class="col-sm-3">Nom</th>
+                                <th class="col-sm-1">Vin du mois</th>
+                                <th class="col-sm-1">Photo</th>
+                                <th class="col-sm-1">Couleur</th>
+                                <th class="col-sm-5">Description</th>
                             </tr>
                         </thead>
 

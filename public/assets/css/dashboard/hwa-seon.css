@@ -91,7 +91,7 @@
 	}
 
 	div.row input[type="submit"] {
-		width:96%;
+		width:100%;
 		margin: 0 auto 2em;
 		background-color: #d09038;
 		text-transform: uppercase;

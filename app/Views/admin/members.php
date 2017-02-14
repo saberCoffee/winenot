@@ -17,7 +17,7 @@
 
 </section>
 
-<section class="section-with-panels">
+<section class="section-with-panels resizeSection">
 
 	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->
 	<ul class="tabs">
@@ -25,7 +25,7 @@
 		<li id="member-list">Liste des membres</li>
 	</ul>
 
-	<section class="addUser active">
+	<section class="addUser active resizeSection">
 		<form action="<?= $this->url('admin_add_member') ?>" method="post" class="members">
 		<input type="hidden" name="id" value="<?= $members['id']; ?>" />
 
@@ -119,19 +119,19 @@
 		</form>
 	</section>
 
-	<section class="member-list">
+	<section class="member-list resizeTable">
 		<table border="1" class="table table-striped" id="member">
 			<thead>
 			<tr>
-				<th>Prénom</th>
-				<th>Nom</th>
-				<th>Email</th>
-				<th>Adresse</th>
-				<th>Ville</th>
-				<th>Code Postal</th>
-				<th>Role</th>
-				<th>Type</th>
-				<th></th>
+				<th class="col-sm-2">Prénom</th>
+				<th class="col-sm-2">Nom</th>
+				<th class="col-sm-3">Email</th>
+				<th class="col-sm-3">Adresse</th>
+				<th class="col-sm-5">Ville</th>
+				<th class="col-sm-1">Code Postal</th>
+				<th class="col-sm-1">Role</th>
+				<th class="col-sm-1">Type</th>
+				<th class="col-sm-1"></th>
 			</tr>
 			</thead>
 			<tbody>

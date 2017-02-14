@@ -418,6 +418,29 @@ menu deroulant
         border-radius: 5px;
     }
 
+/*
+    resize table
+*/
+    .resizeSection{
+        width: 100%;
+        max-width: 1440px;
+    }
+
+    .resizeTable{
+        width: 100%;
+        max-width: 1440px;
+    }
+
+/*
+    resizer Colonne    
+*/
+    #winemonth th, #cave th, #winemakerList th, #member th{
+        vertical-align: middle;
+    }
+
+
+
+
 
 @media screen and (max-width: 1280px) {
  

@@ -10,14 +10,14 @@
 
 </section>
 
-<section class="section-with-panels">
+<section class="section-with-panels resizeSection">
 <div class="container-fluid">
 	<ul class="tabs">
 		<li id="addProducer" class="active">Ajouter un producteur</li>
 		<li id="member-list">Liste des producteurs</li>
 	</ul>
 
-	<section class="addProducer active">
+	<section class="addProducer active resizeSection">
 		<form action="" method="post" class="winemakers">
 			<input type="hidden" name="id" value="<?= $winemakers['id']; ?>" />
 			<div class="row">
@@ -56,19 +56,19 @@
 		</form>
 	</section>
 
-	<section class="member-list">
+	<section class="member-list resizeTable">
 	<table border="1" class="table table-striped" id="winemakerList">
 		<thead>
 		<tr>
-			<th>Prénom</th>
-			<th>Nom</th>
-			<th>Siren</th>
-			<th>Région</th>
-			<th>Adresse</th>
-			<th>Ville</th>
-			<th>Code Postal</th>
-			<th>N° Téléphone</th>
-			<th></th>
+			<th class="col-sm-2">Prénom</th>
+			<th class="col-sm-2">Nom</th>
+			<th class="col-sm-1">Siren</th>
+			<th class="col-sm-2">Région</th>
+			<th class="col-sm-3">Adresse</th>
+			<th class="col-sm-3">Ville</th>
+			<th class="col-sm-1">Code Postal</th>
+			<th class="col-sm-1">N° Téléphone</th>
+			<th class="col-sm-1"></th>
 		</tr>
 		</thead>
 		<tbody>

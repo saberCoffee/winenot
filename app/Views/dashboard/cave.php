@@ -155,10 +155,10 @@
 		<table border="1" class="table table-striped" id="cave">
 			<thead>
 					<th class="col-sm-6">Produits</th>
-					<th class="col-sm-6">Couleurs</th>
-					<th class="col-sm-6">Millesimes</th>
-					<th class="col-sm-6">Vins bio</th>
-					<th class="col-sm-6">Prix</th>
+					<th class="col-sm-1">Couleurs</th>
+					<th class="col-sm-1">Millesimes</th>
+					<th class="col-sm-1">Vins bio</th>
+					<th class="col-sm-1">Prix</th>
 					<th class="col-sm-6">Cépage</th>
 					<th class="col-sm-6">Stocks</th>
 					<th class="col-sm-6"></th>
