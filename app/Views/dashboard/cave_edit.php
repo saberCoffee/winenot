@@ -1,16 +1,6 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Ma cave']) ?>
 
 <?php $this->start('main_content') ?>
-<?php if (!empty($_COOKIE['successMsg'])) { ?>
-	<section>
-		<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
-	</section>
-<?php } ?>
-
-<div id="imageCrop-mask">
-	<div></div>
-</div>
-
 <section>
 
     <ul class="fil-arianne">
@@ -20,6 +10,16 @@
     </ul>
 
 </section>
+
+<?php if (!empty($_COOKIE['successMsg'])) { ?>
+	<section>
+		<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
+	</section>
+<?php } ?>
+
+<div id="imageCrop-mask">
+	<div></div>
+</div>
 
 <section class="section-with-panels">
 
