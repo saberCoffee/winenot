@@ -6,6 +6,7 @@
         <div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
     </section>
 <?php } ?>
+
 <div class="Wineofmonth">
     <div class="container-fluid">
         <div class="row">

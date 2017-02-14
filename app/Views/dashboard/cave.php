@@ -23,7 +23,7 @@
 <section class="section-with-panels">
 
 	<ul class="tabs">
-		<li id="addProduct" class="active">Ajout de produit</li>
+		<li id="addProduct" class="active">Ajout un produit</li>
 		<li id="stock">Mes vins</li>
 	</ul>
 
@@ -134,10 +134,7 @@
 							<input type="hidden" id="h" name="h" />
 						</div>
 					</div>
-
 				</div>
-
-
 
 			</div>
 
@@ -185,8 +182,11 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-<script>
-
+<script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.Jcrop.min.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.color.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/imageCrop.js') ?>" type="text/javascript"></script>
+<script type="text/javascript">
 	var headertext = [],
 	headers = document.querySelectorAll("#cave th"),
 	tablerows = document.querySelectorAll("#cave th"),
@@ -201,13 +201,7 @@
 	    col.setAttribute("data-th", headertext[j]);
 	  }
 	}
-
 </script>
-<script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
-<script src="<?= $this->assetUrl('js/jquery.Jcrop.min.js') ?>" type="text/javascript"></script>
-<script src="<?= $this->assetUrl('js/jquery.color.js') ?>" type="text/javascript"></script>
-<script src="<?= $this->assetUrl('js/imageCrop.js') ?>" type="text/javascript"></script>
-
 <?php $this->stop('js') ?>
 
 <?php $this->start('css') ?>

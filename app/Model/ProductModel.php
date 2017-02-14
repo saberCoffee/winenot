@@ -45,13 +45,28 @@ class ProductModel extends Model
 		return $this->insert($data);
 	}
 
-	public function editProduct($idProduct, $price, $description, $stock)
+	public function editProduct($idProduct, $price, $description, $photo, $stock)
 	{
 		$data = array(
 			'price'       => $price,
 			'description' => $description,
 			'stock'       => $stock
 		);
+
+		if (!empty($photo)) { // Si l'utilisateur upload une nouvelle photo, on change l'ancienne et on la supprime
+			$data['photo'] = $photo;
+
+			$sql = "SELECT photo FROM " . $this->table . " WHERE id = " . $idProduct;
+
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+
+			$oldPhoto = $sth->fetch();
+
+			$filepath = 'assets/content/products/' . $oldPhoto['photo'];
+
+	        unlink($filepath);
+		}
 
 		return $this->update($data, $idProduct);
 	}

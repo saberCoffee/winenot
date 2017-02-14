@@ -7,6 +7,10 @@
 	</section>
 <?php } ?>
 
+<div id="imageCrop-mask">
+	<div></div>
+</div>
+
 <section class="section-with-panels">
 
 	<ul class="tabs">
@@ -30,7 +34,7 @@
 			</div>
 		</div>
 
-		<form method="post" action="<?= $this->url('cave_edit', ['id' => $product['id']]) ?>">
+		<form method="post" action="<?= $this->url('cave_edit', ['id' => $product['id']]) ?>" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group <?php if (isset($error['price'])) { echo 'has-error'; } ?>">
@@ -54,7 +58,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-8">
 					<div class="descriptionProduct">
 						<div class="form-group <?php if (isset($error['description'])) { echo 'has-error'; } ?>">
 							<label for="description">Description de votre produit*</label>
@@ -62,6 +66,32 @@
 							<span class="help-block" <?php if (empty($error['description'])) { echo 'style="display: none"'; } ?>>
 	                        <?php if (isset($error['description'])) { echo $error['description']; } ?>
 	                   		</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group <?php if (isset($error['photo'])) { echo 'has-error'; } ?>">
+						<div class="productPics" id="productPics">
+							<label for="photo">Photo de votre produit*</label>
+							<span class="help-block" <?php if (empty($error['photo'])) { echo 'style="display: none"'; } ?>>
+							<?php if (isset($error['photo'])) { echo $error['photo']; } ?>
+							</span>
+
+							<span class="btn btn-default btn-file">Parcourir
+								<input type="file" id="photo" name="photo" accept="image/*" />
+							</span>
+
+							<?php if (!empty($product['photo'])): ?>
+								<input type="hidden" name="currentPhoto" value="<?= $product['photo'] ?>" />
+							<?php endif; ?>
+
+							<input type="hidden" id="resizeW" name="resizeW" />
+							<input type="hidden" id="resizeH" name="resizeH" />
+							<input type="hidden" id="x" name="x" />
+							<input type="hidden" id="y" name="y" />
+							<input type="hidden" id="w" name="w" />
+							<input type="hidden" id="h" name="h" />
 						</div>
 					</div>
 				</div>
@@ -113,23 +143,28 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-    <script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
-    <script type="text/javascript">
+<script src="<?= $this->assetUrl('js/forms.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.Jcrop.min.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/jquery.color.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->assetUrl('js/imageCrop.js') ?>" type="text/javascript"></script>
+<script type="text/javascript">
+	var headertext = [],
+	headers = document.querySelectorAll("#profileCave th"),
+	tablerows = document.querySelectorAll("#profileCave th"),
+	tablebody = document.querySelector("#profileCave tbody");
 
-		var headertext = [],
-		headers = document.querySelectorAll("#winemakerList th"),
-		tablerows = document.querySelectorAll("#winemakerList th"),
-		tablebody = document.querySelector("#winemakerList tbody");
-
-		for(var i = 0; i < headers.length; i++) {
-		  var current = headers[i];
-		  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
-		}
-		for (var i = 0, row; row = tablebody.rows[i]; i++) {
-		  for (var j = 0, col; col = row.cells[j]; j++) {
-		    col.setAttribute("data-th", headertext[j]);
-		  }
-		}
-
+	for(var i = 0; i < headers.length; i++) {
+	  var current = headers[i];
+	  headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+	}
+	for (var i = 0, row; row = tablebody.rows[i]; i++) {
+	  for (var j = 0, col; col = row.cells[j]; j++) {
+	    col.setAttribute("data-th", headertext[j]);
+	  }
+	}
 </script>
 <?php $this->stop('js') ?>
+
+<?php $this->start('css') ?>
+<link rel="stylesheet" href="<?= $this->assetUrl('css/jquery.Jcrop.css') ?>" type="text/css">
+<?php $this->stop('css') ?>

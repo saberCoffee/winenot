@@ -7,6 +7,7 @@
 		<li id="addProducer" class="active">Ajouter un producteur</li>
 		<li id="member-list">Liste des producteurs</li>
 	</ul>
+
 	<section class="addProducer">
 		<form action="" method="post" class="winemakers">
 			<input type="hidden" name="id" value="<?= $winemakers['id']; ?>" />
@@ -46,8 +47,7 @@
 		</form>
 	</section>
 
-
-	<section class="member-list">
+	<section class="member-list active">
 	<table border="1" class="table table-striped" id="winemakerList">
 		<thead>
 		<tr>
@@ -74,8 +74,7 @@
 			<td><?= $winemaker['postcode']?></td>
 			<td><?= $winemaker['tel']?></td>
 			<td class="action"><!--
-			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" alt="modifier"></a><!--
-			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/edit.png') ?>" alt="modifier"></a><!--
+			--><a href="<?= $this->url('winemaker_profile', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/user.png') ?>" alt="modifier"></a><!--
 			 --><a href="<?= $this->url('winemakers', ['id' => $winemaker['winemaker_id']]) ?>"><img width="20" src="<?= $this->assetUrl('img/dashboard/delete.png') ?>" alt="supprimer"></a>
 			</td>
 		</tr>

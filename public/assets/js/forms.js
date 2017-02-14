@@ -91,13 +91,11 @@ $(function() {
             } else {
                 isValid = true;
             }
-
-            alert(isValid);
         }
         //-- End : Formulaire des vins du mois
 
         // Si le formulaire est invalide, alors on en empêche l'envoi
-        if(isValid != true) {
+        if(!isValid) {
             event.preventDefault();
         }
     });

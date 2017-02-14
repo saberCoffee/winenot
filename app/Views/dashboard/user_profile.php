@@ -4,7 +4,7 @@
 <section>
 
 	<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
-	
+
 </section>
 <?php } ?>
 
@@ -180,23 +180,24 @@
 								<span class="help-block" <?php if (empty($error['photo'])) { echo 'style="display: none"'; } ?>>
 								<?php if (isset($error['photo'])) { echo $error['photo']; } ?>
 								</span>
-								
+
 								<span class="btn btn-default btn-file">Parcourir
-								<input type="file" id="photo" name="photo" accept="image/*" />
+									<input type="file" id="photo" name="photo" accept="image/*" />
 								</span>
 							</div>
-								<?php if (!empty($user['photo'])): ?>
-									<input type="hidden" name="currentPhoto" value="<?= $user['photo'] ?>" />
-								<?php endif; ?>
 
-								<input type="hidden" id="resizeW" name="resizeW" />
-								<input type="hidden" id="resizeH" name="resizeH" />
-								<input type="hidden" id="x" name="x" />
-								<input type="hidden" id="y" name="y" />
-								<input type="hidden" id="w" name="w" />
-								<input type="hidden" id="h" name="h" />
-							</div>
+							<?php if (!empty($user['photo'])): ?>
+								<input type="hidden" name="currentPhoto" value="<?= $user['photo'] ?>" />
+							<?php endif; ?>
+
+							<input type="hidden" id="resizeW" name="resizeW" />
+							<input type="hidden" id="resizeH" name="resizeH" />
+							<input type="hidden" id="x" name="x" />
+							<input type="hidden" id="y" name="y" />
+							<input type="hidden" id="w" name="w" />
+							<input type="hidden" id="h" name="h" />
 						</div>
+					</div>
 				</div>
 				<div class="row">
 					<input type="submit" value="Mettre à jour"  class="btn btn-default"/>

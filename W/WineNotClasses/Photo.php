@@ -32,7 +32,7 @@ class Photo
         if ($fileext == 'png') {
             $img_r = imagecreatefrompng($src);
         } else {
-            $img_r = imagecreatefromjpeg($src);            
+            $img_r = imagecreatefromjpeg($src);
         }
 
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
