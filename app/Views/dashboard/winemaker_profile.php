@@ -4,7 +4,8 @@
 <section>
 
     <ul class="fil-arianne">
-        <li><a href="<?= $this->url('winemakers') ?>">Retourner à la recherche de producteurs</a></li>
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li><?= $lang['profile'] ?></li>
     </ul>
 
     <?php if (!empty($_COOKIE['successMsg'])) { ?>

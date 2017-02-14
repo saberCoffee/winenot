@@ -11,12 +11,18 @@
 	<div></div>
 </div>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li>Gérer ma cave</li>
+    </ul>
+
+</section>
+
 <section class="caveDescription">
 	<p>
 		Dans cette section, vous pouvez ajouter de nouveaux produits à votre cave ou bien les modifier. Il n'y que vous qui y avez accès.
-	</p>
-	<p>
-		<a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Consulter ma cave telle qu'elle apparaît aux autres utilisateurs</a>
 	</p>
 </section>
 

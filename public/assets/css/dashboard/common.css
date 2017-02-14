@@ -133,6 +133,10 @@ Menu de navigation horizontal
         line-height: 3rem;
     }
 
+    div.account-popup ul li a:hover {
+        font-weight: bold;
+    }
+
 /*
 Menu de navigation latéral
 */

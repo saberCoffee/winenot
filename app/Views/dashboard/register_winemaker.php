@@ -69,7 +69,7 @@
 		</div>
 
 		<div>
-			<input type="submit" class="btn btn-default" id="submit" value="Inscription">
+			<input type="submit" class="btn btn-default" id="winemaker_submit" value="Inscription">
 		</div>
 	</form>
 </section>

@@ -4,12 +4,9 @@
 <div class="container">
 
     <ul class="fil-arianne">
-        <li><a href="<?= $this->url('inbox') ?>">Retourner à la messagerie</a></li>
-        <?php if ($users['contact']['firstname'] != 'Invité'): ?>
-            <li><a href="<?= $this->url('user_profile', ['id' => $users['contact']['token']]) ?>"><?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?></a></li>
-        <?php else: ?>
-            <li>Invité</li>
-        <?php endif; ?>
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li><a href="<?= $this->url('inbox') ?>">Messagerie</a></li>
+        <li>Votre discussion avec <?= $users['contact']['firstname'] . ' ' .  $users['contact']['lastname'] ?></li>
     </ul>
 
     <section id="thread">

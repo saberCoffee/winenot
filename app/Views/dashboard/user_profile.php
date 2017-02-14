@@ -1,12 +1,17 @@
 <?php $this->layout('layout_dashboard', ['title' => $lang['profile']]) ?>
 <?php $this->start('main_content') ?>
-<?php if (!empty($_COOKIE['successMsg'])) { ?>
 <section>
 
-	<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li><?= $lang['profile'] ?></li>
+    </ul>
+
+	<?php if (!empty($_COOKIE['successMsg'])) { ?>
+		<div class="alert alert-success" role="alert"><?= $_COOKIE['successMsg'] ?></div>
+	<?php } ?>
 
 </section>
-<?php } ?>
 
 <div id="imageCrop-mask">
 	<div></div>

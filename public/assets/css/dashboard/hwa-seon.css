@@ -251,14 +251,18 @@ Media Query
 
 	@media screen and (max-width: 991px) {
 		/* Bouton Input */
-		div.row input[type="submit"] {
-			margin: 0 auto 0em;
-			margin-top: 0rem;
-		}
+			div.row input[type="submit"] {
+				margin: 0 auto 0em;
+				margin-top: 0rem;
+			}
+			#winemaker_submit {
+				margin-bottom:2em;
+			}
+
 		/* Winenot Menu Dashboard */
-		#winenot-menu > li:first-child{
-			padding:1em 0;
-		}
+			#winenot-menu > li:first-child{
+				padding:1em 0;
+			}
 
 		/* Main page */
 			.col-aside, .col-main {

@@ -59,6 +59,8 @@ section.contact-user p {
 section#products {
     width: 100%;
     max-width: 100%;
+
+    margin-top: 5em;
 }
 
 section#profile > section {

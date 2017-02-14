@@ -11,6 +11,16 @@
 	<div></div>
 </div>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+		<li><a href="<?= $this->url('cave') ?>">Gérer ma cave</a></li>
+        <li><?= $product['name'] ?></li>
+    </ul>
+
+</section>
+
 <section class="section-with-panels">
 
 	<ul class="tabs">

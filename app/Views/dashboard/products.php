@@ -1,8 +1,18 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Tous nos vins']) ?>
 <?php $this->start('main_content') ?>
 
+<section>    
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li>Tous nos vins</li>
+    </ul>
+
+</section>
+
 <section id="products">
     <div class="container">
+
     <div class="row">
     <?php foreach ($products as $product): ?>
         <div class="col-md-4">

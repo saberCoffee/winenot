@@ -8,6 +8,15 @@
     </section>
 <?php } ?>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+		<li>Gérer les membres</li>
+    </ul>
+
+</section>
+
 <section class="section-with-panels">
 
 	<!-- Dev Note: Ajouter à mettre dans une variable et modifier si isset id en modifier et également la valeur du bouton du submit -->

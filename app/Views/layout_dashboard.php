@@ -35,7 +35,7 @@
 								<ul>
 									<li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 									<?php if ($_SESSION['user']['type'] == 1): ?>
-										<li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Ma cave</a></li>
+										<li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon profil producteur</a></li>
 									<?php endif; ?>
 									<li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 								</ul>
@@ -51,7 +51,7 @@
 
 		    <div class="row visible-sm visible-xs">
 		          <div class="responsive-menu ">
-		              <div class="dropfdsgdfgdown">
+		              <div class="dropdown">
 		                <ul id="winenot-menu">
 		                    <li><span>Winenot menu</span>
 		                    <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
@@ -86,8 +86,8 @@
 		                            <?php endif; ?>
 
 		                            <?php if ($_SESSION['user']['role'] == 'admin'): ?>
-		                                <li class=" hidden-xs hidden-sm hidden-md">
-		                                    <a href="#">Gérer le mag</a></li>
+		                                <li class="  hidden-md">
+		                                    <a href="<?= $this->url('add_article') ?>">Gérer le mag</a></li>
 		                                <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 		                                    <a href="<?= $this->url('admin_members') ?>">Gérer les membres</a>
 		                                </li>
@@ -100,7 +100,7 @@
 		                           --><li><a href="#">F.A.Q</a></li><!--
 		                            --><li><a href="<?= $this->url('user_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon compte</a></li>
 		                                    <?php if ($_SESSION['user']['type'] == 1): ?>
-		                                        <li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Ma cave</a></li>
+		                                        <li><a href="<?= $this->url('winemaker_profile', ['id' =>  $_SESSION['user']['id']]) ?>">Mon profil producteur</a></li>
 		                                    <?php endif; ?>
 		                                    <li><a href="<?= $this->url('logout') ?>">Se déconnecter</a></li>
 		                        </ul>
