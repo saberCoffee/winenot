@@ -54,6 +54,9 @@
 						</p>
 						<p>
 							<a href="<?= $this->url('inbox_thread', ['id' => $winemaker['mp_token']]) ?>" class="link-contact"><i class="fa fa-comments" aria-hidden="true"></i> Contacter <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?></a>
+                            <?php if ($_SESSION['user']['role'] == 'admin'): ?>
+                                | <a href="<?= $this->url('user_profile', ['id' => $winemaker['id']]) ?>">Profil utilisateur</a>
+                            <?php endif; ?>
 						</p>
 					<?php endif; ?>
 				</section>

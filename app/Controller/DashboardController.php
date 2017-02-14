@@ -225,7 +225,7 @@ class DashboardController extends Controller
 				$token = $_SESSION['user']['id'];
 				$products->addProduct($token, $name, $color, $region, $price, $description, $millesime, $cepage, $stock, $bio, $filename);
 
-				$msg  = 'Votre ' . $name . ' a bien été ajouté à votre cave.';
+				$msg  = 'Votre <strong>' . $name . '</strong> a bien été ajouté à votre cave.';
 				setcookie("successMsg", $msg, time() + 1, '/');
 
 				$this->redirectToRoute('cave');
@@ -268,7 +268,10 @@ class DashboardController extends Controller
 		$userModel     = new UserModel();
 		$productModel  = new ProductModel();
 
-		$user      = $userModel->getUserByToken($_SESSION['user']['id']);
+		$user = $userModel->getUserByToken($_SESSION['user']['id']);
+
+		$products = $productModel->findProductsFrom($user['id']);
+		$product  = $productModel->find($id);
 
 		if(!empty($_POST)) {
 			$error = array();
@@ -288,18 +291,21 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$productModel->editProduct($id, $price, $description, $stock);
+				$filename = '';
 
-				$msg  = 'Vos modifications sur le produit ' . $name . ' ont bien été prises en compte.';
+				if (!empty($_FILES['photo'])) {
+					$photo    = new Photo();
+					$filename = $photo->createPhoto($_FILES['photo'], $product['name'], $_POST, 'products');
+				}
+
+				$productModel->editProduct($id, $price, $description, $filename, $stock);
+
+				$msg  = 'Vos modifications sur le produit <strong>' . $product['name'] . '</strong> ont bien été prises en compte.';
 				setcookie("successMsg", $msg, time() + 1, '/');
 
 				$this->redirectToRoute('cave', ['id' => $id]);
 			}
 		}
-
-		$products = $productModel->findProductsFrom($user['id']);
-		$product  = $productModel->find($id);
-
 		$this->show('dashboard/cave_edit', array(
 			// Liste des produits de la cave
 			'products' => $products,
@@ -497,6 +503,8 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
+				$filename = '';
+
 				if (!empty($_FILES['photo'])) {
 					$photo    = new Photo();
 					$filename = $photo->createPhoto($_FILES['photo'], $firstname . '_' . $lastname, $_POST, 'users');

@@ -53,8 +53,6 @@ class AdminController extends Controller
 			'postcode'  => '',
 			'role'     	=> '',
 			'type'     	=> '',
-
-
         ));
     }
 
@@ -217,10 +215,19 @@ class AdminController extends Controller
 	 */
 	public function winemakers()
 	{
-		$winemakers = new WinemakerModel();
-		// $winemakers = $winemakers->findAll();
+		$winemakerModel = new WinemakerModel();
+		$userModel      = new UserModel();
 
-		$winemakers = $winemakers->getWinemakersFullDetails();
+		$winemakers = $winemakerModel->getWinemakersFullDetails();
+
+		$i = 0;
+		foreach ($winemakers as $winemaker) {
+			$token = $userModel->getTokenByUserId($winemaker['winemaker_id']);
+
+			$winemakers[$i]['winemaker_id'] = $token;
+
+			++$i;
+		}
 
 		$this->show ('admin/winemakers', array(
 			'winemakers' => $winemakers,
