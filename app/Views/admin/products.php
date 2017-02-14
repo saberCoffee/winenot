@@ -26,6 +26,8 @@
                             <tr>
                                 <th>Nom</th>
                                 <th>Vin du mois</th>
+                                <th>Photo</th>
+                                <th>Couleur</th>
                                 <th>Description</th>
                             </tr>
                         </thead>
@@ -36,6 +38,9 @@
                             <tr>
                                 <td><label for="<?= $product['id'] ?>"><?= $product['name'];?></label></td>
                                 <td><input type="checkbox" class="wine_of_the_month" name="wine_of_the_month[]" id="<?= $product['id'] ?>" value="<?= $product['id'] ?>" <?php if ($product['checked'] == 1) { echo 'checked="checked"'; } ?> /></td>
+                                <td><label for="<?= $product['id'] ?>"><img width="70" src="<?= $this->assetUrl('content/photos/products/' . $product['photo']) ?>"<?= $product['photo'];?></label></td>
+                                <td><label for="<?= $product['id'] ?>"><?= $product['couleur'];?></label></td>
+
                                 <td><?= $product['description'];?></td>
                             </tr>
                             <?php endforeach;?>
