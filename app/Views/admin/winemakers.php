@@ -1,6 +1,15 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Administration des producteurs']) ?>
 <?php $this->start('main_content') ?>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+		<li>Gérer les producteurs</li>
+    </ul>
+
+</section>
+
 <section class="section-with-panels">
 <div class="container-fluid">
 	<ul class="tabs">
@@ -8,7 +17,7 @@
 		<li id="member-list">Liste des producteurs</li>
 	</ul>
 
-	<section class="addProducer">
+	<section class="addProducer active">
 		<form action="" method="post" class="winemakers">
 			<input type="hidden" name="id" value="<?= $winemakers['id']; ?>" />
 			<div class="row">
@@ -47,7 +56,7 @@
 		</form>
 	</section>
 
-	<section class="member-list active">
+	<section class="member-list">
 	<table border="1" class="table table-striped" id="winemakerList">
 		<thead>
 		<tr>

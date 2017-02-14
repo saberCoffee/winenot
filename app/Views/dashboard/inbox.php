@@ -2,6 +2,12 @@
 
 <?php $this->start('main_content') ?>
 <div class="container-fluid">
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li>Messagerie</li>
+    </ul>
+
     <section class="inbox">
 
         <h2>Bienvenue sur votre messagerie. <span>Vous avez (<strong><?= $count_unread_messages ?></strong>) fils de discussion en cours.</span></h2>

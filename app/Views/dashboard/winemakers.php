@@ -1,6 +1,14 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Trouver un producteur']) ?>
 <?php $this->start('main_content') ?>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li>Trouver un producteur</li>
+    </ul>
+
+</section>
 
 <div class="container">
 <section id="GoogleMap">

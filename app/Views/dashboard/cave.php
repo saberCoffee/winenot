@@ -11,6 +11,15 @@
 	<div></div>
 </div>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li>Gérer ma cave</li>
+    </ul>
+
+</section>
+
 <section class="caveDescription">
 	<p>
 		Dans cette section, vous pouvez ajouter de nouveaux produits à votre cave ou bien les modifier. Il n'y que vous qui y avez accès.

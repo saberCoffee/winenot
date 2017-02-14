@@ -7,6 +7,15 @@
     </section>
 <?php } ?>
 
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+		<li>Gérer les vins du mois</li>
+    </ul>
+
+</section>
+
 <div class="Wineofmonth">
     <div class="container-fluid">
         <div class="row">

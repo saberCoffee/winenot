@@ -17,9 +17,11 @@
 
 <section class="ficheProduit active">
 
-	<ul class="fil-arianne">
-		<li><a href="<?= $this->url('products') ?>">Retourner à nos vins</a></li>
-	</ul>
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li><a href="<?= $this->url('products') ?>">Tous nos vins</a></li>
+        <li><?= $product['name'] ?></li>
+    </ul>
 
 	<div class="row">
 		<div class="col-md-4">
