@@ -171,7 +171,8 @@ section#thread p.row2 {
 ul.fil-arianne {
     width: 100%;
     max-width: 942px;
-    margin:  auto;
+    margin: auto;
+    margin-bottom: 1rem;
 }
 
 ul.fil-arianne li {
