@@ -34,3 +34,31 @@ PRODUCTEURS DU MOIS
 .Wineofmonth{
 	margin: 0% 0% 1% 10%;
 }
+
+/*
+Pour gérer le responsive du tableau producteurs du mois(winemakerofthemonth)
+avec l'id #wineofmonth
+*/
+@media screen and (max-width: 991px){
+  table#winemonth thead { display: none; }
+          table#winemonth tbody td {
+            font-size: 1.3rem;
+            text-align:left;
+            display: block;
+            padding: .6rem;
+            height: auto;
+          }
+          table#winemonth tbody tr td:first-child {
+                background: #e8cb9a; color: #fff;
+          }
+          table#winemonth tbody td:before {
+            content: attr(data-th);
+            font-weight: bold;
+            display: inline-block;
+            width: 10rem;
+          }
+          table#winemonth tbody td a img {
+            width:15px;
+            vertical-align: top;
+          }
+      }
