@@ -46,6 +46,7 @@
 						<dt>Adresse</dt><dd><?= $winemaker['address'] ?></dd>
                         <dt>Code Postal</dt><dd><?= $winemaker['postcode'] ?></dd>
 						<dt>Ville</dt><dd><?= $winemaker['city'] ?></dd>
+                        <dt>N° Téléphone</dt><dd><?= $winemaker['tel'] ?></dd>
 						<dt>Région</dt><dd><?= $winemaker['region'] ?></dd>
 					</dl>
 
@@ -135,6 +136,15 @@
     		</div>
 
     		<div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="tel">N° Téléphone*</label>
+                        <input type="number" name="tel" id="tel" value="<?= $tel ?>" class="form-control" required="require" maxlength="10" autocomplete="off" />
+                        <span class="help-block" <?php if (empty($error['tel'])) { echo 'style="display: none"'; } ?>>
+                            <?php if (isset($error['tel'])) { echo $error['tel']; } ?>
+                        </span>
+                    </div>
+                </div><!-- fin de la colonne bootstrap -->
     			<div class="col-md-4">
     				<div class="form-group">
     					<label for="postcode">Code Postal*</label>

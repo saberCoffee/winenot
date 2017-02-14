@@ -142,6 +142,7 @@ class DashboardController extends Controller
 			$address  = $_POST['address'];
 			$postcode = $_POST['postcode'];
 			$city     = $_POST['city'];
+			$tel      = $_POST['tel'];
 
 			//-- Start : Géolocalisation de la latitude et la longitude à partir du code postal //--
 			$url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD-S88NjyaazTh3Dmyfht4fsAKRli5v5gI&components=country:France&address=' . $postcode;
@@ -160,6 +161,7 @@ class DashboardController extends Controller
 			$error['address']  = $form->isValid($address);
 			$error['postcode'] = $form->isValid($postcode, 5, 5);
 			$error['city']     = $form->isValid($city);
+			$error['tel']      = $form->isValid($tel, 10, 10);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
@@ -167,7 +169,7 @@ class DashboardController extends Controller
 			$winemaker = new WinemakerModel;
 
 			if (empty($error)) {
-				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $lng, $lat, $error);
+				$winemaker->registerWinemaker($token, $siren, $area, $address, $postcode, $city, $tel, $lng, $lat, $error);
 
 				if (empty($error)) {
 					$msg = 'Votre profil de producteur a bien été enregistré.';
@@ -600,6 +602,7 @@ class DashboardController extends Controller
 
 			$region         = $_POST['region'];
 			$address        = $_POST['address'];
+			$tel           = $_POST['tel'];
 			$postcode       = $_POST['postcode'];
 			$city           = $_POST['city'];
 
@@ -617,6 +620,7 @@ class DashboardController extends Controller
 
 			$error['region']   = $form->isValid($region);
 			$error['address']  = $form->isValid($address);
+			$error['tel']	   = $form->isValid($tel, 10, 10);
 			$error['postcode'] = $form->isValid($postcode, 5, 5, true);
 			$error['city']     = $form->isValid($city);
 
@@ -624,7 +628,7 @@ class DashboardController extends Controller
 			$error = array_filter($error);
 
 			if (empty($error)) {
-				$winemakerModel->updateProfile($token, $region, $address, $city, $postcode, $lng, $lat, $error);
+				$winemakerModel->updateProfile($token, $region, $address, $tel, $city, $postcode, $lng, $lat, $error);
 
 				if (empty($error)) {
 					$msg = 'Votre profil de producteur a bien été mis à jour.';
@@ -677,6 +681,7 @@ class DashboardController extends Controller
 			// Données du formulaire
 			'region'	         => (!empty($_POST['region'])) ? $_POST['region'] : $winemaker['region'],
 			'address'            => (!empty($_POST['address'])) ? $_POST['address'] : $winemaker['address'],
+			'tel'            	 => (!empty($_POST['tel'])) ? $_POST['tel'] : $winemaker['tel'],
 			'postcode'	         => (!empty($_POST['postcode'])) ? $_POST['postcode'] : $winemaker['postcode'],
 			'city'	             => (!empty($_POST['city'])) ? $_POST['city'] : $winemaker['city'],
 

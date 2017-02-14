@@ -51,7 +51,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<label for="postcode">Code Postal*</label>
-					<input type="text" name="postcode" id="postcode" class="form-control" maxlength="5" autocomplete="off" />
+					<input type="text" name="postcode" id="postcode" class="form-control" required="required" data-min="5" maxlength="5" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['postcode'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['postcode'])) { echo $error['postcode']; } ?>
 					</span>
@@ -63,6 +63,15 @@
 					<input type="text" name="city" id="city" required="required" class="form-control" autocomplete="off" />
 					<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
 						<?php if (isset($error['city'])) { echo $error['city']; } ?>
+					</span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="tel">N° Téléphone*</label>
+					<input type="number" name="tel" id="tel" required="required" class="form-control" data-min="5" maxlength="10" autocomplete="off" />
+					<span class="help-block" <?php if (empty($error['city'])) { echo 'style="display: none"'; } ?>>
+						<?php if (isset($error['tel'])) { echo $error['tel']; } ?>
 					</span>
 				</div>
 			</div>

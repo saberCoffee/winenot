@@ -28,7 +28,7 @@ class WinemakerModel extends Model
 	 *
 	 * @return void
 	 */
-	public function registerWinemaker($token, $siren, $region, $address, $postcode, $city, $lng, $lat, &$error)
+	public function registerWinemaker($token, $siren, $region, $address, $postcode, $city, $tel, $lng, $lat, &$error)
 	{
 		if ($this->sirenExists($siren)) {
 			$error['siren'] = 'Ce numéro siren est déjà enregistré.';
@@ -43,6 +43,7 @@ class WinemakerModel extends Model
 			'winemaker_id' => $winemaker['id'],
 			'siren'        => $siren,
 			'region'       => $region,
+			'tel'		   => $tel,
 			'address'      => $address,
 			'postcode'     => $postcode,
 			'city'         => $city,
@@ -74,7 +75,7 @@ class WinemakerModel extends Model
 	 *
 	 * @return void
 	 */
-	public function updateProfile($token, $region, $address, $postcode, $city, $lng, $lat, &$error)
+	public function updateProfile($token, $region, $address, $tel, $postcode, $city, $lng, $lat, &$error)
 	{
 		$userModel = new UserModel();
 		$auth      = new AuthentificationModel;
@@ -84,6 +85,7 @@ class WinemakerModel extends Model
 		$data = array(
 			'region'   => $region,
 			'address'  => $address,
+			'tel'	   => $tel,
 			'postcode' => $postcode,
 			'city'     => $city,
 			'lng'      => $lng,
