@@ -179,7 +179,7 @@ ul.fil-arianne li {
     display: inline-block;
 }
 ul.fil-arianne li:after {
-    content: ' » ';
+    content: " \00BB ";
 }
 ul.fil-arianne li:last-of-type:after {
     content: '';
