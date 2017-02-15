@@ -139,6 +139,7 @@ section#thread .col-avatar {
     margin-right: 40px;
 }
 
+img.avatar,
 section#thread .col-avatar img {
     border-radius: 50%;
     margin-left: 15%;

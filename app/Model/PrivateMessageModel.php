@@ -83,7 +83,7 @@ class PrivateMessageModel extends Model {
 		$admins = new UserModel();
 		$admins = $admins->getAllAdmins();
 
-		$content = 'Adresse mail de l\'utilisateur : ' . $email . '' . $content;
+		$content = 'Adresse email de l\'utilisateur : ' . $email . ' - ' . $content;
 
 		$data = array(
 			'author_id'		=> -1, // -1 correspond à l'id d'un invité

@@ -1,1 +1,56 @@
-Le tempérament est d'abord vigoureux et corsé, volontiers tannique. Du corps et de la mâche. La maturité arrondit le vin en lui donnant un excellent moelleux
+INSCRIPTION 
+- email:
+Philippe@Gavignet.com
+
+- mdp:
+	123456
+
+- Prenom:
+	Philippe
+
+- Nom:
+	Gavignet
+
+
+
+INSCRIPTION PRODUCTEUR:
+- n siren:
+	846931078
+
+- region:
+	Bourgogne
+
+- Adresse:
+	36 Rue Dr Louis Legrand
+
+- Code Postal: 
+	21700 Nuits-Saint-Georges
+
+- n°tel
+	03 80 11 87 42
+
+
+
+AJOUTER UN PRODUIT
+
+- Nom du produit:
+	Nuits St Georges
+
+- couleur:
+	rouge
+
+- prix:	
+	125€
+
+- millesime:
+	2005
+
+- cepage
+	Pinot noir
+
+- stock:
+	9483
+
+- description:
+	Le tempérament est d'abord vigoureux et corsé, volontiers tannique. Du corps et de la mâche. La maturité arrondit le vin en lui donnant un excellent moelleux
+
