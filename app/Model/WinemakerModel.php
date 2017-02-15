@@ -145,9 +145,20 @@ class WinemakerModel extends Model
 	 * @return [array] $winemakers Un tableau ne contenant que la latitude et la longitude du producteur
 	 */
 	public function latlng() {
-		$winemakerModel  = new WinemakerModel();
+		$userModel = new USerModel();
 
-		$winemakers = $this->findAll('lat, lng');
+		$winemakers = $this->getWinemakersFullDetails();
+
+		// Comme on envoie la réponse en json et qu'un utilisateur mal intentionné pourrait faire un console.log mal placé, on remplace l'id par le token
+		// Et puis ça tombe bien car on se servira du token
+		$i = 0;
+		foreach ($winemakers as $winemaker)
+		{
+			$token = $userModel->getTokenByUserId($winemaker['id']);
+
+			$winemakers[$i]['id'] = $token;
+			$i++;
+		}
 
 		return $winemakers;
 	}

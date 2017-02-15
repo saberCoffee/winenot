@@ -72,8 +72,8 @@ class GeneralController extends Controller
 				$error['register_password'] = 'Les mots de passe ne sont pas identiques.';
 			}
 
-			$error['firstname'] = $form->isValid($firstname, 2, 16);
-			$error['lastname']  = $form->isValid($lastname, 2, 16);
+			$error['firstname'] = $form->isValid($firstname, 2, 25);
+			$error['lastname']  = $form->isValid($lastname, 2, 25);
 
 			// On filtre le tableau pour retirer les erreurs "vides"
 			$error = array_filter($error);
@@ -212,9 +212,9 @@ class GeneralController extends Controller
 	{
 		$winemakerModel = new WinemakerModel();
 
-		$latlng = $winemakerModel->latlng();
+		$winemaker = $winemakerModel->latlng();
 
-		echo json_encode($latlng);
+		echo json_encode($winemaker);
 	}
 
 }

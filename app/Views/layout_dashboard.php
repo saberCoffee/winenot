@@ -130,7 +130,7 @@
                             <li <?php echo ($w_current_route == 'products' || $w_current_route == 'dashboard_product') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('products') ?>"><img src="<?= $this->assetUrl('img/dashboard/products.png'); ?>" alt="icone vin" />Tous nos vins</a>
 							</li>
-                            <li <?php echo ($w_current_route == 'winemakers' || $w_current_route == 'winemaker_profile') ? 'class="current"' : '' ?>>
+                            <li <?php echo ($w_current_route == 'winemakers') ? 'class="current"' : '' ?>>
 								<a href="<?= $this->url('winemakers') ?>"><img src="<?= $this->assetUrl('img/dashboard/gps.png'); ?>" alt="icone navigation" />Trouver un producteur</a>
 							</li>
                             <li <?php echo ($w_current_route == 'favorites') ? 'class="current"' : '' ?>>
