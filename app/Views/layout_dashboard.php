@@ -97,6 +97,7 @@
 		                                 <li <?php echo ($w_current_route == 'admin_products') ? 'class="current"' : '' ?>>
 											<a href="<?= $this->url('admin_products') ?>"><img src="<?= $this->assetUrl('img/dashboard/nav-wineofthemonth.png'); ?>">Gérer les vins du mois</a>
 										</li>
+										
 		                            <?php endif; ?>
 
 		                            <li <?php echo ($w_current_route == 'inbox') ? 'class="current"' : '' ?>><a href="<?= $this->url('inbox') ?>">Messages</a></li><!--
