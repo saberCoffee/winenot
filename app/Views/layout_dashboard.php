@@ -86,7 +86,7 @@
 		                            <?php endif; ?>
 
 		                            <?php if ($_SESSION['user']['role'] == 'admin'): ?>
-		                                <li class="  hidden-md">
+		                                <li class="hidden-sm hidden-xs hidden-md">
 		                                    <a href="<?= $this->url('add_article') ?>">Gérer le mag</a></li>
 		                                <li <?php echo ($w_current_route == 'admin_members') ? 'class="current"' : '' ?>>
 		                                    <a href="<?= $this->url('admin_members') ?>">Gérer les membres</a>

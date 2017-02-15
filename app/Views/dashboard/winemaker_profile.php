@@ -51,9 +51,10 @@
 					</dl>
 
 					<?php if (!$is_owner): ?>
-						<p>
+						<p><br>
 							Vous souhaitez discuter avec <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>, et peut-être lui acheter un produit ?
 						</p>
+                        <br>
 						<p>
 							<a href="<?= $this->url('inbox_thread', ['id' => $winemaker['mp_token']]) ?>" class="link-contact"><i class="fa fa-comments" aria-hidden="true"></i> Contacter <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?></a>
                             <?php if ($_SESSION['user']['role'] == 'admin'): ?>
