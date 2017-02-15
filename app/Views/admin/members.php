@@ -1,4 +1,4 @@
-<?php $this->layout('layout_dashboard', ['title' => 'Administration des membres']) ?>
+<?php $this->layout('layout_dashboard', ['title' => 'Gérer les membres']) ?>
 
 <?php $this->start('main_content') ?>
 

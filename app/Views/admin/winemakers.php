@@ -1,4 +1,4 @@
-<?php $this->layout('layout_dashboard', ['title' => 'Administration des producteurs']) ?>
+<?php $this->layout('layout_dashboard', ['title' => 'Gérer les producteurs']) ?>
 <?php $this->start('main_content') ?>
 
 <section>

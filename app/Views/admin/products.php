@@ -1,4 +1,4 @@
-<?php $this->layout('layout_dashboard', ['title' => 'Administration des produits du mois']) ?>
+<?php $this->layout('layout_dashboard', ['title' => 'Gérer les vins du mois']) ?>
 
 <?php $this->start('main_content') ?>
 <?php if (!empty($_COOKIE['successMsg'])) { ?>
