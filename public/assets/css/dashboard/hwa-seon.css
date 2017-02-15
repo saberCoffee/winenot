@@ -355,6 +355,31 @@ Media Query
 		  	vertical-align: top;
 		  }
 
+		  table#resizeInbox thead {
+		  	display: none;
+		  }
+		  table#resizeInbox tbody td {
+		  	font-size: 1.3rem;
+		  	text-align:left;
+		    display: block;
+		    padding: .6rem;
+		    height: auto;
+		    word-break: break-word;
+		  }
+		  table#resizeInbox tbody tr td:first-child {
+		    	background: #e8cb9a; color: #fff;
+		  }
+		  table#resizeInbox tbody td:before {
+		    content: attr(data-th);
+		    font-weight: bold;
+		    display: inline-block;
+		    width: 10rem;
+		  }
+		  table#resizeInbox tbody td a img {
+		  	width:15px;
+		  	vertical-align: top;
+		  }
+
 
 		  table#winemakerList thead {
 		  	display: none;
