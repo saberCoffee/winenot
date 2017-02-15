@@ -222,7 +222,7 @@
 <div class="container winemakerInfo">
 	<h2>Tous nos producteurs</h2>
 	<div class="row">
-	<?php foreach ($winemakers as $winemaker) { ?>
+	<?php foreach ($winemakers as $winemaker): ?>
 		<div class="col-md-3"><a href="<?= $this->url('winemaker_profile', ['id' => $winemaker['winemaker_id']]) ?>">
 			<?php if (empty($winemaker['photo'])): ?>
 				<img class="photoProfil" src="<?= $this->assetUrl('img/dashboard/user2.png') ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar" width="150" />
@@ -230,8 +230,7 @@
 				<img class="photoProfil" src="<?= $this->assetUrl('content/photos/users/' . $winemaker['photo']) ?>" alt="Avatar_<?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?>" class="avatar" width="150" />
 			<?php endif; ?>
 			<br><?= $winemaker['firstname'];?> <?=$winemaker['lastname'];?></a></div>
-<?php }?>
-
+    <?php endforeach; ?>
 	</div>
 </div>
 <?php $this->stop('main_content') ?>

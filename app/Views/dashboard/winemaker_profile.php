@@ -65,8 +65,7 @@
 			</div>
 		</div>
 
-
-
+        <?php if ($products): ?>
         <section class="view-cave">
             <table border="1" class="table table-striped" id="profileCave">
                 <thead>
@@ -96,6 +95,23 @@
                 </tbody>
             </table>
         </section>
+        <?php else: ?>
+        <section class="view-cave">
+            <table border="1" class="table table-striped" id="profileCave">
+                <thead>
+                    <tr>
+                        <th>
+                            <?php if ($is_owner): ?>
+                            <p>Votre cave est vide.</p>
+                            <?php else: ?>
+                            <p>La cave de <?= $winemaker['firstname'] . ' ' . $winemaker['lastname'] ?> est vide.</p>
+                            <?php endif; ?>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+        <?php endif; ?>
 
 	</section>
 
