@@ -21,6 +21,7 @@
         <div class="row">
             <div class="col-lg-10">
                 <form class="form" id="winesOfTheMonth" action="<?= $this->url('admin_products') ?>" method="post">
+                    <h2>Gérer les vins du mois</h2>
                     <table id="winemonth" border="1" class="table table-striped">
                         <thead>
                             <tr>
@@ -86,4 +87,3 @@ avec l'id #wineofmonth -->
     }
 </script>
 <?php $this->stop('js') ?>
-
