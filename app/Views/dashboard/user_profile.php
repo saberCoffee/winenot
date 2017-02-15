@@ -205,7 +205,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<input type="submit" value="Mettre à jour"  class="btn btn-default"/>
+					<input type="submit" value="Mettre à jour" id="update_profil" class="btn btn-default"/>
 				</div>
 
 			</form>
