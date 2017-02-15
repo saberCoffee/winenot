@@ -164,29 +164,36 @@
 			type: "GET",
 			dataType: 'json', // selon le retour attendu
 			success: function (response) {
-
 				// Appel aux données latitude et longitude
 				for(var i in response) {
-
-					var latLng = new google.maps.LatLng(response[i].lat, response[i].lng);
+					var position  = new google.maps.LatLng(response[i].lat, response[i].lng);
+					var winemaker = response[i];
 
 					var marker = new google.maps.Marker({
-						 	position : latLng,
-						    map: map,
-						  	icon: image,
-							titre: 'notre producteur: '
+							// Infos producteur
+							id        : winemaker.id,
+							photo     : winemaker.photo,
+							firstname : winemaker.firstname,
+							lastname  : winemaker.lastname,
+
+							// Infos position
+						    map       : map,
+						  	icon      : image,
+							position  : position,
 					 });
 
 					 marker.addListener('click', function() {
+						var content = '<div><strong>' + this.firstname + ' ' + this.lastname + '</strong><br>';
+						content += '<img src="http://winenot.alwaysdata.net/assets/content/photos/users/' + this.photo + '" width="150" height="150" alt="' + this.firstname + ' ' + this.lastname + '" /><br />';
+						content += '<a href="http://winenot.alwaysdata.net/dashboard/profile/winemaker/' + this.id + '">Consulter le profil</a>';
+						content += '</div>';
 
-						 	infowindow.setContent('<div><strong>' + this.titre + '</strong><br>' + this.position + '</div>');
+						infowindow.setContent(content);
+						infowindow.open(map, this);
+						// $('#hook').parent().parent().parent().parent().css({ "background-color": "yellow", "border-radius": "10px" });
+					});
 
-						    infowindow.open(map, this);
-						    // $('#hook').parent().parent().parent().parent().css({ "background-color": "yellow", "border-radius": "10px" });
-
-						  });
 					 markers.push(marker);
-
 				}
 
 				  // Ajouter une marqueur clusterer pour gérer les marqueurs.

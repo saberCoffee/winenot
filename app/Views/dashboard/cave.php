@@ -1,6 +1,15 @@
 <?php $this->layout('layout_dashboard', ['title' => 'Gérer ma cave']) ?>
 
 <?php $this->start('main_content') ?>
+<section>
+
+    <ul class="fil-arianne">
+        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
+        <li>Gérer ma cave</li>
+    </ul>
+
+</section>
+
 <?php if (!empty($_COOKIE['successMsg'])) { ?>
 	<section>
 		<div class="alert alert-success"><?= $_COOKIE['successMsg'] ?></div>
@@ -10,15 +19,6 @@
 <div id="imageCrop-mask">
 	<div></div>
 </div>
-
-<section>
-
-    <ul class="fil-arianne">
-        <li><a href="<?= $this->url('dashboard_home') ?>">Accueil</a></li>
-        <li>Gérer ma cave</li>
-    </ul>
-
-</section>
 
 <section class="caveDescription">
 	<p>
@@ -155,10 +155,10 @@
 		<table border="1" class="table table-striped" id="cave">
 			<thead>
 					<th class="col-sm-6">Produits</th>
-					<th class="col-sm-6">Couleurs</th>
-					<th class="col-sm-6">Millesimes</th>
-					<th class="col-sm-6">Vins bio</th>
-					<th class="col-sm-6">Prix</th>
+					<th class="col-sm-1">Couleurs</th>
+					<th class="col-sm-1">Millesimes</th>
+					<th class="col-sm-1">Vins bio</th>
+					<th class="col-sm-1">Prix</th>
 					<th class="col-sm-6">Cépage</th>
 					<th class="col-sm-6">Stocks</th>
 					<th class="col-sm-6"></th>

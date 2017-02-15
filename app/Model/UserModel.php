@@ -98,6 +98,8 @@ class UserModel extends UsersModel
 		$mp_token   = $tokenModel->generateToken($id, 'MP');
 
 		$user = $this->find($id);
+
+		return $auth_token;
 	}
 
 	/**

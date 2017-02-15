@@ -23,6 +23,15 @@ class DashboardController extends Controller
 	public function __construct()
 	{
 		$this->allowTo(array('user','admin'));
+
+		$userModel = new UserModel();
+
+		$user = $userModel->getUserByToken($_SESSION['user']['id']);
+
+		if (empty($user)) { // La session n'existe plus car quelqu'un d'autre s'est connecté. Au revoir, user !
+			$userModel->logout();
+			$this->redirectToRoute('account');
+		}
 	}
 
 	/**
@@ -709,15 +718,19 @@ class DashboardController extends Controller
 					echo 'Le dossier existe bien.<br />';
 				}
 
+				// Maintenant, on va donner un nom à notre image : pourquoi pas le nom de base de l'image, mais nettoyé (en y retirant les caractères spéciaux, les espaces, etc)
 				$clean_name = StringUtils::clean_url($_FILES['photo']['name']);
-				$filename   = $clean_name . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
 
-				if(move_uploaded_file($_FILES['photo']['tmp_name'], $dir . $filename)) {
+				// Ici, on initialise enfin la variable qui sera le nom final de l'image.
+				$filename   = $clean_name;
+
+				// Allez, on envoie l'image !
+				if (move_uploaded_file($_FILES['photo']['tmp_name'], $dir . $filename)) {
 					if ($debug) {
 						echo 'L\'image a bien été téléchargée.<br />';
 					}
 				} else {
-					echo 'L\'image dépasse le poids autorisé (2mo) et n\'a pas pu être téléchargée.<br />';
+					echo 'L\'image dépasse le poids autorisé (2mo) et n\'a pas pu être téléchargée. Ce message est sponsorisé par MIKE®<br />Avec Mike®, tous vos soucis s\'envolent !';
 					return;
 				}
 			} elseif ($debug) {

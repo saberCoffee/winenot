@@ -84,7 +84,7 @@
 						<div class="col-md-4">
 							<div class="form-group <?php if (isset($error['firstname'])) { echo 'has-error'; } ?>">
 								<label for="firstname">Prénom</label>
-								<input type="firstname" name="firstname" value="<?= $firstname; ?>"  class="form-control  <?php if (isset($error['firstname'])) { echo 'has-error'; } ?>" required="required" data-min="2" data-max="16" />
+								<input type="firstname" name="firstname" value="<?= $firstname; ?>"  class="form-control  <?php if (isset($error['firstname'])) { echo 'has-error'; } ?>" required="required" data-min="2" data-max="25" />
 								<span class="help-block" <?php if (empty($error['firstname'])) { echo 'style="display: none"'; } ?>>
 									<?php if (isset($error['firstname'])) { echo $error['firstname']; } ?>
 								</span>
@@ -94,7 +94,7 @@
 						<div class="col-md-4">
 							<div class="form-group <?php if (isset($error['firstname'])) { echo 'has-error'; } ?>">
 								<label for="lastname">Nom de famille</label>
-								<input type="lastname" name="lastname" value="<?= $lastname; ?>"  class="form-control  <?php if (isset($error['lastname'])) { echo 'has-error'; } ?>" required="required" data-min="2" data-max="16"  />
+								<input type="lastname" name="lastname" value="<?= $lastname; ?>"  class="form-control  <?php if (isset($error['lastname'])) { echo 'has-error'; } ?>" required="required" data-min="2" data-max="25"  />
 								<span class="help-block" <?php if (empty($error['lastname'])) { echo 'style="display: none"'; } ?>>
 									<?php if (isset($error['lastname'])) { echo $error['lastname']; } ?>
 								</span>
