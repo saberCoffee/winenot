@@ -44,6 +44,7 @@
 			                            <div class="nameWineBottle">
 			                                <p>
 			                                    Produit par <strong><?= $product['winemaker']['firstname'] . ' ' . $product['winemaker']['lastname'] ?></strong>
+												<br />
 			                                    <?= $product['price'] ?>€
 			                                </p>
 			                            </div>
